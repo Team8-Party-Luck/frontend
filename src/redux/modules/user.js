@@ -21,7 +21,6 @@ const loginDB = (Login_info) => {
       .post(`http://3.39.23.124:8080/user/login`, Login_info)
       .then((res) => {
         console.log(res);
-        console.log(res.headers.authorization.split(" ")[1]);
         sessionStorage.setItem(
           "token",
           res.headers.authorization.split(" ")[1]
@@ -30,7 +29,7 @@ const loginDB = (Login_info) => {
         history.push("/");
       })
       .catch((err) => {
-        alert("아이디 혹은 비밀번호가 일치하지 않습니다");
+        alert("이메일 혹은 비밀번호가 일치하지 않습니다");
         console.log(err.response, "로그인 에러");
       });
   };
@@ -63,7 +62,7 @@ const kakaoLogin = (code) => {
 const signupDB = (Signup_info) => {
   return function (dispatch, getState, { history }) {
     axios
-      .post("http://3.39.23.124:8080/user/signup", Signup_info, {
+      .post("/api/user", Signup_info, {
         headers: {
           "content-type": "application/json;charset=UTF-8",
           accept: "application/json,",
