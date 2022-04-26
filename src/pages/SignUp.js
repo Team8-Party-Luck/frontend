@@ -20,6 +20,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [access, setAccess] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -48,9 +49,24 @@ const SignUp = () => {
 
     // dispatch(userActions.signupDB(Signup_info));
   };
+
+  const sendCode = () => {
+    const Code_info = {
+      email: values.email,
+    };
+
+    console.log(Code_info);
+
+    // dispatch(userActions.sendAccessCode(Code_info));
+  };
+
   return (
     <React.Fragment>
-      <Container maxWidth="xs" component="main">
+      <Container
+        maxWidth="xs"
+        component="main"
+        style={{ border: "1px solid black", height: "700px" }}
+      >
         <Box
           sx={{
             marginTop: 8,
@@ -88,13 +104,23 @@ const SignUp = () => {
                   marginTop: 2.5,
                 }}
               >
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={handleClickOpen}
-                >
-                  인증번호발송
-                </Button>
+                {access === true ? (
+                  <Button variant="contained" size="large">
+                    인증완료
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    onChange={handleChange("email")}
+                    onClick={() => {
+                      sendCode();
+                      handleClickOpen();
+                    }}
+                  >
+                    인증코드전송
+                  </Button>
+                )}
               </Grid>
             </Grid>
             {/* <Dialog open={open} onClose={handleClose}>
@@ -118,7 +144,12 @@ const SignUp = () => {
                 <Button onClick={handleClose}>취소</Button>
               </DialogActions>
             </Dialog> */}
-            <EmailAccess open={open} setOpen={setOpen} />
+            <EmailAccess
+              open={open}
+              setOpen={setOpen}
+              access={access}
+              setAccess={setAccess}
+            />
             <TextField
               margin="normal"
               required

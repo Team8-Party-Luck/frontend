@@ -6,10 +6,12 @@ import axios from "axios";
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 const SET_USER = "SET_USER";
+const SET_CODE = "SET_CODE";
 
 // 액션 크리에이터
 const setLogin = createAction(LOGIN, (Login) => ({ Login }));
 const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
+const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 // 초기값
 const initialState = {};
 
@@ -80,21 +82,27 @@ const signupDB = (Signup_info) => {
   };
 };
 
-// const logoutDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     apis
-//       .logout()
-//       .then((res) => {
-//         //console.log(res)
-//         sessionStorage.clear();
-//         dispatch(setLogout());
-//         history.push("/login");
-//       })
-//       .catch((err) => {
-//         console.log("로그아웃 에러", err.response);
-//       });
-//   };
-// };
+const sendAccessCodeDB = (Login_info) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .post("/api/user", Login_info, {
+        headers: {
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+          // Authorization: token,
+        },
+      })
+      .then((res) => {
+        //console.log(res)
+        sessionStorage.clear();
+        dispatch(setLogout());
+        history.push("/login");
+      })
+      .catch((err) => {
+        console.log("로그아웃 에러", err.response);
+      });
+  };
+};
 
 export default handleActions(
   {
@@ -102,10 +110,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
       }),
-    // [LOGOUT]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     sessionStorage.clear();
-    //   }),
+    [SET_CODE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.code = action.payload.code;
+      }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
@@ -120,6 +128,7 @@ const actionCreators = {
   // logoutDB,
   setLogout,
   kakaoLogin,
+  sendAccessCodeDB,
 };
 
 export { actionCreators };

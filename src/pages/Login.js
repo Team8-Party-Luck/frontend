@@ -35,7 +35,11 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <Container maxWidth="xs" component="main">
+      <Container
+        maxWidth="xs"
+        component="main"
+        style={{ border: "1px solid black", height: "700px" }}
+      >
         <Box
           sx={{
             marginTop: 8,
