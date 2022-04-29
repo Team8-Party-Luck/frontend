@@ -35,73 +35,66 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <Container
-        maxWidth="xs"
-        component="main"
-        style={{ border: "1px solid black", height: "700px" }}
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+        <Typography component="h1" variant="h4">
+          여기는 로고
+        </Typography>
+        <form>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            label="Email"
+            autoFocus
+            onChange={handleChange("email")}
+          />
+          <TextField
+            required
+            fullWidth
+            label="Password"
+            type="password"
+            onChange={handleChange("password")}
+          />
+        </form>
+        <Button
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{ marginTop: 2 }}
+          onClick={login}
+        >
+          로그인하기
+        </Button>
+        <Button
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{ marginTop: 2 }}
+          onClick={() => {
+            window.location.href = KAKAO_AUTH_URL;
           }}
         >
-          <Typography component="h1" variant="h5">
-            로그인
-          </Typography>
-          <form>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Email"
-              autoFocus
-              onChange={handleChange("email")}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Password"
-              type="password"
-              onChange={handleChange("password")}
-            />
-          </form>
-          <Button
-            variant="contained"
-            size="large"
-            fullWidth
-            sx={{ marginTop: 2 }}
-            onClick={login}
-          >
-            로그인하기
-          </Button>
-          <Button
-            variant="contained"
-            size="large"
-            fullWidth
-            sx={{ marginTop: 2 }}
-            onClick={() => {
-              window.location.href = KAKAO_AUTH_URL;
-            }}
-          >
-            카카오로 시작하기
-          </Button>
-          <Button
-            variant="contained"
-            size="large"
-            fullWidth
-            sx={{ marginTop: 2 }}
-            onClick={() => {
-              history.push("/signup");
-            }}
-          >
-            파티럭이 처음이신가요? 회원가입하기
-          </Button>
-        </Box>
-      </Container>
+          카카오로 시작하기
+        </Button>
+        <Button
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{ marginTop: 2 }}
+          onClick={() => {
+            history.push("/signup");
+          }}
+        >
+          파티럭이 처음이신가요? 회원가입하기
+        </Button>
+      </Box>
     </React.Fragment>
   );
 };

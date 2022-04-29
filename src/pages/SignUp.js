@@ -13,8 +13,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import EmailAccess from "../components/EmailAccess";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import {
+  checkNickname,
+  checkPassword,
+  checkEmail,
+} from "../shared/signupCheck";
+import Slider from "../components/Slider/Slider";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -59,6 +65,8 @@ const SignUp = () => {
 
     // dispatch(userActions.sendAccessCode(Code_info));
   };
+
+  const emailCheck = () => {};
 
   return (
     <React.Fragment>
@@ -123,27 +131,6 @@ const SignUp = () => {
                 )}
               </Grid>
             </Grid>
-            {/* <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>인증번호확인</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  메일로 발송된 인증번호를 입력해주세요
-                </DialogContentText>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Access Code"
-                  type="email"
-                  fullWidth
-                  variant="standard"
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>인증</Button>
-                <Button onClick={handleClose}>취소</Button>
-              </DialogActions>
-            </Dialog> */}
             <EmailAccess
               open={open}
               setOpen={setOpen}

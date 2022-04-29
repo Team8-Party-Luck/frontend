@@ -28,7 +28,9 @@
     "redux-actions": "^2.6.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
+    "sass": "^1.51.0",
     "styled-components": "^5.3.5",
+    "swiper": "^6.8.4",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

@@ -18,7 +18,9 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const EmailAccess = (props) => {
   const dispatch = useDispatch();
 
-  // const codeData = useSelector((state) => state.code.authCode);
+  //서버에서 온 코드 응답값
+  // const accessResult = useSelector((state) => state)
+
   const codeData = 123456;
 
   const { open, setOpen, access, setAccess } = props;
@@ -29,6 +31,7 @@ const EmailAccess = (props) => {
 
   const [accessCode, setAccessCode] = useState("");
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
 
   const isCorrect = () => {
     if (accessCode == codeData) {
@@ -36,8 +39,8 @@ const EmailAccess = (props) => {
       // setOpen(false);
       setAccess(true);
     } else {
+      setOpen3(true);
       setOpen2(false);
-      setAccess(false);
       setOpen(false);
     }
   };
@@ -89,7 +92,20 @@ const EmailAccess = (props) => {
           </DialogActions>
         </Dialog>
       ) : (
-        <></>
+        <Dialog open={open3}>
+          <DialogTitle>
+            인증코드가 일치하지 않습니다. 다시 시도해주세요
+          </DialogTitle>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                setOpen3(false);
+              }}
+            >
+              확인
+            </Button>
+          </DialogActions>
+        </Dialog>
       )}
     </div>
   );
