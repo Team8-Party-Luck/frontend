@@ -16,7 +16,7 @@ const AddSearch = () => {
   return (
     <div>
       <Button variant="outlined" onClick={openPostCode} sx={{mb:1 }}>
-        우편번호 검색
+        식당 이름(위치)
       </Button>
 
       <div id="popupDom">

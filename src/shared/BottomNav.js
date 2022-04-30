@@ -21,7 +21,7 @@ const BottomNav = () => {
   return (
     <div>
     <BottomNavigation
-      sx={{ width: "100%" ,position:'fixed', bottom:0, }}
+      sx={{ width: "100%" ,position:'fixed', display:'flex', bottom:0, }}
       value={value}
       onChange={handleChange}
     >

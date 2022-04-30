@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Input from "@mui/material/Input";
-import Button from '@mui/material/Button';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import Box from "@mui/material/Box";
 
 const Images = () => {
   const [showImages, setShowImages] = useState([]);
@@ -44,33 +43,56 @@ const Images = () => {
           name="안녕"
           style={{ display: "none" }}
         />
-        {/* <Plus fill="#646F7C" /> */}
-        <AddPhoto><AddPhotoAlternateIcon/></AddPhoto>
-        {showImages.map((image, id) => (
-        <div className="imageContainer" key={id}>
-          <Img src={image} alt={`${image}-${id}`} />
-          <div onClick={() => handleDeleteImage(id)} />
-        </div>
-      ))}
-      </label>
 
-      
+        <div
+          style={{
+            border: "1px solid black",
+            borderRadius: "10px",
+            margin: "0.5rem",
+            width: "23.4rem",
+          }}
+        >
+          <Box
+            component="div"
+            sx={{ whiteSpace: "nowrap", overflowX: "auto",}}
+          >
+            <Box component="div" sx={{ display: "inline-block" }}>
+              <AddPhotoAlternateIcon
+                sx={{ fontSize: '4rem', m: 2 }}
+                style={{ border: "1px solid black", borderRadius: "4px", }}
+              />
+            </Box>
+
+            <Box component="div" sx={{ display: "inline-block", }}>
+              {showImages.map((image, id) => (
+                <span className="imageContainer" key={id}>
+                  <Img src={image} alt={`${image}-${id}`} />
+                  {console.log(image)}
+                  <span onClick={() => handleDeleteImage(id)}></span>
+                </span>
+              ))}
+            </Box>
+          </Box>
+        </div>
+      </label>
     </div>
   );
 };
 
 const Img = styled.img`
-border:1px solid gray;
+  border: 1px solid gray;
   width: 4em;
   height: 4rem;
-  float: left;
-  margin: 10px;
-  border-radius:5px;
+  border-radius: 5px;
+  margin-bottom:1rem;
+  margin: 0 0.2rem 1rem 0.2rem;
 `;
 
-const AddPhoto = styled.div`
- border:1px solid #dddddd;
- padding:2rem;
-`
+const AddPhoto = styled.span`
+  border: 1px solid #dddddd;
+  padding: 2rem;
+  width: 5.5rem;
+  margin: 0;
+`;
 
 export default Images;
