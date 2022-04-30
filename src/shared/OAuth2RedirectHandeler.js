@@ -9,11 +9,11 @@ const OAuth2RedirectHandeler = () => {
   const code = new URL(window.location.href).searchParams.get("code");
   console.log(code);
 
-  React.useEffect(() => {
-    dispatch(userActions.kakaoLogin(code));
+  React.useEffect(async () => {
+    await dispatch(userActions.kakaoLogin(code));
   }, []);
 
-  return;
+  return <></>;
 };
 
 export default OAuth2RedirectHandeler;

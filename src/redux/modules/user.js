@@ -15,12 +15,20 @@ const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 // 초기값
 const initialState = {};
 
+const token = sessionStorage.getItem("token");
+
 //미들웨어
 //로그인요청
 const loginDB = (Login_info) => {
   return function (dispatch, getState, { history }) {
     axios
-      .post(`http://3.39.23.124:8080/user/login`, Login_info)
+      .post(`http://3.38.180.96:8080/user/login`, Login_info, {
+        headers: {
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+          // Authorization: token,
+        },
+      })
       .then((res) => {
         console.log(res);
         sessionStorage.setItem(
@@ -41,16 +49,16 @@ const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "GET",
-      url: `http://3.39.23.124:8080/user/kakao/callback?code=${code}`,
+      url: `http://3.38.180.96:8080/auth/kakao?code=${code}`,
     })
       .then((res) => {
         console.log(res.data); // 토큰이 넘어올 것임
 
-        const KAKAO_TOKEN = res.data.accessToken;
+        const KAKAO_TOKEN = res.data;
 
         sessionStorage.setItem("token", KAKAO_TOKEN); //예시로 로컬에 저장함
 
-        // history.replace("/"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
+        history.replace("/"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
@@ -64,7 +72,7 @@ const kakaoLogin = (code) => {
 const signupDB = (Signup_info) => {
   return function (dispatch, getState, { history }) {
     axios
-      .post("/api/user", Signup_info, {
+      .post("http://3.38.180.96:8080/api/user", Signup_info, {
         headers: {
           "content-type": "application/json;charset=UTF-8",
           accept: "application/json,",
@@ -104,6 +112,26 @@ const sendAccessCodeDB = (Login_info) => {
   };
 };
 
+const sendSettingsData = (Settings_info) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type":
+            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
+  };
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -129,6 +157,7 @@ const actionCreators = {
   setLogout,
   kakaoLogin,
   sendAccessCodeDB,
+  sendSettingsData,
 };
 
 export { actionCreators };

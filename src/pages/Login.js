@@ -30,7 +30,7 @@ const Login = () => {
 
     console.log(Login_info);
 
-    // dispatch(userActions.loginDB(Login_info));
+    dispatch(userActions.loginDB(Login_info));
   };
 
   return (

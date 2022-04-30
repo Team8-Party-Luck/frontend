@@ -53,7 +53,7 @@ const SignUp = () => {
 
     console.log(Signup_info);
 
-    // dispatch(userActions.signupDB(Signup_info));
+    dispatch(userActions.signupDB(Signup_info));
   };
 
   const sendCode = () => {
