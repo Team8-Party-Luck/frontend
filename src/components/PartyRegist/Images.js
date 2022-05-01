@@ -83,9 +83,8 @@ const Img = styled.img`
   border: 1px solid gray;
   width: 4em;
   height: 4rem;
-  border-radius: 5px;
-  margin-bottom:1rem;
-  margin: 0 0.2rem 1rem 0.2rem;
+  margin: 10px;
+  border-radius:5px;
 `;
 
 const AddPhoto = styled.span`

@@ -6,7 +6,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import styled from "styled-components";
 
 
-const Day = () => {
+const Day = ({day, setDay}) => {
   const [value, setValue] = React.useState(new Date());
 
   return (
@@ -17,6 +17,7 @@ const Day = () => {
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
+            setDay(newValue)
           }}
           renderInput={(params) => <TextField {...params} sx={{dispaly:'inline'}}/>}
         />

@@ -11,29 +11,23 @@ import Images from "./Images";
 import RegiWriteSend from "../../redux/modules/regiWriteSend";
 import Day from "./Day";
 import TimeSelect from "./TimeSelect";
+import Age from "./Age";
 
 const RegiWrite = () => {
-  const [partyName, setPartyName] = useState("");
-  const [eateryName, setEateryName] = useState("");
-  const [userNum, setUserNum] = useState("");
-  const [address, setAddress] = useState("");
+  const [photos, setPhotos] = useState('');
+  const [partyName, setPartyName] = useState(null);
+  const [eateryName, setEateryName] = useState(null);
+  const [userNum, setUserNum] = useState(null);
+  const [meetPlace, setMeetPlace] = useState("");
+  const [day, setDay] = useState(null);
+  const [time, setTime] = useState(null);
   const [partyDesc, setPartyDesc] = useState("");
-  const [day, setDay] = useState("");
-  const [time, setTime] = useState("");
- 
 
   let history = useHistory();
 
   return (
     <React.Fragment>
-      
-      <Grid
-        container
-        // direction="column"
-        alignItems="center"
-        justifyContent="center"
-        // style={{ maxHeight: '10vh' }}
-      >
+      <Grid container alignItems="center" justifyContent="center">
         <Images />
         <TextField
           id="partyName"
@@ -45,60 +39,38 @@ const RegiWrite = () => {
             setPartyName(e.target.value);
           }}
         />
-
+        <AddSearch eateryName={eateryName} setEateryName={setEateryName}/>
+        <Age userNum={userNum} setUserNum={setUserNum}/>
         <TextField
-          id="eateryName"
-          label="식당 이름(위치)"
-          variant="standard"
-          style={{ width: "80%" }}
-          sx={{ mb: 1.5 }}
-          onChange={(e) => {
-            setEateryName(e.target.value);
-          }}
-        />
-
-        <TextField
-          id="userNum"
-          label="모이는 인원"
-          variant="standard"
-          style={{ width: "80%" }}
-          sx={{ mb: 1.5 }}
-          onChange={(e) => {
-            setUserNum(e.target.value);
-          }}
-        />{" "}
-
-        <TextField
-          id="address"
+          id="meetPlace"
           label="만날 장소"
           variant="standard"
           style={{ width: "80%" }}
           sx={{ mb: 1.5 }}
           onChange={(e) => {
-            // setUserNum(e.target.value);
+            setMeetPlace(e.target.value);
           }}
         />{" "}
-
-        <Box component="div" sx={{ display: "inline", width: "12rem", mb:3 }}>
-          <Day/>
+        
+        <Box component="div" sx={{ display: "inline", width: "12rem" }}>
+          <Day day={day} setDay={setDay}/>
         </Box>
-        <Box component="div" sx={{ display: "inline", width: "8rem", mb:3 }}>
-          <TimeSelect />
+        <Box component="div" sx={{ display: "inline", width: "8rem" }}>
+          <TimeSelect time={time} setTime={setTime}/>
         </Box>
-        <AddSearch />
 
         <TextField
           multiline
-          id="filled-basic"
+          id="partyDesc"
           label="설명글을 입력해주세요!"
-          rows={4}
+          rows={5}
           variant="standard"
-          style={{ width: "80%"}}
-            inputProps={{
-              style: {
-                height:"10rem",
-                padding: '0 14px',
-              },
+          style={{ width: "80%" }}
+          inputProps={{
+            style: {
+              height: "10rem",
+              padding: "0 14px",
+            },
           }}
           sx={{ pb: 1, mt: 2 }}
           onChange={(e) => {
@@ -109,16 +81,24 @@ const RegiWrite = () => {
           variant="outlined"
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
+            console.log(partyName);
+            console.log(eateryName);
+            console.log(userNum);
+            console.log(meetPlace);
+            console.log(day);
+            console.log(time);
+            console.log(partyDesc);
             RegiWriteSend(
+              photos,
               partyName,
               eateryName,
               userNum,
-              partyDesc,
+              meetPlace,
               day,
               time,
-              address
+              partyDesc
             );
-            alert("등록하시겠습니까?");
+            alert("파티를 등록하시겠습니까?");
             history.push("/home");
           }}
         >

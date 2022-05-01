@@ -4,8 +4,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 
-export default function TimeSelect() {
+export default function TimeSelect({time, setTime}) {
   const [value, setValue] = React.useState(new Date('2018-01-01T00:00:00.000Z'));
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -14,6 +15,7 @@ export default function TimeSelect() {
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
+            setTime(newValue);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
