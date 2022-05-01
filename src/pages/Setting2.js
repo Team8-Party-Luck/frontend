@@ -75,7 +75,7 @@ const Setting2 = (props) => {
           style={{
             width: "100%",
             border: "1px solid lightgray",
-            borderRadius: "5px",
+            borderRadius: "4px",
           }}
           onChange={handleChange("intro")}
         />
