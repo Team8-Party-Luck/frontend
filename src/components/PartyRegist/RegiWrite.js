@@ -14,7 +14,7 @@ import TimeSelect from "./TimeSelect";
 import Age from "./Age";
 
 const RegiWrite = () => {
-  const [photos, setPhotos] = useState('');
+  const [photos, setPhotos] = useState(null);
   const [partyName, setPartyName] = useState(null);
   const [eateryName, setEateryName] = useState(null);
   const [userNum, setUserNum] = useState(null);
@@ -28,7 +28,7 @@ const RegiWrite = () => {
   return (
     <React.Fragment>
       <Grid container alignItems="center" justifyContent="center">
-        <Images />
+        <Images photos={photos} setPhotos={setPhotos}/>
         <TextField
           id="partyName"
           label="파티제목"
@@ -81,6 +81,7 @@ const RegiWrite = () => {
           variant="outlined"
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
+            console.log(photos);
             console.log(partyName);
             console.log(eateryName);
             console.log(userNum);

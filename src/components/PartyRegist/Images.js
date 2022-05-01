@@ -3,13 +3,14 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 
-const Images = () => {
+const Images = ({photos, setPhotos}) => {
   const [showImages, setShowImages] = useState([]);
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
+
 
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
@@ -20,6 +21,7 @@ const Images = () => {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
 
+    setPhotos(imageUrlLists)
     setShowImages(imageUrlLists);
   };
 
@@ -67,8 +69,7 @@ const Images = () => {
               {showImages.map((image, id) => (
                 <span className="imageContainer" key={id}>
                   <Img src={image} alt={`${image}-${id}`} />
-                  {console.log(image)}
-                  <span onClick={() => handleDeleteImage(id)}></span>
+                  <span onClick={() => handleDeleteImage(id)}>x</span>
                 </span>
               ))}
             </Box>
