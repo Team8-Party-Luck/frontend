@@ -6,22 +6,31 @@ import axios from "axios";
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 const SET_USER = "SET_USER";
+const SET_CODE = "SET_CODE";
 
 // 액션 크리에이터
 const setLogin = createAction(LOGIN, (Login) => ({ Login }));
 const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
+const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 // 초기값
 const initialState = {};
+
+const token = sessionStorage.getItem("token");
 
 //미들웨어
 //로그인요청
 const loginDB = (Login_info) => {
   return function (dispatch, getState, { history }) {
     axios
-      .post(`http://3.39.23.124:8080/user/login`, Login_info)
+      .post(`http://3.38.180.96:8080/user/login`, Login_info, {
+        headers: {
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+          // Authorization: token,
+        },
+      })
       .then((res) => {
         console.log(res);
-        console.log(res.headers.authorization.split(" ")[1]);
         sessionStorage.setItem(
           "token",
           res.headers.authorization.split(" ")[1]
@@ -30,7 +39,7 @@ const loginDB = (Login_info) => {
         history.push("/");
       })
       .catch((err) => {
-        alert("아이디 혹은 비밀번호가 일치하지 않습니다");
+        alert("이메일 혹은 비밀번호가 일치하지 않습니다");
         console.log(err.response, "로그인 에러");
       });
   };
@@ -40,12 +49,12 @@ const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "GET",
-      url: `http://3.39.23.124:8080/user/kakao/callback?code=${code}`,
+      url: `http://3.38.180.96:8080/auth/kakao?code=${code}`,
     })
       .then((res) => {
         console.log(res.data); // 토큰이 넘어올 것임
 
-        const KAKAO_TOKEN = res.data.accessToken;
+        const KAKAO_TOKEN = res.data;
 
         sessionStorage.setItem("token", KAKAO_TOKEN); //예시로 로컬에 저장함
 
@@ -63,7 +72,7 @@ const kakaoLogin = (code) => {
 const signupDB = (Signup_info) => {
   return function (dispatch, getState, { history }) {
     axios
-      .post("http://3.39.23.124:8080/user/signup", Signup_info, {
+      .post("http://3.38.180.96:8080/api/user", Signup_info, {
         headers: {
           "content-type": "application/json;charset=UTF-8",
           accept: "application/json,",
@@ -81,21 +90,47 @@ const signupDB = (Signup_info) => {
   };
 };
 
-// const logoutDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     apis
-//       .logout()
-//       .then((res) => {
-//         //console.log(res)
-//         sessionStorage.clear();
-//         dispatch(setLogout());
-//         history.push("/login");
-//       })
-//       .catch((err) => {
-//         console.log("로그아웃 에러", err.response);
-//       });
-//   };
-// };
+const sendAccessCodeDB = (Login_info) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .post("/api/user", Login_info, {
+        headers: {
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+          // Authorization: token,
+        },
+      })
+      .then((res) => {
+        //console.log(res)
+        sessionStorage.clear();
+        dispatch(setLogout());
+        history.push("/login");
+      })
+      .catch((err) => {
+        console.log("로그아웃 에러", err.response);
+      });
+  };
+};
+
+const sendSettingsData = (Settings_info) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type":
+            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
+  };
+};
 
 export default handleActions(
   {
@@ -103,10 +138,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
       }),
-    // [LOGOUT]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     sessionStorage.clear();
-    //   }),
+    [SET_CODE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.code = action.payload.code;
+      }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
@@ -121,6 +156,8 @@ const actionCreators = {
   // logoutDB,
   setLogout,
   kakaoLogin,
+  sendAccessCodeDB,
+  sendSettingsData,
 };
 
 export { actionCreators };
