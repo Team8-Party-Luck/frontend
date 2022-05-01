@@ -1,89 +1,107 @@
-import React ,{ useState } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import ImagePreview from "./ImagePreview";
+import Box from "@mui/material/Box";
 import AddSearch from "./address/AddSearch";
 import Images from "./Images";
+
+import RegiWriteSend from "../../redux/modules/regiWriteSend";
+import Day from "./Day";
+import TimeSelect from "./TimeSelect";
+import Age from "./Age";
+
 const RegiWrite = () => {
-  const [imgBase64, setImgBase64] = useState([]);
-  const [imgFile, setImgFile] = useState(null);	
+  const [photos, setPhotos] = useState('');
+  const [partyName, setPartyName] = useState(null);
+  const [eateryName, setEateryName] = useState(null);
+  const [userNum, setUserNum] = useState(null);
+  const [meetPlace, setMeetPlace] = useState("");
+  const [day, setDay] = useState(null);
+  const [time, setTime] = useState(null);
+  const [partyDesc, setPartyDesc] = useState("");
+
+  let history = useHistory();
+
   return (
     <React.Fragment>
-      {/* <ImagePreview /> */}
-      <Images/>
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        // style={{ minHeight: '10vh' }}
-      >
+      <Grid container alignItems="center" justifyContent="center">
+        <Images />
         <TextField
-          id="filled-basic"
-          label="파티명"
-          variant="outlined"
+          id="partyName"
+          label="파티제목"
+          variant="standard"
           style={{ width: "80%" }}
-          sx={{ pb: 1 }}
+          sx={{ mb: 1.5 }}
+          onChange={(e) => {
+            setPartyName(e.target.value);
+          }}
         />
+        <AddSearch eateryName={eateryName} setEateryName={setEateryName}/>
+        <Age userNum={userNum} setUserNum={setUserNum}/>
         <TextField
-          id="filled-basic"
-          label="음식점 이름"
-          variant="outlined"
+          id="meetPlace"
+          label="만날 장소"
+          variant="standard"
           style={{ width: "80%" }}
-          sx={{ pb: 1 }}
-        />
-
-        <TextField
-          id="filled-basic"
-          label="인원수"
-          variant="outlined"
-          style={{ width: "80%" }}
-          sx={{ pb: 1 }}
-        />
+          sx={{ mb: 1.5 }}
+          onChange={(e) => {
+            setMeetPlace(e.target.value);
+          }}
+        />{" "}
+        
+        <Box component="div" sx={{ display: "inline", width: "12rem" }}>
+          <Day day={day} setDay={setDay}/>
+        </Box>
+        <Box component="div" sx={{ display: "inline", width: "8rem" }}>
+          <TimeSelect time={time} setTime={setTime}/>
+        </Box>
 
         <TextField
           multiline
-          id="filled-basic"
-          label="파티 설명을 써주세요"
-          rows={4}
-          variant="outlined"
-          style={{ width: "80%", height: "100" }}
-          sx={{ pb: 1 }}
-        />
-
-        <TextField
-          id="filled-basic"
-          label="날짜"
-          variant="outlined"
+          id="partyDesc"
+          label="설명글을 입력해주세요!"
+          rows={5}
+          variant="standard"
           style={{ width: "80%" }}
-          sx={{ pb: 1 }}
+          inputProps={{
+            style: {
+              height: "10rem",
+              padding: "0 14px",
+            },
+          }}
+          sx={{ pb: 1, mt: 2 }}
+          onChange={(e) => {
+            setPartyDesc(e.target.value);
+          }}
         />
-
-        <TextField
-          id="filled-basic"
-          label="시간"
+        <Button
           variant="outlined"
-          style={{ width: "80%" }}
-          sx={{ pb: 1 }}
-        />
-
-        <AddSearch />
-        <TextField
-          id="filled-basic"
-          label="주소"
-          variant="outlined"
-          style={{ width: "80%" }}
-        />
-         <TextField
-          id="filled-basic"
-          label="상세주소"
-          variant="outlined"
-          style={{ width: "80%" }}
-          sx={{ pb: 1 }}
-        />
-        
-        <Button variant="outlined" style={{ height: "3rem", width: "7rem" }}>
+          style={{ height: "3rem", width: "7rem" }}
+          onClick={() => {
+            console.log(partyName);
+            console.log(eateryName);
+            console.log(userNum);
+            console.log(meetPlace);
+            console.log(day);
+            console.log(time);
+            console.log(partyDesc);
+            RegiWriteSend(
+              photos,
+              partyName,
+              eateryName,
+              userNum,
+              meetPlace,
+              day,
+              time,
+              partyDesc
+            );
+            alert("파티를 등록하시겠습니까?");
+            history.push("/home");
+          }}
+        >
           등록
         </Button>
       </Grid>

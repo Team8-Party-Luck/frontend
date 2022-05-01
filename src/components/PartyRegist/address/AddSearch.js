@@ -1,9 +1,22 @@
-import React, { useState } from "react";
-import Button from '@mui/material/Button';
+import React, { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
 import PopupDom from "./PopupDom";
 import PopupPostCode from "./PopupPostCode";
+import TextField from "@mui/material/TextField";
 
-const AddSearch = () => {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+const AddSearch = ({ eateryName, setEateryName }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPostCode = () => {
@@ -13,16 +26,29 @@ const AddSearch = () => {
   const closePostCode = () => {
     setIsPopupOpen(false);
   };
+
   return (
-    <div>
-      <Button variant="outlined" onClick={openPostCode} sx={{mb:1 }}>
-        우편번호 검색
-      </Button>
+    <div style={{ width: "80%" }}>
+      <TextField
+        id="eateryName"
+        variant="standard"
+        label="식당 이름(위치)"
+        onClick={openPostCode}
+        style={{ width: "100%" }}
+        sx={{ mb: 1.5 }}
+        InputProps={{
+          readOnly: true,
+        }}
+      ></TextField>
 
       <div id="popupDom">
         {isPopupOpen && (
           <PopupDom>
-            <PopupPostCode onClose={closePostCode} />
+            <PopupPostCode
+              eateryName={eateryName}
+              setEateryName={setEateryName}
+              onClose={closePostCode}
+            />
           </PopupDom>
         )}
       </div>

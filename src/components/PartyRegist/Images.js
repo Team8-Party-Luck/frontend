@@ -63,7 +63,6 @@ const Img = styled.img`
 border:1px solid gray;
   width: 4em;
   height: 4rem;
-  float: left;
   margin: 10px;
   border-radius:5px;
 `;
