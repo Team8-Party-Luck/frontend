@@ -15,6 +15,8 @@ import Alarm from "./pages/Alarm";
 import SeeMore from "./components/Home/SeeMore";
 import Chat from "./pages/Chat";
 import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
+import PartyInfo from "./pages/PartyInfo";
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
         <Route path="/seeMore" exact component={SeeMore} />
         <Route path="/chat" exact component={Chat} />
         <Route path="/regi" exact component={PartyRegist} />
+        <Route path="/partyInfo" exact component={PartyInfo} />
         <Route path="/user" exact component={User} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/setting" exact component={Setting} />
