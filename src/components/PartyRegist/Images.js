@@ -11,7 +11,7 @@ const Images = ({ photos, setPhotos }) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
 
-    console.log(imageLists[0]);
+    console.log(imageLists);
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);

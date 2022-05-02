@@ -17,10 +17,10 @@ import { useDispatch } from "react-redux";
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
-  const [photos, setPhotos] = useState(null);
-  const [partyName, setPartyName] = useState(null);
-  const [eateryName, setEateryName] = useState(null);
-  const [userNum, setUserNum] = useState(null);
+  const [photos, setPhotos] = useState("");
+  const [partyName, setPartyName] = useState("");
+  const [eateryName, setEateryName] = useState("");
+  const [userNum, setUserNum] = useState("");
   const [meetPlace, setMeetPlace] = useState("");
   const [day, setDay] = useState("asdasd");
   const [time, setTime] = useState("asdasd");
@@ -28,7 +28,7 @@ const RegiWrite = () => {
 
   const sendWriteData = () => {
     const Write_info = {
-      // image: photos,
+      image: photos,
       title: partyName,
       store: eateryName,
       capacity: userNum,
