@@ -14,6 +14,7 @@ import Alarm from "./pages/Alarm";
 import SeeMore from "./components/Home/SeeMore";
 import Chat from "./pages/Chat";
 import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
+import NaverLogin from "./shared/NaverLogin";
 import PartyInfo from "./pages/PartyInfo";
 import { useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "./redux/modules/crew";
@@ -39,7 +40,8 @@ function App() {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/setting" exact component={Setting} />
         <Route path="/setting2" exact component={Setting2} />
-        <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
+        <Route path="/auth/kakao" component={OAuth2RedirectHandeler} />
+        <Route path="/auth/naver" component={NaverLogin} />
       </ConnectedRouter>
     </React.Fragment>
   );
