@@ -2,14 +2,19 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Avatar from '@mui/material/Avatar';
+
+
 import { useHistory } from "react-router-dom";
+
+import Grid from "@mui/material/Grid";
+import Avatar from "@mui/material/Avatar";
+
 
 const PartyCard = () => {
   let history = useHistory();
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", flexDirection: "row", m:2}}>
+      <Box sx={{ display: "flex", flexDirection: "row", m: 2 }}>
         <Avatar
           variant={"rounded"}
           alt="The image"

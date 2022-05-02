@@ -2,7 +2,6 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Setting from "./pages/Setting";
 import Setting2 from "./pages/Setting2";
-
 import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";

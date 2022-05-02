@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -8,22 +7,41 @@ import Box from "@mui/material/Box";
 import AddSearch from "./address/AddSearch";
 import Images from "./Images";
 
-import RegiWriteSend from "../../redux/modules/regiWriteSend";
+import { history } from "../../redux/configStore";
 import Day from "./Day";
 import TimeSelect from "./TimeSelect";
 import Age from "./Age";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { useDispatch } from "react-redux";
 
 const RegiWrite = () => {
+  const dispatch = useDispatch();
+
   const [photos, setPhotos] = useState(null);
   const [partyName, setPartyName] = useState(null);
   const [eateryName, setEateryName] = useState(null);
   const [userNum, setUserNum] = useState(null);
   const [meetPlace, setMeetPlace] = useState("");
-  const [day, setDay] = useState(null);
-  const [time, setTime] = useState(null);
+  const [day, setDay] = useState("asdasd");
+  const [time, setTime] = useState("asdasd");
   const [partyDesc, setPartyDesc] = useState("");
 
-  let history = useHistory();
+  const sendWriteData = () => {
+    const Write_info = {
+      // image: photos,
+      title: partyName,
+      store: eateryName,
+      capacity: userNum,
+      meeting: meetPlace,
+      date: day,
+      time: time,
+      desc: partyDesc,
+    };
+
+    console.log(Write_info);
+
+    dispatch(crewActions.regiWriteSend(Write_info));
+  };
 
   return (
     <React.Fragment>
@@ -79,20 +97,9 @@ const RegiWrite = () => {
           variant="outlined"
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
-            const RegiInfo = {
-              image: photos,
-              partyName: partyName,
-              eateryName: eateryName,
-              userNum: userNum,
-              meetPlace: meetPlace,
-              day: day,
-              time: time,
-              partyDesc: partyDesc,
-            };
-            console.log(RegiInfo);
-            RegiWriteSend(RegiInfo);
-            alert("파티를 등록하시겠습니까?");
-            history.push("/home");
+            sendWriteData();
+            // alert("파티를 등록하시겠습니까?");
+            // history.push("/home");
           }}
         >
           등록
