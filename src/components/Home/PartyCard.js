@@ -1,14 +1,17 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+
+
+import { useHistory } from "react-router-dom";
+
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 
+
 const PartyCard = () => {
+  let history = useHistory();
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", flexDirection: "row", m: 2 }}>
@@ -21,6 +24,9 @@ const PartyCard = () => {
           style={{
             width: 100,
             height: 100,
+          }}
+          onClick={() => {
+            history.push('/partyInfo')
           }}
         />
         <CardContent sx={{ flex: "1 0 auto" }}>
