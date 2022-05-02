@@ -11,7 +11,7 @@ const SET_CODE = "SET_CODE";
 // 액션 크리에이터
 const setLogin = createAction(LOGIN, (Login) => ({ Login }));
 const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
-const setCode = createAction(SET_CODE, (Code) => ({ Code }));
+// const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 // 초기값
 const initialState = {};
 

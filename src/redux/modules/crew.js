@@ -9,8 +9,18 @@ const initialState = {};
 const token = sessionStorage.getItem("token");
 
 const regiWriteSend = (Write_info) => {
+  const file = new FormData();
+  file.append("image", Write_info.photos);
+  file.append("title", Write_info.title);
+  file.append("store", Write_info.store);
+  file.append("capacity", Write_info.capacity);
+  file.append("meeting", Write_info.meeting);
+  file.append("date", Write_info.date);
+  file.append("time", Write_info.time);
+  file.append("desc", Write_info.desc);
+
   axios
-    .post("http://3.38.180.96/api/party", Write_info, {
+    .post("http://3.38.180.96/api/party", file, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type":
