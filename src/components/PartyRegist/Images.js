@@ -10,6 +10,7 @@ const Images = ({photos, setPhotos}) => {
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
+    
 
     console.log(imageLists);
     for (let i = 0; i < imageLists.length; i++) {
