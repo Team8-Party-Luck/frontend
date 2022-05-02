@@ -2,36 +2,29 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Stack from '@mui/material/Stack';
 import styled from "styled-components";
 
-
-const Day = ({day, setDay}) => {
+const RealDay =({day, setDay}) =>  {
   const [value, setValue] = React.useState(new Date());
 
   return (
-    <DayStyle>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <MobileDatePicker
+
+        <DatePicker
+          openTo="day"
+          views={['day']}
           label="만날 날짜"
           value={value}
           onChange={(newValue) => {
-            setValue(newValue.getFullYear());
-            setDay(newValue)
-            console.log(value)
+            setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} sx={{dispaly:'inline'}}/>}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
+
     </LocalizationProvider>
-    </DayStyle>
   );
 }
 
-
-
-const DayStyle = styled.div`
-margin-top: 1rem;
-margin-bottom:1rem;
-
-`
-export default Day;
+export default RealDay;

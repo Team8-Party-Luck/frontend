@@ -13,6 +13,7 @@ import TimeSelect from "./TimeSelect";
 import Age from "./Age";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
+import RealDay from "./RealDay";
 
 const RegiWrite = () => {
   const dispatch = useDispatch();
@@ -70,7 +71,8 @@ const RegiWrite = () => {
           }}
         />{" "}
         <Box component="div" sx={{ display: "inline", width: "12rem" }}>
-          <Day day={day} setDay={setDay} />
+          {/* <Day day={day} setDay={setDay} /> */}
+          <RealDay day={day} setDay={setDay}/>
         </Box>
         <Box component="div" sx={{ display: "inline", width: "8rem" }}>
           <TimeSelect time={time} setTime={setTime} />
