@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 
-const Images = () => {
+const Images = ({photos, setPhotos}) => {
   const [showImages, setShowImages] = useState([]);
 
   // 이미지 상대경로 저장
@@ -11,15 +11,20 @@ const Images = () => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
 
+    console.log(imageLists);
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
-
+    
     if (imageUrlLists.length > 10) {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
 
+    setPhotos(imageLists)
+
+    // blob형식으로 보내기
+    // setPhotos(imageUrlLists)
     setShowImages(imageUrlLists);
   };
 
@@ -67,8 +72,7 @@ const Images = () => {
               {showImages.map((image, id) => (
                 <span className="imageContainer" key={id}>
                   <Img src={image} alt={`${image}-${id}`} />
-                  {console.log(image)}
-                  <span onClick={() => handleDeleteImage(id)}></span>
+                  <span onClick={() => handleDeleteImage(id)}>x</span>
                 </span>
               ))}
             </Box>

@@ -1,19 +1,17 @@
 import axios from "axios";
+const token = sessionStorage.getItem("token");
 
-const RegiWriteSend = (state) => {
+const RegiWriteSend = (RegiInfo) => {
   axios
-    .post("/url", {
-      photos: state.photos,
-      partyName: state.partyName,
-      eateryName: state.eateryName,
-      userNum: state.userNum,
-      meetPlace: state.meetPlace,
-      day: state.day,
-      time: state.time,
-      partyDesc: state.partyDesc,
+    .post("http://3.38.180.96/api/party", RegiInfo, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+      },
     })
     .then((response) => {
-      console.log(response);
+      console.log(response.data);
     })
     .catch((error) => {
       console.log(error);
