@@ -16,8 +16,11 @@ const Day = ({day, setDay}) => {
           label="만날 날짜"
           value={value}
           onChange={(newValue) => {
-            setValue(newValue);
+            setValue(newValue.getFullYear());
+            let year = newValue.getFullYear();
+            let month = newValue.getMonth();
             setDay(newValue)
+            console.log(value)
           }}
           renderInput={(params) => <TextField {...params} sx={{dispaly:'inline'}}/>}
         />
