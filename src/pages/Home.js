@@ -4,10 +4,15 @@ import HeaderNav from "../components/Home/HeaderNav";
 import SimpleSlider from "../components/Home/SimpleSlider";
 import PartyList from "../components/Home/PartyList";
 import { useSelector } from "react-redux";
+import { actionCreators as crewActions } from "../redux/modules/crew";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
-  const data = useSelector((state) => state);
-  console.log(data);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(crewActions.getDataDB());
+  }, []);
 
   return (
     <React.Fragment>

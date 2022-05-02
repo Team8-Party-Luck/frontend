@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
 import newPartyGet from "../../redux/modules/inquiry/newParty";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,7 +41,11 @@ function a11yProps(index) {
   };
 }
 
-export default function PartyList() {
+export default function PartyList(props) {
+  const crewList = useSelector((state) => state?.crew?.crew?.results);
+
+  console.log(crewList);
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

@@ -53,7 +53,6 @@ const getDataDB = () => {
       .get("http://3.38.180.96/api/parties")
       .then((res) => {
         dispatch(getCrew(res.data));
-        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);

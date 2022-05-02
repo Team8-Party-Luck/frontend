@@ -36,7 +36,7 @@ const loginDB = (Login_info) => {
           res.headers.authorization.split(" ")[1]
         );
         dispatch(setLogin(Login_info));
-        history.push("/");
+        history.push("/home");
       })
       .catch((err) => {
         alert("이메일 혹은 비밀번호가 일치하지 않습니다");
@@ -58,7 +58,7 @@ const kakaoLogin = (code) => {
 
         sessionStorage.setItem("token", KAKAO_TOKEN); //예시로 로컬에 저장함
 
-        history.replace("/"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
+        history.push("/home"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
