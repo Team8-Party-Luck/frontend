@@ -11,17 +11,20 @@ const Images = ({photos, setPhotos}) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
 
-
+    console.log(imageLists);
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
-
+    
     if (imageUrlLists.length > 10) {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
 
-    setPhotos(imageUrlLists)
+    setPhotos(imageLists)
+
+    // blob형식으로 보내기
+    // setPhotos(imageUrlLists)
     setShowImages(imageUrlLists);
   };
 

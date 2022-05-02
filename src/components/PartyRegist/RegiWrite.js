@@ -28,7 +28,7 @@ const RegiWrite = () => {
   return (
     <React.Fragment>
       <Grid container alignItems="center" justifyContent="center">
-        <Images photos={photos} setPhotos={setPhotos}/>
+        <Images photos={photos} setPhotos={setPhotos} />
         <TextField
           id="partyName"
           label="파티제목"
@@ -39,8 +39,8 @@ const RegiWrite = () => {
             setPartyName(e.target.value);
           }}
         />
-        <AddSearch eateryName={eateryName} setEateryName={setEateryName}/>
-        <Age userNum={userNum} setUserNum={setUserNum}/>
+        <AddSearch eateryName={eateryName} setEateryName={setEateryName} />
+        <Age userNum={userNum} setUserNum={setUserNum} />
         <TextField
           id="meetPlace"
           label="만날 장소"
@@ -51,14 +51,12 @@ const RegiWrite = () => {
             setMeetPlace(e.target.value);
           }}
         />{" "}
-        
         <Box component="div" sx={{ display: "inline", width: "12rem" }}>
-          <Day day={day} setDay={setDay}/>
+          <Day day={day} setDay={setDay} />
         </Box>
         <Box component="div" sx={{ display: "inline", width: "8rem" }}>
-          <TimeSelect time={time} setTime={setTime}/>
+          <TimeSelect time={time} setTime={setTime} />
         </Box>
-
         <TextField
           multiline
           id="partyDesc"
@@ -81,24 +79,18 @@ const RegiWrite = () => {
           variant="outlined"
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
-            console.log(photos);
-            console.log(partyName);
-            console.log(eateryName);
-            console.log(userNum);
-            console.log(meetPlace);
-            console.log(day);
-            console.log(time);
-            console.log(partyDesc);
-            RegiWriteSend(
-              photos,
-              partyName,
-              eateryName,
-              userNum,
-              meetPlace,
-              day,
-              time,
-              partyDesc
-            );
+            const RegiInfo = {
+              image: photos,
+              partyName: partyName,
+              eateryName: eateryName,
+              userNum: userNum,
+              meetPlace: meetPlace,
+              day: day,
+              time: time,
+              partyDesc: partyDesc,
+            };
+            console.log(RegiInfo);
+            RegiWriteSend(RegiInfo);
             alert("파티를 등록하시겠습니까?");
             history.push("/home");
           }}
