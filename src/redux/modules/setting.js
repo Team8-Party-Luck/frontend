@@ -16,7 +16,7 @@ const token = sessionStorage.getItem("token");
 
 //미들웨어
 
-//새팅정보 전송
+//세팅정보 전송
 const sendSettingsData = (Settings_info) => {
   return function (dispatch, getState, { history }) {
     axios
