@@ -6,12 +6,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 
 const PartyCard = () => {
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", flexDirection: "row", m:2}}>
+      <Box sx={{ display: "flex", flexDirection: "row", m: 2 }}>
         <Avatar
           variant={"rounded"}
           alt="The image"

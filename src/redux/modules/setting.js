@@ -12,6 +12,7 @@ const saveInfo = createAction(SAVE_INFO, (setting) => ({ setting }));
 // 초기값
 const initialState = {};
 
+//토큰
 const token = sessionStorage.getItem("token");
 
 //미들웨어

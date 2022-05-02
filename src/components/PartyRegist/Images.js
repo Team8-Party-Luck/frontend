@@ -3,26 +3,25 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 
-const Images = ({photos, setPhotos}) => {
+const Images = ({ photos, setPhotos }) => {
   const [showImages, setShowImages] = useState([]);
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
-    
 
-    console.log(imageLists);
+    console.log(imageLists[0]);
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
-    
+
     if (imageUrlLists.length > 10) {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
 
-    setPhotos(imageLists)
+    setPhotos(imageLists);
 
     // blob형식으로 보내기
     // setPhotos(imageUrlLists)
@@ -58,18 +57,15 @@ const Images = ({photos, setPhotos}) => {
             width: "23.4rem",
           }}
         >
-          <Box
-            component="div"
-            sx={{ whiteSpace: "nowrap", overflowX: "auto",}}
-          >
+          <Box component="div" sx={{ whiteSpace: "nowrap", overflowX: "auto" }}>
             <Box component="div" sx={{ display: "inline-block" }}>
               <AddPhotoAlternateIcon
-                sx={{ fontSize: '4rem', m: 2 }}
-                style={{ border: "1px solid black", borderRadius: "4px", }}
+                sx={{ fontSize: "4rem", m: 2 }}
+                style={{ border: "1px solid black", borderRadius: "4px" }}
               />
             </Box>
 
-            <Box component="div" sx={{ display: "inline-block", }}>
+            <Box component="div" sx={{ display: "inline-block" }}>
               {showImages.map((image, id) => (
                 <span className="imageContainer" key={id}>
                   <Img src={image} alt={`${image}-${id}`} />
@@ -89,7 +85,7 @@ const Img = styled.img`
   width: 4em;
   height: 4rem;
   margin: 10px;
-  border-radius:5px;
+  border-radius: 5px;
 `;
 
 const AddPhoto = styled.span`
