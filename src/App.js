@@ -15,13 +15,20 @@ import SeeMore from "./components/Home/SeeMore";
 import Chat from "./pages/Chat";
 import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
 import PartyInfo from "./pages/PartyInfo";
-
+import { useDispatch } from "react-redux";
+import { actionCreators as crewActions } from "./redux/modules/crew";
 
 function App() {
+  // const dispatch = useDispatch();
+
+  // React.useEffect(() => {
+  //   dispatch(crewActions.getDataDB());
+  // }, []);
+
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path="/login" exact component={Login} />
+        <Route path="/" exact component={Login} />
         <Route path="/home" exact component={Home} />
         <Route path="/alarm" exact component={Alarm} />
         <Route path="/seeMore" exact component={SeeMore} />

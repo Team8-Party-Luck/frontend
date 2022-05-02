@@ -20,7 +20,6 @@ import {
   checkPassword,
   checkEmail,
 } from "../shared/signupCheck";
-import Slider from "../components/Slider/Slider";
 
 const SignUp = () => {
   const dispatch = useDispatch();
