@@ -16,7 +16,7 @@ const style = {
   p: 4,
 };
 
-const AddSearch = ({ eateryName, setEateryName }) => {
+const AddSearch = ({ store, setStore }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPostCode = () => {
@@ -45,8 +45,8 @@ const AddSearch = ({ eateryName, setEateryName }) => {
         {isPopupOpen && (
           <PopupDom>
             <PopupPostCode
-              eateryName={eateryName}
-              setEateryName={setEateryName}
+              store={store}
+              setStore={setStore}
               onClose={closePostCode}
             />
           </PopupDom>
