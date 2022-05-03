@@ -79,4 +79,4 @@ yarn add react-daum-postcode
 
 고쳐야 될것!
 1.nav바 icon클릭하면 바로 icon event적용되게할것
-2.nav바 화면 겹침!
+2.nav바 화면 겹침!!
