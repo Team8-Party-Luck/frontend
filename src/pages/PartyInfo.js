@@ -5,29 +5,30 @@ import PartyDetailInfo from "../components/PartyInfo/PartyDetailInfo";
 import PartyDetailUser from "../components/PartyInfo/PartyDetailUser";
 import PartyInfoSlide from "../components/PartyInfo/PartyInfoSlide";
 import HeaderNav from "../shared/HeaderNav";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as detailActions } from "../redux/modules/detail";
+import { actionCreators as crewActions } from "../redux/modules/crew";
 
 const PartyInfo = () => {
   const { partyId } = useParams();
+  console.log(partyId);
 
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-      dispatch(detailActions.getDetailInfo(partyId));
-    }, []);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(crewActions.getDetailInfo(partyId));
+  }, []);
 
   return (
     <React.Fragment>
-      
       <HeaderNav name="파티상세보기" />
       {partyId}
       <PartyInfoSlide />
       <PartyDetailInfo />
       <PartyDetailUser />
-      <PartyDetailDesc/>
-      <PartyDetailBottomNav/>
+      <PartyDetailDesc />
+      <PartyDetailBottomNav />
     </React.Fragment>
   );
 };

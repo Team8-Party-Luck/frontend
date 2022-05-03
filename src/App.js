@@ -19,7 +19,6 @@ import PartyInfo from "./pages/PartyInfo";
 import Edit from "./pages/Edit";
 
 function App() {
-
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
@@ -30,6 +29,7 @@ function App() {
         <Route path="/chat" exact component={Chat} />
         <Route path="/regi" exact component={PartyRegist} />
         <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
+        <Route path="/partyInfo/" exact component={PartyInfo} />
         <Route path="/userList" exact component={UserList} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/edit" exact component={Edit} />

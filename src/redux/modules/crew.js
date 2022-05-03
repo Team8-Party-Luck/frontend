@@ -4,9 +4,11 @@ import axios from "axios";
 
 //액션
 const GET_CREW = "GET_CREW";
+const GET_DETAIL = "GET_PARTYDETAIL";
 
 //액션크레이터
 const getCrew = createAction(GET_CREW, (crew) => ({ crew }));
+const getDetail = createAction(GET_DETAIL, (info) => ({ info }));
 
 // 초기값
 const initialState = {};
@@ -60,11 +62,30 @@ const getDataDB = () => {
   };
 };
 
+const getDetailInfo = (partyId) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get(`http://3.38.180.96:8080/party/details/${partyId}`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getDetail(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CREW]: (state, action) =>
       produce(state, (draft) => {
         draft.crew = action.payload.crew;
+      }),
+    [GET_DETAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.info = action.payload.info;
+        console.log(draft.info);
       }),
   },
   initialState
@@ -74,6 +95,8 @@ const actionCreators = {
   regiWriteSend,
   getCrew,
   getDataDB,
+  getDetailInfo,
+  getDetail,
 };
 
 export { actionCreators };
