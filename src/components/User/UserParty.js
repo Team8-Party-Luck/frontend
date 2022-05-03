@@ -6,14 +6,14 @@ import { autocompleteClasses } from "@mui/material";
 const UserParty = () => {
   return (
     <React.Fragment>
-      <Box textAlign="center" sx={{ mt: 10, mb: 37 }}>
+      <Box textAlign='center' sx={{ mt:10, mb:37}}>
         <Button
           variant="outlined"
           href="#outlined-buttons"
           sx={{
             width: "90%",
             height: "3rem",
-            mb: 3,
+            mb:3,
           }}
         >
           내가 참여한 파티
@@ -24,7 +24,7 @@ const UserParty = () => {
           sx={{
             width: "90%",
             height: "3rem",
-            mb: 3,
+            mb:3,
           }}
         >
           내가 주최한 파티
@@ -35,12 +35,13 @@ const UserParty = () => {
           sx={{
             width: "90%",
             height: "3rem",
-            mb: 3,
+            mb:3,
           }}
         >
           스크랩
         </Button>
       </Box>
+      <h4>로그아웃</h4>
     </React.Fragment>
   );
 };

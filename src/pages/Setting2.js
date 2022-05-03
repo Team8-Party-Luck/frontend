@@ -9,15 +9,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Header from "../components/Settings/Header";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as settingActions } from "../redux/modules/setting";
 
 const Setting2 = (props) => {
-  const settingInfo = useSelector((state) => state?.user?.setting);
+  const settingInfo = useSelector((state) => state.setting.setting);
 
   const dispatch = useDispatch();
 
   const [values, setValues] = useState({
-    nickname: "",
     sns: "",
     intro: "",
   });
@@ -30,19 +29,16 @@ const Setting2 = (props) => {
 
   const sendSettings = () => {
     const Settings_info = {
-      image: "",
       gender: settingInfo.gender,
       age: settingInfo.age,
-      city: settingInfo.city,
-      region: settingInfo.region,
-      // food: settingInfo.food,
-      nickname: values.nickname,
+      location: settingInfo.location,
+      food: settingInfo.food,
       sns: values.sns,
       intro: values.intro,
     };
     console.log(Settings_info);
 
-    dispatch(userActions.sendSettingsData(Settings_info));
+    // dispatch(settingActions.sendSettingsData(Settings_info))
   };
 
   return (
@@ -56,16 +52,6 @@ const Setting2 = (props) => {
         }}
       >
         <Typography component="h4" variant="p" position={"relative"}>
-          닉네임
-        </Typography>
-        <TextField
-          id="outlined-basic"
-          label="닉네임을 입력해주세요"
-          variant="outlined"
-          sx={{ marginTop: 1 }}
-          onChange={handleChange("nickname")}
-        />
-        <Typography component="h4" variant="p" sx={{ marginTop: 3 }}>
           SNS
         </Typography>
         <TextField
@@ -84,7 +70,7 @@ const Setting2 = (props) => {
         </Typography>
         <TextareaAutosize
           aria-label="minimum height"
-          minRows={20}
+          minRows={25}
           placeholder="자기소개를 입력해주세요!"
           style={{
             width: "100%",
@@ -93,38 +79,22 @@ const Setting2 = (props) => {
           }}
           onChange={handleChange("intro")}
         />
-        {values.nickname && values.sns && values.intro ? (
-          <Button
-            variant="contained"
-            onClick={() => {
-              sendSettings();
-            }}
-            sx={{
-              position: "absolute",
-              width: "92%",
-              bottom: 50,
-              left: "4%",
-              right: "4%",
-              height: "3em",
-            }}
-          >
-            저장하기
-          </Button>
-        ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              position: "absolute",
-              width: "92%",
-              bottom: 50,
-              left: "4%",
-              right: "4%",
-              height: "3em",
-            }}
-          >
-            저장하기
-          </Button>
-        )}
+        <Button
+          variant="contained"
+          onClick={() => {
+            sendSettings();
+          }}
+          sx={{
+            position: "absolute",
+            width: "92%",
+            bottom: 50,
+            left: "4%",
+            right: "4%",
+            height: "3em",
+          }}
+        >
+          저장하기
+        </Button>
       </Box>
     </React.Fragment>
   );

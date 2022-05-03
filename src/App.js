@@ -9,15 +9,13 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
 import Home from "./pages/Home";
 import PartyRegist from "./pages/PartyRegist";
-import Profile from "./pages/Profile";
+import User from "./pages/User";
 import Alarm from "./pages/Alarm";
 import SeeMore from "./components/Home/SeeMore";
 import Chat from "./pages/Chat";
 import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
 import UserList from "./pages/UserList";
-import NaverLogin from "./shared/NaverLogin";
 import PartyInfo from "./pages/PartyInfo";
-import Edit from "./pages/Edit";
 import { useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "./redux/modules/crew";
 
@@ -41,15 +39,10 @@ function App() {
         <Route path="/partyInfo" exact component={PartyInfo} />
         <Route path="/userList" exact component={UserList} />
         <Route path="/user" exact component={User} />
-
-        <Route path="/profile" exact component={Profile} />
-
         <Route path="/signup" exact component={SignUp} />
         <Route path="/setting" exact component={Setting} />
         <Route path="/setting2" exact component={Setting2} />
-        <Route path="/edit" exact component={Edit} />
-        <Route path="/auth/kakao" component={OAuth2RedirectHandeler} />
-        <Route path="/auth/naver" component={NaverLogin} />
+        <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
     </React.Fragment>
   );
