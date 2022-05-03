@@ -121,19 +121,41 @@ const sendSettingsData = (Settings_info) => {
       .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type":
-            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
         },
       })
       .then((res) => {
         console.log(res.data);
-        history.push("/");
+        history.push("/home");
       })
       .catch((err) => {
         console.log("에러", err.response);
       });
   };
 };
+
+// const sendAccessCodeDB = (Login_info) => {
+//   return function (dispatch, getState, { history }) {
+//     axios
+//       .post("/api/user", Login_info, {
+//         headers: {
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//           // Authorization: token,
+//         },
+//       })
+//       .then((res) => {
+//         //console.log(res)
+//         sessionStorage.clear();
+//         dispatch(setLogout());
+//         history.push("/login");
+//       })
+//       .catch((err) => {
+//         console.log("로그아웃 에러", err.response);
+//       });
+//   };
+// };
 
 export default handleActions(
   {
@@ -165,6 +187,7 @@ const actionCreators = {
   kakaoLogin,
   // sendAccessCodeDB,
   sendSettingsData,
+  // saveInfo,
 };
 
 export { actionCreators };
