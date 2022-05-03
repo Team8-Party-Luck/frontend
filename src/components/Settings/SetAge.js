@@ -7,10 +7,10 @@ const SetAge = (props) => {
   const { age, setAge } = props;
   return (
     <React.Fragment>
-      <Typography component="h4" variant="p" sx={{ marginTop: 5 }}>
+      <Typography component="h4" variant="p" sx={{ marginTop: 6 }}>
         연령대를 설정해볼까요?
       </Typography>
-      <Box sx={{ display: "flex", marginTop: 0.5 }}>
+      <Box sx={{ display: "flex", marginTop: 2 }}>
         {age === "10대" ? (
           <Button
             variant="contained"

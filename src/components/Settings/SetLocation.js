@@ -25,7 +25,7 @@ const SetLocation = (props) => {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", width: "100%", margin: "0 auto" }}>
+      <Box sx={{ display: "flex", width: "100%", margin: " auto" }}>
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-label">시/도</InputLabel>
           <Select
