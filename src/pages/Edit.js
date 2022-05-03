@@ -11,7 +11,8 @@ import {
   TextField,
   Input,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
+import styled from "styled-components";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import React, { useState } from "react";
@@ -31,15 +32,43 @@ const Edit = (props) => {
 
   console.log(user_info);
 
-  const [nickname, setNickname] = useState(user_info?.nickname);
+  const [imageSrc, setImageSrc] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
+  const [values, setValues] = useState({
+    nickname: user_info?.nickname,
+    sns: user_info?.sns,
+    intro: user_info?.intro,
+  });
+
+  console.log(gender);
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
 
   const Input = styled("input")({
     display: "none",
   });
+
+  //미리보기
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(fileBlob);
+
+    console.log(reader);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+      };
+    });
+  };
 
   return (
     <React.Fragment>
@@ -74,7 +103,18 @@ const Edit = (props) => {
       </Box>
       <Box sx={{ padding: 1 }}>
         <label htmlFor="icon-button-file">
-          <Input accept="image/*" id="icon-button-file" type="file" />
+          <Input
+            accept="image/*"
+            id="icon-button-file"
+            type="file"
+            onChange={(e) => {
+              encodeFileToBase64(e.target.files[0]);
+              setImageUrl(e.target.files[0]);
+            }}
+          />
+          <PreviewBox>
+            {imageSrc && <PreviewImg src={imageSrc} alt="preview-img" />}
+          </PreviewBox>
           <IconButton
             color="primary"
             aria-label="upload picture"
@@ -85,15 +125,15 @@ const Edit = (props) => {
         </label>
         <TextField
           id="outlined-basic"
-          label="닉네임을 입력해주세요"
+          label="닉네임"
           variant="outlined"
           fullWidth
           sx={{ marginTop: 1 }}
-          defaultValue={user_info?.nickname}
+          defaultValue={values.nickname}
           size="small"
-          //   onChange={handleChange("nickname")}
+          onChange={handleChange("nickname")}
         />
-        <FormControl fullWidth>
+        <FormControl fullWidth sx={{ marginTop: 3 }}>
           <InputLabel id="demo-simple-select-label">성별</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -109,7 +149,7 @@ const Edit = (props) => {
             <MenuItem value={"남성"}>남성</MenuItem>
           </Select>
         </FormControl>
-        <FormControl fullWidth>
+        <FormControl fullWidth sx={{ marginTop: 3, marginBottom: 3 }}>
           <InputLabel id="demo-simple-select-label">나이</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -132,10 +172,44 @@ const Edit = (props) => {
           setCity={setCity}
           region={region}
           setRegion={setRegion}
+          user_info={user_info}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Instagram"
+          variant="outlined"
+          fullWidth
+          sx={{ marginTop: 3 }}
+          defaultValue={user_info?.sns}
+          size="small"
+          onChange={handleChange("sns")}
+        />
+        <TextField
+          id="outlined-basic"
+          label="자기소개"
+          variant="outlined"
+          fullWidth
+          sx={{ marginTop: 3 }}
+          defaultValue={user_info?.intro}
+          size="small"
+          onChange={handleChange("intro")}
         />
       </Box>
     </React.Fragment>
   );
 };
+
+const PreviewBox = styled.div`
+  width: fit-content;
+  margin: 2em auto;
+`;
+const PreviewImg = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  margin: 0 auto;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+`;
 
 export default Edit;
