@@ -118,13 +118,13 @@ const sendSettingsData = (Settings_info) => {
       .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type":
-            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
         },
       })
       .then((res) => {
         console.log(res.data);
-        history.push("/");
+        history.push("/home");
       })
       .catch((err) => {
         console.log("에러", err.response);
@@ -158,6 +158,7 @@ const actionCreators = {
   kakaoLogin,
   sendAccessCodeDB,
   sendSettingsData,
+  // saveInfo,
 };
 
 export { actionCreators };
