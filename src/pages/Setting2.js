@@ -12,7 +12,7 @@ import Header from "../components/Settings/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Setting2 = (props) => {
-  const settingInfo = useSelector((state) => state.setting.setting);
+  const settingInfo = useSelector((state) => state?.setting?.setting);
   console.log(settingInfo);
 
   const dispatch = useDispatch();
@@ -31,10 +31,10 @@ const Setting2 = (props) => {
 
   const sendSettings = () => {
     const Settings_info = {
-      gender: settingInfo.gender,
-      age: settingInfo.age,
-      city: settingInfo.city,
-      region: settingInfo.region,
+      gender: settingInfo?.gender,
+      age: settingInfo?.age,
+      city: settingInfo?.city,
+      region: settingInfo?.region,
       // food: settingInfo.food,
       nickname: values.nickname,
       sns: values.sns,
