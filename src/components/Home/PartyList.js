@@ -6,6 +6,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
+import PartySpread from "./PartySpread";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -47,8 +48,21 @@ const PartyList = (props) => {
   React.useEffect(() => {
     dispatch(crewActions.getDataDB());
   }, []);
-  
   const crewList = useSelector((state) => state?.crew?.crew?.results);
+  console.log(crewList);
+
+  const spread = crewList?.map((val) => (
+    <PartySpread
+      key={val?.partyId}
+      partyId={val?.partyId}
+      image={val?.image}
+      title={val?.title}
+      store={val?.store}
+      capacity={val?.capacity}
+      date={val?.date}
+      time={val?.time}
+    />
+  ));
 
   const [value, setValue] = React.useState(0);
 
@@ -71,14 +85,7 @@ const PartyList = (props) => {
       </Box>
 
       <TabPanel value={value} index={0}>
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
+        {spread}
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PartyCard />

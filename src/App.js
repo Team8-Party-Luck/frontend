@@ -17,15 +17,8 @@ import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
 import UserList from "./pages/UserList";
 import PartyInfo from "./pages/PartyInfo";
 import Edit from "./pages/Edit";
-import { useDispatch } from "react-redux";
-import { actionCreators as crewActions } from "./redux/modules/crew";
 
 function App() {
-  // const dispatch = useDispatch();
-
-  // React.useEffect(() => {
-  //   dispatch(crewActions.getDataDB());
-  // }, []);
 
   return (
     <React.Fragment>
@@ -36,7 +29,7 @@ function App() {
         <Route path="/seeMore" exact component={SeeMore} />
         <Route path="/chat" exact component={Chat} />
         <Route path="/regi" exact component={PartyRegist} />
-        <Route path="/partyInfo" exact component={PartyInfo} />
+        <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
         <Route path="/userList" exact component={UserList} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/edit" exact component={Edit} />
