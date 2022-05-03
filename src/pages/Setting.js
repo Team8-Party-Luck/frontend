@@ -68,7 +68,7 @@ const Setting = () => {
             <Typography
               component="h4"
               variant="p"
-              sx={{ marginTop: 5, marginBottom: 1.5 }}
+              sx={{ marginTop: 6, marginBottom: 1.5 }}
             >
               지역을 선택해주세요!
             </Typography>
@@ -93,7 +93,7 @@ const Setting = () => {
               bottom: 50,
               left: "4%",
               right: "4%",
-              height: "3em",
+              height: "4em",
             }}
           >
             다음
@@ -107,7 +107,7 @@ const Setting = () => {
               bottom: 50,
               left: "4%",
               right: "4%",
-              height: "3em",
+              height: "4em",
             }}
           >
             다음

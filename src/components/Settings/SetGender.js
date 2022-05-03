@@ -8,10 +8,10 @@ const SetGender = (props) => {
 
   return (
     <React.Fragment>
-      <Typography component="h4" variant="p">
+      <Typography component="h4" variant="p" sx={{ marginTop: 2 }}>
         성별을 선택해주세요!
       </Typography>
-      <Box sx={{ display: "flex", marginTop: 0.5 }}>
+      <Box sx={{ display: "flex", marginTop: 2 }}>
         {gender === "여성" ? (
           <Button
             variant="contained"
