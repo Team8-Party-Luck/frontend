@@ -4,15 +4,16 @@ import axios from "axios";
 
 // 액션
 const LOGIN = "LOGIN";
-const LOGOUT = "LOGOUT";
-const SET_USER = "SET_USER";
-const SET_CODE = "SET_CODE";
+
+const GET_USER_INFO = "GET_USER_INFO";
+// const SET_CODE = "SET_CODE";
 const SAVE_INFO = "SAVE_INFO";
 
 // 액션 크리에이터
 const setLogin = createAction(LOGIN, (Login) => ({ Login }));
-const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
+// const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
 const saveInfo = createAction(SAVE_INFO, (setting) => ({ setting }));
+const getUserInfo = createAction(GET_USER_INFO, (user) => ({ user }));
 // const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 
 // 초기값
@@ -135,27 +136,45 @@ const sendSettingsData = (Settings_info) => {
   };
 };
 
-// const sendAccessCodeDB = (Login_info) => {
-//   return function (dispatch, getState, { history }) {
-//     axios
-//       .post("/api/user", Login_info, {
-//         headers: {
-//           "content-type": "application/json;charset=UTF-8",
-//           accept: "application/json,",
-//           // Authorization: token,
-//         },
-//       })
-//       .then((res) => {
-//         //console.log(res)
-//         sessionStorage.clear();
-//         dispatch(setLogout());
-//         history.push("/login");
-//       })
-//       .catch((err) => {
-//         console.log("로그아웃 에러", err.response);
-//       });
-//   };
-// };
+const getUserInfoDB = () => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("http://3.38.180.96:8080/api/user/initial", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getUserInfo(res.data));
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
+  };
+};
+
+const updateSettingsData = (Update_info) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .put("http://3.38.180.96:8080/api/user/initial", Update_info, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type":
+            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/profile");
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
+  };
+};
 
 export default handleActions(
   {
@@ -163,11 +182,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
       }),
-    [SET_CODE]: (state, action) =>
-      produce(state, (draft) => {
-        draft.code = action.payload.code;
-      }),
-    [SET_USER]: (state, action) =>
+    // [SET_CODE]: (state, action) =>
+    //   produce(state, (draft) => {
+    //     draft.code = action.payload.code;
+    //   }),
+    [GET_USER_INFO]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
       }),
@@ -183,11 +202,13 @@ const actionCreators = {
   signupDB,
   loginDB,
   // logoutDB,
-  setLogout,
+  // setLogout,
   kakaoLogin,
   // sendAccessCodeDB,
+  saveInfo,
   sendSettingsData,
-  // saveInfo,
+  getUserInfoDB,
+  updateSettingsData,
 };
 
 export { actionCreators };

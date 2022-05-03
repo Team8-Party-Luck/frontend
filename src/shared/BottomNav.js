@@ -7,8 +7,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
-
-import { useHistory } from "react-router-dom";
+import { history } from "../redux/configStore";
 
 const BottomNav = () => {
   const [value, setValue] = React.useState("recents");
@@ -17,7 +16,6 @@ const BottomNav = () => {
     setValue(newValue);
   };
 
-  let history = useHistory();
   return (
     <div>
       <BottomNavigation

@@ -18,7 +18,7 @@ const UserInfo = (props) => {
           <Avatar
             sx={{ width: 50, height: 50, mr: 3, ml: 1.5 }}
             alt="Remy Sharp"
-            src="https://images.unsplash.com/photo-1650784422954-9e522e77f473?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+            src={user_info?.image}
           />
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs sx={{ mt: 1 }}>

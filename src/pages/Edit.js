@@ -10,6 +10,7 @@ import {
   MenuItem,
   TextField,
   Input,
+  Button,
 } from "@mui/material";
 // import { styled } from "@mui/material/styles";
 import styled from "styled-components";
@@ -32,12 +33,12 @@ const Edit = (props) => {
 
   console.log(user_info);
 
-  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrc, setImageSrc] = useState(user_info?.image);
   const [imageUrl, setImageUrl] = useState("");
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
-  const [city, setCity] = useState("");
-  const [region, setRegion] = useState("");
+  const [city, setCity] = useState(user_info?.city);
+  const [region, setRegion] = useState(user_info?.region);
   const [values, setValues] = useState({
     nickname: user_info?.nickname,
     sns: user_info?.sns,
@@ -78,8 +79,7 @@ const Edit = (props) => {
     region,
     values.nickname,
     values.sns,
-    values.intro,
-    gender
+    values.intro
   );
 
   const updateProfile = () => {
@@ -198,7 +198,6 @@ const Edit = (props) => {
           setCity={setCity}
           region={region}
           setRegion={setRegion}
-          user_info={user_info}
         />
         <TextField
           id="outlined-basic"
@@ -220,6 +219,15 @@ const Edit = (props) => {
           size="small"
           onChange={handleChange("intro")}
         />
+        <Button
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{ marginTop: 2 }}
+          onClick={updateProfile}
+        >
+          저장하기
+        </Button>
       </Box>
     </React.Fragment>
   );
