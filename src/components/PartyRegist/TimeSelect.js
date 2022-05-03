@@ -16,7 +16,9 @@ export default function TimeSelect({time, setTime}) {
           onChange={(newValue) => {
             setValue(newValue);
             let hours = newValue.getHours();
+            hours = hours < 10 ? `0${hours}` : hours;
             let minutes = newValue.getMinutes();
+            minutes = minutes < 10 ? `0${minutes}` : minutes;
             let answer = `${hours}시 ${minutes}분`
             setTime(answer);
           }}

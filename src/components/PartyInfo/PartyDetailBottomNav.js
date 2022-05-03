@@ -17,10 +17,14 @@ const PartyDetailBottomNav = () => {
           setValue(newValue);
         }}
       >
-        <Stack spacing={2} direction="row">
-          <Button variant="outlined" sx={{width:'9rem'}}>수정</Button>
-          <Button variant="outlined" sx={{width:'9rem'}}>파티삭제</Button>
-        </Stack>
+        {/* <Stack spacing={2} direction="row">
+          <Button variant="outlined" sx={{ width: "9rem" }}>
+            수정
+          </Button>
+          <Button variant="outlined" sx={{ width: "9rem" }}>
+            파티삭제
+          </Button>
+        </Stack> */}
       </BottomNavigation>
     </Box>
   );

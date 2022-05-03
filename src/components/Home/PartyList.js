@@ -7,11 +7,11 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -43,9 +43,15 @@ function a11yProps(index) {
 }
 
 const PartyList = (props) => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(crewActions.getDataDB());
+  }, []);
+  
   const crewList = useSelector((state) => state?.crew?.crew?.results);
-
-  console.log(crewList);
+  const answer = crewList.map((num) => {
+    return num
+  })
 
   const [value, setValue] = React.useState(0);
 
@@ -66,6 +72,7 @@ const PartyList = (props) => {
           <Tab label="마감임박 파티" {...a11yProps(2)} />
         </Tabs>
       </Box>
+
       <TabPanel value={value} index={0}>
         <PartyCard />
         <PartyCard />
@@ -98,6 +105,6 @@ const PartyList = (props) => {
       </TabPanel>
     </Box>
   );
-}
+};
 
 export default PartyList;

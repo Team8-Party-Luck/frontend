@@ -19,7 +19,9 @@ const RealDay = ({ date, setDate }) => {
           onChange={(newValue) => {
             setValue(newValue);
             let month = String(value.getMonth()+1)
-            let day = String(value.getDate())
+            month = month >= 10 ? month: '0' + month;
+            let day = String(value.getDate());
+            day = day >= 10 ? day : '0' + day;
             let answer = `${month}월 ${day}일`
             setDate(answer)
           }}
