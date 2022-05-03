@@ -7,11 +7,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 
 const Home = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   dispatch(crewActions.getDataDB());
-  // }, []);
+  React.useEffect(() => {
+    dispatch(crewActions.getDataDB());
+  }, []);
 
   return (
     <React.Fragment>

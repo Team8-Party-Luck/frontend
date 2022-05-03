@@ -50,7 +50,6 @@ const PartyList = (props) => {
   
   const crewList = useSelector((state) => state?.crew?.crew?.results);
 
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
