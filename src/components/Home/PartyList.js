@@ -1,11 +1,12 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
-import newPartyGet from "../../redux/modules/inquiry/newParty";
+
 import { useSelector } from "react-redux";
 
 function TabPanel(props) {
@@ -41,7 +42,7 @@ function a11yProps(index) {
   };
 }
 
-export default function PartyList(props) {
+const PartyList = (props) => {
   const crewList = useSelector((state) => state?.crew?.crew?.results);
 
   console.log(crewList);
@@ -98,3 +99,5 @@ export default function PartyList(props) {
     </Box>
   );
 }
+
+export default PartyList;

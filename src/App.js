@@ -14,9 +14,11 @@ import Alarm from "./pages/Alarm";
 import SeeMore from "./components/Home/SeeMore";
 import Chat from "./pages/Chat";
 import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
+import UserList from "./pages/UserList";
 import PartyInfo from "./pages/PartyInfo";
 import { useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "./redux/modules/crew";
+
 
 function App() {
   // const dispatch = useDispatch();
@@ -35,6 +37,7 @@ function App() {
         <Route path="/chat" exact component={Chat} />
         <Route path="/regi" exact component={PartyRegist} />
         <Route path="/partyInfo" exact component={PartyInfo} />
+        <Route path="/userList" exact component={UserList} />
         <Route path="/user" exact component={User} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/setting" exact component={Setting} />
