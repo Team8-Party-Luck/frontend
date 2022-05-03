@@ -11,7 +11,7 @@ import SetAge from "../components/Settings/SetAge";
 import SetLocation from "../components/Settings/SetLocation";
 import SetFood from "../components/Settings/SetFood";
 import Header from "../components/Settings/Header";
-import { actionCreators as settingActions } from "../redux/modules/setting";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configStore";
 import { useSelector } from "react-redux";
@@ -24,27 +24,26 @@ const Setting = () => {
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
   const [food, setFood] = useState(null);
-  const location = [city, region].join(" ");
+  // const location = [city, region].join(" ");
 
-  // const settingInfo = useSelector((state) => state.setting.setting);
-  // console.log(settingInfo);
   console.log(gender);
   console.log(age);
   console.log(food);
   console.log(city);
-  console.log(location);
+  // console.log(location);
 
   const saveSetting = () => {
     const Setting_info = {
       gender: gender,
       age: age,
       food: food,
-      location: location,
+      city: city,
+      region: region,
     };
 
     console.log(Setting_info);
 
-    dispatch(settingActions.saveInfo(Setting_info));
+    dispatch(userActions.saveInfo(Setting_info));
     history.push("/setting2");
   };
 
@@ -65,12 +64,21 @@ const Setting = () => {
         />
         {gender ? <SetAge age={age} setAge={setAge} /> : null}
         {age ? (
-          <SetLocation
-            city={city}
-            setCity={setCity}
-            region={region}
-            setRegion={setRegion}
-          />
+          <>
+            <Typography
+              component="h4"
+              variant="p"
+              sx={{ marginTop: 5, marginBottom: 1.5 }}
+            >
+              지역을 선택해주세요!
+            </Typography>
+            <SetLocation
+              city={city}
+              setCity={setCity}
+              region={region}
+              setRegion={setRegion}
+            />
+          </>
         ) : null}
         {city && region ? <SetFood food={food} setFood={setFood} /> : null}
         {gender && age && city && region && food ? (
