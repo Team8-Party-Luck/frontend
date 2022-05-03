@@ -134,6 +134,27 @@ const sendSettingsData = (Settings_info) => {
       });
   };
 };
+//프로필 정보 수정
+const updateSettingsData = (Update_info) => {
+  return function (dispatch, getState, { history }) {
+    console.log(token);
+    axios
+      .put("http://3.38.180.96:8080/api/user/initial", Update_info, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type":
+            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/profile");
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
+  };
+};
 
 // const sendAccessCodeDB = (Login_info) => {
 //   return function (dispatch, getState, { history }) {
@@ -191,6 +212,7 @@ const actionCreators = {
   getUserInfoDB,
   sendSettingsData,
   saveInfo,
+  updateSettingsData,
 };
 
 export { actionCreators };

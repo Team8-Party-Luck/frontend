@@ -10,6 +10,7 @@ import {
   MenuItem,
   TextField,
   Input,
+  Button,
 } from "@mui/material";
 // import { styled } from "@mui/material/styles";
 import styled from "styled-components";
@@ -36,15 +37,13 @@ const Edit = (props) => {
   const [imageUrl, setImageUrl] = useState("");
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
-  const [city, setCity] = useState("");
-  const [region, setRegion] = useState("");
+  const [city, setCity] = useState(user_info?.city);
+  const [region, setRegion] = useState(user_info?.region);
   const [values, setValues] = useState({
     nickname: user_info?.nickname,
     sns: user_info?.sns,
     intro: user_info?.intro,
   });
-
-  console.log(gender);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -70,6 +69,31 @@ const Edit = (props) => {
     });
   };
 
+  console.log(
+    imageUrl,
+    gender,
+    age,
+    city,
+    region,
+    values.nickname,
+    values.sns,
+    values.intro
+  );
+
+  const updateProfile = () => {
+    const Update_info = new FormData();
+    Update_info.append("image", imageUrl);
+    Update_info.append("gender", gender);
+    Update_info.append("age", age);
+    Update_info.append("city", city);
+    Update_info.append("region", region);
+    //   Update_info.append("food", food);
+    Update_info.append("nickname", values.nickname);
+    Update_info.append("sns", values.sns);
+    Update_info.append("intro", values.intro);
+
+    dispatch(userActions.updateSettingsData(Update_info));
+  };
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }}>
@@ -194,6 +218,17 @@ const Edit = (props) => {
           size="small"
           onChange={handleChange("intro")}
         />
+        <Button
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{ marginTop: 2 }}
+          onClick={() => {
+            updateProfile();
+          }}
+        >
+          저장하기
+        </Button>
       </Box>
     </React.Fragment>
   );

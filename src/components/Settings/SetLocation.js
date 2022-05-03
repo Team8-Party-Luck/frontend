@@ -12,9 +12,7 @@ import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
 
 const SetLocation = (props) => {
-  const { city, setCity, region, setRegion, user_info } = props;
-
-  console.log(user_info);
+  const { city, setCity, region, setRegion } = props;
 
   const handleChangeCity = (e) => {
     setCity(e.target.value);
@@ -32,7 +30,6 @@ const SetLocation = (props) => {
             labelId="demo-select-small"
             id="demo-select-small"
             value={city}
-            defaultValue={user_info?.city}
             label="Age"
             onChange={handleChangeCity}
             sx={{ width: "100%", margin: "0 auto" }}
@@ -50,7 +47,6 @@ const SetLocation = (props) => {
             labelId="demo-select-small"
             id="demo-select-small"
             value={region}
-            // defaultValue={user_info?.region}
             label="Age"
             onChange={handleChangeRegion}
             sx={{ width: "100%", margin: "0 auto" }}
