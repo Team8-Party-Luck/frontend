@@ -12,7 +12,9 @@ import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
 
 const SetLocation = (props) => {
-  const { city, setCity, region, setRegion } = props;
+  const { city, setCity, region, setRegion, user_info } = props;
+
+  console.log(user_info);
 
   const handleChangeCity = (e) => {
     setCity(e.target.value);
@@ -23,13 +25,6 @@ const SetLocation = (props) => {
 
   return (
     <React.Fragment>
-      <Typography
-        component="h4"
-        variant="p"
-        sx={{ marginTop: 5, marginBottom: 1.5 }}
-      >
-        지역을 선택해주세요!
-      </Typography>
       <Box sx={{ display: "flex", width: "100%", margin: "0 auto" }}>
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-label">시/도</InputLabel>
@@ -37,6 +32,7 @@ const SetLocation = (props) => {
             labelId="demo-select-small"
             id="demo-select-small"
             value={city}
+            defaultValue={user_info?.city}
             label="Age"
             onChange={handleChangeCity}
             sx={{ width: "100%", margin: "0 auto" }}
@@ -54,6 +50,7 @@ const SetLocation = (props) => {
             labelId="demo-select-small"
             id="demo-select-small"
             value={region}
+            // defaultValue={user_info?.region}
             label="Age"
             onChange={handleChangeRegion}
             sx={{ width: "100%", margin: "0 auto" }}

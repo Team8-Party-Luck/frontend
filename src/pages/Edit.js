@@ -33,7 +33,7 @@ const Edit = (props) => {
 
   console.log(user_info);
 
-  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrc, setImageSrc] = useState(user_info?.image);
   const [imageUrl, setImageUrl] = useState("");
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
@@ -44,6 +44,8 @@ const Edit = (props) => {
     sns: user_info?.sns,
     intro: user_info?.intro,
   });
+
+  console.log(gender);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -196,7 +198,6 @@ const Edit = (props) => {
           setCity={setCity}
           region={region}
           setRegion={setRegion}
-          user_info={user_info}
         />
         <TextField
           id="outlined-basic"
@@ -223,9 +224,7 @@ const Edit = (props) => {
           size="large"
           fullWidth
           sx={{ marginTop: 2 }}
-          onClick={() => {
-            updateProfile();
-          }}
+          onClick={updateProfile}
         >
           저장하기
         </Button>
