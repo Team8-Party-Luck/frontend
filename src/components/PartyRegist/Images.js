@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 
-const Images = ({ photos, setPhotos }) => {
+const Images = ({ image, setImage }) => {
   const [showImages, setShowImages] = useState([]);
 
   // 이미지 상대경로 저장
@@ -21,7 +21,7 @@ const Images = ({ photos, setPhotos }) => {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
 
-    setPhotos(imageLists);
+    setImage(imageLists);
 
     // blob형식으로 보내기
     // setPhotos(imageUrlLists)

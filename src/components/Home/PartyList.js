@@ -1,16 +1,17 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
-import newPartyGet from "../../redux/modules/inquiry/newParty";
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -41,10 +42,14 @@ function a11yProps(index) {
   };
 }
 
-export default function PartyList(props) {
+const PartyList = (props) => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(crewActions.getDataDB());
+  }, []);
+  
   const crewList = useSelector((state) => state?.crew?.crew?.results);
 
-  console.log(crewList);
 
   const [value, setValue] = React.useState(0);
 
@@ -65,6 +70,7 @@ export default function PartyList(props) {
           <Tab label="마감임박 파티" {...a11yProps(2)} />
         </Tabs>
       </Box>
+
       <TabPanel value={value} index={0}>
         <PartyCard />
         <PartyCard />
@@ -97,4 +103,6 @@ export default function PartyList(props) {
       </TabPanel>
     </Box>
   );
-}
+};
+
+export default PartyList;

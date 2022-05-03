@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function Age({userNum, setUserNum}) {
+export default function Age({capacity, setCapacity}) {
   const [value, setValue] = React.useState(top100Films);
   return (
     <Autocomplete
@@ -13,7 +13,7 @@ export default function Age({userNum, setUserNum}) {
       sx={{ width: "80%", mb: 1, mt: 2 }}
       renderInput={(params) => <TextField {...params} label="모이는 인원" />}
       onChange={(event, newValue) => {
-        setUserNum(Number(newValue.label));
+        setCapacity(Number(newValue.label));
       }}
     />
   );

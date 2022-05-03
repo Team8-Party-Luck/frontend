@@ -4,38 +4,39 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+
 import AddSearch from "./address/AddSearch";
 import Images from "./Images";
-
-import { history } from "../../redux/configStore";
-import Day from "./Day";
 import TimeSelect from "./TimeSelect";
 import Age from "./Age";
+import RealDay from "./RealDay";
+
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
+import { history } from "../../redux/configStore";
 
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
-  const [photos, setPhotos] = useState("");
-  const [partyName, setPartyName] = useState("");
-  const [eateryName, setEateryName] = useState("");
-  const [userNum, setUserNum] = useState("");
-  const [meetPlace, setMeetPlace] = useState("");
-  const [day, setDay] = useState("asdasd");
-  const [time, setTime] = useState("asdasd");
-  const [partyDesc, setPartyDesc] = useState("");
+  const [image, setImage] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [store, setStore] = useState(null);
+  const [capacity, setCapacity] = useState(null);
+  const [meeting, setMeeting] = useState(null);
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState(null);
+  const [desc, setDesc] = useState(null);
 
   const sendWriteData = () => {
     const Write_info = {
-      image: photos,
-      title: partyName,
-      store: eateryName,
-      capacity: userNum,
-      meeting: meetPlace,
-      date: day,
+      image: image,
+      title: title,
+      store: store,
+      capacity: capacity,
+      meeting: meeting,
+      date: date,
       time: time,
-      desc: partyDesc,
+      desc: desc,
     };
 
     console.log(Write_info);
@@ -46,7 +47,7 @@ const RegiWrite = () => {
   return (
     <React.Fragment>
       <Grid container alignItems="center" justifyContent="center">
-        <Images photos={photos} setPhotos={setPhotos} />
+        <Images image={image} setImage={setImage} />
         <TextField
           id="partyName"
           label="파티제목"
@@ -54,11 +55,11 @@ const RegiWrite = () => {
           style={{ width: "80%" }}
           sx={{ mb: 1.5 }}
           onChange={(e) => {
-            setPartyName(e.target.value);
+            setTitle(e.target.value);
           }}
         />
-        <AddSearch eateryName={eateryName} setEateryName={setEateryName} />
-        <Age userNum={userNum} setUserNum={setUserNum} />
+        <AddSearch store={store} setStore={setStore} />
+        <Age capacity={capacity} setCapacity={setCapacity} />
         <TextField
           id="meetPlace"
           label="만날 장소"
@@ -66,11 +67,11 @@ const RegiWrite = () => {
           style={{ width: "80%" }}
           sx={{ mb: 1.5 }}
           onChange={(e) => {
-            setMeetPlace(e.target.value);
+            setMeeting(e.target.value);
           }}
         />{" "}
         <Box component="div" sx={{ display: "inline", width: "12rem" }}>
-          <Day day={day} setDay={setDay} />
+          <RealDay date={date} setDate={setDate} />
         </Box>
         <Box component="div" sx={{ display: "inline", width: "8rem" }}>
           <TimeSelect time={time} setTime={setTime} />
@@ -90,7 +91,7 @@ const RegiWrite = () => {
           }}
           sx={{ pb: 1, mt: 2 }}
           onChange={(e) => {
-            setPartyDesc(e.target.value);
+            setDesc(e.target.value);
           }}
         />
         <Button

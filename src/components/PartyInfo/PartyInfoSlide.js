@@ -5,9 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Container = styled.div`
-  overflow: hidden;
-  margin-top:1rem;
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -16,13 +14,9 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const ImageContainer = styled.div`
-  margin: 0 5px;
-`;
-
 const Image = styled.img`
   width: 100%;
-  height: 10rem;
+  height: 22rem;
   object-fit: cover;
 `;
 
@@ -36,13 +30,9 @@ const items = [
   { id: 4, url: imgUrl },
   { id: 5, url: imgUrl },
   { id: 6, url: imgUrl },
-  { id: 7, url: imgUrl },
-  { id: 8, url: imgUrl },
-  { id: 9, url: imgUrl },
-  { id: 10, url: imgUrl },
 ];
 
-export default class SimpleSlider extends Component {
+export default class PartyInfoSlide extends Component {
   render() {
     const settings = {
       dots: true,
@@ -50,8 +40,6 @@ export default class SimpleSlider extends Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 5000
     };
     return (
       <Container>
@@ -59,9 +47,7 @@ export default class SimpleSlider extends Component {
           {items.map((item) => {
             return (
               <div key={item.id}>
-                <ImageContainer>
-                  <Image src={item.url} />
-                </ImageContainer>
+                <Image src={item.url} />
               </div>
             );
           })}

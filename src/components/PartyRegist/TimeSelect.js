@@ -15,7 +15,12 @@ export default function TimeSelect({time, setTime}) {
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
-            setTime(newValue);
+            let hours = newValue.getHours();
+            hours = hours < 10 ? `0${hours}` : hours;
+            let minutes = newValue.getMinutes();
+            minutes = minutes < 10 ? `0${minutes}` : minutes;
+            let answer = `${hours}시 ${minutes}분`
+            setTime(answer);
           }}
           renderInput={(params) => <TextField {...params} />}
         />

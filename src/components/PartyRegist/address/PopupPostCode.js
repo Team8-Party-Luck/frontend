@@ -2,7 +2,7 @@ import React from "react";
 import DaumPostcode from "react-daum-postcode";
 import Button from "@mui/material/Button";
 
-const PopupPostCode = (props , {eateryName, setEateryName}) => {
+const PopupPostCode = (props , {store, setStore}) => {
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
 
 
@@ -20,7 +20,8 @@ const PopupPostCode = (props , {eateryName, setEateryName}) => {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    props.setEateryName(data.buildingName);
+    console.log(props)
+    props.setStore(data.buildingName);
     console.log(data);
     console.log(fullAddress);
     console.log(data.zonecode);
