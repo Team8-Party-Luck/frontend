@@ -7,8 +7,16 @@ import PartyInfoSlide from "../components/PartyInfo/PartyInfoSlide";
 import HeaderNav from "../shared/HeaderNav";
 import { useParams } from 'react-router-dom';
 
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as detailActions } from "../redux/modules/detail";
+
 const PartyInfo = () => {
   const { partyId } = useParams();
+
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+      dispatch(detailActions.getDetailInfo(partyId));
+    }, []);
 
   return (
     <React.Fragment>

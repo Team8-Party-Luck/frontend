@@ -9,8 +9,13 @@ import { useHistory } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 
+
+
 const PartySpread = (props) => {
   let history = useHistory();
+
+
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
