@@ -132,6 +132,28 @@ const sendSettingsData = (Settings_info) => {
   };
 };
 
+// const sendAccessCodeDB = (Login_info) => {
+//   return function (dispatch, getState, { history }) {
+//     axios
+//       .post("/api/user", Login_info, {
+//         headers: {
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//           // Authorization: token,
+//         },
+//       })
+//       .then((res) => {
+//         //console.log(res)
+//         sessionStorage.clear();
+//         dispatch(setLogout());
+//         history.push("/login");
+//       })
+//       .catch((err) => {
+//         console.log("로그아웃 에러", err.response);
+//       });
+//   };
+// };
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
