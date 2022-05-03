@@ -49,9 +49,7 @@ const PartyList = (props) => {
   }, []);
   
   const crewList = useSelector((state) => state?.crew?.crew?.results);
-  const answer = crewList.map((num) => {
-    return num
-  })
+
 
   const [value, setValue] = React.useState(0);
 
