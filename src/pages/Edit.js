@@ -77,7 +77,8 @@ const Edit = (props) => {
     region,
     values.nickname,
     values.sns,
-    values.intro
+    values.intro,
+    gender
   );
 
   const updateProfile = () => {
