@@ -69,7 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
 수정사항!
 yarn add react-slick을 설치함!
 npm install slick-carousel --save을 설치함
@@ -80,4 +79,4 @@ yarn add react-daum-postcode
 
 고쳐야 될것!
 1.nav바 icon클릭하면 바로 icon event적용되게할것
-2.nav바 화면 겹침 
+2.nav바 화면 겹침!!!
