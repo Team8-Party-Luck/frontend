@@ -70,6 +70,32 @@ const Edit = (props) => {
     });
   };
 
+  console.log(
+    imageUrl,
+    gender,
+    age,
+    city,
+    region,
+    values.nickname,
+    values.sns,
+    values.intro,
+    gender
+  );
+
+  const updateProfile = () => {
+    const Update_info = new FormData();
+    Update_info.append("image", imageUrl);
+    Update_info.append("gender", gender);
+    Update_info.append("age", age);
+    Update_info.append("city", city);
+    Update_info.append("region", region);
+    //   Update_info.append("food", food);
+    Update_info.append("nickname", values.nickname);
+    Update_info.append("sns", values.sns);
+    Update_info.append("intro", values.intro);
+
+    dispatch(userActions.updateSettingsData(Update_info));
+  };
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }}>
