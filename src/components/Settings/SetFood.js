@@ -26,8 +26,8 @@ const SetFood = (props) => {
   // console.log(Object.values(food));
   // console.log({ ...Object.values(food) });
 
-  React.useEffect(() => {}, [food]);
-  console.log("나는 렌더링");
+  // React.useEffect(() => {}, [food]);
+  // console.log("나는 렌더링");
 
   return (
     <React.Fragment>

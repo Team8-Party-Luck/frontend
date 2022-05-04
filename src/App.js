@@ -17,6 +17,7 @@ import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
 import UserList from "./pages/UserList";
 import PartyInfo from "./pages/PartyInfo";
 import Edit from "./pages/Edit";
+import Spinner from "./components/Spinner";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/profile" exact component={Profile} />
         <Route path="/edit" exact component={Edit} />
         <Route path="/signup" exact component={SignUp} />
+        <Route path="/spin" exact component={Spinner} />
         <Route path="/setting" exact component={Setting} />
         <Route path="/setting2" exact component={Setting2} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
