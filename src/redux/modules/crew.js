@@ -65,7 +65,13 @@ const getDataDB = () => {
 const getDetailInfo = (partyId) => {
   return function (dispatch, getState, { history }) {
     axios
-      .get(`http://3.38.180.96:8080/party/details/${partyId}`)
+      .get(`http://3.38.180.96:8080/api/party/details/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
       .then((res) => {
         console.log(res.data);
         dispatch(getDetail(res.data));

@@ -17,8 +17,16 @@ import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
 import UserList from "./pages/UserList";
 import PartyInfo from "./pages/PartyInfo";
 import Edit from "./pages/Edit";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "./redux/modules/user";
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(userActions.userCheckDB());
+  }, []);
+
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>

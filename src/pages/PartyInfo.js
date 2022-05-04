@@ -20,6 +20,10 @@ const PartyInfo = () => {
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
 
+  const userCheck = useSelector((state) => state?.user?.user?.result);
+
+  console.log(userCheck);
+
   return (
     <React.Fragment>
       <HeaderNav name="파티상세보기" />
