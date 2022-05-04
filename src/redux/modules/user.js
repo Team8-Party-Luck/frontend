@@ -203,7 +203,6 @@ const userCheckDB = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         dispatch(userCheck(res.data));
       })
       .catch((err) => {

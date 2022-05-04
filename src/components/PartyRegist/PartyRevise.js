@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
@@ -11,25 +12,46 @@ import TimeSelect from "./TimeSelect";
 import Age from "./Age";
 import RealDay from "./RealDay";
 
+import {useLocation} from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
-import { useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
 
-const RegiWrite = () => {
+
+import HeaderNav from "../../shared/HeaderNav";
+
+const PartyRevise = () => {
+  const location = useLocation();
+  const partyId = location.state
   const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(crewActions.getDetailInfo(partyId));
+    // setTitle(partyUser?.title || '');
+  }, []);
+  const partyUser = useSelector((state) => state?.crew?.info);
+
+  console.log(partyUser);
+  
 
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [store, setStore] = useState(null);
-  const [capacity, setCapacity] = useState(null);
-  const [meeting, setMeeting] = useState(null);
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
-  const [desc, setDesc] = useState(null);
+  const [title, setTitle] = useState(partyUser?.title);
+  const [store, setStore] = useState(partyUser?.store);
+  const [capacity, setCapacity] = useState(partyUser?.capacity);
+  const [meeting, setMeeting] = useState(partyUser?.meeting);
+  const [date, setDate] = useState(partyUser?.date);
+  const [time, setTime] = useState(partyUser?.time);
+  const [desc, setDesc] = useState(partyUser?.desc);
 
-  const sendWriteData = () => {
+  console.log(title);
+  
+  React.useEffect(() => {
+    setTitle(partyUser?.title || '');
+  }, [title])
+
+
+  const sendReviseData = () => {
     const Write_info = {
-      image: image,
+      // image: image,
       title: title,
       store: store,
       capacity: capacity,
@@ -41,16 +63,18 @@ const RegiWrite = () => {
 
     console.log(Write_info);
 
-    dispatch(crewActions.regiWriteSend(Write_info));
+    dispatch(crewActions.reviseSend(Write_info, partyId));
   };
 
   return (
     <React.Fragment>
+      <HeaderNav name="파티수정"/>
       <Grid container alignItems="center" justifyContent="center">
         <Images image={image} setImage={setImage} />
         <TextField
           id="partyName"
           label="파티제목"
+          value= {title}
           variant="standard"
           style={{ width: "80%" }}
           sx={{ mb: 1.5 }}
@@ -61,6 +85,7 @@ const RegiWrite = () => {
         <AddSearch store={store} setStore={setStore} />
         <Age capacity={capacity} setCapacity={setCapacity} />
         <TextField
+        value={meeting}
           id="meetPlace"
           label="만날 장소"
           variant="standard"
@@ -77,6 +102,7 @@ const RegiWrite = () => {
           <TimeSelect time={time} setTime={setTime} />
         </Box>
         <TextField
+        value={desc}
           multiline
           id="partyDesc"
           label="설명글을 입력해주세요!"
@@ -98,9 +124,9 @@ const RegiWrite = () => {
           variant="outlined"
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
-            sendWriteData();
-            alert("파티를 등록하시겠습니까?");
-            history.push("/home");
+            sendReviseData();
+            // alert("파티를 등록하시겠습니까?");
+            // history.push("/home");
           }}
         >
           등록
@@ -110,4 +136,4 @@ const RegiWrite = () => {
   );
 };
 
-export default RegiWrite;
+export default PartyRevise;

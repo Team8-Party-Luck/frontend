@@ -19,17 +19,36 @@ const PartyInfo = () => {
   }, []);
 
   const userCheck = useSelector((state) => state?.user?.user?.result);
-
   console.log(userCheck);
+
+  const partyUser = useSelector((state) => state?.crew?.info);
+  console.log(partyUser);
+
+
+  const title = partyUser?.title;
+  const store = partyUser?.store;
+  const capacity = partyUser?.capacity;
+  const memberCnt = partyUser?.memberCnt;
+  const location = partyUser?.location;
+  const date = partyUser?.date;
+  const time = partyUser?.time;
+  const desc = partyUser?.desc;
 
   return (
     <React.Fragment>
       <HeaderNav name="파티상세보기" />
       {partyId}
       <PartyInfoSlide />
-      <PartyDetailInfo />
-      <PartyDetailUser />
-      <PartyDetailDesc />
+      <PartyDetailInfo
+        title={title}
+        store={store}
+        capacity={capacity}
+        location={location}
+        date={date}
+        time={time}
+      />
+      <PartyDetailUser memberCnt={memberCnt} capacity={capacity} />
+      <PartyDetailDesc desc={desc} />
       <PartyDetailBottomNav />
     </React.Fragment>
   );

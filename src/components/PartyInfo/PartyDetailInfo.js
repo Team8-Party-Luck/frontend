@@ -15,18 +15,18 @@ const bull = (
   </Box>
 );
 
-const PartyDetailInfo = () => {
+const PartyDetailInfo = ({title, store, capacity, location, date, time}) => {
   return (
     <Card >
       <CardContent>
         <Typography variant="h5" component="div">
-          파티명을 입력해요
+          {title}
         </Typography>
         <Typography sx={{ mt: 1.5 }} color="text.secondary">
-          음식점 이름 10명
+          {store} / {capacity}명
         </Typography>
         <Typography >
-          서울 서초구 | 22.06.01(수) | 오후6:30
+          {location} |  {date} | {time}
         </Typography>
       </CardContent>
     </Card>
