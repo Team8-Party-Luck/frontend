@@ -4,16 +4,18 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 export default function Age({capacity, setCapacity}) {
   const [value, setValue] = React.useState(top100Films);
+
   return (
     <Autocomplete
       disablePortal
       variant="standard"
+      value={capacity || "2"}
       id="combo-box-demo"
       options={top100Films}
       sx={{ width: "80%", mb: 1, mt: 2 }}
       renderInput={(params) => <TextField {...params} label="모이는 인원" />}
       onChange={(event, newValue) => {
-        setCapacity(Number(newValue.label));
+        setCapacity(newValue.label);
       }}
     />
   );

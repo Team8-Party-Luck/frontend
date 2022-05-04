@@ -26,7 +26,6 @@ const PartyRevise = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(crewActions.getDetailInfo(partyId));
-    // setTitle(partyUser?.title || '');
   }, []);
   const partyUser = useSelector((state) => state?.crew?.info);
 
@@ -34,13 +33,13 @@ const PartyRevise = () => {
   
 
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState(partyUser?.title);
+  const [title, setTitle] = useState(partyUser?.title || '');
   const [store, setStore] = useState(partyUser?.store);
-  const [capacity, setCapacity] = useState(partyUser?.capacity);
-  const [meeting, setMeeting] = useState(partyUser?.meeting);
+  const [capacity, setCapacity] = useState(String(partyUser?.capacity));
+  const [meeting, setMeeting] = useState(partyUser?.meeting || '');
   const [date, setDate] = useState(partyUser?.date);
   const [time, setTime] = useState(partyUser?.time);
-  const [desc, setDesc] = useState(partyUser?.desc);
+  const [desc, setDesc] = useState(partyUser?.desc || '');
 
   console.log(title);
   
