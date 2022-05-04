@@ -8,12 +8,14 @@ const LOGIN = "LOGIN";
 const GET_USER_INFO = "GET_USER_INFO";
 // const SET_CODE = "SET_CODE";
 const SAVE_INFO = "SAVE_INFO";
+const USER_CHECK = "USER_CHECK";
 
 // 액션 크리에이터
 const setLogin = createAction(LOGIN, (Login) => ({ Login }));
 // const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
 const saveInfo = createAction(SAVE_INFO, (setting) => ({ setting }));
 const getUserInfo = createAction(GET_USER_INFO, (user) => ({ user }));
+const userCheck = createAction(USER_CHECK, (user) => ({ user }));
 // const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 
 // 초기값
@@ -176,6 +178,26 @@ const updateSettingsData = (Update_info) => {
   };
 };
 
+const userCheckDB = () => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("http://3.38.180.96:8080/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(userCheck(res.data));
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
+  };
+};
+
 export default handleActions(
   {
     [LOGIN]: (state, action) =>
@@ -194,6 +216,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.setting = action.payload.setting;
       }),
+    [USER_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.user;
+      }),
   },
   initialState
 );
@@ -209,6 +235,8 @@ const actionCreators = {
   sendSettingsData,
   getUserInfoDB,
   updateSettingsData,
+  userCheck,
+  userCheckDB,
 };
 
 export { actionCreators };
