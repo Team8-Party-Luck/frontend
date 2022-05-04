@@ -43,8 +43,8 @@ const Setting = () => {
 
     console.log(Setting_info);
 
-    // dispatch(userActions.saveInfo(Setting_info));
-    // history.push("/setting2");
+    dispatch(userActions.saveInfo(Setting_info));
+    history.push("/setting2");
   };
 
   return (
@@ -81,7 +81,7 @@ const Setting = () => {
           </>
         ) : null}
         {city && region ? <SetFood food={food} setFood={setFood} /> : null}
-        {gender && age && city && region && food ? (
+        {gender && age && city && region && food && food !== {} ? (
           <Button
             variant="contained"
             onClick={() => {
