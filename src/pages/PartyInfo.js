@@ -12,10 +12,8 @@ import { actionCreators as crewActions } from "../redux/modules/crew";
 
 const PartyInfo = () => {
   const { partyId } = useParams();
-  console.log(partyId);
 
   const dispatch = useDispatch();
-
   React.useEffect(() => {
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);

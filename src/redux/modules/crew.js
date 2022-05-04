@@ -65,7 +65,11 @@ const getDataDB = () => {
 const getDetailInfo = (partyId) => {
   return function (dispatch, getState, { history }) {
     axios
-      .get(`http://3.38.180.96:8080/party/details/${partyId}`)
+      .get(`http://3.38.180.96/api/party/details/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
         dispatch(getDetail(res.data));
@@ -85,7 +89,6 @@ export default handleActions(
     [GET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
         draft.info = action.payload.info;
-        console.log(draft.info);
       }),
   },
   initialState
