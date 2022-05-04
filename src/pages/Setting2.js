@@ -15,6 +15,7 @@ const Setting2 = (props) => {
   const settingInfo = useSelector((state) => state?.user?.setting);
 
   console.log(settingInfo);
+  console.log(Object.values(settingInfo?.food));
 
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ const Setting2 = (props) => {
       age: settingInfo?.age,
       city: settingInfo?.city,
       region: settingInfo?.region,
-      // food: settingInfo.food,
+      // food: Object.values(settingInfo?.food),
       nickname: values.nickname,
       sns: values.sns,
       intro: values.intro,

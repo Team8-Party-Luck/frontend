@@ -62,14 +62,28 @@ const kakaoLogin = (code) => {
 
         const KAKAO_TOKEN = res.data;
 
-        sessionStorage.setItem("token", KAKAO_TOKEN); //예시로 로컬에 저장함
+        sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
 
-        history.push("/setting"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
+        axios
+          .get("http://3.38.180.96:8080/api/user", {
+            headers: {
+              Authorization: `Bearer ${res.data}`,
+              "content-type": "application/json;charset=UTF-8",
+              accept: "application/json,",
+            },
+          })
+          .then((res) => {
+            console.log(res.data, "여기까지는 성공");
+            res.data.ok ? history.push("/home") : history.push("/setting");
+          })
+          .catch((err) => {
+            console.log("두번 호출 실패", err.response);
+          });
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         window.alert("로그인에 실패하였습니다.");
-        history.replace("/login"); // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace("/"); // 로그인 실패하면 로그인화면으로 돌려보냄
       });
   };
 };

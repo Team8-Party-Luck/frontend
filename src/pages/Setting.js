@@ -81,7 +81,7 @@ const Setting = () => {
           </>
         ) : null}
         {city && region ? <SetFood food={food} setFood={setFood} /> : null}
-        {gender && age && city && region && food && food !== {} ? (
+        {gender && age && city && region && food ? (
           <Button
             variant="contained"
             onClick={() => {
