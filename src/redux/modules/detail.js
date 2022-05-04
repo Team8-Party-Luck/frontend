@@ -12,8 +12,9 @@ const token = sessionStorage.getItem("token");
 
 const getDetailInfo = (partyId) => {
   return function (dispatch, getState, { history }) {
+    // console.log(partyId);
     axios
-      .get(`http://3.38.180.96/api/party/details/${partyId}`)
+      .get(`http://3.38.180.96/api/party/details/${partyId}`, )
       .then((res) => {
         dispatch(getPartyDetail(res.data));
       })
