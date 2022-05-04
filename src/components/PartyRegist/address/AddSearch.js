@@ -30,6 +30,7 @@ const AddSearch = ({ store, setStore }) => {
   return (
     <div style={{ width: "80%" }}>
       <TextField
+        value={store || ''}
         id="eateryName"
         variant="standard"
         label="식당 이름(위치)"
