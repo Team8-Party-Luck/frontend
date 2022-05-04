@@ -17,7 +17,6 @@ const SetFood = (props) => {
   const handleChange = (prop) => (event) => {
     setFood({ ...food, [prop]: event.target.value });
   };
-  console.log(food?.korea);
 
   return (
     <React.Fragment>

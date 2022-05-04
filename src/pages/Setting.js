@@ -27,10 +27,10 @@ const Setting = () => {
 
   // const settingInfo = useSelector((state) => state.setting.setting);
   // console.log(settingInfo);
-  console.log(gender);
-  console.log(age);
-  console.log(food);
-  console.log(city);
+  // console.log(gender);
+  // console.log(age);
+  // console.log(food);
+  // console.log(city);
 
   const saveSetting = () => {
     const Setting_info = {
@@ -43,8 +43,8 @@ const Setting = () => {
 
     console.log(Setting_info);
 
-    dispatch(userActions.saveInfo(Setting_info));
-    history.push("/setting2");
+    // dispatch(userActions.saveInfo(Setting_info));
+    // history.push("/setting2");
   };
 
   return (
