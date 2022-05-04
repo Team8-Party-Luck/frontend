@@ -24,9 +24,6 @@ const PartyInfo = () => {
   const partyUser = useSelector((state) => state?.crew?.info);
   console.log(partyUser);
 
-  console.log(userCheck?.userid)
-  console.log(partyUser?.hostid);
-
 
   const title = partyUser?.title;
   const store = partyUser?.store;

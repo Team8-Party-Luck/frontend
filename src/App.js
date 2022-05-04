@@ -19,6 +19,7 @@ import PartyInfo from "./pages/PartyInfo";
 import Edit from "./pages/Edit";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
+import PartyRevise from "./components/PartyRegist/PartyRevise";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function App() {
         <Route path="/chat" exact component={Chat} />
         <Route path="/regi" exact component={PartyRegist} />
         <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
-        <Route path="/partyInfo/" exact component={PartyInfo} />
+        <Route path="/revise" exact component={PartyRevise} />
         <Route path="/userList" exact component={UserList} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/edit" exact component={Edit} />
