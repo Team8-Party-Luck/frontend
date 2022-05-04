@@ -91,7 +91,6 @@ export default handleActions(
     [GET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
         draft.info = action.payload.info;
-        console.log(draft.info);
       }),
   },
   initialState

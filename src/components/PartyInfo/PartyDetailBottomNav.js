@@ -8,16 +8,16 @@ const PartyDetailBottomNav = () => {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box sx={{ width: 500 }}>
-      <BottomNavigation
+    <Box>
+      {/* <BottomNavigation
         sx={{ width: "95%", position: "fixed", display: "flex", bottom: 10 }}
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-      >
-        {/* <Stack spacing={2} direction="row">
+      > */}
+      {/* <Stack spacing={2} direction="row">
           <Button variant="outlined" sx={{ width: "9rem" }}>
             수정
           </Button>
@@ -25,7 +25,22 @@ const PartyDetailBottomNav = () => {
             파티삭제
           </Button>
         </Stack> */}
-      </BottomNavigation>
+      {/* </BottomNavigation> */}
+
+      <Box
+        sx={{ width: "95%", position: "fixed", display: "flex", bottom: 10 }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Stack spacing={2} direction="row">
+          <Button variant="outlined" sx={{ width: "9rem" }}>
+            수정
+          </Button>
+          <Button variant="outlined" sx={{ width: "9rem" }}>
+            파티삭제
+          </Button>
+        </Stack>
+      </Box>
     </Box>
   );
 };
