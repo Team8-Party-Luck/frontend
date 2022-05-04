@@ -10,14 +10,24 @@ import {
   Grid,
   Button,
 } from "@mui/material";
+import { useState } from "react";
 
 const SetFood = (props) => {
   const { food, setFood } = props;
 
+  const [value, setValue] = useState(false);
+
   const handleChange = (prop) => (event) => {
     setFood({ ...food, [prop]: event.target.value });
   };
-  console.log(food?.korea);
+
+  console.log(food);
+  // Object.values(food);
+  // console.log(Object.values(food));
+  // console.log({ ...Object.values(food) });
+
+  React.useEffect(() => {}, [food]);
+  console.log("나는 렌더링");
 
   return (
     <React.Fragment>
@@ -29,7 +39,10 @@ const SetFood = (props) => {
           {food?.korea ? (
             <Button
               value={null}
-              onClick={handleChange("korea")}
+              onClick={() => {
+                delete food?.korea;
+                setValue(!value);
+              }}
               variant="contained"
               fullWidth
               size="large"
@@ -51,8 +64,10 @@ const SetFood = (props) => {
         <Grid item xs={4}>
           {food?.china ? (
             <Button
-              value={null}
-              onClick={handleChange("china")}
+              onClick={() => {
+                delete food?.china;
+                setValue(!value);
+              }}
               variant="contained"
               fullWidth
               size="large"
@@ -74,8 +89,10 @@ const SetFood = (props) => {
         <Grid item xs={4}>
           {food?.japan ? (
             <Button
-              value={null}
-              onClick={handleChange("japan")}
+              onClick={() => {
+                delete food?.japan;
+                setValue(!value);
+              }}
               variant="contained"
               fullWidth
               size="large"
@@ -97,8 +114,10 @@ const SetFood = (props) => {
         <Grid item xs={4}>
           {food?.american ? (
             <Button
-              value={null}
-              onClick={handleChange("american")}
+              onClick={() => {
+                delete food?.american;
+                setValue(!value);
+              }}
               variant="contained"
               fullWidth
               size="large"
@@ -120,8 +139,10 @@ const SetFood = (props) => {
         <Grid item xs={4}>
           {food?.asian ? (
             <Button
-              value={null}
-              onClick={handleChange("asian")}
+              onClick={() => {
+                delete food?.asian;
+                setValue(!value);
+              }}
               variant="contained"
               fullWidth
               size="large"
@@ -143,8 +164,10 @@ const SetFood = (props) => {
         <Grid item xs={4}>
           {food?.vegan ? (
             <Button
-              value={null}
-              onClick={handleChange("vegan")}
+              onClick={() => {
+                delete food?.vegan;
+                setValue(!value);
+              }}
               variant="contained"
               fullWidth
               size="large"

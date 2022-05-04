@@ -14,8 +14,6 @@ import { regionArea } from "../../shared/CityData";
 const SetLocation = (props) => {
   const { city, setCity, region, setRegion, user_info } = props;
 
-  console.log(user_info);
-
   const handleChangeCity = (e) => {
     setCity(e.target.value);
   };

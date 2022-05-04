@@ -27,10 +27,10 @@ const Setting = () => {
 
   // const settingInfo = useSelector((state) => state.setting.setting);
   // console.log(settingInfo);
-  console.log(gender);
-  console.log(age);
-  console.log(food);
-  console.log(city);
+  // console.log(gender);
+  // console.log(age);
+  // console.log(food);
+  // console.log(city);
 
   const saveSetting = () => {
     const Setting_info = {
@@ -81,7 +81,7 @@ const Setting = () => {
           </>
         ) : null}
         {city && region ? <SetFood food={food} setFood={setFood} /> : null}
-        {gender && age && city && region && food ? (
+        {gender && age && city && region && food && food !== {} ? (
           <Button
             variant="contained"
             onClick={() => {

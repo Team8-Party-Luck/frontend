@@ -20,7 +20,7 @@ import React, { useState } from "react";
 import { history } from "../redux/configStore";
 import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
+import user, { actionCreators as userActions } from "../redux/modules/user";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Edit = (props) => {
   console.log(user_info);
 
   const [imageSrc, setImageSrc] = useState(user_info?.image);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
   const [city, setCity] = useState(user_info?.city);

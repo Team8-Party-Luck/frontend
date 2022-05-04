@@ -12,7 +12,8 @@ import Header from "../components/Settings/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Setting2 = (props) => {
-  const settingInfo = useSelector((state) => state?.setting?.setting);
+  const settingInfo = useSelector((state) => state?.user?.setting);
+
   console.log(settingInfo);
 
   const dispatch = useDispatch();
