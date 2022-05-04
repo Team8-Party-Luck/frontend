@@ -1,6 +1,7 @@
 import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { history } from "../configStore";
 
 //액션
 const GET_CREW = "GET_CREW";
@@ -48,6 +49,26 @@ const regiWriteSend = (Write_info) => {
   };
 };
 
+const deleteSend = (partyId) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .delete(`http://3.38.180.96/api/party/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        history.push('/home')
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 //홈화면에서 전체 데이터 받아오기
 const getDataDB = () => {
   return function (dispatch, getState, { history }) {
@@ -73,7 +94,6 @@ const getDetailInfo = (partyId) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         dispatch(getDetail(res.data));
       })
       .catch((error) => {
@@ -102,6 +122,7 @@ const actionCreators = {
   getDataDB,
   getDetailInfo,
   getDetail,
+  deleteSend
 };
 
 export { actionCreators };
