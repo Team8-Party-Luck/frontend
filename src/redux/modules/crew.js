@@ -22,9 +22,10 @@ const token = sessionStorage.getItem("token");
 const regiWriteSend = (Write_info) => {
   return function (dispatch, getState, { history }) {
     const file = new FormData();
-    file.append("image", Write_info.photos);
+    // file.append("image", Write_info.photos);
     file.append("title", Write_info.title);
     file.append("store", Write_info.store);
+    file.append("address", Write_info.address);
     file.append("capacity", Write_info.capacity);
     file.append("meeting", Write_info.meeting);
     file.append("date", Write_info.date);

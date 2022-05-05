@@ -42,6 +42,7 @@ const PartySpread = (props) => {
               {props.store} &nbsp; {props.capacity}
             </Typography>
             <Typography style={{ fontSize: "0.8rem" }}>
+              {props.address}
               {props.date}
               {props.time}
             </Typography>

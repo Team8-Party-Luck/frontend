@@ -16,7 +16,7 @@ const style = {
   p: 4,
 };
 
-const AddSearch = ({ store, setStore }) => {
+const AddSearch = ({ store, setStore ,address, setAddress}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPostCode = () => {
@@ -48,6 +48,8 @@ const AddSearch = ({ store, setStore }) => {
             <PopupPostCode
               store={store}
               setStore={setStore}
+              address = {address}
+              setAddress = {setAddress}
               onClose={closePostCode}
             />
           </PopupDom>

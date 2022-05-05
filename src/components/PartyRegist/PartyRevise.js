@@ -124,8 +124,8 @@ const PartyRevise = () => {
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
             sendReviseData();
-            // alert("파티를 등록하시겠습니까?");
-            // history.push("/home");
+            alert("파티를 수정하시겠습니까?");
+            history.push(`/partyInfo/${partyId}`);
           }}
         >
           등록

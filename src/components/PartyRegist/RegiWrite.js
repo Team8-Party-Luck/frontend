@@ -21,6 +21,7 @@ const RegiWrite = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
+  const [address, setAddress] = useState(null);
   const [capacity, setCapacity] = useState(null);
   const [meeting, setMeeting] = useState(null);
   const [date, setDate] = useState(null);
@@ -32,6 +33,7 @@ const RegiWrite = () => {
       image: image,
       title: title,
       store: store,
+      address: address,
       capacity: capacity,
       meeting: meeting,
       date: date,
@@ -58,7 +60,12 @@ const RegiWrite = () => {
             setTitle(e.target.value);
           }}
         />
-        <AddSearch store={store} setStore={setStore} />
+        <AddSearch
+          store={store}
+          setStore={setStore}
+          address={address}
+          setAddress={setAddress}
+        />
         <Age capacity={capacity} setCapacity={setCapacity} />
         <TextField
           id="meetPlace"

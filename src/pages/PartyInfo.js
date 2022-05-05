@@ -21,24 +21,26 @@ const PartyInfo = () => {
   const userCheck = useSelector((state) => state?.user?.user?.result);
   const partyUser = useSelector((state) => state?.crew?.info);
 
+  const image = partyUser?.image;
   const title = partyUser?.title;
   const store = partyUser?.store;
+  const address = partyUser?.address;
   const capacity = partyUser?.capacity;
   const memberCnt = partyUser?.memberCnt;
-  const location = partyUser?.location;
   const date = partyUser?.date;
   const time = partyUser?.time;
   const desc = partyUser?.desc;
 
+  console.log(image)
   return (
     <React.Fragment>
       <HeaderNav name="파티상세보기" />
-      <PartyInfoSlide />
+      <PartyInfoSlide image={image}/>
       <PartyDetailInfo
         title={title}
         store={store}
+        address={address}
         capacity={capacity}
-        location={location}
         date={date}
         time={time}
       />
