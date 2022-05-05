@@ -6,10 +6,14 @@ import { history } from "../configStore";
 //액션
 const GET_CREW = "GET_CREW";
 const GET_DETAIL = "GET_PARTYDETAIL";
+const GET_JOINED = "GET_JOINED";
+const GET_SCRAP = "GET_SCRAP";
 
 //액션크레이터
 const getCrew = createAction(GET_CREW, (crew) => ({ crew }));
 const getDetail = createAction(GET_DETAIL, (info) => ({ info }));
+const getJoined = createAction(GET_JOINED, (joined) => ({ joined }));
+const getScrap = createAction(GET_SCRAP, (scrap) => ({ scrap }));
 
 // 초기값
 const initialState = {};
@@ -32,7 +36,7 @@ const regiWriteSend = (Write_info) => {
     file.append("time", Write_info.time);
     file.append("desc", Write_info.desc);
 
-    console.log(file)
+    console.log(file);
     axios
       .post("http://3.38.180.96/api/party", file, {
         headers: {
@@ -80,7 +84,7 @@ const reviseSend = (Write_info, partyId) => {
       })
       .then((response) => {
         console.log(response.data);
-        console.log('성공');
+        console.log("성공");
       })
       .catch((error) => {
         console.log(error);
@@ -88,6 +92,7 @@ const reviseSend = (Write_info, partyId) => {
   };
 };
 
+//등록한 글 삭제기능
 const deleteSend = (partyId) => {
   return function (dispatch, getState, { history }) {
     axios
@@ -122,6 +127,7 @@ const getDataDB = () => {
   };
 };
 
+//상세정보 받아오기
 const getDetailInfo = (partyId) => {
   return function (dispatch, getState, { history }) {
     axios
@@ -140,6 +146,47 @@ const getDetailInfo = (partyId) => {
       });
   };
 };
+// 내가 참여한 파티 조회
+const getJoinedData = () => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("http://3.38.180.96:8080/api/parties/history/in", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getJoined(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+//내가 찜한 파티 조회
+const getScrapData = () => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("http://3.38.180.96:8080/api/parties/sub", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getScrap(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
 
 export default handleActions(
   {
@@ -150,6 +197,14 @@ export default handleActions(
     [GET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
         draft.info = action.payload.info;
+      }),
+    [GET_JOINED]: (state, action) =>
+      produce(state, (draft) => {
+        draft.joined = action.payload.joined;
+      }),
+    [GET_SCRAP]: (state, action) =>
+      produce(state, (draft) => {
+        draft.scrap = action.payload.scrap;
       }),
   },
   initialState
@@ -163,7 +218,10 @@ const actionCreators = {
   getDataDB,
   getDetailInfo,
   getDetail,
-  
+  getJoined,
+  getJoinedData,
+  getScrap,
+  getScrapData,
 };
 
 export { actionCreators };
