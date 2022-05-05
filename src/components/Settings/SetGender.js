@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const SetGender = (props) => {
   const { gender, setGender } = props;
+  const [value, setValue] = useState(true);
 
   return (
     <React.Fragment>
@@ -20,11 +21,11 @@ const SetGender = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   color: "white",
-              //   background: "black",
+              background: "#FF6853",
             }}
             onClick={() => {
               setGender("여성");
+              setValue(!value);
             }}
           >
             여성
@@ -37,8 +38,8 @@ const SetGender = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   border: "1px solid black",
-              //   color: "black",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
             onClick={() => {
               setGender("여성");
@@ -54,8 +55,7 @@ const SetGender = (props) => {
               width: "3em",
               height: "2em",
               borderRadius: "3em",
-              //   color: "white",
-              //   background: "black",
+              background: "#FF6853",
             }}
             onClick={() => {
               setGender("남성");
@@ -70,8 +70,8 @@ const SetGender = (props) => {
               width: "3em",
               height: "2em",
               borderRadius: "3em",
-              //   border: "1px solid black",
-              //   color: "black",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
             onClick={() => {
               setGender("남성");

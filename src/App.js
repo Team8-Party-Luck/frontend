@@ -18,6 +18,10 @@ import UserList from "./pages/UserList";
 import PartyInfo from "./pages/PartyInfo";
 import Edit from "./pages/Edit";
 import Spinner from "./components/Spinner";
+import Inquary from "./pages/Inquary";
+import Account from "./pages/Account";
+import Joined from "./pages/Joined";
+import Scrap from "./pages/Scrap";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
@@ -47,6 +51,10 @@ function App() {
         <Route path="/spin" exact component={Spinner} />
         <Route path="/setting" exact component={Setting} />
         <Route path="/setting2" exact component={Setting2} />
+        <Route path="/joined" exact component={Joined} />
+        <Route path="/scrap" exact component={Scrap} />
+        <Route path="/Account" exact component={Account} />
+        <Route path="/inquary" exact component={Inquary} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
     </React.Fragment>

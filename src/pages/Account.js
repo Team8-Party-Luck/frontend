@@ -1,7 +1,7 @@
 import React from "react";
 
-const Grid = () => {
+const Account = () => {
   return <div></div>;
 };
 
-export default Grid;
+export default Account;
