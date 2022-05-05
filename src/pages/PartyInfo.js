@@ -19,11 +19,7 @@ const PartyInfo = () => {
   }, []);
 
   const userCheck = useSelector((state) => state?.user?.user?.result);
-  console.log(userCheck);
-
   const partyUser = useSelector((state) => state?.crew?.info);
-  console.log(partyUser);
-
 
   const title = partyUser?.title;
   const store = partyUser?.store;
@@ -37,7 +33,6 @@ const PartyInfo = () => {
   return (
     <React.Fragment>
       <HeaderNav name="파티상세보기" />
-      {partyId}
       <PartyInfoSlide />
       <PartyDetailInfo
         title={title}

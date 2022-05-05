@@ -50,7 +50,7 @@ const PartyRevise = () => {
 
   const sendReviseData = () => {
     const Write_info = {
-      // image: image,
+      image: image,
       title: title,
       store: store,
       capacity: capacity,
