@@ -16,9 +16,6 @@ const Spinner = () => {
   const [open, setOpen] = React.useState(true);
 
   return (
-    // <Box sx={{ display: "flex", margin: "0 auto" }}>
-    //   <CircularProgress />
-    // </Box>
     <div>
       <Dialog
         open={open}

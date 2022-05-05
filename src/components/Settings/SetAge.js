@@ -2,9 +2,12 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { createTheme } from "@mui/material/styles";
+import { purple } from "@mui/material/colors";
 
 const SetAge = (props) => {
   const { age, setAge } = props;
+
   return (
     <React.Fragment>
       <Typography component="h4" variant="p" sx={{ marginTop: 6 }}>
@@ -19,8 +22,7 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   color: "white",
-              //   background: "black",
+              background: "#FF6853",
             }}
             onClick={() => {
               setAge("10대");
@@ -36,8 +38,8 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   border: "1px solid black",
-              //   color: "black",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
             onClick={() => {
               setAge("10대");
@@ -54,8 +56,7 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   color: "white",
-              //   background: "black",
+              background: "#FF6853",
             }}
             onClick={() => {
               setAge("20대");
@@ -71,8 +72,8 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   border: "1px solid black",
-              //   color: "black",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
             onClick={() => {
               setAge("20대");
@@ -89,8 +90,7 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   color: "white",
-              //   background: "black",
+              background: "#FF6853",
             }}
             onClick={() => {
               setAge("30대");
@@ -106,8 +106,8 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   border: "1px solid black",
-              //   color: "black",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
             onClick={() => {
               setAge("30대");
@@ -124,8 +124,7 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   color: "white",
-              //   background: "black",
+              background: "#FF6853",
             }}
             onClick={() => {
               setAge("40대");
@@ -141,8 +140,8 @@ const SetAge = (props) => {
               height: "2em",
               borderRadius: "3em",
               marginRight: "0.5em",
-              //   border: "1px solid black",
-              //   color: "black",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
             onClick={() => {
               setAge("40대");

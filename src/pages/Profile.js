@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import UserInfo from "../components/User/UserInfo";
-import UserParty from "../components/User/UserParty";
-import BottomNav from "../shared/BottomNav";
+import UserInfo from "../components/Profile/UserInfo";
+import FoodList from "../components/Profile/FoodList";
+import Menu from "../components/Profile/Menu";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { Box, Button, Grid } from "@mui/material";
+import BottomNav from "../shared/BottomNav";
+import Header from "../shared/Header";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -15,11 +18,13 @@ const Profile = () => {
   const user_info = useSelector((state) => state?.user?.user);
 
   return (
-    <React.Fragment>
-      <UserInfo user_info={user_info} />
-      <UserParty />
+    <Box>
+      <Header />
+      <UserInfo />
+      <FoodList />
+      <Menu />
       <BottomNav />
-    </React.Fragment>
+    </Box>
   );
 };
 

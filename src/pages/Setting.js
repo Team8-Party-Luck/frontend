@@ -94,6 +94,7 @@ const Setting = () => {
               left: "4%",
               right: "4%",
               height: "4em",
+              background: "#FF6853",
             }}
           >
             다음
@@ -108,6 +109,8 @@ const Setting = () => {
               left: "4%",
               right: "4%",
               height: "4em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
             }}
           >
             다음

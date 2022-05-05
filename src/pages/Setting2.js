@@ -86,7 +86,7 @@ const Setting2 = (props) => {
         </Typography>
         <TextareaAutosize
           aria-label="minimum height"
-          minRows={20}
+          minRows={18}
           placeholder="자기소개를 입력해주세요!"
           style={{
             width: "100%",
@@ -106,7 +106,8 @@ const Setting2 = (props) => {
             bottom: 50,
             left: "4%",
             right: "4%",
-            height: "3em",
+            height: "4em",
+            background: "#FF6853",
           }}
         >
           저장하기

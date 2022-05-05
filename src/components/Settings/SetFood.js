@@ -39,6 +39,7 @@ const SetFood = (props) => {
           {food?.korea ? (
             <Button
               value={null}
+              color="error"
               onClick={() => {
                 delete food?.korea;
                 setValue(!value);
@@ -46,16 +47,19 @@ const SetFood = (props) => {
               variant="contained"
               fullWidth
               size="large"
+              // sx={{ background: "#FF6853" }}
             >
               한식
             </Button>
           ) : (
             <Button
               value="한식"
+              color="secondary"
               onClick={handleChange("korea")}
               variant="outlined"
               fullWidth
               size="large"
+              // sx={{ border: "1px solid #FF6853", color: "#FF6853" }}
             >
               한식
             </Button>
@@ -71,6 +75,7 @@ const SetFood = (props) => {
               variant="contained"
               fullWidth
               size="large"
+              sx={{ background: "#FF6853" }}
             >
               중식
             </Button>
@@ -81,6 +86,7 @@ const SetFood = (props) => {
               variant="outlined"
               fullWidth
               size="large"
+              sx={{ border: "1px solid #FF6853", color: "#FF6853" }}
             >
               중식
             </Button>
@@ -96,6 +102,7 @@ const SetFood = (props) => {
               variant="contained"
               fullWidth
               size="large"
+              sx={{ background: "#FF6853" }}
             >
               일식
             </Button>
@@ -106,6 +113,7 @@ const SetFood = (props) => {
               variant="outlined"
               fullWidth
               size="large"
+              sx={{ border: "1px solid #FF6853", color: "#FF6853" }}
             >
               일식
             </Button>
@@ -121,6 +129,7 @@ const SetFood = (props) => {
               variant="contained"
               fullWidth
               size="large"
+              sx={{ background: "#FF6853" }}
             >
               양식
             </Button>
@@ -131,6 +140,7 @@ const SetFood = (props) => {
               variant="outlined"
               fullWidth
               size="large"
+              sx={{ border: "1px solid #FF6853", color: "#FF6853" }}
             >
               양식
             </Button>
@@ -146,6 +156,7 @@ const SetFood = (props) => {
               variant="contained"
               fullWidth
               size="large"
+              sx={{ background: "#FF6853" }}
             >
               아시안
             </Button>
@@ -156,6 +167,7 @@ const SetFood = (props) => {
               variant="outlined"
               fullWidth
               size="large"
+              sx={{ border: "1px solid #FF6853", color: "#FF6853" }}
             >
               아시안
             </Button>
@@ -171,6 +183,7 @@ const SetFood = (props) => {
               variant="contained"
               fullWidth
               size="large"
+              sx={{ background: "#FF6853" }}
             >
               비건
             </Button>
@@ -181,6 +194,7 @@ const SetFood = (props) => {
               variant="outlined"
               fullWidth
               size="large"
+              sx={{ border: "1px solid #FF6853", color: "#FF6853" }}
             >
               비건
             </Button>
