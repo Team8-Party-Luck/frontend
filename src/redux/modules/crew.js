@@ -31,6 +31,7 @@ const regiWriteSend = (Write_info) => {
     file.append("time", Write_info.time);
     file.append("desc", Write_info.desc);
 
+    console.log(file)
     axios
       .post("http://3.38.180.96/api/party", file, {
         headers: {
