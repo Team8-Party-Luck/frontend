@@ -15,9 +15,9 @@ const bull = (
   </Box>
 );
 
-const PartyDetailInfo = ({title, store, capacity, location, date, time}) => {
+const PartyDetailInfo = ({ title, store, address, capacity, date, time }) => {
   return (
-    <Card >
+    <Card>
       <CardContent>
         <Typography variant="h5" component="div">
           {title}
@@ -25,8 +25,8 @@ const PartyDetailInfo = ({title, store, capacity, location, date, time}) => {
         <Typography sx={{ mt: 1.5 }} color="text.secondary">
           {store} / {capacity}명
         </Typography>
-        <Typography >
-          {location} |  {date} | {time}
+        <Typography>
+          {address} | {date} | {time}
         </Typography>
       </CardContent>
     </Card>
@@ -34,5 +34,3 @@ const PartyDetailInfo = ({title, store, capacity, location, date, time}) => {
 };
 
 export default PartyDetailInfo;
-
-

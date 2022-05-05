@@ -58,6 +58,7 @@ const PartyList = (props) => {
       image={val?.image}
       title={val?.title}
       store={val?.store}
+      address={val?.address}
       capacity={val?.capacity}
       date={val?.date}
       time={val?.time}
