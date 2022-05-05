@@ -25,9 +25,9 @@ const Spinner = () => {
         TransitionComponent={Transition}
         keepMounted
         aria-describedby="alert-dialog-slide-description"
-        style={{ background: "#FF2C2C" }}
+        style={{ background: "#FF6853" }}
       >
-        <DialogTitle color="#FF2C2C">잇츨링에 오신 것을 환영해요🥰</DialogTitle>
+        <DialogTitle color="#FF6853">잇츨링에 오신 것을 환영해요🥰</DialogTitle>
       </Dialog>
     </div>
   );
