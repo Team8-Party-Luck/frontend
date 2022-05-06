@@ -99,7 +99,7 @@ const Edit = (props) => {
       console.log(value);
     }
 
-    // dispatch(userActions.updateSettingsData(Update_info));
+    dispatch(userActions.updateSettingsData(Update_info));
   };
   return (
     <React.Fragment>

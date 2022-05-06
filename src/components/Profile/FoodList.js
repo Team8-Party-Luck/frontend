@@ -17,7 +17,7 @@ const FoodList = (props) => {
       </Typography>
       <Card sx={{ width: "100%", margin: "0 auto", padding: 1 }}>
         <Grid container spacing={6}>
-          {/* {data?.map((cur, idx) => (
+          {user_info?.food?.map((cur, idx) => (
             <Grid item xs={2} key={idx}>
               <Box
                 bgcolor={"#FF6853"}
@@ -43,7 +43,7 @@ const FoodList = (props) => {
                 </Box>
               </Box>
             </Grid>
-          ))} */}
+          ))}
         </Grid>
       </Card>
     </Box>

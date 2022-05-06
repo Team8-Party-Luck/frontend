@@ -11,8 +11,9 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import { Box, Grid } from "@mui/material";
 
-const UserInfo = () => {
-  const data = ["한식", "일식", "양식", "아시안", "아시안", "아시안"];
+const UserInfo = (props) => {
+  const { user_info } = props;
+
   return (
     <Box sx={{ padding: 2 }}>
       <Card
@@ -27,6 +28,7 @@ const UserInfo = () => {
             <Avatar
               sx={{ bgcolor: red[400], width: "4em", height: "4em" }}
               aria-label="recipe"
+              src={user_info?.image}
             ></Avatar>
           }
           action={
@@ -43,14 +45,14 @@ const UserInfo = () => {
         <hr style={{ margin: "0 1em" }} />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            여기에 대충 자기소개가 들어갈 예정
+            {user_info?.intro}
           </Typography>
           <Typography
             component="h3"
             variant="p"
             sx={{ position: "absolute", top: "1.5em", left: "6em" }}
           >
-            닉네임
+            {user_info?.nickname}
           </Typography>
           <Typography
             component="h4"
@@ -63,7 +65,8 @@ const UserInfo = () => {
               fontSize: "14px",
             }}
           >
-            나이, 연령대, 사는 곳 들어갈 거임
+            {user_info?.gender} {user_info?.age} {user_info?.city}{" "}
+            {user_info?.region}
           </Typography>
         </CardContent>
       </Card>

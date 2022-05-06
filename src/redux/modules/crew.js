@@ -188,6 +188,27 @@ const getScrapData = () => {
   };
 };
 
+//파티 찜하기 기능
+const sendScrapData = (partyId) => {
+  console.log(partyId);
+  return function (dispatch, getState, { history }) {
+    axios
+      .post(`http://3.38.180.96:8080/api/party/sub/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CREW]: (state, action) =>
@@ -222,6 +243,7 @@ const actionCreators = {
   getJoinedData,
   getScrap,
   getScrapData,
+  sendScrapData,
 };
 
 export { actionCreators };
