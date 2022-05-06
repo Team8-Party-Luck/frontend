@@ -23,9 +23,9 @@ const PopupPostCode = (props , {store, setStore, address, setAddress}) => {
     console.log(props)
     props.setStore(data.buildingName);
     props.setAddress(data.address);
-    // console.log(data);
-    // console.log(fullAddress);
-    // console.log(data.zonecode);
+    console.log(data);
+    console.log(fullAddress);
+    console.log(data.zonecode);
     props.onClose();
   };
 

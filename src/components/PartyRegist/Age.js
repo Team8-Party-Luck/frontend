@@ -12,8 +12,8 @@ export default function Age({capacity, setCapacity}) {
       value={capacity || "2"}
       id="combo-box-demo"
       options={top100Films}
-      sx={{ width: "80%", mb: 1, mt: 2 }}
-      renderInput={(params) => <TextField {...params} label="모이는 인원" />}
+      sx={{ width: "90%",}}
+      renderInput={(params) => <TextField {...params} />}
       onChange={(event, newValue) => {
         setCapacity(newValue.label);
       }}

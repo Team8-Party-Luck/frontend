@@ -14,6 +14,7 @@ import RealDay from "./RealDay";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
+import PersonInfo from "./PersonInfo";
 
 const RegiWrite = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,13 @@ const RegiWrite = () => {
           address={address}
           setAddress={setAddress}
         />
-        <Age capacity={capacity} setCapacity={setCapacity} />
+        <PersonInfo capacity={capacity} setCapacity={setCapacity} />
+        <Box component="div" sx={{ display: "inline", width: "10rem" }}>
+          <RealDay date={date} setDate={setDate} />
+        </Box>
+        <Box component="div" sx={{ display: "inline", width: "10rem" }}>
+          <TimeSelect time={time} setTime={setTime} />
+        </Box>
         <TextField
           id="meetPlace"
           label="만날 장소"
@@ -77,12 +84,6 @@ const RegiWrite = () => {
             setMeeting(e.target.value);
           }}
         />{" "}
-        <Box component="div" sx={{ display: "inline", width: "12rem" }}>
-          <RealDay date={date} setDate={setDate} />
-        </Box>
-        <Box component="div" sx={{ display: "inline", width: "8rem" }}>
-          <TimeSelect time={time} setTime={setTime} />
-        </Box>
         <TextField
           multiline
           id="partyDesc"
