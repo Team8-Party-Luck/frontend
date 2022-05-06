@@ -33,7 +33,7 @@ const AddSearch = ({ store, setStore ,address, setAddress}) => {
         value={store || ''}
         id="eateryName"
         variant="standard"
-        label="식당 이름(위치)"
+        label="식당명"
         onClick={openPostCode}
         style={{ width: "100%" }}
         sx={{ mb: 1.5 }}
