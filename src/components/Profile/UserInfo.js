@@ -40,36 +40,6 @@ const UserInfo = () => {
             </IconButton>
           }
         />
-        {/* <hr style={{ margin: "0.5em 1em", background: "red" }} />
-        <Grid container spacing={6} padding={"0 1em"}>
-          {data?.map((cur, idx) => (
-            <Grid item xs={2} key={idx}>
-              <Box
-                bgcolor={"#FF6853"}
-                sx={{
-                  width: "2.3em",
-                  height: "2.3em",
-                  borderRadius: "2.3em",
-                  margin: "0 auto",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "fitContent",
-                    margin: "0 auto",
-                    textAlign: "center",
-                    fontSize: "0.7em",
-                    color: "white",
-                    fontWeight: "bold",
-                    paddingTop: "1em",
-                  }}
-                >
-                  {cur}
-                </Box>
-              </Box>
-            </Grid>
-          ))}
-        </Grid> */}
         <hr style={{ margin: "0 1em" }} />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
