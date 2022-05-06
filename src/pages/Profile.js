@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserInfo from "../components/Profile/UserInfo";
 import FoodList from "../components/Profile/FoodList";
 import Menu from "../components/Profile/Menu";
-import { actionCreators as userActions } from "../redux/modules/user";
+import user, { actionCreators as userActions } from "../redux/modules/user";
 import { Box, Button, Grid } from "@mui/material";
 import BottomNav from "../shared/BottomNav";
 import Header from "../shared/Header";
@@ -21,7 +21,7 @@ const Profile = () => {
     <Box>
       <Header />
       <UserInfo />
-      <FoodList />
+      <FoodList user_info={user_info} />
       <Menu />
       <BottomNav />
     </Box>

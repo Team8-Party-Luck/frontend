@@ -21,6 +21,7 @@ const userCheck = createAction(USER_CHECK, (user) => ({ user }));
 // 초기값
 const initialState = {};
 
+//
 const token = sessionStorage.getItem("token");
 
 //미들웨어
@@ -133,6 +134,7 @@ const signupDB = (Signup_info) => {
 // };
 
 const sendSettingsData = (Settings_info) => {
+  console.log(token);
   return function (dispatch, getState, { history }) {
     axios
       .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
@@ -240,10 +242,7 @@ export default handleActions(
 const actionCreators = {
   signupDB,
   loginDB,
-  // logoutDB,
-  // setLogout,
   kakaoLogin,
-  // sendAccessCodeDB,
   saveInfo,
   sendSettingsData,
   getUserInfoDB,

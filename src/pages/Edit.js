@@ -1,9 +1,6 @@
 import {
   Box,
-  AppBar,
   IconButton,
-  Toolbar,
-  Typography,
   FormControl,
   InputLabel,
   Select,
@@ -14,13 +11,12 @@ import {
 } from "@mui/material";
 // import { styled } from "@mui/material/styles";
 import styled from "styled-components";
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import React, { useState } from "react";
-import { history } from "../redux/configStore";
 import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
-import user, { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as userActions } from "../redux/modules/user";
+import Header from "../shared/Header";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -93,40 +89,21 @@ const Edit = (props) => {
     Update_info.append("nickname", values.nickname);
     Update_info.append("sns", values.sns);
     Update_info.append("intro", values.intro);
+    // FormData의 key 확인
+    for (let key of Update_info.keys()) {
+      console.log(key);
+    }
 
-    dispatch(userActions.updateSettingsData(Update_info));
+    // FormData의 value 확인
+    for (let value of Update_info.values()) {
+      console.log(value);
+    }
+
+    // dispatch(userActions.updateSettingsData(Update_info));
   };
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
-          <Toolbar>
-            <IconButton
-              size="large"
-              style={{
-                color: "black",
-              }}
-              onClick={() => {
-                history.push("/profile");
-              }}
-            >
-              <ArrowBackRoundedIcon />
-            </IconButton>
-            <Box sx={{ flexGrow: 0.4 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { sm: "block" } }}
-              style={{
-                color: "black",
-              }}
-            >
-              정보수정
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Box>
+      <Header />
       <Box sx={{ padding: 1 }}>
         <label htmlFor="icon-button-file">
           <Input
