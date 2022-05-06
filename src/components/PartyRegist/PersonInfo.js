@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import styled from "styled-components";
 import Age from "./Age";
 import RowRadioButtonsGroup from "./Gender";
-// import AgeGroup from "./AgeGroup";
+import AgeGroup from "./AgeGroup";
 
 const PersonInfo = ({ capacity, setCapacity }) => {
   const [state, setState] = React.useState({
@@ -57,7 +57,7 @@ const PersonInfo = ({ capacity, setCapacity }) => {
             <h4>연령대</h4>
           </Grid>
           <Grid item>
-            {/* <AgeGroup /> */}
+            <AgeGroup />
           </Grid>
         </Grid>
       </Box>
