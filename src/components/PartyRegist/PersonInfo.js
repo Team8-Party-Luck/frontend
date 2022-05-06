@@ -11,7 +11,14 @@ import Age from "./Age";
 import RowRadioButtonsGroup from "./Gender";
 import AgeGroup from "./AgeGroup";
 
-const PersonInfo = ({ capacity, setCapacity }) => {
+const PersonInfo = ({
+  capacity,
+  setCapacity,
+  ageGroup,
+  setAgeGroup,
+  gender,
+  setGender,
+}) => {
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -51,33 +58,39 @@ const PersonInfo = ({ capacity, setCapacity }) => {
       </Box>
       <Divider />
 
-      <Box sx={{ m: 2, flexGrow: 5, width:'100%' }}>
+      <Box sx={{ m: 2, flexGrow: 5, width: "100%" }}>
         <Grid container spacing={1}>
           <Grid item xs={3} sx={{ mt: 1 }}>
             <h4>연령대</h4>
           </Grid>
           <Grid item>
-            <AgeGroup />
+            <AgeGroup ageGroup={ageGroup} setAgeGroup={setAgeGroup} />
           </Grid>
         </Grid>
       </Box>
       <Divider />
 
-      <Box sx={{ m: 2, flexGrow: 1, }}>
+      <Box sx={{ m: 2, flexGrow: 1 }}>
         <Grid container spacing={1}>
           <Grid item xs={3} sx={{ mt: 1 }}>
             <h4>성별</h4>
           </Grid>
           <Grid item xs={9}>
-            <RowRadioButtonsGroup />
+            <RowRadioButtonsGroup gender={gender} setGender={setGender} />
           </Grid>
         </Grid>
       </Box>
       <Divider />
 
       <Button
-        sx={{width:'80%', ml: '2rem',my: "2rem", border: 1, borderColor: "primary.main" }}
-        style={{}}
+        sx={{
+          width: "80%",
+          ml: "2rem",
+          my: "2rem",
+          border: 1,
+          borderColor: "primary.main",
+        }}
+        onClick={toggleDrawer(anchor, false)}
       >
         등록
       </Button>
@@ -89,16 +102,24 @@ const PersonInfo = ({ capacity, setCapacity }) => {
       {["bottom"].map((anchor) => (
         <React.Fragment key={anchor}>
           <TextField
+            value={
+              `${capacity || ""}명 모집 / ${ageGroup || ""} / ${
+                gender || ""
+              }` || ""
+            }
             label="모집인원 정보"
             variant="standard"
             style={{ width: "100%" }}
             sx={{ mb: 1.5 }}
             onClick={toggleDrawer(anchor, true)}
+            InputProps={{
+              readOnly: true,
+            }}
           ></TextField>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
-            // onClose={toggleDrawer(anchor, false)}
+            onClose={toggleDrawer(anchor, false)}
           >
             {list(anchor)}
           </Drawer>
