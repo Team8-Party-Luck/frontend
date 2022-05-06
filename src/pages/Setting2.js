@@ -37,7 +37,7 @@ const Setting2 = (props) => {
       age: settingInfo?.age,
       city: settingInfo?.city,
       region: settingInfo?.region,
-      // food: Object.values(settingInfo?.food),
+      food: Object.values(settingInfo?.food),
       nickname: values.nickname,
       sns: values.sns,
       intro: values.intro,

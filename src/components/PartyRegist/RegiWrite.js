@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-
 import AddSearch from "./address/AddSearch";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
@@ -24,9 +23,11 @@ const RegiWrite = () => {
   const [store, setStore] = useState(null);
   const [address, setAddress] = useState(null);
   const [capacity, setCapacity] = useState(null);
-  const [meeting, setMeeting] = useState(null);
+  const [ageGroup, setAgeGroup] = useState(null);
+  const [gender, setGender] = useState(null);
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
+  const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
 
   const sendWriteData = () => {
@@ -36,9 +37,11 @@ const RegiWrite = () => {
       store: store,
       address: address,
       capacity: capacity,
-      meeting: meeting,
+      ageGroup:ageGroup,
+      gender:gender,
       date: date,
       time: time,
+      meeting: meeting,
       desc: desc,
     };
 
@@ -66,8 +69,17 @@ const RegiWrite = () => {
           setStore={setStore}
           address={address}
           setAddress={setAddress}
+          
         />
-        <PersonInfo capacity={capacity} setCapacity={setCapacity} />
+        <PersonInfo
+          capacity={capacity}
+          setCapacity={setCapacity}
+          ageGroup={ageGroup}
+          setAgeGroup={setAgeGroup}
+          gender = {gender}
+          setGender = {setGender}
+          value="안녕"
+        />
         <Box component="div" sx={{ display: "inline", width: "10rem" }}>
           <RealDay date={date} setDate={setDate} />
         </Box>
@@ -104,7 +116,7 @@ const RegiWrite = () => {
         />
         <Button
           variant="outlined"
-          style={{ height: "3rem", width: "7rem" }}
+          style={{ height: "3rem", width: "7rem", marginBottom:'4rem'}}
           onClick={() => {
             sendWriteData();
             alert("파티를 등록하시겠습니까?");

@@ -1,48 +1,225 @@
-import React, { useState, useRef } from 'react';
-import CheckIcon from "@mui/icons-material/Check";
-import ToggleButton from "@mui/material/ToggleButton";
+import React from "react";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { createTheme } from "@mui/material/styles";
+import { purple } from "@mui/material/colors";
 
-export default function AgeGroup() {
-  const nameInput = useRef();
-  function checkOnlyOne(element) {
-
-  
-    const checkboxes 
-        = document.getElementsByName("animal");
-    
-    checkboxes.forEach((cb) => {
-      cb.checked = false;
-    })
-    
-    element.checked = true;
-  }
+const AgeGroup = ({ageGroup, setAgeGroup}) => {
 
   return (
     <React.Fragment>
-      <input
-        type="checkbox"
-        name="animal"
-        value="dog"
-        ref={nameInput}
-        onclick="checkOnlyOne(this)"
-      />{" "}
-      개
-      <br />
-      <input
-        type="checkbox"
-        name="animal"
-        value="cat"
-        onclick="checkOnlyOne(this)"
-      />{" "}
-      고양이
-      <br />
-      <input
-        type="checkbox"
-        name="animal"
-        value="rabbit"
-        onclick="checkOnlyOne(this)"
-      />{" "}
-      토끼
+      <Box>
+      {ageGroup === "전체" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("전체");
+            }}
+          >
+            전체
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("전체");
+            }}
+          >
+            전체
+          </Button>
+        )}
+        {ageGroup === "10대" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("10대");
+            }}
+          >
+            10대
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("10대");
+            }}
+          >
+            10대
+          </Button>
+        )}
+        {ageGroup === "20대" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("20대");
+            }}
+          >
+            20대
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("20대");
+            }}
+          >
+            20대
+          </Button>
+        )}
+        <Box sx={{mt:2}}>
+{ageGroup === "30대" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("30대");
+            }}
+          >
+            30대
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("30대");
+            }}
+          >
+            30대
+          </Button>
+        )}
+        {ageGroup === "40대" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("40대");
+            }}
+          >
+            40대
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("40대");
+            }}
+          >
+            40대
+          </Button>
+        )}
+         {ageGroup === "50대" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("50대");
+            }}
+          >
+            40대
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("50대");
+            }}
+          >
+            50대
+          </Button>
+        )}
+        </Box>
+        
+      </Box>
     </React.Fragment>
   );
-}
+};
+
+export default AgeGroup;

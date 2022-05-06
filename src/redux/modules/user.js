@@ -134,6 +134,7 @@ const signupDB = (Signup_info) => {
 // };
 
 const sendSettingsData = (Settings_info) => {
+  const token = sessionStorage.getItem("token");
   console.log(token);
   return function (dispatch, getState, { history }) {
     axios
@@ -156,6 +157,7 @@ const sendSettingsData = (Settings_info) => {
 
 const getUserInfoDB = () => {
   return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
     axios
       .get("http://3.38.180.96:8080/api/user/initial", {
         headers: {
@@ -176,6 +178,7 @@ const getUserInfoDB = () => {
 
 const updateSettingsData = (Update_info) => {
   return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
     axios
       .put("http://3.38.180.96:8080/api/user/initial", Update_info, {
         headers: {
@@ -196,6 +199,7 @@ const updateSettingsData = (Update_info) => {
 
 const userCheckDB = () => {
   return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
     axios
       .get("http://3.38.180.96:8080/api/user", {
         headers: {

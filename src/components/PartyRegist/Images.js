@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
+import Taste from './Taste'
 const Images = ({ image, setImage }) => {
+  const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
 
   // 이미지 상대경로 저장
@@ -35,47 +42,76 @@ const Images = ({ image, setImage }) => {
 
   return (
     <div className="addPicture">
-      <label
-        htmlFor="input-file"
-        className="addButton"
-        onChange={handleAddImages}
-      >
-        <input
-          type="file"
-          id="input-file"
-          multiple
-          className="addButton"
-          name="안녕"
-          style={{ display: "none" }}
-        />
+      <FormControl sx={{ ml: "0.7rem" }}>
+        <RadioGroup row defaultValue="직접 업로드">
+          <FormControlLabel
+            value="기본 이미지"
+            control={<Radio />}
+            label="기본 이미지"
+            onClick={() => {
+              setForm("basic");
+            }}
+          />
+          <FormControlLabel
+            value="직접 업로드"
+            control={<Radio />}
+            label="직접 업로드"
+            onClick={() => {
+              setForm("directly");
+            }}
+          />
+        </RadioGroup>
+      </FormControl>
+      {form === "basic" ? (
+        <Box sx={{width:"21rem"}}>
+          <Taste image={image} setImage={setImage}/>
+        </Box>
+      ) : (
+          <label
+            htmlFor="input-file"
+            className="addButton"
+            onChange={handleAddImages}
+          >
+            <input
+              type="file"
+              id="input-file"
+              multiple
+              className="addButton"
+              name="안녕"
+              style={{ display: "none" }}
+            />
 
-        <div
-          style={{
-            border: "1px solid black",
-            borderRadius: "10px",
-            margin: "0.5rem",
-            width: "23.4rem",
-          }}
-        >
-          <Box component="div" sx={{ whiteSpace: "nowrap", overflowX: "auto" }}>
-            <Box component="div" sx={{ display: "inline-block" }}>
-              <AddPhotoAlternateIcon
-                sx={{ fontSize: "4rem", m: 2 }}
-                style={{ border: "1px solid black", borderRadius: "4px" }}
-              />
-            </Box>
+            <div
+              style={{
+                border: "1px solid black",
+                borderRadius: "10px",
+                margin: "0.5rem",
+                width: "21rem",
+              }}
+            >
+              <Box
+                component="div"
+                sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
+              >
+                <Box component="div" sx={{ display: "inline-block" }}>
+                  <AddPhotoAlternateIcon
+                    sx={{ fontSize: "4rem", m: 2 }}
+                    style={{ border: "1px solid black", borderRadius: "4px" }}
+                  />
+                </Box>
 
-            <Box component="div" sx={{ display: "inline-block" }}>
-              {showImages.map((image, id) => (
-                <span className="imageContainer" key={id}>
-                  <Img src={image} alt={`${image}-${id}`} />
-                  <span onClick={() => handleDeleteImage(id)}>x</span>
-                </span>
-              ))}
-            </Box>
-          </Box>
-        </div>
-      </label>
+                <Box component="div" sx={{ display: "inline-block" }}>
+                  {showImages.map((image, id) => (
+                    <span className="imageContainer" key={id}>
+                      <Img src={image} alt={`${image}-${id}`} />
+                      <span onClick={() => handleDeleteImage(id)}>x</span>
+                    </span>
+                  ))}
+                </Box>
+              </Box>
+            </div>
+          </label>
+      )}
     </div>
   );
 };
