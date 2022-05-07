@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
 import PartySpread from "./PartySpread";
+import { useInView } from "react-intersection-observer";
 import { Avatar, CardContent, Stack } from "@mui/material";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -46,26 +47,32 @@ function a11yProps(index) {
 }
 
 const PartyList = (props) => {
+  const [items, setItems] = React.useState([]);
+  const [page, setPage] = React.useState(1);
+  const [loading, setLoading] = React.useState(false);
+  const [ref, inView] = useInView();
+
   const dispatch = useDispatch();
+
   React.useEffect(() => {
     dispatch(crewActions.getDataDB());
   }, []);
   const crewList = useSelector((state) => state?.crew?.crew?.results);
   console.log(crewList);
 
-  const spread = crewList?.map((val) => (
-    <PartySpread
-      key={val?.partyId}
-      partyId={val?.partyId}
-      image={val?.image}
-      title={val?.title}
-      store={val?.store}
-      address={val?.address}
-      capacity={val?.capacity}
-      date={val?.date}
-      time={val?.time}
-    />
-  ));
+  // const spread = crewList?.map((val) => (
+  //   <PartySpread
+  //     key={val?.partyId}
+  //     partyId={val?.partyId}
+  //     image={val?.image}
+  //     title={val?.title}
+  //     store={val?.store}
+  //     address={val?.address}
+  //     capacity={val?.capacity}
+  //     date={val?.date}
+  //     time={val?.time}
+  //   />
+  // ));
 
   const [value, setValue] = React.useState(0);
 
