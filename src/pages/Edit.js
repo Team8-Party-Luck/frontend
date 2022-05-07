@@ -1,22 +1,14 @@
-import {
-  Box,
-  IconButton,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-  Input,
-  Button,
-} from "@mui/material";
-// import { styled } from "@mui/material/styles";
+import { Box, IconButton, Button, Avatar, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
+import { red } from "@mui/material/colors";
 import styled from "styled-components";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import React, { useState } from "react";
 import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
+import Foodlist from "../Edit/Foodlist";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -29,10 +21,11 @@ const Edit = (props) => {
 
   console.log(user_info);
 
-  const [imageSrc, setImageSrc] = useState(user_info?.image);
   const [imageUrl, setImageUrl] = useState(null);
+  const [imageSrc, setImageSrc] = useState(user_info?.image);
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
+  const [food, setFood] = useState(user_info?.food);
   const [city, setCity] = useState(user_info?.city);
   const [region, setRegion] = useState(user_info?.region);
   const [values, setValues] = useState({
@@ -40,8 +33,6 @@ const Edit = (props) => {
     sns: user_info?.sns,
     intro: user_info?.intro,
   });
-
-  console.log(gender);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -51,7 +42,7 @@ const Edit = (props) => {
     display: "none",
   });
 
-  //미리보기
+  // 미리보기
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
 
@@ -69,8 +60,6 @@ const Edit = (props) => {
 
   console.log(
     imageUrl,
-    gender,
-    age,
     city,
     region,
     values.nickname,
@@ -81,146 +70,234 @@ const Edit = (props) => {
   const updateProfile = () => {
     const Update_info = new FormData();
     Update_info.append("image", imageUrl);
-    Update_info.append("gender", gender);
-    Update_info.append("age", age);
     Update_info.append("city", city);
+    Update_info.append("age", age);
+    Update_info.append("gender", gender);
     Update_info.append("region", region);
-    //   Update_info.append("food", food);
+    Update_info.append("food", food);
     Update_info.append("nickname", values.nickname);
     Update_info.append("sns", values.sns);
     Update_info.append("intro", values.intro);
+
     // FormData의 key 확인
     for (let key of Update_info.keys()) {
       console.log(key);
     }
-
     // FormData의 value 확인
     for (let value of Update_info.values()) {
+      console.log(typeof value);
       console.log(value);
     }
 
-    // dispatch(userActions.updateSettingsData(Update_info));
+    dispatch(userActions.updateSettingsData(Update_info));
   };
   return (
     <React.Fragment>
       <Header />
-      <Box sx={{ padding: 1 }}>
-        <label htmlFor="icon-button-file">
-          <Input
-            accept="image/*"
-            id="icon-button-file"
-            type="file"
-            onChange={(e) => {
-              encodeFileToBase64(e.target.files[0]);
-              setImageUrl(e.target.files[0]);
+      <Box sx={{ padding: 2.5 }}>
+        <Box sx={{ marginBottom: 5, display: "flex", position: "relative" }}>
+          <Avatar
+            sx={{
+              bgcolor: red[400],
+              width: "3em",
+              height: "3em",
+              marginRight: "0.7em",
             }}
+            aria-label="recipe"
+            src={imageSrc}
           />
-          <PreviewBox>
-            {imageSrc && <PreviewImg src={imageSrc} alt="preview-img" />}
-          </PreviewBox>
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="span"
-          >
-            <PhotoCamera />
-          </IconButton>
-        </label>
-        <TextField
-          id="outlined-basic"
-          label="닉네임"
-          variant="outlined"
-          fullWidth
-          sx={{ marginTop: 1 }}
-          defaultValue={values.nickname}
-          size="small"
-          onChange={handleChange("nickname")}
-        />
-        <FormControl fullWidth sx={{ marginTop: 3 }}>
-          <InputLabel id="demo-simple-select-label">성별</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={gender}
-            label="Gender"
-            size="small"
-            onChange={(e) => {
-              setGender(e.target.value);
+          <Box sx={{ width: "100%", paddingTop: 1 }}>
+            <Typography
+              component="p"
+              variant="p"
+              sx={{ color: "gray", fontSize: "0.8em" }}
+            >
+              닉네임
+            </Typography>
+            <NicknameInput
+              onChange={handleChange("nickname")}
+              defaultValue={user_info?.nickname}
+            />
+          </Box>
+          <Box
+            sx={{
+              background: "gray",
+              width: 22,
+              height: 22,
+              borderRadius: 22,
+              position: "absolute",
+              top: "2.4em",
+              left: "2.5em",
             }}
+          ></Box>
+          <label htmlFor="icon-button-file">
+            <Input
+              accept="image/*"
+              id="icon-button-file"
+              type="file"
+              onChange={(e) => {
+                setImageUrl(e.target.files[0]);
+                encodeFileToBase64(e.target.files[0]);
+              }}
+            />
+            <IconButton
+              aria-label="upload picture"
+              component="span"
+              sx={{
+                position: "absolute",
+                top: "1.4em",
+                left: "1.5em",
+                color: "black",
+              }}
+            >
+              <EditIcon
+                sx={{
+                  width: 15,
+                  height: 15,
+                }}
+              />
+            </IconButton>
+          </label>
+        </Box>
+        <Box sx={{ width: "100%", display: "flex" }}>
+          <Typography
+            component="h6"
+            variant="p"
+            sx={{ color: "black", fontSize: "0.9em", marginRight: "1em" }}
           >
-            <MenuItem value={"여성"}>여성</MenuItem>
-            <MenuItem value={"남성"}>남성</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl fullWidth sx={{ marginTop: 3, marginBottom: 3 }}>
-          <InputLabel id="demo-simple-select-label">나이</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            size="small"
-            onChange={(e) => {
-              setAge(e.target.value);
-            }}
+            성별
+          </Typography>
+          <Typography
+            component="p"
+            variant="p"
+            sx={{ color: "gray", fontSize: "0.9em" }}
           >
-            <MenuItem value={"10대"}>10대</MenuItem>
-            <MenuItem value={"20대"}>20대</MenuItem>
-            <MenuItem value={"30대"}>30대</MenuItem>
-            <MenuItem value={"40대"}>40대</MenuItem>
-          </Select>
-        </FormControl>
+            수정 불가한 정보입니다
+          </Typography>
+        </Box>
+        <NonFixBox>{user_info?.gender}</NonFixBox>
+
+        <Box sx={{ width: "100%", display: "flex" }}>
+          <Typography
+            component="h6"
+            variant="p"
+            sx={{ color: "black", fontSize: "0.9em", marginRight: "1em" }}
+          >
+            나이
+          </Typography>
+          <Typography
+            component="p"
+            variant="p"
+            sx={{ color: "gray", fontSize: "0.9em" }}
+          >
+            수정 불가한 정보입니다
+          </Typography>
+        </Box>
+        <NonFixBox>{user_info?.age}</NonFixBox>
+        <Typography
+          component="h6"
+          variant="p"
+          sx={{ color: "black", fontSize: "0.9em", marginBottom: "0.5em" }}
+        >
+          지역
+        </Typography>
         <SetLocation
           city={city}
           setCity={setCity}
           region={region}
           setRegion={setRegion}
         />
-        <TextField
-          id="outlined-basic"
-          label="Instagram"
-          variant="outlined"
-          fullWidth
-          sx={{ marginTop: 3 }}
-          defaultValue={user_info?.sns}
-          size="small"
-          onChange={handleChange("sns")}
-        />
-        <TextField
-          id="outlined-basic"
-          label="자기소개"
-          variant="outlined"
-          fullWidth
-          sx={{ marginTop: 3 }}
-          defaultValue={user_info?.intro}
-          size="small"
+
+        <Foodlist food={food} setFood={setFood} />
+        <Typography
+          component="h6"
+          variant="p"
+          sx={{
+            color: "black",
+            fontSize: "0.9em",
+            marginBottom: "0.7em",
+            marginTop: "1em",
+          }}
+        >
+          자기소개
+        </Typography>
+        <NicknameInput
           onChange={handleChange("intro")}
+          defaultValue={user_info?.intro}
+        />
+        <Typography
+          component="h6"
+          variant="p"
+          sx={{
+            color: "black",
+            fontSize: "0.9em",
+            marginBottom: "0.5em",
+            marginTop: "1em",
+          }}
+        >
+          인스타그램
+        </Typography>
+        <NicknameInput
+          onChange={handleChange("sns")}
+          defaultValue={user_info?.sns}
         />
         <Button
           variant="contained"
           size="large"
           fullWidth
-          sx={{ marginTop: 2 }}
+          sx={{ marginTop: 5, backgroundColor: "#dfdfdf", color: "black" }}
           onClick={updateProfile}
         >
-          저장하기
+          수정완료
         </Button>
       </Box>
     </React.Fragment>
   );
 };
 
-const PreviewBox = styled.div`
-  width: fit-content;
-  margin: 2em auto;
+const NicknameInput = styled.input`
+  width: 100%;
+  height: 2.2em;
+  border: 0.13em solid #dfdfdf;
+  border-radius: 3px;
+  padding-left: 0.5em;
+  font-size: 1em;
 `;
-const PreviewImg = styled.img`
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
+
+const NonFixBox = styled.div`
+  width: 100%;
+  height: 2.3em;
+  background: #dfdfdf;
+  border-radius: 3px;
+  margin-bottom: 1em;
+  margin-top: 0.3em;
+  padding-left: 0.7em;
+  padding-top: 0.6em;
+`;
+
+const NonCheckBox = styled.div`
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 4.5em;
+  background: #dfdfdf;
   margin: 0 auto;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+`;
+
+const CheckBox = styled.div`
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 4.5em;
+  background: #ff6853;
+  margin: 0 auto;
+`;
+
+const PostBox = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 0.5em;
+  margin: 0 auto;
+  border: 1px solid black;
 `;
 
 export default Edit;

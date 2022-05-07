@@ -22,7 +22,6 @@ const userCheck = createAction(USER_CHECK, (user) => ({ user }));
 const initialState = {};
 
 //
-const token = sessionStorage.getItem("token");
 
 //미들웨어
 //로그인요청
@@ -111,28 +110,6 @@ const signupDB = (Signup_info) => {
   };
 };
 
-// const sendAccessCodeDB = (Login_info) => {
-//   return function (dispatch, getState, { history }) {
-//     axios
-//       .post("/api/user", Login_info, {
-//         headers: {
-//           "content-type": "application/json;charset=UTF-8",
-//           accept: "application/json,",
-//           // Authorization: token,
-//         },
-//       })
-//       .then((res) => {
-//         //console.log(res)
-//         sessionStorage.clear();
-//         dispatch(setLogout());
-//         history.push("/login");
-//       })
-//       .catch((err) => {
-//         console.log("로그아웃 에러", err.response);
-//       });
-//   };
-// };
-
 const sendSettingsData = (Settings_info) => {
   const token = sessionStorage.getItem("token");
   console.log(token);
@@ -156,6 +133,7 @@ const sendSettingsData = (Settings_info) => {
 };
 
 const getUserInfoDB = () => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     axios
@@ -177,6 +155,7 @@ const getUserInfoDB = () => {
 };
 
 const updateSettingsData = (Update_info) => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     axios
@@ -198,6 +177,7 @@ const updateSettingsData = (Update_info) => {
 };
 
 const userCheckDB = () => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     axios
@@ -223,10 +203,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
       }),
-    // [SET_CODE]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.code = action.payload.code;
-    //   }),
     [GET_USER_INFO]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
