@@ -21,7 +21,7 @@ const Edit = (props) => {
 
   console.log(user_info);
 
-  const [imageUrl, setImageUrl] = useState(user_info?.image);
+  const [imageUrl, setImageUrl] = useState(null);
   const [imageSrc, setImageSrc] = useState(user_info?.image);
   const [age, setAge] = useState(user_info?.age);
   const [gender, setGender] = useState(user_info?.gender);
@@ -78,6 +78,7 @@ const Edit = (props) => {
     Update_info.append("nickname", values.nickname);
     Update_info.append("sns", values.sns);
     Update_info.append("intro", values.intro);
+
     // FormData의 key 확인
     for (let key of Update_info.keys()) {
       console.log(key);
@@ -85,6 +86,7 @@ const Edit = (props) => {
     // FormData의 value 확인
     for (let value of Update_info.values()) {
       console.log(typeof value);
+      console.log(value);
     }
 
     dispatch(userActions.updateSettingsData(Update_info));
