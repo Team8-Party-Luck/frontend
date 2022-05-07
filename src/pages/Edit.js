@@ -79,18 +79,45 @@ const Edit = (props) => {
     Update_info.append("sns", values.sns);
     Update_info.append("intro", values.intro);
 
-    // FormData의 key 확인
-    for (let key of Update_info.keys()) {
-      console.log(key);
-    }
-    // FormData의 value 확인
-    for (let value of Update_info.values()) {
-      console.log(typeof value);
-      console.log(value);
-    }
+    // // FormData의 key 확인
+    // for (let key of Update_info.keys()) {
+    //   console.log(key);
+    // }
+
+    // // FormData의 value 확인
+    // for (let value of Update_info.values()) {
+    //   // console.log(typeof value);
+    //   console.log(value);
+    // }
 
     dispatch(userActions.updateSettingsData(Update_info));
   };
+
+  const updateProfile2 = () => {
+    const Update_info = new FormData();
+    Update_info.append("city", city);
+    Update_info.append("age", age);
+    Update_info.append("gender", gender);
+    Update_info.append("region", region);
+    Update_info.append("food", food);
+    Update_info.append("nickname", values.nickname);
+    Update_info.append("sns", values.sns);
+    Update_info.append("intro", values.intro);
+
+    // // FormData의 key 확인
+    // for (let key of Update_info.keys()) {
+    //   console.log(key);
+    // }
+
+    // // FormData의 value 확인
+    // for (let value of Update_info.values()) {
+    //   // console.log(typeof value);
+    //   console.log(value);
+    // }
+
+    dispatch(userActions.updateSettingsData(Update_info));
+  };
+
   return (
     <React.Fragment>
       <Header />
@@ -246,7 +273,11 @@ const Edit = (props) => {
           size="large"
           fullWidth
           sx={{ marginTop: 5, backgroundColor: "#dfdfdf", color: "black" }}
-          onClick={updateProfile}
+          onClick={() => {
+            {
+              imageUrl == null ? updateProfile2() : updateProfile();
+            }
+          }}
         >
           수정완료
         </Button>
