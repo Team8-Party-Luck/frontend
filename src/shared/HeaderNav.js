@@ -14,8 +14,15 @@ import { actionCreators as crewActions } from "../redux/modules/crew";
 const HeaderNav = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
-  console.log(props?.partyId);
+
+  // React.useEffect(() => {
+  //   console.log("나는야 렌더링");
+  // },);
+
+  // const asd = () => {
+  //   dispatch(crewActions.sendScrapData(props?.partyId));
+  //   dispatch(crewActions.getDetailInfo(props?.partyId));
+  // };
 
   const sendScrap = () => {
     dispatch(crewActions.sendScrapData(props?.partyId));
@@ -44,11 +51,10 @@ const HeaderNav = (props) => {
             {props.name}
           </Typography>
         </Toolbar>
-        {value === false ? (
+        {props?.partyUser?.sub === false ? (
           <FavoriteBorderIcon
             style={{ color: "black" }}
             onClick={() => {
-              setValue(true);
               sendScrap();
             }}
           />
@@ -56,7 +62,7 @@ const HeaderNav = (props) => {
           <FavoriteIcon
             style={{ color: "black" }}
             onClick={() => {
-              setValue(false);
+              sendScrap();
             }}
           />
         )}

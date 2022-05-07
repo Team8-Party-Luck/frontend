@@ -31,10 +31,12 @@ const PartyInfo = () => {
   const time = partyUser?.time;
   const desc = partyUser?.desc;
 
+  console.log(partyUser);
+
   console.log(image);
   return (
     <React.Fragment>
-      <HeaderNav name="파티상세보기" partyId={partyId} />
+      <HeaderNav name="파티상세보기" partyId={partyId} partyUser={partyUser} />
       <PartyInfoSlide image={image} />
       <PartyDetailInfo
         title={title}
