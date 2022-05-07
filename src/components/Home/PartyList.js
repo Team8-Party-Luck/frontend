@@ -7,9 +7,11 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
 import PartySpread from "./PartySpread";
+import { Avatar, CardContent, Stack } from "@mui/material";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { history } from "../../redux/configStore";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -86,7 +88,42 @@ const PartyList = (props) => {
       </Box>
 
       <TabPanel value={value} index={0}>
-        {spread}
+        {/* {spread} */}
+        {crewList?.map((cur, idx) => (
+          <Box
+            sx={{ display: "flex", flexDirection: "row" }}
+            key={cur?.partyId}
+          >
+            <Avatar
+              variant={"rounded"}
+              alt="The image"
+              src={"cur?.image"}
+              style={{
+                width: 90,
+                height: 90,
+              }}
+              onClick={() => {
+                history.push(`/partyInfo/${cur?.partyId}`);
+              }}
+            />
+            <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 2 }}>
+              <Stack spacing={0.8}>
+                <Typography component="div" variant="h6">
+                  {cur?.title}
+                </Typography>
+
+                <Typography style={{ fontSize: "0.8rem" }}>
+                  {cur?.store} &nbsp; {cur?.capacity}
+                </Typography>
+                <Typography style={{ fontSize: "0.8rem" }}>
+                  {cur?.address}
+                  {cur?.date}
+                  {cur?.time}
+                </Typography>
+              </Stack>
+            </CardContent>
+          </Box>
+        ))}
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PartyCard />
