@@ -306,29 +306,4 @@ const NonFixBox = styled.div`
   padding-top: 0.6em;
 `;
 
-const NonCheckBox = styled.div`
-  width: 4.5em;
-  height: 4.5em;
-  border-radius: 4.5em;
-  background: #dfdfdf;
-  margin: 0 auto;
-`;
-
-const CheckBox = styled.div`
-  width: 4.5em;
-  height: 4.5em;
-  border-radius: 4.5em;
-  background: #ff6853;
-  margin: 0 auto;
-`;
-
-const PostBox = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-row-gap: 0.5em;
-  margin: 0 auto;
-  border: 1px solid black;
-`;
-
 export default Edit;

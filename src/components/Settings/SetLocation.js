@@ -12,7 +12,18 @@ import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
 
 const SetLocation = (props) => {
-  const { city, setCity, region, setRegion, user_info } = props;
+  const { city, setCity, region, setRegion, user_info, count, setCount } =
+    props;
+
+  const [value, setValue] = useState(false);
+
+  function add_count() {
+    if (count === 5) {
+      setCount(0);
+    } else {
+      setCount(count + 1);
+    }
+  }
 
   const handleChangeCity = (e) => {
     setCity(e.target.value);
@@ -42,7 +53,16 @@ const SetLocation = (props) => {
             ))}
           </Select>
         </FormControl>
-        <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
+        <FormControl
+          fullWidth
+          sx={{ minWidth: 120 }}
+          size="small"
+          onClick={() => {
+            {
+              !region ? add_count() : setValue();
+            }
+          }}
+        >
           <InputLabel id="demo-select-small">구/군</InputLabel>
           <Select
             labelId="demo-select-small"

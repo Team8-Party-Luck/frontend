@@ -7,6 +7,7 @@ import user, { actionCreators as userActions } from "../redux/modules/user";
 import { Box, Button, Grid } from "@mui/material";
 import BottomNav from "../shared/BottomNav";
 import Header from "../shared/Header";
+import { history } from "../redux/configStore";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -19,9 +20,20 @@ const Profile = () => {
 
   return (
     <Box>
-      <Header />
       <UserInfo user_info={user_info} />
       <FoodList user_info={user_info} />
+      <Box sx={{ padding: "1em" }}>
+        <Button
+          variant="contained"
+          onClick={() => {
+            history.push("/edit");
+          }}
+          fullWidth
+          style={{ background: "black" }}
+        >
+          프로필 수정
+        </Button>
+      </Box>
       <Menu />
       <BottomNav />
     </Box>

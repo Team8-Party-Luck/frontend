@@ -13,6 +13,9 @@ import { Avatar, CardContent, Stack } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { history } from "../../redux/configStore";
+import { useState } from "react";
+import _ from "lodash";
+import { useCallback } from "react";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,16 +50,34 @@ function a11yProps(index) {
 }
 
 const PartyList = (props) => {
-  const [items, setItems] = React.useState([]);
-  const [page, setPage] = React.useState(1);
-  const [loading, setLoading] = React.useState(false);
-  const [ref, inView] = useInView();
-
   const dispatch = useDispatch();
+
+  const [pageNum, setPageNum] = useState(1);
+
+  const scrollEvent = useCallback(
+    _.debounce(() => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      console.log(scrollHeight, scrollTop, clientHeight);
+      if (scrollHeight - scrollTop - clientHeight < 100) {
+        setPageNum((prev) => prev + 1);
+      }
+    }, 100)
+  );
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", scrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, []);
 
   React.useEffect(() => {
     dispatch(crewActions.getDataDB());
-  }, []);
+  }, [pageNum]);
+
   const crewList = useSelector((state) => state?.crew?.crew?.results);
   console.log(crewList);
 

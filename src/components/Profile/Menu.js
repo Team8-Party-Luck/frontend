@@ -8,13 +8,18 @@ import { history } from "../../redux/configStore";
 const Menu = () => {
   return (
     <Box sx={{ marginTop: "2em" }}>
-      {/* <Typography
-        component="h4"
+      <Typography
+        component="p"
         variant="p"
-        sx={{ width: "95%", paddingLeft: 2 }}
+        sx={{
+          width: "100%",
+          paddingLeft: 2,
+          fontSize: "0.8em",
+          color: "gray",
+        }}
       >
         메뉴
-      </Typography> */}
+      </Typography>
       <List component="nav" aria-label="mailbox folders" sx={{}}>
         <ListItem
           button
