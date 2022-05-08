@@ -105,6 +105,7 @@ const Images = ({ image, setImage }) => {
                     <span className="imageContainer" key={id}>
                       <Img src={image} alt={`${image}-${id}`} />
                       <span onClick={() => handleDeleteImage(id)}>x</span>
+                      {console.log(image)}
                     </span>
                   ))}
                 </Box>

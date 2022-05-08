@@ -30,8 +30,8 @@ const PartyInfo = () => {
   const date = partyUser?.date;
   const time = partyUser?.time;
   const desc = partyUser?.desc;
+  const age = partyUser?.age;
 
-  console.log(image)
   return (
     <React.Fragment>
       <HeaderNav name="파티상세보기" />

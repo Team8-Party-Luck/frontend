@@ -25,7 +25,7 @@ import Scrap from "./pages/Scrap";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
-import MapIdx from "./pages/MapIdx";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -57,7 +57,6 @@ function App() {
         <Route path="/Account" exact component={Account} />
         <Route path="/inquary" exact component={Inquary} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
-        <Route path="/mapIdx" component={MapIdx}></Route>
       </ConnectedRouter>
     </React.Fragment>
   );

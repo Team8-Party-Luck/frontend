@@ -26,7 +26,7 @@ const token = sessionStorage.getItem("token");
 const regiWriteSend = (Write_info) => {
   return function (dispatch, getState, { history }) {
     const file = new FormData();
-    // file.append("image", Write_info.photos);
+    // file.append("image", Write_info.image);
     file.append("title", Write_info.title);
     file.append("store", Write_info.store);
     file.append("address", Write_info.address);
@@ -35,6 +35,10 @@ const regiWriteSend = (Write_info) => {
     file.append("date", Write_info.date);
     file.append("time", Write_info.time);
     file.append("desc", Write_info.desc);
+
+    Array.from(Write_info.image).forEach((a) => {
+      file.append('image', a);
+    })
 
     console.log(file);
     axios
