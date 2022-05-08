@@ -14,6 +14,8 @@ import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
 import PersonInfo from "./PersonInfo";
+import KakaoMap from "./kakao/KakaoMap";
+import MapView from "./kakao/MapView";
 
 const RegiWrite = () => {
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const RegiWrite = () => {
   const [time, setTime] = useState(null);
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
-
+  console.log(image);
   const sendWriteData = () => {
     const Write_info = {
       image: image,
@@ -64,13 +66,15 @@ const RegiWrite = () => {
             setTitle(e.target.value);
           }}
         />
-        <AddSearch
+        {/* <AddSearch
           store={store}
           setStore={setStore}
           address={address}
           setAddress={setAddress}
           
-        />
+        /> */}
+        {/* <KakaoMap/> */}
+        <MapView/>
         <PersonInfo
           capacity={capacity}
           setCapacity={setCapacity}

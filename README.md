@@ -76,8 +76,16 @@ npm install slick-carousel --save을 설치함
 yarn add material-ui-upload을 설치함
 
 yarn add react-daum-postcode
+$ yarn add react-device-detect을 설치함
 
 고쳐야 될것!
 1.nav바 icon클릭하면 바로 icon event적용되게할것
 2.nav바 화면 겹침!!!
 3.유저 입력 나이 설정과 파이 입력 나이 설정이 맞지 않는다.
+
+공지사항
+
+카카오 지도 API 자바스크립트 키
+3209f0d818331221cb3a4a67063759aa
+카카오 지도 API ADMIN 키
+936acdae9eac519f7ff93540fdcf4631
