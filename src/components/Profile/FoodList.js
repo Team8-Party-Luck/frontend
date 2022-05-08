@@ -1,53 +1,67 @@
-import { Box, Typography, Card, Grid } from "@mui/material";
-import { current } from "immer";
+import { Box, Typography, Button, Card, Grid } from "@mui/material";
 import React from "react";
+import styled from "styled-components";
 
 const FoodList = (props) => {
   const { user_info } = props;
   console.log(user_info);
 
   return (
-    <Box sx={{ padding: "0 1em" }}>
+    <Box
+      sx={{
+        margin: "0 1em",
+        padding: "1em",
+        background: "#eee",
+        borderRadius: 1,
+      }}
+    >
       <Typography
-        component="p"
+        component="h4"
         variant="p"
-        sx={{ width: "95%", margin: "0.5em 0" }}
+        sx={{ width: "100%", marginBottom: "1em", textAlign: "center" }}
       >
         선호 음식 종류
       </Typography>
-      <Card sx={{ width: "100%", margin: "0 auto", padding: 1 }}>
-        <Grid container spacing={6}>
-          {user_info?.food?.map((cur, idx) => (
-            <Grid item xs={2} key={idx}>
-              <Box
-                bgcolor={"#FF6853"}
-                sx={{
-                  width: "2.8em",
-                  height: "2.8em",
-                  borderRadius: "2.8em",
-                  margin: "0 auto",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "fitContent",
-                    margin: "0 auto",
-                    textAlign: "center",
-                    fontSize: "0.9em",
-                    color: "white",
-                    fontWeight: "bold",
-                    paddingTop: "1em",
-                  }}
-                >
-                  {cur}
-                </Box>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Card>
+      <FoodBox>
+        {user_info?.food?.map((cur, idx) => (
+          <Box key={idx}>
+            <CheckBox />
+            <Typography
+              component="p"
+              variant="p"
+              sx={{
+                color: "black",
+                fontSize: "0.8em",
+                marginTop: "0.5em",
+                textAlign: "center",
+              }}
+            >
+              {cur}
+            </Typography>
+          </Box>
+        ))}
+      </FoodBox>
     </Box>
   );
 };
+
+const FoodBox = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 0.5em;
+  margin: 0 auto;
+  margin-top: 1em;
+`;
+
+const CheckBox = styled.div`
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 2.2em;
+  background: #ff6853;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+`;
 
 export default FoodList;

@@ -4,8 +4,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const SetGender = (props) => {
-  const { gender, setGender } = props;
+  const { gender, setGender, count, setCount } = props;
   const [value, setValue] = useState(true);
+
+  function add_count() {
+    if (count === 5) {
+      setCount(0);
+    } else {
+      setCount(count + 1);
+    }
+  }
 
   return (
     <React.Fragment>
@@ -43,6 +51,9 @@ const SetGender = (props) => {
             }}
             onClick={() => {
               setGender("여성");
+              {
+                !gender ? add_count() : setValue();
+              }
             }}
           >
             여성
@@ -75,6 +86,9 @@ const SetGender = (props) => {
             }}
             onClick={() => {
               setGender("남성");
+              {
+                !gender ? add_count() : setValue();
+              }
             }}
           >
             남성

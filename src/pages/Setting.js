@@ -15,6 +15,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configStore";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 const Setting = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,16 @@ const Setting = () => {
   const [age, setAge] = useState("");
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
-  const [food, setFood] = useState(null);
+  const [food, setFood] = useState([]);
+  const [count, setCount] = useState(0);
+
+  function add_count() {
+    if (count === 5) {
+      setCount(0);
+    } else {
+      setCount(count + 1);
+    }
+  }
 
   // const settingInfo = useSelector((state) => state.setting.setting);
   // console.log(settingInfo);
@@ -49,7 +59,24 @@ const Setting = () => {
 
   return (
     <React.Fragment>
-      <Header></Header>
+      <Box sx={{ height: "6em", padding: 2 }}>
+        <Contain>
+          <Progress width={(count / 5) * 100 + "%"} />
+        </Contain>
+        <Typography
+          component="p"
+          variant="p"
+          sx={{
+            marginTop: 2,
+            color: "black",
+          }}
+        >
+          이제 프로필 정보 입력 후
+        </Typography>
+        <Typography component="p" variant="p" sx={{ color: "black" }}>
+          바로 잇츠링을 사용할 수 있습니다!🙌🏻
+        </Typography>
+      </Box>
       <Box
         sx={{
           padding: 2,
@@ -61,8 +88,12 @@ const Setting = () => {
           gender={gender}
           setGender={setGender}
           sx={{ position: "relative" }}
+          count={count}
+          setCount={setCount}
         />
-        {gender ? <SetAge age={age} setAge={setAge} /> : null}
+        {gender ? (
+          <SetAge age={age} setAge={setAge} count={count} setCount={setCount} />
+        ) : null}
         {age ? (
           <>
             <Typography
@@ -77,11 +108,20 @@ const Setting = () => {
               setCity={setCity}
               region={region}
               setRegion={setRegion}
+              count={count}
+              setCount={setCount}
             />
           </>
         ) : null}
-        {city && region ? <SetFood food={food} setFood={setFood} /> : null}
-        {gender && age && city && region && food ? (
+        {city && region ? (
+          <SetFood
+            food={food}
+            setFood={setFood}
+            count={count}
+            setCount={setCount}
+          />
+        ) : null}
+        {gender && age && city && region && food.length !== 0 ? (
           <Button
             variant="contained"
             onClick={() => {
@@ -90,7 +130,7 @@ const Setting = () => {
             sx={{
               position: "absolute",
               width: "92%",
-              bottom: 50,
+              bottom: 30,
               left: "4%",
               right: "4%",
               height: "4em",
@@ -105,7 +145,7 @@ const Setting = () => {
             sx={{
               position: "absolute",
               width: "92%",
-              bottom: 50,
+              bottom: 30,
               left: "4%",
               right: "4%",
               height: "4em",
@@ -120,5 +160,22 @@ const Setting = () => {
     </React.Fragment>
   );
 };
+
+const Contain = styled.div`
+  margin: 0 auto;
+  background-color: #eee;
+  width: 100%;
+  height: 0.7em;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+`;
+const Progress = styled.div`
+  background-color: red;
+  width: ${(props) => props.width};
+  height: 100%;
+  transition: width 1s;
+  border-radius: 20px;
+`;
 
 export default Setting;

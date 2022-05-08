@@ -10,20 +10,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Header from "../components/Settings/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
+import styled from "styled-components";
 
 const Setting2 = (props) => {
   const settingInfo = useSelector((state) => state?.user?.setting);
 
   console.log(settingInfo);
-  console.log(Object.values(settingInfo?.food));
 
   const dispatch = useDispatch();
 
+  const [count, setCount] = useState(4);
   const [values, setValues] = useState({
     nickname: "",
     sns: "",
     intro: "",
   });
+
+  function add_count() {
+    if (count === 7) {
+      setCount(0);
+    } else {
+      setCount(count + 1);
+    }
+  }
 
   console.log(values);
 
@@ -37,7 +46,7 @@ const Setting2 = (props) => {
       age: settingInfo?.age,
       city: settingInfo?.city,
       region: settingInfo?.region,
-      food: Object.values(settingInfo?.food),
+      food: settingInfo?.food,
       nickname: values.nickname,
       sns: values.sns,
       intro: values.intro,
@@ -49,7 +58,28 @@ const Setting2 = (props) => {
 
   return (
     <React.Fragment>
-      <Header></Header>
+      <Box sx={{ height: "6em", padding: 2 }}>
+        <Contain>
+          {values.nickname && values.sns && values.intro ? (
+            <Progress width={(5 / 5) * 100 + "%"} />
+          ) : (
+            <Progress width={(count / 5) * 100 + "%"} />
+          )}
+        </Contain>
+        <Typography
+          component="p"
+          variant="p"
+          sx={{
+            marginTop: 2,
+            color: "black",
+          }}
+        >
+          이제 프로필 정보 입력 후
+        </Typography>
+        <Typography component="p" variant="p" sx={{ color: "black" }}>
+          바로 잇츠링을 사용할 수 있습니다!🙌🏻
+        </Typography>
+      </Box>
       <Box
         sx={{
           padding: 2,
@@ -60,21 +90,15 @@ const Setting2 = (props) => {
         <Typography component="h4" variant="p" position={"relative"}>
           닉네임
         </Typography>
-        <TextField
-          id="outlined-basic"
-          label="닉네임을 입력해주세요"
-          variant="outlined"
-          sx={{ marginTop: 1 }}
+        <ValuesInput
+          placeholder="닉네임을 입력해주세요"
           onChange={handleChange("nickname")}
         />
         <Typography component="h4" variant="p" sx={{ marginTop: 3 }}>
           SNS
         </Typography>
-        <TextField
-          id="outlined-basic"
-          label="URL을 입력해주세요"
-          variant="outlined"
-          sx={{ marginTop: 1 }}
+        <ValuesInput
+          placeholder="URL을 입력해주세요"
           onChange={handleChange("sns")}
         />
         <Typography
@@ -84,37 +108,88 @@ const Setting2 = (props) => {
         >
           자기소개
         </Typography>
-        <TextareaAutosize
-          aria-label="minimum height"
-          minRows={18}
-          placeholder="자기소개를 입력해주세요!"
-          style={{
-            width: "100%",
-            border: "1px solid lightgray",
-            borderRadius: "4px",
-          }}
+        <IntroInput
+          placeholder="여러분을 소개할 수 있는 소개글을 작성해주세요!"
           onChange={handleChange("intro")}
         />
-        <Button
-          variant="contained"
-          onClick={() => {
-            sendSettings();
-          }}
-          sx={{
-            position: "absolute",
-            width: "92%",
-            bottom: 50,
-            left: "4%",
-            right: "4%",
-            height: "4em",
-            background: "#FF6853",
-          }}
-        >
-          저장하기
-        </Button>
+        {values.nickname && values.sns && values.intro ? (
+          <Button
+            variant="contained"
+            onClick={() => {
+              sendSettings();
+            }}
+            sx={{
+              position: "absolute",
+              width: "92%",
+              bottom: 50,
+              left: "4%",
+              right: "4%",
+              height: "4em",
+              background: "#FF6853",
+            }}
+          >
+            완성 후 시작
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              position: "absolute",
+              width: "92%",
+              bottom: 50,
+              left: "4%",
+              right: "4%",
+              height: "4em",
+              background: "#dfdfdf",
+              color: "gray",
+              border: "1px solid #dfdfdf",
+            }}
+          >
+            완성 후 시작
+          </Button>
+        )}
       </Box>
     </React.Fragment>
   );
 };
+
+const Contain = styled.div`
+  margin: 0 auto;
+  background-color: #eee;
+  width: 100%;
+  height: 0.7em;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+`;
+const Progress = styled.div`
+  background-color: red;
+  width: ${(props) => props.width};
+  height: 100%;
+  transition: width 1s;
+  border-radius: 20px;
+`;
+
+const ValuesInput = styled.input`
+  width: 100%;
+  height: 3em;
+  border: 0.13em solid #dfdfdf;
+  border-radius: 3px;
+  padding-left: 0.5em;
+  font-size: 1em;
+  margin-top: 0.5em;
+`;
+
+const IntroInput = styled.textarea`
+  width: 100%;
+  height: 15em;
+  border: 0.13em solid #dfdfdf;
+  border-radius: 3px;
+  padding-left: 0.5em;
+  padding-top: 0.8em;
+  font-size: 1.25em;
+  margin-top: 0.5em;
+  word-spacing: -0.2em;
+`;
 
 export default Setting2;
