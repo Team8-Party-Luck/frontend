@@ -34,8 +34,8 @@ const PartyInfo = () => {
 
   return (
     <React.Fragment>
-      <HeaderNav name="파티상세보기" />
-      <PartyInfoSlide image={image}/>
+      <HeaderNav name="파티상세보기" partyId={partyId} partyUser={partyUser} />
+      <PartyInfoSlide image={image} />
       <PartyDetailInfo
         title={title}
         store={store}

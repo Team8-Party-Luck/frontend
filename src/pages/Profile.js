@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <Box>
       <Header />
-      <UserInfo />
+      <UserInfo user_info={user_info} />
       <FoodList user_info={user_info} />
       <Menu />
       <BottomNav />

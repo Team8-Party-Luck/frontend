@@ -70,14 +70,6 @@ const reviseSend = (Write_info, partyId) => {
     file.append("time", Write_info.time);
     file.append("desc", Write_info.desc);
 
-    console.log(Write_info.title);
-    console.log(Write_info.store);
-    console.log(String(Write_info.capacity));
-    console.log(Write_info.meeting);
-    console.log(Write_info.date);
-    console.log(Write_info.time);
-    console.log(Write_info.desc);
-
     axios
       .put(`http://3.38.180.96/api/party/${partyId}`, file, {
         headers: {
@@ -192,6 +184,26 @@ const getScrapData = () => {
   };
 };
 
+//파티 찜하기 기능
+const sendScrapData = (partyId) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get(`http://3.38.180.96:8080/api/party/sub/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        dispatch(getDetail(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CREW]: (state, action) =>
@@ -226,6 +238,7 @@ const actionCreators = {
   getJoinedData,
   getScrap,
   getScrapData,
+  sendScrapData,
 };
 
 export { actionCreators };

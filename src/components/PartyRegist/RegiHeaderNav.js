@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const style = {
   position: "absolute",
@@ -35,7 +36,7 @@ const RegiHeaderNav = () => {
           <IconButton
             size="large"
             style={{
-              color:'black',
+              color: "black",
             }}
             onClick={() => {
               handleOpen();
@@ -51,7 +52,7 @@ const RegiHeaderNav = () => {
             component="div"
             sx={{ display: { sm: "block" } }}
             style={{
-              color:'black',
+              color: "black",
             }}
           >
             파티등록
