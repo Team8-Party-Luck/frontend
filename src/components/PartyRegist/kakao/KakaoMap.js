@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../../style/KakaoMap.css";
 import $ from "jquery";
 
+
 const { kakao } = window;
 
 var markers = [];
@@ -11,6 +12,7 @@ var map;
 
 const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
   const [keyword, setKeyword] = useState("");
+  console.log(keyword);
 
   useEffect(() => {
     var mapContainer = document.getElementById("map"), // 지도를 표시할 div
@@ -92,8 +94,9 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
       // 해당 장소에 인포윈도우에 장소명을 표시합니다
       // mouseout 했을 때는 인포윈도우를 닫습니다
       (function (marker, title) {
-        kakao.maps.event.addListener(marker, "mouseover", function () {
+        kakao.maps.event.addListener(marker, "mouseover", function (e) {
           displayInfowindow(marker, title);
+          console.log(marker);
         });
 
         kakao.maps.event.addListener(marker, "mouseout", function () {
@@ -102,13 +105,14 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
 
         itemEl.onmouseover = function () {
           displayInfowindow(marker, title);
+          setStore(title);
         };
 
         itemEl.onmouseout = function () {
           infowindow.close();
         };
       })(marker, places[i].place_name);
-
+      console.log(marker);
       fragment.appendChild(itemEl);
     }
 
@@ -121,12 +125,13 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
-    // console.log(places);
-    // console.log(places.place_name)
-    // console.log(places.address_name)
-    // console.log(places.place_url)
-    // console.log(places.x)
-    // console.log(places.y)
+
+    console.log(places);
+    console.log(places.place_name);
+    console.log(places.address_name);
+    console.log(places.place_url);
+    console.log(places.x);
+    console.log(places.y);
 
     var el = document.createElement("li"),
       itemStr =

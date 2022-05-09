@@ -34,6 +34,7 @@ const RegiWrite = () => {
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
   console.log(image);
+  console.log(store);
   const sendWriteData = () => {
     const Write_info = {
       image: image,
