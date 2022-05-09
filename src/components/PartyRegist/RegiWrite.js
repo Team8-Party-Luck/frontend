@@ -24,6 +24,8 @@ const RegiWrite = () => {
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
   const [address, setAddress] = useState(null);
+  const [place_url, setPlace_url] = useState(null);
+  const [xy, setXy] = useState(null);
   const [capacity, setCapacity] = useState(null);
   const [ageGroup, setAgeGroup] = useState(null);
   const [gender, setGender] = useState(null);
@@ -39,8 +41,8 @@ const RegiWrite = () => {
       store: store,
       address: address,
       capacity: capacity,
-      ageGroup:ageGroup,
-      gender:gender,
+      ageGroup: ageGroup,
+      gender: gender,
       date: date,
       time: time,
       meeting: meeting,
@@ -66,22 +68,19 @@ const RegiWrite = () => {
             setTitle(e.target.value);
           }}
         />
-        {/* <AddSearch
-          store={store}
+        <MapView
           setStore={setStore}
-          address={address}
           setAddress={setAddress}
-          
-        /> */}
-        {/* <KakaoMap/> */}
-        <MapView/>
+          setPlace_url={setPlace_url}
+          setXy={setXy}
+        />
         <PersonInfo
           capacity={capacity}
           setCapacity={setCapacity}
           ageGroup={ageGroup}
           setAgeGroup={setAgeGroup}
-          gender = {gender}
-          setGender = {setGender}
+          gender={gender}
+          setGender={setGender}
           value="안녕"
         />
         <Box component="div" sx={{ display: "inline", width: "10rem" }}>
@@ -120,7 +119,7 @@ const RegiWrite = () => {
         />
         <Button
           variant="outlined"
-          style={{ height: "3rem", width: "7rem", marginBottom:'4rem'}}
+          style={{ height: "3rem", width: "7rem", marginBottom: "4rem" }}
           onClick={() => {
             sendWriteData();
             alert("파티를 등록하시겠습니까?");

@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../../style/KakaoMap.css";
-import { isBrowser, isMobile } from "react-device-detect";
-import TextField from "@mui/material/TextField";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+
 
 const { kakao } = window;
 
@@ -13,7 +9,7 @@ var ps;
 var infowindow;
 var map;
 
-const KakaoMap = () => {
+const KakaoMap = ({setStore, setAddress, setPlace_url, setXy}) => {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
@@ -30,11 +26,16 @@ const KakaoMap = () => {
     ps = new kakao.maps.services.Places();
     // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
     infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    // kakao.maps.load(function () {
+    //   // v3가 모두 로드된 후, 이 콜백 함수가 실행됩니다.
+    //     $(document).on("click", "#button", function () {
+    //       alert("클릭 이벤트");
+    //     });
+
+    // });
   }, []);
 
   const searchPlaces = () => {
-    // var keyword = document.getElementById("keyword").value;
-
     if (!keyword.replace(/^\s+|\s+$/g, "")) {
       alert("키워드를 입력해주세요!");
       return false;
@@ -119,6 +120,13 @@ const KakaoMap = () => {
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
+    console.log(places)
+    // console.log(places.place_name)
+    // console.log(places.address_name)
+    // console.log(places.place_url)
+    // console.log(places.x)
+    // console.log(places.y)
+
     var el = document.createElement("li"),
       itemStr =
         '<span class="markerbg marker_' +
@@ -141,7 +149,13 @@ const KakaoMap = () => {
       itemStr += "    <span>" + places.address_name + "</span>";
     }
 
-    itemStr += '  <span class="tel">' + places.phone + "</span>" + "</div>";
+    itemStr +=
+      '  <span class="tel">' +
+      places.phone +
+      "</span>" +
+      '<button id="gather">여기 모여' +
+      "</button>" +
+      "</div>";
 
     el.innerHTML = itemStr;
     el.className = "item";
