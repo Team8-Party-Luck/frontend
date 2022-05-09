@@ -2041,7 +2041,7 @@
 
 "@mui/base@5.0.0-alpha.79":
   version "5.0.0-alpha.79"
-  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.79.tgz#1994a6382a162b52ec93b66f3c74d193820d2365"
+  resolved "https://registry.npmjs.org/@mui/base/-/base-5.0.0-alpha.79.tgz"
   integrity sha512-/lZLF027BkiEjM8MIYoeS/FEhTKf+41ePU9SOijMGrCin1Y0Igucw+IHa1fF8HXD7wDbFKqHuso3J1jMG8wyNw==
   dependencies:
     "@babel/runtime" "^7.17.2"
@@ -2062,7 +2062,7 @@
 
 "@mui/lab@^5.0.0-alpha.79":
   version "5.0.0-alpha.80"
-  resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-5.0.0-alpha.80.tgz#6a0768749d452e29f69a5684ff478a635bcc16de"
+  resolved "https://registry.npmjs.org/@mui/lab/-/lab-5.0.0-alpha.80.tgz"
   integrity sha512-td5Ak0Hx+EzVN9MJqBlZJ6BKFGjTrHyNjXncjSHTvp8Z9p157AlOA/Sf7r+RyqyVzOzBfv4S37i9ShFTzSK61Q==
   dependencies:
     "@babel/runtime" "^7.17.2"
@@ -2078,7 +2078,7 @@
 
 "@mui/material@^5.6.2":
   version "5.6.4"
-  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.6.4.tgz#5c6d6770acaea84d7b1c6492639627baed62f65b"
+  resolved "https://registry.npmjs.org/@mui/material/-/material-5.6.4.tgz"
   integrity sha512-7TD+u/SExZK2a55w6reX56oPk37gKr/M/XGt156X+m0d9LhzOsW864nkErIX/H8oSkX/6kCimxu1FDsO+gjiVw==
   dependencies:
     "@babel/runtime" "^7.17.2"
@@ -2114,7 +2114,7 @@
 
 "@mui/system@^5.6.4":
   version "5.6.4"
-  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.6.4.tgz#b1c615c70b3573d61a8a56dbaee6700bb9a5ca9b"
+  resolved "https://registry.npmjs.org/@mui/system/-/system-5.6.4.tgz"
   integrity sha512-7rsWED1wMFMePySJobsBerFZNu7ga580QSi3Zd6sJR8nVj12qD3yIdfvxA70/PxJ/805KbIT0GX7edKI+hpyhA==
   dependencies:
     "@babel/runtime" "^7.17.2"
@@ -3412,7 +3412,7 @@ babel-plugin-macros@^3.1.0:
 
 babel-plugin-named-asset-import@^0.3.8:
   version "0.3.8"
-  resolved "https://registry.yarnpkg.com/babel-plugin-named-asset-import/-/babel-plugin-named-asset-import-0.3.8.tgz#6b7fa43c59229685368683c28bc9734f24524cc2"
+  resolved "https://registry.npmjs.org/babel-plugin-named-asset-import/-/babel-plugin-named-asset-import-0.3.8.tgz"
   integrity sha512-WXiAc++qo7XcJ1ZnTYGtLxmBCVbddAml3CEXgWaBzNzLNoxtQ8AiGEFDMOhot9XjTCQbvP5E77Fj9Gk924f00Q==
 
 babel-plugin-polyfill-corejs2@^0.3.0:
@@ -6674,6 +6674,11 @@ jest@^27.4.3:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
+jquery@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -8511,7 +8516,7 @@ react-dev-utils@^12.0.0:
 
 react-device-detect@^2.2.2:
   version "2.2.2"
-  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-2.2.2.tgz#dbabbce798ec359c83f574c3edb24cf1cca641a5"
+  resolved "https://registry.npmjs.org/react-device-detect/-/react-device-detect-2.2.2.tgz"
   integrity sha512-zSN1gIAztUekp5qUT/ybHwQ9fmOqVT1psxpSlTn1pe0CO+fnJHKRLOWWac5nKxOxvOpD/w84hk1I+EydrJp7SA==
   dependencies:
     ua-parser-js "^1.0.2"
@@ -8598,12 +8603,10 @@ react-icons@^4.3.1:
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
   integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
-
 react-intersection-observer@^9.1.0:
   version "9.1.0"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.1.0.tgz#27e66be9113fdf6fc6d745e849e1ad6ef20f97f1"
+  resolved "https://registry.npmjs.org/react-intersection-observer/-/react-intersection-observer-9.1.0.tgz"
   integrity sha512-XSDWQGzgJ4/B4eW39+qa3S+uc4Gb+m6lxXR54m/uD5lqeL5sLrgYdntbjl4BlTYAblgUhz+JB5obINhZaD+c0Q==
-
 
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.1"
@@ -8622,9 +8625,8 @@ react-is@^18.0.0:
 
 react-loading@^2.0.3:
   version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-loading/-/react-loading-2.0.3.tgz#e8138fb0c3e4674e481b320802ac7048ae14ffb9"
+  resolved "https://registry.npmjs.org/react-loading/-/react-loading-2.0.3.tgz"
   integrity sha512-Vdqy79zq+bpeWJqC+xjltUjuGApyoItPgL0vgVfcJHhqwU7bAMKzysfGW/ADu6i0z0JiOCRJjo+IkFNkRNbA3A==
-
 
 react-reconciler@^0.23.0:
   version "0.23.0"
@@ -10057,10 +10059,9 @@ ua-parser-js@^0.7.30:
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.31.tgz"
   integrity sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==
 
-
 ua-parser-js@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.2.tgz#e2976c34dbfb30b15d2c300b2a53eac87c57a775"
+  resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-1.0.2.tgz"
   integrity sha512-00y/AXhx0/SsnI51fTc0rLRmafiGOM4/O+ny10Ps7f+j/b8p/ZY11ytMgznXkOVo4GQ+KwQG5UQLkLGirsACRg==
 
 unbox-primitive@^1.0.2:

@@ -1,28 +1,38 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import TextField from "@mui/material/TextField";
-import KakaoMap from './KakaoMap';
+import React, { useEffect } from "react";
 
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import KakaoMap from "./KakaoMap";
+import $ from "jquery";
+import { history } from "../../../redux/configStore";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 2,
-  height:'40rem'
+  height: "40rem",
 };
 
-export default function MapView() {
+export default function MapView({setStore, setAddress, setPlace_url, setXy}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    $(document).on("click", "#gather", function (e) {
+      // handleClose()
+      console.log(e);
+      console.log($('.info').index());
+    });
+  }, []);
+
+
 
   return (
     <div style={{ width: "80%" }}>
@@ -45,7 +55,7 @@ export default function MapView() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <KakaoMap/>
+          <KakaoMap setStore={setStore} setAddress={setAddress} setPlace_url={setPlace_url}  setXy={setXy}/>
         </Box>
       </Modal>
     </div>

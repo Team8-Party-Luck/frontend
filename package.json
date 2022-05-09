@@ -19,6 +19,7 @@
     "firebase": "^9.6.10",
     "history": "4.10.1",
     "immer": "^9.0.12",
+    "jquery": "^3.6.0",
     "material-ui-upload": "^1.2.1",
     "moment": "^2.29.2",
     "momment": "^0.0.1",

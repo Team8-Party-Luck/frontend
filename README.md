@@ -77,6 +77,7 @@ yarn add material-ui-upload을 설치함
 
 yarn add react-daum-postcode
 $ yarn add react-device-detect을 설치함
+jquery 설치
 
 고쳐야 될것!
 1.nav바 icon클릭하면 바로 icon event적용되게할것
