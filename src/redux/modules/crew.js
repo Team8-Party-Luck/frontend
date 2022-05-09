@@ -26,14 +26,17 @@ const token = sessionStorage.getItem("token");
 const regiWriteSend = (Write_info) => {
   return function (dispatch, getState, { history }) {
     const file = new FormData();
-    // file.append("image", Write_info.image);
     file.append("title", Write_info.title);
     file.append("store", Write_info.store);
     file.append("address", Write_info.address);
+    file.append("place_url", Write_info.place_url);
+    file.append("xy", Write_info.xy);
     file.append("capacity", Write_info.capacity);
-    file.append("meeting", Write_info.meeting);
+    file.append("age", Write_info.age);
+    file.append("gender", Write_info.gender);
     file.append("date", Write_info.date);
     file.append("time", Write_info.time);
+    file.append("meeting", Write_info.meeting);
     file.append("desc", Write_info.desc);
 
     Array.from(Write_info.image).forEach((a) => {

@@ -1,7 +1,7 @@
+/* eslint-disable no-loop-func */
 import React, { useState, useEffect } from "react";
 import "../../../style/KakaoMap.css";
 import $ from "jquery";
-
 
 const { kakao } = window;
 
@@ -10,9 +10,8 @@ var ps;
 var infowindow;
 var map;
 
-const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
+const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
   const [keyword, setKeyword] = useState("");
-  console.log(keyword);
 
   useEffect(() => {
     var mapContainer = document.getElementById("map"), // 지도를 표시할 div
@@ -93,9 +92,9 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
       // 마커와 검색결과 항목에 mouseover 했을때
       // 해당 장소에 인포윈도우에 장소명을 표시합니다
       // mouseout 했을 때는 인포윈도우를 닫습니다
-      (function (marker, title) {
+      (function (marker, place_name, address_name, place_url, x, y) {
         kakao.maps.event.addListener(marker, "mouseover", function (e) {
-          displayInfowindow(marker, title);
+          displayInfowindow(marker, place_name);
           console.log(marker);
         });
 
@@ -104,14 +103,27 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
         });
 
         itemEl.onmouseover = function () {
-          displayInfowindow(marker, title);
-          setStore(title);
+          displayInfowindow(marker, place_name);
+          setStore(place_name);
+          setAddress(address_name);
+          setPlace_url(place_url);
+          setXy(`${x},${y}`);
+          console.log(x)
+          console.log(y)
+          setOpen(false)
         };
 
         itemEl.onmouseout = function () {
           infowindow.close();
         };
-      })(marker, places[i].place_name);
+      })(
+        marker,
+        places[i].place_name,
+        places[i].address_name,
+        places[i].place_url,
+        places[i].x,
+        places[i].y
+      );
       console.log(marker);
       fragment.appendChild(itemEl);
     }
@@ -125,7 +137,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
-
     console.log(places);
     console.log(places.place_name);
     console.log(places.address_name);

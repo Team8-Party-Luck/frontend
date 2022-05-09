@@ -33,16 +33,17 @@ const RegiWrite = () => {
   const [time, setTime] = useState(null);
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
-  console.log(image);
-  console.log(store);
+
   const sendWriteData = () => {
     const Write_info = {
       image: image,
       title: title,
       store: store,
       address: address,
+      place_url:place_url,
+      xy:xy,
       capacity: capacity,
-      ageGroup: ageGroup,
+      age: ageGroup,
       gender: gender,
       date: date,
       time: time,
@@ -70,6 +71,7 @@ const RegiWrite = () => {
           }}
         />
         <MapView
+          store={store}
           setStore={setStore}
           setAddress={setAddress}
           setPlace_url={setPlace_url}
