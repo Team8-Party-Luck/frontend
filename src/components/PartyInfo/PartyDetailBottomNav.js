@@ -119,7 +119,7 @@ const PartyDetailBottomNav = () => {
               variant="outlined"
               sx={{ width: "9rem" }}
               onClick={() => {
-                deleteParty(partyId);
+                dispatch(crewActions.sendJoinData(partyId));
               }}
             >
               파티신청
