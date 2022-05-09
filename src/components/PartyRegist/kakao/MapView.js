@@ -24,13 +24,13 @@ export default function MapView({setStore, setAddress, setPlace_url, setXy}) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  useEffect(() => {
-    $(document).on("click", "#gather", function (e) {
-      // handleClose()
-      console.log(e);
-      console.log($('.info').index());
-    });
-  }, []);
+  // useEffect(() => {
+  //   $(document).on("click", "#gather", function (e) {
+  //     // handleClose()
+  //     console.log(e);
+  //     console.log($('.info').index());
+  //   });
+  // }, []);
 
 
 
