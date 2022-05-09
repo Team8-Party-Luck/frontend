@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../../style/KakaoMap.css";
-
+import $ from "jquery";
 
 const { kakao } = window;
 
@@ -9,7 +9,7 @@ var ps;
 var infowindow;
 var map;
 
-const KakaoMap = ({setStore, setAddress, setPlace_url, setXy}) => {
+const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy }) => {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
@@ -28,11 +28,13 @@ const KakaoMap = ({setStore, setAddress, setPlace_url, setXy}) => {
     infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
     // kakao.maps.load(function () {
     //   // v3가 모두 로드된 후, 이 콜백 함수가 실행됩니다.
-    //     $(document).on("click", "#button", function () {
-    //       alert("클릭 이벤트");
-    //     });
-
     // });
+
+    $(document).on("click", "#gather", function (e) {
+      // handleClose()
+      console.log(e.originalEvent.path);
+      // console.log($("ul").index());
+    });
   }, []);
 
   const searchPlaces = () => {
@@ -40,7 +42,6 @@ const KakaoMap = ({setStore, setAddress, setPlace_url, setXy}) => {
       alert("키워드를 입력해주세요!");
       return false;
     }
-
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch(keyword, placesSearchCB);
   };
@@ -120,7 +121,7 @@ const KakaoMap = ({setStore, setAddress, setPlace_url, setXy}) => {
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
-    console.log(places)
+    // console.log(places);
     // console.log(places.place_name)
     // console.log(places.address_name)
     // console.log(places.place_url)
@@ -153,7 +154,7 @@ const KakaoMap = ({setStore, setAddress, setPlace_url, setXy}) => {
       '  <span class="tel">' +
       places.phone +
       "</span>" +
-      '<button id="gather">여기 모여' +
+      '<button id="gather" >여기 모여' +
       "</button>" +
       "</div>";
 
