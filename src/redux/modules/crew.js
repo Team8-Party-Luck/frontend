@@ -37,8 +37,8 @@ const regiWriteSend = (Write_info) => {
     file.append("desc", Write_info.desc);
 
     Array.from(Write_info.image).forEach((a) => {
-      file.append('image', a);
-    })
+      file.append("image", a);
+    });
 
     console.log(file);
     axios
@@ -110,10 +110,10 @@ const deleteSend = (partyId) => {
 };
 
 //홈화면에서 전체 데이터 받아오기
-const getDataDB = () => {
+const getDataDB = (pageNum) => {
   return function (dispatch, getState, { history }) {
     axios
-      .get("http://3.38.180.96/api/parties")
+      .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
       .then((res) => {
         dispatch(getCrew(res.data));
       })
@@ -204,6 +204,25 @@ const sendScrapData = (partyId) => {
   };
 };
 
+const sendJoinData = (partyId) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get(`http://3.38.180.96:8080/api/party/in/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CREW]: (state, action) =>
@@ -239,6 +258,7 @@ const actionCreators = {
   getScrap,
   getScrapData,
   sendScrapData,
+  sendJoinData,
 };
 
 export { actionCreators };

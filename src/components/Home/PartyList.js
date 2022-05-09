@@ -75,7 +75,7 @@ const PartyList = (props) => {
   }, []);
 
   React.useEffect(() => {
-    dispatch(crewActions.getDataDB());
+    dispatch(crewActions.getDataDB(pageNum));
   }, [pageNum]);
 
   const crewList = useSelector((state) => state?.crew?.crew?.results);
