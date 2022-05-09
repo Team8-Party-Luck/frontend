@@ -16,7 +16,7 @@ const getJoined = createAction(GET_JOINED, (joined) => ({ joined }));
 const getScrap = createAction(GET_SCRAP, (scrap) => ({ scrap }));
 
 // 초기값
-const initialState = {};
+const initialState = { crew: [] };
 
 //토큰 가져오기
 const token = sessionStorage.getItem("token");
@@ -109,13 +109,40 @@ const deleteSend = (partyId) => {
   };
 };
 
-//홈화면에서 전체 데이터 받아오기
+// 홈화면에서 전체 데이터 받아오기
 const getDataDB = (pageNum) => {
   return function (dispatch, getState, { history }) {
     axios
       .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
       .then((res) => {
-        dispatch(getCrew(res.data));
+        console.log(res.data.results);
+
+        let asd = getState();
+        console.log(asd.crew.crew);
+
+        dispatch(getCrew(res.data.results));
+
+        // let new_arr = asd.crew.crew.map((item) => {
+        //   return item.partyId;
+        // });
+
+        // console.log(new_arr);
+
+        // let new_arr2 = res.data.results.map((item) => {
+        //   return item.partyId;
+        // });
+
+        // console.log(new_arr2);
+        // if (new_arr.length === 0) {
+        //   dispatch(getCrew(res.data.results));
+        // }
+
+        // new_arr2.map((item) => {
+        //   if (new_arr.includes(item) === false && new_arr.length !== 0) {
+        //     dispatch(getCrew(res.data.results));
+        //   }
+        //   return null;
+        // });
       })
       .catch((error) => {
         console.log(error);
@@ -227,7 +254,7 @@ export default handleActions(
   {
     [GET_CREW]: (state, action) =>
       produce(state, (draft) => {
-        draft.crew = action.payload.crew;
+        draft.crew.push(...action.payload.crew);
       }),
     [GET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
