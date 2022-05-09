@@ -19,25 +19,15 @@ const style = {
   height: "40rem",
 };
 
-export default function MapView({setStore, setAddress, setPlace_url, setXy}) {
+export default function MapView({store, setStore, setAddress, setPlace_url, setXy}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // useEffect(() => {
-  //   $(document).on("click", "#gather", function (e) {
-  //     // handleClose()
-  //     console.log(e);
-  //     console.log($('.info').index());
-  //   });
-  // }, []);
-
-
-
   return (
     <div style={{ width: "80%" }}>
       <TextField
-        // value={store || ''}
+        value={store || ''}
         id="eateryName"
         variant="standard"
         label="식당명"
@@ -55,7 +45,7 @@ export default function MapView({setStore, setAddress, setPlace_url, setXy}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <KakaoMap setStore={setStore} setAddress={setAddress} setPlace_url={setPlace_url}  setXy={setXy}/>
+          <KakaoMap setStore={setStore} setAddress={setAddress} setPlace_url={setPlace_url}  setXy={setXy} setOpen={setOpen}/>
         </Box>
       </Modal>
     </div>
