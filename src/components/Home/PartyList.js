@@ -78,7 +78,7 @@ const PartyList = (props) => {
     dispatch(crewActions.getDataDB(pageNum));
   }, [pageNum]);
 
-  const crewList = useSelector((state) => state?.crew?.crew?.results);
+  const crewList = useSelector((state) => state?.crew?.crew);
   console.log(crewList);
 
   // const spread = crewList?.map((val) => (
