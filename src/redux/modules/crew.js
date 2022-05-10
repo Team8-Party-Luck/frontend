@@ -124,28 +124,6 @@ const getDataDB = (pageNum) => {
         console.log(asd.crew.crew);
 
         dispatch(getCrew(res.data.results));
-
-        // let new_arr = asd.crew.crew.map((item) => {
-        //   return item.partyId;
-        // });
-
-        // console.log(new_arr);
-
-        // let new_arr2 = res.data.results.map((item) => {
-        //   return item.partyId;
-        // });
-
-        // console.log(new_arr2);
-        // if (new_arr.length === 0) {
-        //   dispatch(getCrew(res.data.results));
-        // }
-
-        // new_arr2.map((item) => {
-        //   if (new_arr.includes(item) === false && new_arr.length !== 0) {
-        //     dispatch(getCrew(res.data.results));
-        //   }
-        //   return null;
-        // });
       })
       .catch((error) => {
         console.log(error);
