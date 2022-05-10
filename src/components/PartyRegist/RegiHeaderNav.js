@@ -37,6 +37,7 @@ const RegiHeaderNav = () => {
             size="large"
             style={{
               color: "black",
+              paddingLeft:0,
             }}
             onClick={() => {
               handleOpen();
@@ -44,8 +45,8 @@ const RegiHeaderNav = () => {
             }}
           >
             <ArrowBackRoundedIcon />
-          </IconButton>
-          <Box sx={{ flexGrow: 0.4 }} />
+          </IconButton >
+          <Box sx={{ flexGrow: 0.4,}} />
           <Typography
             variant="h6"
             noWrap

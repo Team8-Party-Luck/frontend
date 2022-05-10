@@ -25,6 +25,7 @@ import Scrap from "./pages/Scrap";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
+import UserChat from "./pages/UserChat";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/scrap" exact component={Scrap} />
         <Route path="/Account" exact component={Account} />
         <Route path="/inquary" exact component={Inquary} />
+        <Route path="/userChat" exact component={UserChat} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
     </React.Fragment>

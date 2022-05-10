@@ -10,7 +10,10 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 
+
+
 const PartyInfo = () => {
+  
   const { partyId } = useParams();
 
   const dispatch = useDispatch();

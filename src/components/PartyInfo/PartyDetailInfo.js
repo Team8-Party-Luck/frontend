@@ -5,15 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
 const PartyDetailInfo = ({ title, store, address, capacity, date, time }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
