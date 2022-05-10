@@ -5,19 +5,12 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import { actionCreators as crewActions } from "../redux/modules/crew";
 
-const HeaderNav = (props) => {
+const ChatHeaderNav = (props) => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
-  const sendScrap = () => {
-    dispatch(crewActions.sendScrapData(props?.partyId));
-  };
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -43,24 +36,9 @@ const HeaderNav = (props) => {
           </Typography>
         </Toolbar>
 
-        {props?.partyUser?.sub === false ? (
-          <FavoriteBorderIcon
-            style={{ color: "black" }}
-            onClick={() => {
-              sendScrap();
-            }}
-          />
-        ) : (
-          <FavoriteIcon
-            style={{ color: "black" }}
-            onClick={() => {
-              sendScrap();
-            }}
-          />
-        )}
       </AppBar>
     </Box>
   );
 };
 
-export default HeaderNav;
+export default ChatHeaderNav;
