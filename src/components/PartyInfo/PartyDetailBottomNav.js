@@ -74,7 +74,7 @@ const PartyDetailBottomNav = () => {
               sx={{ width: "9rem" }}
               onClick={() => {
                 history.push({
-                  pathname: "/revise",
+                  pathname: "/userChat",
                   state: partyId,
                 });
               }}
@@ -108,7 +108,7 @@ const PartyDetailBottomNav = () => {
               sx={{ width: "9rem" }}
               onClick={() => {
                 history.push({
-                  pathname: "/revise",
+                  pathname: "/userChat",
                   state: partyId,
                 });
               }}

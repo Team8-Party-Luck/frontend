@@ -8,7 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-import Taste from './Taste'
+import Taste from "./Taste";
 const Images = ({ image, setImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
@@ -63,10 +63,11 @@ const Images = ({ image, setImage }) => {
         </RadioGroup>
       </FormControl>
       {form === "basic" ? (
-        <Box sx={{width:"21rem"}}>
-          <Taste image={image} setImage={setImage}/>
+        <Box sx={{ width: "21rem" }}>
+          <Taste image={image} setImage={setImage} />
         </Box>
       ) : (
+        <React.Fragment>
           <label
             htmlFor="input-file"
             className="addButton"
@@ -78,40 +79,41 @@ const Images = ({ image, setImage }) => {
               multiple
               className="addButton"
               name="안녕"
-              style={{ display: "none" }}
+              // style={{ display: "none" }}
             />
-
-            <div
-              style={{
-                border: "1px solid black",
-                borderRadius: "10px",
-                margin: "0.5rem",
-                width: "21rem",
-              }}
+         </label>
+          <div
+            style={{
+              border: "1px solid black",
+              borderRadius: "10px",
+              margin: "0.5rem",
+              width: "21rem",
+            }}
+          >
+             
+            <Box
+              component="div"
+              sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
             >
-              <Box
-                component="div"
-                sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
-              >
-                <Box component="div" sx={{ display: "inline-block" }}>
-                  <AddPhotoAlternateIcon
-                    sx={{ fontSize: "4rem", m: 2 }}
-                    style={{ border: "1px solid black", borderRadius: "4px" }}
-                  />
-                </Box>
-
-                <Box component="div" sx={{ display: "inline-block" }}>
-                  {showImages.map((image, id) => (
-                    <span className="imageContainer" key={id}>
-                      <Img src={image} alt={`${image}-${id}`} />
-                      <span onClick={() => handleDeleteImage(id)}>x</span>
-                      {console.log(image)}
-                    </span>
-                  ))}
-                </Box>
+              <Box component="div" sx={{ display: "inline-block" }}>
+                <AddPhotoAlternateIcon
+                  sx={{ fontSize: "4rem", p: 2, m: 1 }}
+                  style={{ border: "1px solid black", borderRadius: "4px" }}
+                />
               </Box>
-            </div>
-          </label>
+
+              <Box component="div" sx={{ display: "inline-block" }}>
+                {showImages.map((image, id) => (
+                  <span className="imageContainer" key={id}>
+                    <Img src={image} alt={`${image}-${id}`} />
+                    <span onClick={() => handleDeleteImage(id)}>x</span>
+                    {console.log(image)}
+                  </span>
+                ))}
+              </Box>
+            </Box>
+          </div>
+        </React.Fragment>
       )}
     </div>
   );
