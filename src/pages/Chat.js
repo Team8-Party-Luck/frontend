@@ -1,9 +1,10 @@
 import React from 'react';
+import ChatHeaderNav from '../components/Chat/ChatHeaderNav';
 import BottomNav from '../shared/BottomNav';
 
 const Chat = () => {
   return(<React.Fragment>
-    <h1>chat</h1>
+    <ChatHeaderNav name="메시지"/>
     <BottomNav></BottomNav>
   </React.Fragment>)
 }
