@@ -7,6 +7,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 import Taste from "./Taste";
 const Images = ({ image, setImage }) => {
@@ -68,20 +70,7 @@ const Images = ({ image, setImage }) => {
         </Box>
       ) : (
         <React.Fragment>
-          <label
-            htmlFor="input-file"
-            className="addButton"
-            onChange={handleAddImages}
-          >
-            <input
-              type="file"
-              id="input-file"
-              multiple
-              className="addButton"
-              name="안녕"
-              // style={{ display: "none" }}
-            />
-         </label>
+          <Box>첫번째 사진이 프로필 사진입니다</Box>
           <div
             style={{
               border: "1px solid black",
@@ -90,23 +79,45 @@ const Images = ({ image, setImage }) => {
               width: "21rem",
             }}
           >
-             
             <Box
               component="div"
               sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
             >
-              <Box component="div" sx={{ display: "inline-block" }}>
-                <AddPhotoAlternateIcon
-                  sx={{ fontSize: "4rem", p: 2, m: 1 }}
-                  style={{ border: "1px solid black", borderRadius: "4px" }}
+             
+              <label
+                htmlFor="input-file"
+                className="addButton"
+                onChange={handleAddImages}
+              >
+                
+                <input
+                  type="file"
+                  id="input-file"
+                  multiple
+                  className="addButton"
+                  name="안녕"
+                  style={{ display: "none" }}
                 />
-              </Box>
+                <Box component="div" sx={{ display: "inline-block" }}>
+                  <AddPhotoAlternateIcon
+                    sx={{ fontSize: "4rem", p: 2, m: 1 }}
+                    style={{ border: "1px solid black", borderRadius: "4px" }}
+                  />
+                </Box>
+              </label>
 
               <Box component="div" sx={{ display: "inline-block" }}>
                 {showImages.map((image, id) => (
                   <span className="imageContainer" key={id}>
-                    <Img src={image} alt={`${image}-${id}`} />
-                    <span onClick={() => handleDeleteImage(id)}>x</span>
+                    <Img
+                      style={{ marginRight: "0", marginBottom:'0.5rem' }}
+                      src={image}
+                      alt={`${image}-${id}`}
+                    />
+                    <span onClick={() => handleDeleteImage(id)}>
+                      {" "}
+                      <DeleteIcon sx={{ mb: 7.5 }} />
+                    </span>
                     {console.log(image)}
                   </span>
                 ))}

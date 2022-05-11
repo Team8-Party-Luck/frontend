@@ -11,11 +11,14 @@ import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import Age from "./Age";
 import RealDay from "./RealDay";
+import MapView from "./kakao/MapView";
+import PersonInfo from "./PersonInfo";
 
 import {useLocation} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { history } from "../../redux/configStore";
+
 
 
 import HeaderNav from "../../shared/HeaderNav";
@@ -35,7 +38,12 @@ const PartyRevise = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState(partyUser?.title || '');
   const [store, setStore] = useState(partyUser?.store);
+  const [address, setAddress] = useState(partyUser?.address);
+  const [place_url, setPlace_url] = useState(partyUser?.place_url);
+  const [xy, setXy] = useState(partyUser?.xy);
   const [capacity, setCapacity] = useState(String(partyUser?.capacity));
+  const [ageGroup, setAgeGroup] = useState(partyUser?.ageGroup);
+  const [gender, setGender] = useState(partyUser?.gender);
   const [meeting, setMeeting] = useState(partyUser?.meeting || '');
   const [date, setDate] = useState(partyUser?.date);
   const [time, setTime] = useState(partyUser?.time);
@@ -46,6 +54,7 @@ const PartyRevise = () => {
   React.useEffect(() => {
     setTitle(partyUser?.title || '');
   }, [title])
+
 
 
   const sendReviseData = () => {
@@ -73,7 +82,7 @@ const PartyRevise = () => {
         <TextField
           id="partyName"
           label="파티제목"
-          value= {title}
+          value={title}
           variant="standard"
           style={{ width: "80%" }}
           sx={{ mb: 1.5 }}
@@ -81,8 +90,29 @@ const PartyRevise = () => {
             setTitle(e.target.value);
           }}
         />
-        <AddSearch store={store} setStore={setStore} />
-        <Age capacity={capacity} setCapacity={setCapacity} />
+        <MapView
+          store={store}
+          setStore={setStore}
+          setAddress={setAddress}
+          setPlace_url={setPlace_url}
+          setXy={setXy}
+        />
+         <PersonInfo
+          capacity={capacity}
+          setCapacity={setCapacity}
+          ageGroup={ageGroup}
+          setAgeGroup={setAgeGroup}
+          gender={gender}
+          setGender={setGender}
+          value="안녕"
+        />
+
+        <Box component="div" sx={{ display: "inline", width: "10rem" }}>
+          <RealDay date={date} setDate={setDate} />
+        </Box>
+        <Box component="div" sx={{ display: "inline", width: "10rem" }}>
+          <TimeSelect time={time} setTime={setTime} />
+        </Box>
         <TextField
         value={meeting}
           id="meetPlace"
@@ -94,12 +124,6 @@ const PartyRevise = () => {
             setMeeting(e.target.value);
           }}
         />{" "}
-        <Box component="div" sx={{ display: "inline", width: "12rem" }}>
-          <RealDay date={date} setDate={setDate} />
-        </Box>
-        <Box component="div" sx={{ display: "inline", width: "8rem" }}>
-          <TimeSelect time={time} setTime={setTime} />
-        </Box>
         <TextField
         value={desc}
           multiline

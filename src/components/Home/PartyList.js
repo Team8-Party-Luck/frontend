@@ -9,6 +9,8 @@ import PartyCard from "./PartyCard";
 import PartySpread from "./PartySpread";
 import { useInView } from "react-intersection-observer";
 import { Avatar, CardContent, Stack } from "@mui/material";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -112,53 +114,60 @@ const PartyList = (props) => {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          centered
         >
           <Tab label="파티 탐색" {...a11yProps(0)} />
-          <Tab label="참여예정 파티" {...a11yProps(1)} />
-          <Tab label="마감임박 파티" {...a11yProps(2)} />
+          <Tab label="참여할 파티" {...a11yProps(1)} />
+          <Tab label="찜한 파티" {...a11yProps(2)} />
         </Tabs>
       </Box>
 
       <TabPanel value={value} index={0}>
-        <ListBox ref={ref} onScroll={InfinityScroll}>
-          {partyList?.map((cur, idx) => {
-            return (
-              <Box
-                sx={{ display: "flex", flexDirection: "row" }}
-                key={cur?.partyId}
-              >
-                <Avatar
-                  variant={"rounded"}
-                  alt="The image"
-                  src={"cur?.image"}
-                  style={{
-                    width: 90,
-                    height: 90,
-                  }}
-                  onClick={() => {
-                    history.push(`/partyInfo/${cur?.partyId}`);
-                  }}
-                />
-                <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 2 }}>
-                  <Stack spacing={0.8}>
-                    <Typography component="div" variant="h6">
-                      {cur?.title}
-                    </Typography>
 
-                    <Typography style={{ fontSize: "0.8rem" }}>
-                      {cur?.store} &nbsp; {cur?.capacity}
-                    </Typography>
-                    <Typography style={{ fontSize: "0.8rem" }}>
-                      {cur?.address}
-                      {cur?.date}
-                      {cur?.time}
-                    </Typography>
-                  </Stack>
-                </CardContent>
-              </Box>
-            );
-          })}
-        </ListBox>
+        {/* {spread} */}
+        {crewList?.map((cur, idx) => (
+        
+          <React.Fragment>
+            <Typography component="div" variant="h6" sx={{fontWeight:1000}}>
+              {cur?.title}
+            </Typography>
+            <Box
+              sx={{ display: "flex", flexDirection: "row" }}
+              key={cur?.partyId}
+            >
+              <Avatar
+                variant={"rounded"}
+                alt="The image"
+                src={cur?.image[0]}
+                style={{
+                  width: 90,
+                  height: 90,
+                  borderRadius:'1.3rem'
+                }}
+                onClick={() => {
+                  history.push(`/partyInfo/${cur?.partyId}`);
+                }}
+              />
+              <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 1 }}>
+                <Stack spacing={1.5}>
+                  <Typography style={{ fontSize: "1rem",}} >
+                    {cur?.store} 
+                  </Typography>
+                  <Typography style={{ fontSize: "1rem", margin:0 }}>
+                    <LocationOnIcon style={{fontSize:'1rem',marginTop:'0.5'}}/>{cur?.address}|
+                    {cur?.date}|
+                    {cur?.time}
+                  </Typography>
+                  <Typography style={{ fontSize: "1rem", margin:0 }}>
+                    {cur?.capacity}명 |
+                    {cur?.age}  {cur?.gender}모임
+                  </Typography>
+                </Stack>
+              </CardContent>
+            </Box>
+          </React.Fragment>
+        ))}
+
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PartyCard />

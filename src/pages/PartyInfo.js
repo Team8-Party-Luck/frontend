@@ -6,6 +6,7 @@ import PartyDetailUser from "../components/PartyInfo/PartyDetailUser";
 import PartyInfoSlide from "../components/PartyInfo/PartyInfoSlide";
 import HeaderNav from "../shared/HeaderNav";
 import { useParams } from "react-router-dom";
+import Box from "@mui/material/Box";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
@@ -34,6 +35,10 @@ const PartyInfo = () => {
   const time = partyUser?.time;
   const desc = partyUser?.desc;
   const age = partyUser?.age;
+  const place_url = partyUser?.place_url;
+  const gender = partyUser?.gender;
+  const meeting = partyUser?.meeting;
+
 
   return (
     <React.Fragment>
@@ -46,12 +51,23 @@ const PartyInfo = () => {
         capacity={capacity}
         date={date}
         time={time}
+        place_url={place_url}
+        gender={gender}
+        meeting={meeting}
+        age={age}
       />
-      <PartyDetailUser memberCnt={memberCnt} capacity={capacity} />
-      <PartyDetailDesc desc={desc} />
+      <PartyDetailUser memberCnt={memberCnt} capacity={capacity}/>
+      <PartyDetailDesc desc={desc}/>
       <PartyDetailBottomNav />
     </React.Fragment>
   );
 };
 
 export default PartyInfo;
+
+// gender: "남자"
+// host: "qwer"
+// hostid: 2
+// join: true
+// meeting: "우리집"
+// sub: true

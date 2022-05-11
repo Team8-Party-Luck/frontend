@@ -10,7 +10,18 @@ var ps;
 var infowindow;
 var map;
 
-const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
+// 어떻게 하면 버튼을 클릭해 데이터를 받아와 저장할수있을까??
+// $(document).on("click", "#gather", function () {
+//   console.log( places.address_name)
+//       setStore(places.place_name);
+//       setAddress(address_name);
+//       setPlace_url(place_url);
+//       setXy(`${x},${y}`);
+//       setOpen(false)
+
+// });
+
+const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
@@ -27,15 +38,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
     ps = new kakao.maps.services.Places();
     // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
     infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-    // kakao.maps.load(function () {
-    //   // v3가 모두 로드된 후, 이 콜백 함수가 실행됩니다.
-    // });
-
-    $(document).on("click", "#gather", function (e) {
-      // handleClose()
-      console.log(e.originalEvent.path);
-      // console.log($("ul").index());
-    });
   }, []);
 
   const searchPlaces = () => {
@@ -65,6 +67,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
     }
   }
 
+
   // 검색 결과 목록과 마커를 표출하는 함수입니다
   function displayPlaces(places) {
     var listEl = document.getElementById("placesList"),
@@ -84,6 +87,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
       var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
         marker = addMarker(placePosition, i),
         itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+
 
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
       // LatLngBounds 객체에 좌표를 추가합니다
@@ -108,8 +112,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
           setAddress(address_name);
           setPlace_url(place_url);
           setXy(`${x},${y}`);
-          console.log(x)
-          console.log(y)
           setOpen(false)
         };
 
@@ -126,6 +128,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
       );
       console.log(marker);
       fragment.appendChild(itemEl);
+
     }
 
     // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
@@ -134,6 +137,8 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
+
+
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
@@ -166,13 +171,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
       itemStr += "    <span>" + places.address_name + "</span>";
     }
 
-    itemStr +=
-      '  <span class="tel">' +
-      places.phone +
-      "</span>" +
-      '<button id="gather" >여기 모여' +
-      "</button>" +
-      "</div>";
+    itemStr += '  <span class="tel">' + places.phone +"</span>"+`<button id="gather">여기모여</button>` + "</div>" ;
 
     el.innerHTML = itemStr;
     el.className = "item";
@@ -244,7 +243,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy,  setOpen }) => {
   // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
   // 인포윈도우에 장소명을 표시합니다
   function displayInfowindow(marker, title) {
-    var content = '<div style="padding:5px;z-index:1;">' + title + "</div>";
+    var content = '<div style="padding:5px;z-index:1;">' + title;
 
     infowindow.setContent(content);
     infowindow.open(map, marker);

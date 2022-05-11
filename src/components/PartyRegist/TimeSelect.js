@@ -7,6 +7,9 @@ import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 export default function TimeSelect({time, setTime}) {
   const [value, setValue] = React.useState(new Date('2018-01-01T00:00:00.000Z'));
 
+  // const str = '13:12'.split(':')
+  // const hi = new Date(`2019-12-11 ${str[0]}:${str[1]}:30`)
+  // console.log(hi)
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
