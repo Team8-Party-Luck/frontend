@@ -16,6 +16,9 @@ import { history } from "../../redux/configStore";
 import { useState } from "react";
 import _ from "lodash";
 import { useCallback } from "react";
+import { useRef } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -28,7 +31,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ paddingLeft: 3 }}>
           <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
@@ -52,48 +55,49 @@ function a11yProps(index) {
 const PartyList = (props) => {
   const dispatch = useDispatch();
 
-  const [pageNum, setPageNum] = useState(1);
+  const ref = useRef();
 
-  const scrollEvent = useCallback(
-    _.debounce(() => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = document.documentElement.scrollTop;
-      const clientHeight = document.documentElement.clientHeight;
-      console.log(scrollHeight, scrollTop, clientHeight);
-      if (scrollHeight - scrollTop - clientHeight < 100) {
-        setPageNum((prev) => prev + 1);
-      }
-    }, 100)
-  );
+  const [partyList, setPartyList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasNext, setHasNext] = useState(null);
+
+  // 무한스크롤을 함수
+  // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
+  const InfinityScroll = _.throttle((e) => {
+    if (
+      e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
+      100
+    ) {
+      axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
+        setPartyList([...partyList, ...res.data.results]);
+        setIsLoading(false);
+        if (res.data.results.length < 10) {
+          setHasNext(false);
+        } else {
+          setHasNext(true);
+        }
+        setPage(page + 1);
+      });
+    }
+  }, 300);
 
   React.useEffect(() => {
-    window.addEventListener("scroll", scrollEvent);
-
-    return () => {
-      window.removeEventListener("scroll", scrollEvent);
-    };
+    axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
+      console.log(res.data.results);
+      setPartyList([...partyList, ...res.data.results]);
+      setIsLoading(false);
+      if (res.data.results.length < 10) {
+        setHasNext(false);
+      } else {
+        setHasNext(true);
+      }
+      setPage(page + 1);
+    });
   }, []);
 
-  React.useEffect(() => {
-    dispatch(crewActions.getDataDB(pageNum));
-  }, [pageNum]);
-
-  const crewList = useSelector((state) => state?.crew?.crew);
-  console.log(crewList);
-
-  // const spread = crewList?.map((val) => (
-  //   <PartySpread
-  //     key={val?.partyId}
-  //     partyId={val?.partyId}
-  //     image={val?.image}
-  //     title={val?.title}
-  //     store={val?.store}
-  //     address={val?.address}
-  //     capacity={val?.capacity}
-  //     date={val?.date}
-  //     time={val?.time}
-  //   />
-  // ));
+  // const crewList = useSelector((state) => state?.crew?.crew);
+  // console.log(crewList);
 
   const [value, setValue] = React.useState(0);
 
@@ -116,42 +120,45 @@ const PartyList = (props) => {
       </Box>
 
       <TabPanel value={value} index={0}>
-        {/* {spread} */}
-        {crewList?.map((cur, idx) => (
-          <Box
-            sx={{ display: "flex", flexDirection: "row" }}
-            key={cur?.partyId}
-          >
-            <Avatar
-              variant={"rounded"}
-              alt="The image"
-              src={"cur?.image"}
-              style={{
-                width: 90,
-                height: 90,
-              }}
-              onClick={() => {
-                history.push(`/partyInfo/${cur?.partyId}`);
-              }}
-            />
-            <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 2 }}>
-              <Stack spacing={0.8}>
-                <Typography component="div" variant="h6">
-                  {cur?.title}
-                </Typography>
+        <ListBox ref={ref} onScroll={InfinityScroll}>
+          {partyList?.map((cur, idx) => {
+            return (
+              <Box
+                sx={{ display: "flex", flexDirection: "row" }}
+                key={cur?.partyId}
+              >
+                <Avatar
+                  variant={"rounded"}
+                  alt="The image"
+                  src={"cur?.image"}
+                  style={{
+                    width: 90,
+                    height: 90,
+                  }}
+                  onClick={() => {
+                    history.push(`/partyInfo/${cur?.partyId}`);
+                  }}
+                />
+                <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 2 }}>
+                  <Stack spacing={0.8}>
+                    <Typography component="div" variant="h6">
+                      {cur?.title}
+                    </Typography>
 
-                <Typography style={{ fontSize: "0.8rem" }}>
-                  {cur?.store} &nbsp; {cur?.capacity}
-                </Typography>
-                <Typography style={{ fontSize: "0.8rem" }}>
-                  {cur?.address}
-                  {cur?.date}
-                  {cur?.time}
-                </Typography>
-              </Stack>
-            </CardContent>
-          </Box>
-        ))}
+                    <Typography style={{ fontSize: "0.8rem" }}>
+                      {cur?.store} &nbsp; {cur?.capacity}
+                    </Typography>
+                    <Typography style={{ fontSize: "0.8rem" }}>
+                      {cur?.address}
+                      {cur?.date}
+                      {cur?.time}
+                    </Typography>
+                  </Stack>
+                </CardContent>
+              </Box>
+            );
+          })}
+        </ListBox>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PartyCard />
@@ -176,5 +183,13 @@ const PartyList = (props) => {
     </Box>
   );
 };
+
+const ListBox = styled.div`
+  width: 100%;
+  height: 30em;
+  padding-top: 1.5em;
+
+  overflow-y: auto;
+`;
 
 export default PartyList;
