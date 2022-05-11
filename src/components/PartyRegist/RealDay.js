@@ -8,9 +8,15 @@ import styled from "styled-components";
 const RealDay = ({ date, setDate }) => {
   const [value, setValue] = React.useState(new Date());
 
+  // const str = '2022-09-20'.split('-')
+  // const hi = new Date(str[0], str[1]-1, str[2] )
+  // console.log(hi)
+
+  //지금은 연도까지는 바꾸지 않게 설정해두자.
   return (
     <DayStyle>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
+        
         <DatePicker
           openTo="day"
           views={["day"]}
@@ -24,11 +30,13 @@ const RealDay = ({ date, setDate }) => {
             day = day >= 10 ? day : '0' + day;
             let answer = `${month}월 ${day}일`
             setDate(answer)
-          }}
+
+          }}  
           renderInput={(params) => <TextField {...params} helperText={null} />}
         />
       </LocalizationProvider>
     </DayStyle>
+    
   );
 };
 

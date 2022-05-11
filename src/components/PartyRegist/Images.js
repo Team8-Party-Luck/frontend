@@ -70,6 +70,7 @@ const Images = ({ image, setImage }) => {
         </Box>
       ) : (
         <React.Fragment>
+          <Box>첫번째 사진이 프로필 사진입니다</Box>
           <div
             style={{
               border: "1px solid black",
@@ -82,11 +83,13 @@ const Images = ({ image, setImage }) => {
               component="div"
               sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
             >
+             
               <label
                 htmlFor="input-file"
                 className="addButton"
                 onChange={handleAddImages}
               >
+                
                 <input
                   type="file"
                   id="input-file"
