@@ -30,8 +30,12 @@ const PartyDetailBottomNav = () => {
     return (
       <Box>
         <Box
-       
-          sx={{ width: "95%", position: "relative", display: "flex", bottom: 10 }}
+          sx={{
+            width: "95%",
+            position: "relative",
+            display: "flex",
+            bottom: 10,
+          }}
           justifyContent="center"
           alignItems="center"
         >
@@ -75,7 +79,7 @@ const PartyDetailBottomNav = () => {
               sx={{ width: "9rem" }}
               onClick={() => {
                 history.push({
-                  pathname: "/userChat",
+                  pathname: `/chat/${partyUser?.hostid}`,
                   state: partyId,
                 });
               }}
@@ -109,7 +113,7 @@ const PartyDetailBottomNav = () => {
               sx={{ width: "9rem" }}
               onClick={() => {
                 history.push({
-                  pathname: "/userChat",
+                  pathname: `/chat/${partyUser?.hostid}`,
                   state: partyId,
                 });
               }}
