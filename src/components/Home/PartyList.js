@@ -96,7 +96,7 @@ const PartyList = (props) => {
     });
   }, []);
 
-  const crewList = useSelector((state) => state?.crew?.crew);
+  // const crewList = useSelector((state) => state?.crew?.crew);
   // console.log(crewList);
 
   const [value, setValue] = React.useState(0);
