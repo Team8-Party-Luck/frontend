@@ -3,6 +3,7 @@ import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configStore";
 
+
 //액션
 const GET_CREW = "GET_CREW";
 const GET_DETAIL = "GET_PARTYDETAIL";
@@ -67,11 +68,20 @@ const reviseSend = (Write_info, partyId) => {
     const file = new FormData();
     file.append("title", Write_info.title);
     file.append("store", Write_info.store);
-    file.append("capacity", String(Write_info.capacity));
-    file.append("meeting", Write_info.meeting);
+    file.append("address", Write_info.address);
+    file.append("place_url", Write_info.place_url);
+    file.append("xy", Write_info.xy);
+    file.append("capacity", Write_info.capacity);
+    file.append("age", Write_info.age);
+    file.append("gender", Write_info.gender);
     file.append("date", Write_info.date);
     file.append("time", Write_info.time);
+    file.append("meeting", Write_info.meeting);
     file.append("desc", Write_info.desc);
+
+    Array.from(Write_info.image).forEach((a) => {
+      file.append("image", a);
+    });
 
     axios
       .put(`http://3.38.180.96/api/party/${partyId}`, file, {
@@ -230,6 +240,9 @@ const sendJoinData = (partyId) => {
       });
   };
 };
+
+
+
 
 export default handleActions(
   {
