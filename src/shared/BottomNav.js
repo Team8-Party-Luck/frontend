@@ -1,102 +1,49 @@
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import BottomNavigation from "@mui/material/BottomNavigation";
-// import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-// import RestoreIcon from "@mui/icons-material/Restore";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
-// import LocationOnIcon from "@mui/icons-material/LocationOn";
-// import { history } from "../redux/configStore";
-// import IconButton from '@mui/material/IconButton';
-// import DeleteIcon from '@mui/icons-material/Delete';
-
-// const BottomNav = () => {
-//   const [value, setValue] = React.useState(0);
-
-//   return (
-//     <Box sx={{ width: 500 }}>
-//       <BottomNavigation
-//         sx={{ width: "100%", position: "fixed", display: "flex", bottom: 0 }}
-//         showLabels
-//         value={value}
-//         onChange={(event, newValue) => {
-//           setValue(newValue);
-//           newValue === 'home' && history.push('/home')
-//           newValue === 'chat' && history.push('/chat')
-//           newValue === 'write' && history.push('/regi')
-//           newValue === 'user' && history.push('/profile')
-//         }}
-//       >
-
-//           {/* <BottomNavigationAction
-//             value="home"
-//             label="홈"
-//             onClick={() => {
-//               history.push("/home");
-//             }}
-//             icon={<RestoreIcon />}
-//           /> */}
-
-//         <BottomNavigationAction
-//           // onChange={() => {
-//           //   history.push("/chat");
-//           // }}
-//           value="chat"
-//           label="채팅"
-//           icon={<FavoriteIcon />}
-//         />
-//         <BottomNavigationAction
-//           onChange={() => {
-//             history.push("/regi");
-//           }}
-//           value="write"
-//           label="파티작성"
-//           icon={<LocationOnIcon />}
-//         />
-//         <BottomNavigationAction
-//           onChange={() => {
-//             history.push("/profile");
-//           }}
-//           value="user"
-//           label="마이"
-//           icon={<LocationOnIcon />}
-//         />
-//       </BottomNavigation>
-//     </Box>
-//   );
-// };
-
-// export default BottomNav;
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import "../style/BottomNav.css";
+
+import "../style/BottomNav.css";
+import styled from "styled-components";
+
 
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
   console.log(activeNav);
 
+  React.useEffect(() => {
+
+  }, [])
+const numconfig = (num) => {
+  setActiveNav(num)
+}
+
+let para = document.location.href.split('/')[3]
+console.log(para);
   return (
-    <nav className="wrapper">
-      <Link to="/home" className="nav-link" onClick={(e) => setActiveNav(1)}>
+
+    <Nav className="wrapper">
+      <Link to="/home" className="nav-link" onClick={() => numconfig(1)}>
         <div>
           <img
             src={
-              activeNav === 1
+              para === 'home'
+
                 ? "image/bar/home_active.png"
                 : "image/bar/home_inactive.png"
             }
             alt="home"
             style={{ width: "2rem" }}
           />
+          <div style={{}}>홈</div>
         </div>
-        홈
       </Link>
 
-      <Link to="/chat" className="nav-link" onClick={() => setActiveNav(2)}>
+      <Link to="/chat" className="nav-link" onClick={() => numconfig(2)}>
         <div>
           <img
             src={
-              activeNav === 2
+
+              para === 'chat'
+
                 ? "image/bar/chat_active.png"
                 : "image/bar/chat_inactive.png"
             }
@@ -107,26 +54,32 @@ const BottomNav = () => {
         채팅
       </Link>
 
-      <Link to="/regi" className="nav-link" onClick={() => setActiveNav(3)}>
+      <Link to="/regi" className="nav-link" onClick={() => numconfig(3)}>
         <div>
           <img
             src={
-              activeNav === 3
+
+              para === 'regi'
+
                 ? "image/bar/write_active.png"
                 : "image/bar/write_inactive.png"
             }
             alt="regi"
-            style={{ width: "2rem" }}
+
+            style={{ width: "2rem", }}
+
           />
         </div>
         파티작성
       </Link>
 
-      <Link to="/profile" className="nav-link" onClick={() => setActiveNav(4)}>
+      <Link to="/profile" className="nav-link" onClick={() => numconfig(4)}>
         <div>
           <img
             src={
-              activeNav === 4
+
+              para === 'profile'
+
                 ? "image/bar/my_active.png"
                 : "image/bar/my_inactive.png"
             }
@@ -136,8 +89,18 @@ const BottomNav = () => {
         </div>
         메인
       </Link>
-    </nav>
+    </Nav>
   );
 };
 
 export default BottomNav;
+
+const Nav = styled.nav`
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 75px;
+  background-color: #ffffff;
+`;
