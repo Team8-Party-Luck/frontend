@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configStore";
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
+import styled from "styled-components";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -37,41 +38,18 @@ const Login = () => {
     <React.Fragment>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 20,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h4">
-          여기는 로고
-        </Typography>
-        <form>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="Email"
-            autoFocus
-            onChange={handleChange("email")}
-          />
-          <TextField
-            required
-            fullWidth
-            label="Password"
-            type="password"
-            onChange={handleChange("password")}
-          />
-        </form>
-        <Button
-          variant="contained"
-          size="large"
-          fullWidth
-          sx={{ marginTop: 2 }}
-          onClick={login}
-        >
-          로그인하기
-        </Button>
+        <div>
+          <img src="image/0.회원가입,로그인/img_login.png" />
+        </div>
+        <div>
+          <img src="image/kakao/kakao_login_medium_wide.png" />
+        </div>
         <Button
           variant="contained"
           size="large"

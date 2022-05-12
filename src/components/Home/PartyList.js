@@ -121,7 +121,7 @@ const PartyList = (props) => {
         </Tabs>
       </Box>
 
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} ref={ref} onScroll={InfinityScroll}>
         {/* {spread} */}
         {partyList?.map((cur, idx) => (
           <React.Fragment key={idx}>
