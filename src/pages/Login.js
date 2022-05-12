@@ -45,7 +45,7 @@ const Login = () => {
         }}
       >
         <Box>
-          <img src="image/0.회원가입,로그인/img_login.png" />
+          <img src="image/login/img_login.png" />
         </Box>
         <Box
           sx={{
