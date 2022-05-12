@@ -30,6 +30,7 @@ const MsgList = () => {
           display: "flex",
           borderBottom: "1px solid #dfdfdf",
           padding: 1.5,
+          paddingTop: "4.5em",
         }}
       >
         <Avatar

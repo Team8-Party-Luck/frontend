@@ -121,8 +121,8 @@ const Edit = (props) => {
 
   return (
     <React.Fragment>
-      <Header />
-      <Box sx={{ padding: 2.5 }}>
+      <Header name={"프로필 수정"} />
+      <Box sx={{ padding: 2.5, paddingTop: "5.5em" }}>
         <Box sx={{ marginBottom: 5, display: "flex", position: "relative" }}>
           <Avatar
             sx={{

@@ -69,7 +69,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../style/BottomNav.css";
+// import "../style/BottomNav.css";
 
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
@@ -77,25 +77,31 @@ const BottomNav = () => {
 
   return (
     <nav className="wrapper">
-      <Link to="/home" className="nav-link" onClick={(e) => 
-      setActiveNav(1) 
-      }>
+      <Link to="/home" className="nav-link" onClick={(e) => setActiveNav(1)}>
         <div>
           <img
-            src={activeNav === 1 ? 'image/bar/home_active.png' : 'image/bar/home_inactive.png'}
+            src={
+              activeNav === 1
+                ? "image/bar/home_active.png"
+                : "image/bar/home_inactive.png"
+            }
             alt="home"
-            style={{width:'2rem'}}
+            style={{ width: "2rem" }}
           />
         </div>
-    홈
+        홈
       </Link>
 
       <Link to="/chat" className="nav-link" onClick={() => setActiveNav(2)}>
         <div>
           <img
-          src={activeNav === 2 ? 'image/bar/chat_active.png' : 'image/bar/chat_inactive.png'}
+            src={
+              activeNav === 2
+                ? "image/bar/chat_active.png"
+                : "image/bar/chat_inactive.png"
+            }
             alt="chat"
-            style={{width:'2rem'}}
+            style={{ width: "2rem" }}
           />
         </div>
         채팅
@@ -104,9 +110,13 @@ const BottomNav = () => {
       <Link to="/regi" className="nav-link" onClick={() => setActiveNav(3)}>
         <div>
           <img
-          src={activeNav === 3 ? 'image/bar/write_active.png' : 'image/bar/write_inactive.png'}
+            src={
+              activeNav === 3
+                ? "image/bar/write_active.png"
+                : "image/bar/write_inactive.png"
+            }
             alt="regi"
-            style={{width:'2rem'}}
+            style={{ width: "2rem" }}
           />
         </div>
         파티작성
@@ -115,9 +125,13 @@ const BottomNav = () => {
       <Link to="/profile" className="nav-link" onClick={() => setActiveNav(4)}>
         <div>
           <img
-          src={activeNav === 4 ? 'image/bar/my_active.png' : 'image/bar/my_inactive.png'}
+            src={
+              activeNav === 4
+                ? "image/bar/my_active.png"
+                : "image/bar/my_inactive.png"
+            }
             alt="profile"
-            style={{width:'2rem'}}
+            style={{ width: "2rem" }}
           />
         </div>
         메인

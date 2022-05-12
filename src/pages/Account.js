@@ -45,8 +45,12 @@ const Account = () => {
 
   return (
     <Box>
-      <Header />
-      <List component="nav" aria-label="mailbox folders" sx={{}}>
+      <Header name={"계정"} />
+      <List
+        component="nav"
+        aria-label="mailbox folders"
+        sx={{ paddingTop: "4em" }}
+      >
         <ListItem
           button
           onClick={() => {

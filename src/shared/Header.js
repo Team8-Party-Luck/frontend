@@ -3,29 +3,41 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   const history = useHistory();
 
   return (
-    <Box bgcolor={"#FF6853"} sx={{ width: "100%", height: "6em", padding: 2 }}>
+    <Box
+      sx={{
+        width: "100%",
+        padding: 2,
+        display: "flex",
+        borderBottom: "1px solid #dfdfdf",
+        position: "fixed",
+        background: "white",
+        paddingTop: 2.2,
+        zIndex: 1000,
+      }}
+    >
       <Box
         onClick={() => {
           history.goBack();
         }}
+        sx={{ position: "absolute" }}
       >
-        <ArrowBackIosIcon fontSize="medium" style={{ color: "white" }} />
+        <ArrowBackIosIcon fontSize="medium" />
       </Box>
       <Typography
-        component="h3"
+        component="p"
         variant="p"
         sx={{
           fontWeight: "bold",
-          paddingTop: 1,
-          color: "white",
-          fontSize: "1.3em",
+          color: "black",
+          fontSize: "1.2em",
+          margin: "0 auto",
         }}
       >
-        잇츨링 로고
+        {props.name}
       </Typography>
     </Box>
   );
