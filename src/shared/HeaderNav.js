@@ -15,15 +15,6 @@ const HeaderNav = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   console.log("나는야 렌더링");
-  // },);
-
-  // const asd = () => {
-  //   dispatch(crewActions.sendScrapData(props?.partyId));
-  //   dispatch(crewActions.getDetailInfo(props?.partyId));
-  // };
-
   const sendScrap = () => {
     dispatch(crewActions.sendScrapData(props?.partyId));
   };
@@ -37,7 +28,6 @@ const HeaderNav = (props) => {
             color="inherit"
             onClick={() => {
               history.push("/home");
-              // window.location
             }}
           >
             <ArrowBackRoundedIcon />

@@ -4,17 +4,14 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import AddSearch from "./address/AddSearch";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
-import Age from "./Age";
 import RealDay from "./RealDay";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
 import PersonInfo from "./PersonInfo";
-import KakaoMap from "./kakao/KakaoMap";
 import MapView from "./kakao/MapView";
 
 const RegiWrite = () => {

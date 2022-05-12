@@ -4,23 +4,19 @@ import { useHistory } from "react-router";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import styled from "styled-components";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 320,
-  bgcolor: "background.paper",
+  width: 340,
+  bgcolor: "#FFFFFF",
   borderRadius: "15px",
   boxShadow: 24,
-  p: 4,
+  p: 3.5,
 };
 
 const RegiHeaderNav = () => {
@@ -33,66 +29,38 @@ const RegiHeaderNav = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            style={{
-              color: "black",
-              paddingLeft:0,
-            }}
+          <img
+            alt="back"
+            src="image/bar/back.png"
             onClick={() => {
               handleOpen();
-              // history.push("/home");
             }}
-          >
-            <ArrowBackRoundedIcon />
-          </IconButton >
-          <Box sx={{ flexGrow: 0.4,}} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { sm: "block" } }}
-            style={{
-              color: "black",
-            }}
-          >
-            파티등록
-          </Typography>
+          />
+          <Box sx={{ flexGrow: 0.45 }} />
+          <div style={{ color: "#161616", fontSize: "20px" }}>파티등록</div>
         </Toolbar>
       </AppBar>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style} justifyContent="center" alignItems="center">
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            sx={{ mb: 5 }}
-          >
+          <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
             작성을 취소하시겠습니까?
-          </Typography>
-          <Button
+          </div>
+          <CancelButton
             onClick={() => {
               handleClose();
             }}
-            variant="outlined"
-            sx={{ mr: 4, width: "7rem" }}
+            style={{ marginRight: "1rem" }}
           >
-            계속 작성
-          </Button>
-          <Button
+            취소
+          </CancelButton>
+          <CancelButton
             onClick={() => {
               history.push("/home");
             }}
-            variant="outlined"
-            sx={{ width: "7rem" }}
+            style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
           >
-            취소하기
-          </Button>
+            작성 취소
+          </CancelButton>
         </Box>
       </Modal>
     </Box>
@@ -100,3 +68,10 @@ const RegiHeaderNav = () => {
 };
 
 export default RegiHeaderNav;
+
+const CancelButton = styled.button`
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  width: 130px;
+  height: 48px;
+`;

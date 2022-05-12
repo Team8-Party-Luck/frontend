@@ -91,7 +91,7 @@ const PartyDetailBottomNav = () => {
               variant="outlined"
               sx={{ width: "9rem" }}
               onClick={() => {
-                deleteParty(partyId);
+                // deleteParty(partyId);
               }}
             >
               신청취소
