@@ -26,19 +26,19 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
           }}
         />
         <FormControlLabel
-          value="여자"
+          value="여성"
           control={<Radio />}
-          label="여자"
+          label="여성"
           onClick={() => {
-            setGender("여자");
+            setGender("여성");
           }}
         />
         <FormControlLabel
-          value="남자"
+          value="남성"
           control={<Radio />}
-          label="남자"
+          label="남성"
           onClick={() => {
-            setGender("남자");
+            setGender("남성");
           }}
         />
       </RadioGroup>
