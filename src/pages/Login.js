@@ -44,34 +44,19 @@ const Login = () => {
           alignItems: "center",
         }}
       >
-        <div>
+        <Box>
           <img src="image/0.회원가입,로그인/img_login.png" />
-        </div>
-        <div>
-          <img src="image/kakao/kakao_login_medium_wide.png" />
-        </div>
-        <Button
-          variant="contained"
-          size="large"
-          fullWidth
-          sx={{ marginTop: 2 }}
+        </Box>
+        <Box
+          sx={{
+            marginTop: 20,
+          }}
           onClick={() => {
             window.location.href = KAKAO_AUTH_URL;
           }}
         >
-          카카오로 시작하기
-        </Button>
-        <Button
-          variant="contained"
-          size="large"
-          fullWidth
-          sx={{ marginTop: 2 }}
-          onClick={() => {
-            history.push("/signup");
-          }}
-        >
-          파티럭이 처음이신가요? 회원가입하기
-        </Button>
+          <img src="image/kakao/kakao_login_medium_wide.png" />
+        </Box>
       </Box>
     </React.Fragment>
   );
