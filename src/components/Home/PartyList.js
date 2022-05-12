@@ -63,10 +63,8 @@ const PartyList = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasNext, setHasNext] = useState(null);
-  const [city, setCity] = useState('서울');
-  const [district, setDistrict] = useState('');
-
-
+  const [city, setCity] = useState("서울");
+  const [district, setDistrict] = useState("");
 
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
@@ -125,53 +123,86 @@ const PartyList = (props) => {
           <Tab label="찜한 파티" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      
-      <RegionSelect city={city} setCity={setCity} district={district} setDistrict={setDistrict}/>
 
-      <TabPanel value={value} index={0} ref={ref} onScroll={InfinityScroll}>
-        {/* {spread} */}
-        {partyList?.map((cur, idx) => (
+      {/* <RegionSelect
+        city={city}
+        setCity={setCity}
+        district={district}
+        setDistrict={setDistrict}
+      /> */}
 
-          <React.Fragment key={idx}>
-            <Typography component="div" variant="h6" sx={{ fontWeight: 1000 }}>
-              {cur?.title}
-            </Typography>
+      <TabPanel value={value} index={0}>
+        <ListBox ref={ref} onScroll={InfinityScroll}>
+          {/* <Box sx={{ height: "50vh" }} > */}
+          {partyList?.map((cur, idx) => (
             <Box
-              sx={{ display: "flex", flexDirection: "row" }}
-              key={cur?.partyId}
+              onClick={() => {
+                history.push(`/partyInfo/${cur?.partyId}`);
+              }}
+              key={idx}
+              sx={{ marginTop: "1em" }}
             >
-              <Avatar
-                variant={"rounded"}
-                alt="The image"
-                src={cur?.image[0]}
-                style={{
-                  width: 90,
-                  height: 90,
-                  borderRadius: "1.3rem",
-                }}
-                onClick={() => {
-                  history.push(`/partyInfo/${cur?.partyId}`);
-                }}
-              />
-              <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 1 }}>
-                <Stack spacing={1.5}>
-                  <Typography style={{ fontSize: "1rem" }}>
+              <Typography sx={{ fontWeight: "bold", marginBottom: 0.3 }}>
+                {cur?.title}
+              </Typography>
+              <Box sx={{ display: "flex" }} key={cur?.partyId}>
+                <Avatar
+                  variant={"rounded"}
+                  alt="The image"
+                  src={cur?.image[0]}
+                  style={{
+                    width: 65,
+                    height: 65,
+                    borderRadius: "0.5em",
+                  }}
+                />
+                <Box sx={{ marginLeft: "0.5em" }}>
+                  <Typography style={{ fontSize: "0.9em", color: "gray" }}>
                     {cur?.store}
                   </Typography>
-                  <Typography style={{ fontSize: "1rem", margin: 0 }}>
-                    <LocationOnIcon
-                      style={{ fontSize: "1rem", marginTop: "0.5" }}
+                  <Box sx={{ display: "flex", marginTop: 0.3 }}>
+                    <img
+                      src="image/home/ic_location.png"
+                      style={{ width: 18, height: 18 }}
+                      alt="위치"
                     />
-                    {cur?.address}|{cur?.date}|{cur?.time}
-                  </Typography>
-                  <Typography style={{ fontSize: "1rem", margin: 0 }}>
-                    {cur?.capacity}명 |{cur?.age} {cur?.gender}모임
-                  </Typography>
-                </Stack>
-              </CardContent>
+                    <Typography sx={{ fontSize: 12 }}>
+                      &nbsp;{cur?.address}&nbsp;&nbsp;
+                    </Typography>
+
+                    <img
+                      src="image/home/ic_calendar.png"
+                      style={{ width: 17, height: 17 }}
+                      alt="달력"
+                    />
+                    <Typography sx={{ fontSize: 12 }}>
+                      &nbsp;{cur?.date}&nbsp;&nbsp;
+                    </Typography>
+                    <img
+                      src="image/home/ic_time.png"
+                      style={{ width: 17, height: 17 }}
+                      alt="시간"
+                    />
+                    <Typography sx={{ fontSize: 12 }}>
+                      &nbsp;{cur?.time}&nbsp;&nbsp;
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", marginTop: 0.5 }}>
+                    <img
+                      src="image/home/ic_people.png"
+                      style={{ width: 17, height: 17 }}
+                      alt="시간"
+                    />
+                    <Typography sx={{ fontSize: 12 }}>
+                      &nbsp;{cur?.capacity}명&nbsp; {cur?.age} {cur?.gender}모임
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
             </Box>
-          </React.Fragment>
-        ))}
+          ))}
+          {/* </Box> */}
+        </ListBox>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PartyCard />
@@ -201,7 +232,6 @@ const ListBox = styled.div`
   width: 100%;
   height: 30em;
   padding-top: 1.5em;
-
   overflow-y: auto;
 `;
 

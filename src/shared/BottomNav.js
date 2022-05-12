@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import "../style/BottomNav.css";
 import styled from "styled-components";
+
 
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
@@ -17,12 +19,14 @@ const numconfig = (num) => {
 let para = document.location.href.split('/')[3]
 console.log(para);
   return (
+
     <Nav className="wrapper">
       <Link to="/home" className="nav-link" onClick={() => numconfig(1)}>
         <div>
           <img
             src={
               para === 'home'
+
                 ? "image/bar/home_active.png"
                 : "image/bar/home_inactive.png"
             }
@@ -37,7 +41,9 @@ console.log(para);
         <div>
           <img
             src={
+
               para === 'chat'
+
                 ? "image/bar/chat_active.png"
                 : "image/bar/chat_inactive.png"
             }
@@ -52,12 +58,16 @@ console.log(para);
         <div>
           <img
             src={
+
               para === 'regi'
+
                 ? "image/bar/write_active.png"
                 : "image/bar/write_inactive.png"
             }
             alt="regi"
+
             style={{ width: "2rem", }}
+
           />
         </div>
         파티작성
@@ -67,7 +77,9 @@ console.log(para);
         <div>
           <img
             src={
+
               para === 'profile'
+
                 ? "image/bar/my_active.png"
                 : "image/bar/my_inactive.png"
             }

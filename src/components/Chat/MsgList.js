@@ -26,7 +26,12 @@ const MsgList = () => {
   return (
     <Box>
       <Box
-        sx={{ display: "flex", borderBottom: "1px solid gray", padding: 1.5 }}
+        sx={{
+          display: "flex",
+          borderBottom: "1px solid #dfdfdf",
+          padding: 1.5,
+          paddingTop: "4.5em",
+        }}
       >
         <Avatar
           sx={{
@@ -71,7 +76,7 @@ const MsgList = () => {
       </Box>
       {/* {chatList?.map((cur,idx)=>{
       return(
-        <Box sx={{ display: "flex", borderBottom: "1px solid gray", padding: 1.5 }}>
+        <Box sx={{ display: "flex", borderBottom: "1px solid #dfdfdf", padding: 1.5 }}>
         <Avatar
           sx={{
             bgcolor: red[400],

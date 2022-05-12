@@ -33,12 +33,12 @@ const Joined = () => {
 
   return (
     <Box>
-      <Header />
+      <Header name={"히스토리"} />
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
-          margin: "2em",
+          paddingTop: "5em",
         }}
       >
         <Avatar

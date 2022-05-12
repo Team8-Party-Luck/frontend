@@ -22,7 +22,7 @@ const Foodlist = (props) => {
       >
         선호 음식 종류
       </Typography>
-      <FoodBox>
+      {/* <FoodBox>
         <Box>
           {food?.includes("한식") ? (
             <CheckBox
@@ -210,6 +210,376 @@ const Foodlist = (props) => {
             }}
           >
             비건
+          </Typography>
+        </Box>
+      </FoodBox> */}
+      <FoodBox>
+        <Box>
+          {food?.includes("한식") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "한식"));
+              }}
+            >
+              <img
+                src="image/category/selected/korean.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="한식"
+              onClick={() => {
+                setFood(food.concat("한식"));
+              }}
+            >
+              <img
+                src="image/category/select/korean.png"
+                style={{ width: "4.5em", height: "4em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            한식
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("중식") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "중식"));
+              }}
+            >
+              <img
+                src="image/category/selected/chinese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="중식"
+              onClick={() => {
+                setFood(food.concat("중식"));
+              }}
+            >
+              <img
+                src="image/category/select/chinese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            중식
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("일식") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "일식"));
+              }}
+            >
+              <img
+                src="image/category/selected/japanese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="일식"
+              onClick={() => {
+                setFood(food.concat("일식"));
+              }}
+            >
+              <img
+                src="image/category/select/japanese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            일식
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("양식") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "양식"));
+              }}
+            >
+              <img
+                src="image/category/selected/western.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="양식"
+              onClick={() => {
+                setFood(food.concat("양식"));
+              }}
+            >
+              <img
+                src="image/category/select/western.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            양식
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("패스트푸드") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "패스트푸드"));
+              }}
+            >
+              <img
+                src="image/category/selected/fastfood.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="패스트푸드"
+              onClick={() => {
+                setFood(food.concat("패스트푸드"));
+              }}
+            >
+              <img
+                src="image/category/select/fastfood.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            패스트푸드
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("샐러드") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "샐러드"));
+              }}
+            >
+              <img
+                src="image/category/selected/salad.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="샐러드"
+              onClick={() => {
+                setFood(food.concat("샐러드"));
+              }}
+            >
+              <img
+                src="image/category/select/salad.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            샐러드
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("디저트") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "디저트"));
+              }}
+            >
+              <img
+                src="image/category/selected/coffee.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="디저트"
+              onClick={() => {
+                setFood(food.concat("디저트"));
+              }}
+            >
+              <img
+                src="image/category/select/coffee.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            디저트
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("기타") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "기타"));
+              }}
+            >
+              <img
+                src="image/category/selected/etc.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="기타"
+              onClick={() => {
+                setFood(food.concat("기타"));
+              }}
+            >
+              <img
+                src="image/category/selected/etc.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            기타
           </Typography>
         </Box>
       </FoodBox>
