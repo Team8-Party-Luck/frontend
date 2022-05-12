@@ -6,10 +6,8 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-import AddSearch from "./address/AddSearch";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
-import Age from "./Age";
 import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
 import PersonInfo from "./PersonInfo";
