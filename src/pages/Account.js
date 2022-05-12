@@ -93,6 +93,7 @@ const Account = () => {
             onClick={() => {
               handleClose();
               sessionStorage.removeItem("token");
+              sessionStorage.removeItem("userid");
               history.push("/");
             }}
             autoFocus

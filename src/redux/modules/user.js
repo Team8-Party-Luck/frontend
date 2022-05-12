@@ -59,7 +59,6 @@ const kakaoLogin = (code) => {
     })
       .then((res) => {
         console.log(res.data); // 토큰이 넘어올 것임
-
         const KAKAO_TOKEN = res.data;
 
         sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
@@ -74,6 +73,7 @@ const kakaoLogin = (code) => {
           })
           .then((res) => {
             console.log(res.data, "여기까지는 성공");
+            sessionStorage.setItem("userid", res.data.result.userid);
             res.data.ok ? history.push("/home") : history.push("/setting");
           })
           .catch((err) => {
