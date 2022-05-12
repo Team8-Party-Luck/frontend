@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
 import Foodlist from "../Edit/Foodlist";
+import SetFood from "../components/Settings/SetFood";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -235,7 +236,7 @@ const Edit = (props) => {
           setRegion={setRegion}
         />
 
-        <Foodlist food={food} setFood={setFood} />
+        <SetFood food={food} setFood={setFood} />
         <Typography
           component="h6"
           variant="p"

@@ -187,7 +187,7 @@ const IntroInput = styled.textarea`
   border-radius: 3px;
   padding-left: 0.5em;
   padding-top: 0.8em;
-  font-size: 1.25em;
+  font-size: 1em;
   margin-top: 0.5em;
   word-spacing: -0.2em;
 `;

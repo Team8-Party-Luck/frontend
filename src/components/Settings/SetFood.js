@@ -27,7 +27,6 @@ const SetFood = (props) => {
       setCount(count + 1);
     }
   }
-  console.log(food.length);
 
   return (
     <React.Fragment>
@@ -37,7 +36,12 @@ const SetFood = (props) => {
       <FoodBox>
         <Box>
           {food?.includes("한식") ? (
-            <CheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
                 setFood(food.filter((food) => food !== "한식"));
                 setValue(!value);
@@ -45,9 +49,19 @@ const SetFood = (props) => {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/korean.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               value="한식"
               onClick={() => {
                 setFood(food.concat("한식"));
@@ -55,11 +69,14 @@ const SetFood = (props) => {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/korean.png"
+                style={{ width: "4.5em", height: "4em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -72,27 +89,47 @@ const SetFood = (props) => {
         </Box>
         <Box>
           {food?.includes("중식") ? (
-            <CheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
                 setFood(food.filter((food) => food !== "중식"));
+                setValue(!value);
                 {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/chinese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="중식"
               onClick={() => {
                 setFood(food.concat("중식"));
                 {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/chinese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -105,27 +142,47 @@ const SetFood = (props) => {
         </Box>
         <Box>
           {food?.includes("일식") ? (
-            <CheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
                 setFood(food.filter((food) => food !== "일식"));
+                setValue(!value);
                 {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/japanese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="일식"
               onClick={() => {
                 setFood(food.concat("일식"));
                 {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/japanese.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -138,27 +195,47 @@ const SetFood = (props) => {
         </Box>
         <Box>
           {food?.includes("양식") ? (
-            <CheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
                 setFood(food.filter((food) => food !== "양식"));
+                setValue(!value);
                 {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/western.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="양식"
               onClick={() => {
                 setFood(food.concat("양식"));
                 {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/western.png"
+                style={{ width: "4em", height: "4em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -170,28 +247,48 @@ const SetFood = (props) => {
           </Typography>
         </Box>
         <Box>
-          {food?.includes("아시안") ? (
-            <CheckBox
+          {food?.includes("패스트푸드") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
-                setFood(food.filter((food) => food !== "아시안"));
+                setFood(food.filter((food) => food !== "패스트푸드"));
+                setValue(!value);
                 {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/fastfood.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="패스트푸드"
               onClick={() => {
-                setFood(food.concat("아시안"));
+                setFood(food.concat("패스트푸드"));
                 {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/fastfood.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -199,32 +296,52 @@ const SetFood = (props) => {
               textAlign: "center",
             }}
           >
-            아시안
+            패스트푸드
           </Typography>
         </Box>
         <Box>
-          {food?.includes("할랄") ? (
-            <CheckBox
+          {food?.includes("샐러드") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
-                setFood(food.filter((food) => food !== "할랄"));
+                setFood(food.filter((food) => food !== "샐러드"));
+                setValue(!value);
                 {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/salad.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="샐러드"
               onClick={() => {
-                setFood(food.concat("할랄"));
+                setFood(food.concat("샐러드"));
                 {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/salad.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -232,32 +349,52 @@ const SetFood = (props) => {
               textAlign: "center",
             }}
           >
-            할랄
+            샐러드
           </Typography>
         </Box>
         <Box>
-          {food?.includes("비건") ? (
-            <CheckBox
+          {food?.includes("디저트") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
               onClick={() => {
-                setFood(food.filter((food) => food !== "비건"));
+                setFood(food.filter((food) => food !== "디저트"));
+                setValue(!value);
                 {
                   food?.length === 1 ? setCount(count - 1) : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/selected/coffee.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
           ) : (
-            <NonCheckBox
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="디저트"
               onClick={() => {
-                setFood(food.concat("비건"));
+                setFood(food.concat("디저트"));
                 {
                   food?.length === 0 ? add_count() : setValue(!value);
                 }
               }}
-            />
+            >
+              <img
+                src="image/category/select/coffee.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
           )}
           <Typography
-            component="p"
-            variant="p"
             sx={{
               color: "black",
               fontSize: "0.9em",
@@ -265,32 +402,66 @@ const SetFood = (props) => {
               textAlign: "center",
             }}
           >
-            비건
+            디저트
+          </Typography>
+        </Box>
+        <Box>
+          {food?.includes("기타") ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                setFood(food.filter((food) => food !== "기타"));
+                setValue(!value);
+                {
+                  food?.length === 1 ? setCount(count - 1) : setValue(!value);
+                }
+              }}
+            >
+              <img
+                src="image/category/selected/etc.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              value="기타"
+              onClick={() => {
+                setFood(food.concat("기타"));
+                {
+                  food?.length === 0 ? add_count() : setValue(!value);
+                }
+              }}
+            >
+              <img
+                src="image/category/selected/etc.png"
+                style={{ width: "3.5em", height: "3.5em" }}
+              />
+            </Box>
+          )}
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "0.9em",
+              marginTop: "0.5em",
+              textAlign: "center",
+            }}
+          >
+            기타
           </Typography>
         </Box>
       </FoodBox>
     </React.Fragment>
   );
 };
-
-const NonCheckBox = styled.div`
-  width: 4.5em;
-  height: 4.5em;
-  border-radius: 4.5em;
-  background: #dfdfdf;
-  margin: 0 auto;
-  cursor: pointer;
-`;
-
-const CheckBox = styled.div`
-  width: 4.5em;
-  height: 4.5em;
-  border-radius: 4.5em;
-  background: #ff6853;
-  margin: 0 auto;
-  position: relative;
-  cursor: pointer;
-`;
 
 const FoodBox = styled.div`
   width: 100%;

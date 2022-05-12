@@ -1,5 +1,4 @@
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
 import Setting from "./pages/Setting";
 import Setting2 from "./pages/Setting2";
 import "./App.css";
@@ -26,7 +25,6 @@ import ChatDetail from "./pages/ChatDetail";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
-import UserChat from "./pages/UserChat";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,7 +48,6 @@ function App() {
         <Route path="/userList" exact component={UserList} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/edit" exact component={Edit} />
-        <Route path="/signup" exact component={SignUp} />
         <Route path="/spin" exact component={Spinner} />
         <Route path="/setting" exact component={Setting} />
         <Route path="/setting2" exact component={Setting2} />
@@ -58,7 +55,6 @@ function App() {
         <Route path="/scrap" exact component={Scrap} />
         <Route path="/Account" exact component={Account} />
         <Route path="/inquary" exact component={Inquary} />
-        <Route path="/userChat" exact component={UserChat} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
     </React.Fragment>

@@ -13,25 +13,18 @@ const HeaderNav = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ bgcolor: "gray", position: "relative" }}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { sm: "block" } }}
-          >
-            potluck
-          </Typography>
+      <AppBar sx={{ bgcolor: "white", position: "relative", height: "5em" }}>
+        <Toolbar sx={{ marginTop: "0.8em" }}>
+          <img src="image/bar/exam.png" style={{ width: 200 }} />
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { md: "flex" } }}>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
+              sx={{ color: "black" }}
               onClick={() => {
-                history.push('/alarm');
+                history.push("/alarm");
               }}
             >
               <Badge badgeContent={20} color="error">
