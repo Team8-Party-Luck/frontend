@@ -12,44 +12,25 @@ import { KAKAO_AUTH_URL } from "../shared/OAuth";
 import styled from "styled-components";
 
 const Login = () => {
-  const dispatch = useDispatch();
-
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const login = () => {
-    const Login_info = {
-      email: values.email,
-      password: values.password,
-    };
-
-    console.log(Login_info);
-
-    dispatch(userActions.loginDB(Login_info));
-  };
-
   return (
     <React.Fragment>
       <Box
         sx={{
-          marginTop: 20,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            marginTop: 20,
+          }}
+        >
           <img src="image/login/img_login.png" />
         </Box>
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 16,
           }}
           onClick={() => {
             window.location.href = KAKAO_AUTH_URL;
@@ -57,9 +38,24 @@ const Login = () => {
         >
           <img src="image/kakao/kakao_login_medium_wide.png" />
         </Box>
+        <JustSee
+          onClick={() => {
+            history.push("/home");
+          }}
+        >
+          둘러보기
+        </JustSee>
       </Box>
     </React.Fragment>
   );
 };
+
+const JustSee = styled.button`
+  width: 300px;
+  height: 43px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 1em;
+`;
 
 export default Login;

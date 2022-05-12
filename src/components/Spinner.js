@@ -1,32 +1,25 @@
 import * as React from "react";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
+import { Typography, Box } from "@mui/material";
 
 const Spinner = () => {
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-  const [open, setOpen] = React.useState(true);
-
   return (
-    <div>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        aria-describedby="alert-dialog-slide-description"
-        style={{ background: "#FF6853" }}
-      >
-        <DialogTitle color="#FF6853">잇츨링에 오신 것을 환영해요🥰</DialogTitle>
-      </Dialog>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Box sx={{ marginTop: 38 }}>
+        <img src="image/login/img_loading.png" alt="asdasd" />
+        {/* <img
+          src={require("../../public/image/login/img_loading.png").default}
+        /> */}
+      </Box>
+      <Typography sx={{ marginTop: 3, color: "gray", fontWeight: "bold" }}>
+        Loading...
+      </Typography>
+    </Box>
   );
 };
 
