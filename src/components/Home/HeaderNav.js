@@ -15,7 +15,7 @@ const HeaderNav = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ bgcolor: "white", position: "relative", height: "5em" }}>
         <Toolbar sx={{ marginTop: "0.8em" }}>
-          <img src="image/bar/exam.png" style={{ width: 200 }} />
+          <img src="image/bar/exam.png" style={{ width: 170 }} />
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { md: "flex" } }}>

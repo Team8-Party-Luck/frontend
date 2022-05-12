@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Typography, Box } from "@mui/material";
 
 const SimpleSlider = () => {
   const settings = {
@@ -32,19 +33,34 @@ const SimpleSlider = () => {
   ];
 
   return (
-    <Container>
-      <StyledSlider {...settings}>
-        {items.map((item) => {
-          return (
-            <div key={item.id}>
-              <ImageContainer>
-                <Image src={item.url} />
-              </ImageContainer>
-            </div>
-          );
-        })}
-      </StyledSlider>
-    </Container>
+    // <Container>
+    //   <StyledSlider {...settings}>
+    //     {items.map((item) => {
+    //       return (
+    //         <div key={item.id}>
+    //           <ImageContainer>
+    //             <Image src={item.url} />
+    //           </ImageContainer>
+    //         </div>
+    //       );
+    //     })}
+    //   </StyledSlider>
+    // </Container>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "6.5em",
+        background: "#FF6853",
+      }}
+    >
+      <Typography
+        sx={{ fontWeight: "bold", fontSize: "1.5em", marginTop: "1.4em" }}
+      >
+        배너 자리
+      </Typography>
+    </Box>
   );
 };
 

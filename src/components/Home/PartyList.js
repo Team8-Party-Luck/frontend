@@ -134,45 +134,71 @@ const PartyList = (props) => {
       <TabPanel value={value} index={0}>
         {/* <Box sx={{ height: "50vh" }} ref={ref} onScroll={InfinityScroll}> */}
         {partyList?.map((cur, idx) => (
-          <React.Fragment key={idx}>
-            <Typography component="div" variant="h6" sx={{ fontWeight: 1000 }}>
+          <Box
+            onClick={() => {
+              history.push(`/partyInfo/${cur?.partyId}`);
+            }}
+            key={idx}
+            sx={{ marginTop: "1em" }}
+          >
+            <Typography sx={{ fontWeight: "bold", marginBottom: 0.3 }}>
               {cur?.title}
             </Typography>
-            <Box
-              sx={{ display: "flex", flexDirection: "row" }}
-              key={cur?.partyId}
-            >
+            <Box sx={{ display: "flex" }} key={cur?.partyId}>
               <Avatar
                 variant={"rounded"}
                 alt="The image"
                 src={cur?.image[0]}
                 style={{
-                  width: 90,
-                  height: 90,
-                  borderRadius: "1.3rem",
-                }}
-                onClick={() => {
-                  history.push(`/partyInfo/${cur?.partyId}`);
+                  width: 65,
+                  height: 65,
+                  borderRadius: "0.5em",
                 }}
               />
-              <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 1 }}>
-                <Stack spacing={1.5}>
-                  <Typography style={{ fontSize: "1rem" }}>
-                    {cur?.store}
+              <Box sx={{ marginLeft: "0.5em" }}>
+                <Typography style={{ fontSize: "0.9em", color: "gray" }}>
+                  {cur?.store}
+                </Typography>
+                <Box sx={{ display: "flex", marginTop: 0.3 }}>
+                  <img
+                    src="image/home/ic_location.png"
+                    style={{ width: 18, height: 18 }}
+                    alt="위치"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.address}&nbsp;&nbsp;
                   </Typography>
-                  <Typography style={{ fontSize: "1rem", margin: 0 }}>
-                    <LocationOnIcon
-                      style={{ fontSize: "1rem", marginTop: "0.5" }}
-                    />
-                    {cur?.address}|{cur?.date}|{cur?.time}
+
+                  <img
+                    src="image/home/ic_calendar.png"
+                    style={{ width: 17, height: 17 }}
+                    alt="달력"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.date}&nbsp;&nbsp;
                   </Typography>
-                  <Typography style={{ fontSize: "1rem", margin: 0 }}>
-                    {cur?.capacity}명 |{cur?.age} {cur?.gender}모임
+                  <img
+                    src="image/home/ic_time.png"
+                    style={{ width: 17, height: 17 }}
+                    alt="시간"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.time}&nbsp;&nbsp;
                   </Typography>
-                </Stack>
-              </CardContent>
+                </Box>
+                <Box sx={{ display: "flex", marginTop: 0.5 }}>
+                  <img
+                    src="image/home/ic_people.png"
+                    style={{ width: 17, height: 17 }}
+                    alt="시간"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.capacity}명&nbsp; {cur?.age} {cur?.gender}모임
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
-          </React.Fragment>
+          </Box>
         ))}
         {/* </Box> */}
       </TabPanel>
