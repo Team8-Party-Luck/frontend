@@ -49,7 +49,7 @@ const Login = () => {
         </Box>
         <Box
           sx={{
-            marginTop: 19,
+            marginTop: 20,
           }}
           onClick={() => {
             window.location.href = KAKAO_AUTH_URL;
