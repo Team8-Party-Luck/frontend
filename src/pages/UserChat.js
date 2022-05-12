@@ -1,12 +1,12 @@
-import React from 'react';
-import ChatHeaderNav from '../components/Chat/ChatHeaderNav';
-import BottomNav from '../shared/BottomNav';
+import React from "react";
+import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
+import BottomNav from "../shared/BottomNav";
 
-import SockJS from 'sockjs-client';
-import * as Stomp from '@stomp/stompjs';
+// import SockJS from "sockjs-client";
+// import * as Stomp from "@stomp/stompjs";
 
 const UserChat = () => {
-  // let sock = new SockJS('http://121.141.140.148:8088/gs-guide-websocket');
+  // let sock = new SockJS("http://121.141.140.148:8088/gs-guide-websocket");
   // let ws = Stomp.over(sock);
 
   // const enterMessage = {
@@ -57,7 +57,7 @@ const UserChat = () => {
   //       console.log(error.response);
   //     }
   //   }
-  
+
   //   React.useEffect(() => {
   //     ConnectSub();
   //     // dispatch(sockActions.getMessageDB(newM));
@@ -65,13 +65,13 @@ const UserChat = () => {
   //       DisConnectUnsub();
   //     };
   //   }, [roomId]);
- 
-    
 
-  return(<React.Fragment>
-    <ChatHeaderNav name="이상민"/>
-    <BottomNav></BottomNav>
-  </React.Fragment>)
-}
+  return (
+    <React.Fragment>
+      <ChatHeaderNav name="이상민" />
+      <BottomNav></BottomNav>
+    </React.Fragment>
+  );
+};
 
-export default UserChat
+export default UserChat;

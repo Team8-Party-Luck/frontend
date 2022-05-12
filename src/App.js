@@ -22,11 +22,11 @@ import Inquary from "./pages/Inquary";
 import Account from "./pages/Account";
 import Joined from "./pages/Joined";
 import Scrap from "./pages/Scrap";
+import ChatDetail from "./pages/ChatDetail";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
 import UserChat from "./pages/UserChat";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +43,7 @@ function App() {
         <Route path="/alarm" exact component={Alarm} />
         <Route path="/seeMore" exact component={SeeMore} />
         <Route path="/chat" exact component={Chat} />
+        <Route path="/chat/:roomId" exact component={ChatDetail} />
         <Route path="/regi" exact component={PartyRegist} />
         <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
         <Route path="/revise" exact component={PartyRevise} />

@@ -9,8 +9,7 @@ import PartyCard from "./PartyCard";
 import PartySpread from "./PartySpread";
 import { useInView } from "react-intersection-observer";
 import { Avatar, CardContent, Stack } from "@mui/material";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -122,13 +121,11 @@ const PartyList = (props) => {
         </Tabs>
       </Box>
 
-      <TabPanel value={value} index={0}>
-
+      <TabPanel value={value} index={0} ref={ref} onScroll={InfinityScroll}>
         {/* {spread} */}
-        {crewList?.map((cur, idx) => (
-        
-          <React.Fragment>
-            <Typography component="div" variant="h6" sx={{fontWeight:1000}}>
+        {partyList?.map((cur, idx) => (
+          <React.Fragment key={idx}>
+            <Typography component="div" variant="h6" sx={{ fontWeight: 1000 }}>
               {cur?.title}
             </Typography>
             <Box
@@ -142,7 +139,7 @@ const PartyList = (props) => {
                 style={{
                   width: 90,
                   height: 90,
-                  borderRadius:'1.3rem'
+                  borderRadius: "1.3rem",
                 }}
                 onClick={() => {
                   history.push(`/partyInfo/${cur?.partyId}`);
@@ -150,24 +147,23 @@ const PartyList = (props) => {
               />
               <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 1 }}>
                 <Stack spacing={1.5}>
-                  <Typography style={{ fontSize: "1rem",}} >
-                    {cur?.store} 
+                  <Typography style={{ fontSize: "1rem" }}>
+                    {cur?.store}
                   </Typography>
-                  <Typography style={{ fontSize: "1rem", margin:0 }}>
-                    <LocationOnIcon style={{fontSize:'1rem',marginTop:'0.5'}}/>{cur?.address}|
-                    {cur?.date}|
-                    {cur?.time}
+                  <Typography style={{ fontSize: "1rem", margin: 0 }}>
+                    <LocationOnIcon
+                      style={{ fontSize: "1rem", marginTop: "0.5" }}
+                    />
+                    {cur?.address}|{cur?.date}|{cur?.time}
                   </Typography>
-                  <Typography style={{ fontSize: "1rem", margin:0 }}>
-                    {cur?.capacity}명 |
-                    {cur?.age}  {cur?.gender}모임
+                  <Typography style={{ fontSize: "1rem", margin: 0 }}>
+                    {cur?.capacity}명 |{cur?.age} {cur?.gender}모임
                   </Typography>
                 </Stack>
               </CardContent>
             </Box>
           </React.Fragment>
         ))}
-
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PartyCard />
