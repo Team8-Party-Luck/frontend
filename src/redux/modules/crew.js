@@ -327,6 +327,7 @@ export default handleActions(
       [GET_DETAILUSER]: (state, action) =>
       produce(state, (draft) => {
         draft.detailUser = action.payload.detailUser;
+      }),
     [GET_WILL]: (state, action) =>
       produce(state, (draft) => {
         draft.will = action.payload.will;
