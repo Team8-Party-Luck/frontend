@@ -43,16 +43,17 @@ const Images = ({ image, setImage }) => {
 
   return (
     <div className="addPicture">
+
       <label>
         <ImageRadio
           type="radio"
           value="basic"
           checked={form === "basic"}
           onChange={handleRadio}
+         
         />
         기본 이미지
       </label>
-
       <label>
         <ImageRadio
           type="radio"
@@ -62,8 +63,9 @@ const Images = ({ image, setImage }) => {
         />
         직접 업로드
       </label>
+
       {form === "basic" ? (
-        <Box sx={{ width: "22rem" }}>
+        <Box sx={{ width: "21em" }}>
           <Taste image={image} setImage={setImage} />
         </Box>
       ) : (
@@ -74,7 +76,7 @@ const Images = ({ image, setImage }) => {
               border: "1px solid black",
               borderRadius: "10px",
               margin: "0.5rem",
-              width: "21rem",
+              width: "20rem",
             }}
           >
             <Box
