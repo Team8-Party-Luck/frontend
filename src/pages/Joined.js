@@ -18,76 +18,76 @@ import styled from "styled-components";
 const Joined = () => {
   const dispatch = useDispatch();
 
-  const token = sessionStorage.getItem("token");
+  // const token = sessionStorage.getItem("token");
 
-  const ref = useRef();
+  // const ref = useRef();
 
-  const [partyList, setPartyList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [hasNext, setHasNext] = useState(null);
-  console.log(page);
+  // const [partyList, setPartyList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [page, setPage] = useState(1);
+  // const [hasNext, setHasNext] = useState(null);
+  // console.log(page);
 
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
-  const InfinityScroll = _.throttle((e) => {
-    if (
-      e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
-      100
-    ) {
-      axios
-        .get(`http://3.38.180.96:8080/api/parties/history/in/${page}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-            accept: "application/json,",
-          },
-        })
-        .then((res) => {
-          setPartyList([...partyList, ...res.data.results]);
-          setIsLoading(false);
-          if (res.data.results.length < 10) {
-            setHasNext(false);
-          } else {
-            setHasNext(true);
-          }
-          setPage(page + 1);
-        });
-    }
-  }, 300);
+  // const InfinityScroll = _.throttle((e) => {
+  //   if (
+  //     e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
+  //     100
+  //   ) {
+  //     axios
+  //       .get(`http://3.38.180.96:8080/api/parties/history/in/${page}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "content-type": "application/json;charset=UTF-8",
+  //           accept: "application/json,",
+  //         },
+  //       })
+  //       .then((res) => {
+  //         setPartyList([...partyList, ...res.data.results]);
+  //         setIsLoading(false);
+  //         if (res.data.results.length < 10) {
+  //           setHasNext(false);
+  //         } else {
+  //           setHasNext(true);
+  //         }
+  //         setPage(page + 1);
+  //       });
+  //   }
+  // }, 300);
 
-  React.useEffect(() => {
-    axios
-      .get(`http://3.38.180.96:8080/api/parties/history/in/${page}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
-      .then((res) => {
-        console.log(res.data.results);
-        setPartyList([...partyList, ...res.data.results]);
-        setIsLoading(false);
-        if (res.data.results.length < 10) {
-          setHasNext(false);
-        } else {
-          setHasNext(true);
-        }
-        setPage(page + 1);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   axios
+  //     .get(`http://3.38.180.96:8080/api/parties/history/in/${page}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "content-type": "application/json;charset=UTF-8",
+  //         accept: "application/json,",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.results);
+  //       setPartyList([...partyList, ...res.data.results]);
+  //       setIsLoading(false);
+  //       if (res.data.results.length < 10) {
+  //         setHasNext(false);
+  //       } else {
+  //         setHasNext(true);
+  //       }
+  //       setPage(page + 1);
+  //     });
+  // }, []);
 
-  // useEffect(() => dispatch(crewActions.getScrapData()), []);
+  useEffect(() => dispatch(crewActions.getJoinedData()), []);
 
-  // const scrapData = useSelector((state) => state?.crew?.scrap?.results);
-  // console.log(scrapData);
+  const joinedData = useSelector((state) => state?.crew?.joined?.results);
+  console.log(joinedData);
 
   return (
     <Box>
       <Header name={"참여 히스토리"} />
-      <ListBox ref={ref} onScroll={InfinityScroll}>
-        {partyList?.map((cur, idx) => (
+      <ListBox>
+        {joinedData?.map((cur, idx) => (
           <Box
             onClick={() => {
               history.push(`/partyInfo/${cur?.partyId}`);

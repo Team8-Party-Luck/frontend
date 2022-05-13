@@ -1,7 +1,7 @@
 import React from "react";
 
-const JoinedData = () => {
+const ScrapData = () => {
   return <div></div>;
 };
 
-export default JoinedData;
+export default ScrapData;
