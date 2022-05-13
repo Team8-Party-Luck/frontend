@@ -3,18 +3,19 @@ import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configStore";
 
-
 //액션
 const GET_CREW = "GET_CREW";
 const GET_DETAIL = "GET_PARTYDETAIL";
 const GET_JOINED = "GET_JOINED";
 const GET_SCRAP = "GET_SCRAP";
+const GET_WILL = "GET_WILL";
 
 //액션크레이터
 const getCrew = createAction(GET_CREW, (crew) => ({ crew }));
 const getDetail = createAction(GET_DETAIL, (info) => ({ info }));
 const getJoined = createAction(GET_JOINED, (joined) => ({ joined }));
 const getScrap = createAction(GET_SCRAP, (scrap) => ({ scrap }));
+const getWill = createAction(GET_WILL, (will) => ({ will }));
 
 // 초기값
 const initialState = { crew: [] };
@@ -241,8 +242,26 @@ const sendJoinData = (partyId) => {
   };
 };
 
-
-
+//참여할 파티 조회
+const getWillData = () => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("http://3.38.180.96:8080/home/parties/join", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.results);
+        dispatch(getWill(res.data.results));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
 
 export default handleActions(
   {
@@ -262,6 +281,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.scrap = action.payload.scrap;
       }),
+    [GET_WILL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.will = action.payload.will;
+      }),
   },
   initialState
 );
@@ -280,6 +303,8 @@ const actionCreators = {
   getScrapData,
   sendScrapData,
   sendJoinData,
+  getWillData,
+  getWill,
 };
 
 export { actionCreators };
