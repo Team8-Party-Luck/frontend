@@ -46,6 +46,42 @@ const Taste = ({ image, setImage }) => {
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>한식</Box>
           </Stack>
         )}
+        {image === "중식" ? (
+          <Stack spacing={2}>
+            <Button
+              variant="contained"
+              sx={{
+                width: "4rem",
+                height: "4rem",
+                borderRadius: "50%",
+                marginRight: "0.5em",
+                background: "#FF6853",
+              }}
+              onClick={() => {
+                setImage("중식");
+              }}
+            ></Button>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>중식</Box>
+          </Stack>
+        ) : (
+          <Stack spacing={2}>
+            <Button
+              variant="outlined"
+              sx={{
+                width: "4rem",
+                height: "4rem",
+                borderRadius: "50%",
+                marginRight: "0.5em",
+                border: "1px solid #FF6853",
+                color: "#FF6853",
+              }}
+              onClick={() => {
+                setImage("중식");
+              }}
+            ></Button>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>중식</Box>
+          </Stack>
+        )}
         {image === "일식" ? (
           <Stack spacing={2}>
             <Button
@@ -97,7 +133,7 @@ const Taste = ({ image, setImage }) => {
                 setImage("양식");
               }}
             ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>양식</Box>
+            <Box style={{ marginTop: 5, marginLeft: "0.5rem" }}>양식</Box>
           </Stack>
         ) : (
           <Stack spacing={2}>
@@ -115,48 +151,12 @@ const Taste = ({ image, setImage }) => {
                 setImage("양식");
               }}
             ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>양식</Box>
-          </Stack>
-        )}
-        {image === "아시안" ? (
-          <Stack spacing={2}>
-            <Button
-              variant="contained"
-              sx={{
-                width: "4rem",
-                height: "4rem",
-                borderRadius: "50%",
-                marginRight: "0.5em",
-                background: "#FF6853",
-              }}
-              onClick={() => {
-                setImage("아시안");
-              }}
-            ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "0.5rem" }}>아시안</Box>
-          </Stack>
-        ) : (
-          <Stack spacing={2}>
-            <Button
-              variant="outlined"
-              sx={{
-                width: "4rem",
-                height: "4rem",
-                borderRadius: "50%",
-                marginRight: "0.5em",
-                border: "1px solid #FF6853",
-                color: "#FF6853",
-              }}
-              onClick={() => {
-                setImage("아시안");
-              }}
-            ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "0.5rem" }}>아시안</Box>
+            <Box style={{ marginTop: 5, marginLeft: "0.5rem" }}>양식</Box>
           </Stack>
         )}
       </Stack>
       <Stack direction="row" spacing={2}>
-        {image === "할랄" ? (
+        {image === "패스트푸드" ? (
           <Stack spacing={2}>
             <Button
               variant="contained"
@@ -168,10 +168,10 @@ const Taste = ({ image, setImage }) => {
                 background: "#FF6853",
               }}
               onClick={() => {
-                setImage("할랄");
+                setImage("패스트푸드");
               }}
             ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>할랄</Box>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>패스트푸드</Box>
           </Stack>
         ) : (
           <Stack spacing={2}>
@@ -186,13 +186,13 @@ const Taste = ({ image, setImage }) => {
                 color: "#FF6853",
               }}
               onClick={() => {
-                setImage("할랄");
+                setImage("패스트푸드");
               }}
             ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>할랄</Box>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>패스트푸드</Box>
           </Stack>
         )}
-         {image === "비건" ? (
+         {image === "샐러드" ? (
           <Stack spacing={2}>
             <Button
               variant="contained"
@@ -204,10 +204,10 @@ const Taste = ({ image, setImage }) => {
                 background: "#FF6853",
               }}
               onClick={() => {
-                setImage("비건");
+                setImage("샐러드");
               }}
             ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>비건</Box>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>샐러드</Box>
           </Stack>
         ) : (
           <Stack spacing={2}>
@@ -222,13 +222,49 @@ const Taste = ({ image, setImage }) => {
                 color: "#FF6853",
               }}
               onClick={() => {
-                setImage("비건");
+                setImage("샐러드");
               }}
             ></Button>
-            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>비건</Box>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>샐러드</Box>
           </Stack>
         )}
-        {image === "기타" ? (
+        {image === "디저트" ? (
+          <Stack spacing={2}>
+            <Button
+              variant="contained"
+              sx={{
+                width: "4rem",
+                height: "4rem",
+                borderRadius: "50%",
+                marginRight: "0.5em",
+                background: "#FF6853",
+              }}
+              onClick={() => {
+                setImage("디저트");
+              }}
+            ></Button>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>디저트</Box>
+          </Stack>
+        ) : (
+          <Stack spacing={2}>
+            <Button
+              variant="outlined"
+              sx={{
+                width: "4rem",
+                height: "4rem",
+                borderRadius: "50%",
+                marginRight: "0.5em",
+                border: "1px solid #FF6853",
+                color: "#FF6853",
+              }}
+              onClick={() => {
+                setImage("디저트");
+              }}
+            ></Button>
+            <Box style={{ marginTop: 5, marginLeft: "1rem" }}>디저트</Box>
+          </Stack>
+        )}
+         {image === "기타" ? (
           <Stack spacing={2}>
             <Button
               variant="contained"

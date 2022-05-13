@@ -58,6 +58,7 @@ const PartyDetailBottomNav = () => {
               sx={{ width: "9rem" }}
               onClick={() => {
                 deleteParty(partyId);
+                alert('파티 정말 삭제하시겠습니까?')
               }}
             >
               파티삭제
@@ -91,7 +92,7 @@ const PartyDetailBottomNav = () => {
               variant="outlined"
               sx={{ width: "9rem" }}
               onClick={() => {
-                // deleteParty(partyId);
+                dispatch(crewActions.sendCancelData(partyId));
               }}
             >
               신청취소

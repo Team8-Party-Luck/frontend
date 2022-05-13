@@ -48,8 +48,6 @@ const RegiWrite = () => {
       desc: desc,
     };
 
-    console.log(Write_info);
-
     dispatch(crewActions.regiWriteSend(Write_info));
   };
 

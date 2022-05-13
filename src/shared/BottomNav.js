@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
-  console.log(activeNav);
 
   React.useEffect(() => {}, []);
   const numconfig = (num) => {
@@ -14,7 +13,6 @@ const BottomNav = () => {
   };
 
   let para = document.location.href.split("/")[3];
-  console.log(para);
   return (
     <Nav className="wrapper">
       <Link to="/home" className="nav-link" onClick={() => numconfig(1)}>
@@ -28,7 +26,7 @@ const BottomNav = () => {
             alt="home"
             style={{ width: "2rem" }}
           />
-          {/* <div style={{}}>홈</div> */}
+          {/* 홈 */}
         </div>
       </Link>
 
@@ -88,6 +86,6 @@ const Nav = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 55px;
   background-color: #ffffff;
 `;

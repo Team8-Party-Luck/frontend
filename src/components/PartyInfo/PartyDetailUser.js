@@ -7,23 +7,29 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { history } from "../../redux/configStore";
 import PartyListUser from "../../pages/UserList";
 
-const PartyDetailUser = ({memberCnt, capacity,}) => {
+const PartyDetailUser = ({memberCnt, capacity, userimageurls, partyId}) => {
+
+  const userImage = userimageurls?.map((v) => (
+    <div>
+    <Avatar alt="Remy Sharp" src={v} key={v}/>
+    </div>
+  ))
+
   return (
     <React.Fragment >
       <Box sx={{m:1}} >
       참여자 리스트 {memberCnt}/{capacity}
       <Stack direction="row" spacing={2} sx={{mt:2}}>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+        {userImage}
         <IconButton
+        style={{position:'absolute', marginLeft:'20rem'}}
           size="large"
           color="inherit"
           onClick={() => {
-            history.push("/userList");
+            history.push({
+              pathname: '/userList',
+              state:partyId
+            });
           }}
         >
           <ArrowForwardIosIcon />
