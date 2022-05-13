@@ -17,7 +17,7 @@ import MapView from "./kakao/MapView";
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
   const [address, setAddress] = useState(null);
@@ -31,14 +31,46 @@ const RegiWrite = () => {
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
 
+  console.log(image);
   const sendWriteData = () => {
+    if (image.length === 0) {
+      alert("이미지 값이 입력되지 않았습니다.");
+    }
+    if (title === null) {
+      alert("제목 값이 입력되지 않았습니다.");
+    }
+    if (store === null) {
+      alert("가게명이 값이 입력되지 않았습니다.");
+    }
+    if (capacity === null) {
+      alert("인원수 값이 입력되지 않았습니다.");
+    }
+    if (ageGroup === null) {
+      alert("연령대 값이 입력되지 않았습니다.");
+    }
+    if (gender === null) {
+      alert("성별 값이 입력되지 않았습니다.");
+    }
+    if (date === null) {
+      alert("날짜 값이 입력되지 않았습니다.");
+    }
+    if (time === null) {
+      alert("시간 값이 입력되지 않았습니다.");
+    }
+    if (meeting === null) {
+      alert("만날 장소 값이 입력되지 않았습니다.");
+    }
+    if (desc === null) {
+      alert("파티 설명 값이 입력되지 않았습니다.");
+    }
+
     const Write_info = {
       image: image,
       title: title,
       store: store,
       address: address,
-      place_url:place_url,
-      xy:xy,
+      place_url: place_url,
+      xy: xy,
       capacity: capacity,
       age: ageGroup,
       gender: gender,
@@ -48,7 +80,23 @@ const RegiWrite = () => {
       desc: desc,
     };
 
-    dispatch(crewActions.regiWriteSend(Write_info));
+    if (
+      image.length !== 0 &&
+      title !== null &&
+      store !== null &&
+      capacity !== null &&
+      ageGroup !== null &&
+      gender !== null &&
+      date !== null &&
+      time !== null &&
+      meeting !== null &&
+      desc !== null
+    ) {
+      console.log(image);
+      dispatch(crewActions.regiWriteSend(Write_info));
+      alert("파티를 등록하시겠습니까?");
+      history.push("/home");
+    }
   };
 
   return (
@@ -120,8 +168,7 @@ const RegiWrite = () => {
           style={{ height: "3rem", width: "7rem", marginBottom: "4rem" }}
           onClick={() => {
             sendWriteData();
-            alert("파티를 등록하시겠습니까?");
-            history.push("/home");
+
           }}
         >
           등록

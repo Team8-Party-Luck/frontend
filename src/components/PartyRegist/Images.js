@@ -39,6 +39,8 @@ const Images = ({ image, setImage }) => {
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (id) => {
     setShowImages(showImages.filter((_, index) => index !== id));
+    setImage(showImages.filter((_, index) => index !== id))
+
   };
 
   return (
