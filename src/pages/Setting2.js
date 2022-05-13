@@ -60,7 +60,7 @@ const Setting2 = (props) => {
     <React.Fragment>
       <Box sx={{ height: "6em", padding: 2 }}>
         <Contain>
-          {values.nickname && values.sns && values.intro ? (
+          {values.nickname && values.intro ? (
             <Progress width={(5 / 5) * 100 + "%"} />
           ) : (
             <Progress width={(count / 5) * 100 + "%"} />
@@ -95,7 +95,7 @@ const Setting2 = (props) => {
           onChange={handleChange("nickname")}
         />
         <Typography component="h4" variant="p" sx={{ marginTop: 3 }}>
-          SNS
+          SNS(선택)
         </Typography>
         <ValuesInput
           placeholder="URL을 입력해주세요"
@@ -112,7 +112,7 @@ const Setting2 = (props) => {
           placeholder="여러분을 소개할 수 있는 소개글을 작성해주세요!"
           onChange={handleChange("intro")}
         />
-        {values.nickname && values.sns && values.intro ? (
+        {values.nickname && values.intro ? (
           <Button
             variant="contained"
             onClick={() => {
@@ -189,7 +189,9 @@ const IntroInput = styled.textarea`
   padding-top: 0.8em;
   font-size: 1em;
   margin-top: 0.5em;
-  word-spacing: -0.2em;
+  word-spacing: 0.03em;
+  word-wrap: break-word;
+  word-break: break-word;
 `;
 
 export default Setting2;

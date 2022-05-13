@@ -31,7 +31,7 @@ const AllData = (props) => {
           <Avatar
             variant={"rounded"}
             alt="The image"
-            src={image}
+            src={image[0]}
             style={{
               width: 65,
               height: 65,
