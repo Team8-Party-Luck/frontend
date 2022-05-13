@@ -8,18 +8,18 @@ const GET_CREW = "GET_CREW";
 const GET_DETAIL = "GET_PARTYDETAIL";
 const GET_JOINED = "GET_JOINED";
 const GET_SCRAP = "GET_SCRAP";
-const GET_DETAILUSER = 'GET_DETAILUSER';
+const GET_DETAILUSER = "GET_DETAILUSER";
 const GET_WILL = "GET_WILL";
-
 
 //액션크레이터
 const getCrew = createAction(GET_CREW, (crew) => ({ crew }));
 const getDetail = createAction(GET_DETAIL, (info) => ({ info }));
 const getJoined = createAction(GET_JOINED, (joined) => ({ joined }));
 const getScrap = createAction(GET_SCRAP, (scrap) => ({ scrap }));
-const getDetailUser = createAction(GET_DETAILUSER, (detailUser) => ({detailUser}));
+const getDetailUser = createAction(GET_DETAILUSER, (detailUser) => ({
+  detailUser,
+}));
 const getWill = createAction(GET_WILL, (will) => ({ will }));
-
 
 // 초기값
 const initialState = { crew: [] };
@@ -167,22 +167,23 @@ const getDetailInfo = (partyId) => {
 };
 //파티 유저리스트 조회
 const getUserList = (partyId) => {
-  return function(dispatch, getState, {history}) {
-    axios.get(`http://3.38.180.96:8080/api/party/userlist/${partyId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "content-type": "application/json;charset=UTF-8",
-        accept: "application/json,",
-      },
-    })
-    .then((res) => {
-      dispatch(getDetailUser(res.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-}
+  return function (dispatch, getState, { history }) {
+    axios
+      .get(`http://3.38.180.96:8080/api/party/userlist/${partyId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        dispatch(getDetailUser(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
 // 내가 참여한 파티 조회
 const getJoinedData = () => {
   return function (dispatch, getState, { history }) {
@@ -256,7 +257,7 @@ const sendJoinData = (partyId) => {
         },
       })
       .then((res) => {
-        alert(res.data)
+        alert(res.data);
         console.log(res.data);
       })
       .catch((error) => {
@@ -276,7 +277,7 @@ const sendCancelData = (partyId) => {
         },
       })
       .then((res) => {
-        alert(res.data)
+        alert(res.data);
         console.log(res.data);
       })
       .catch((error) => {
@@ -324,13 +325,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.scrap = action.payload.scrap;
       }),
-      [GET_DETAILUSER]: (state, action) =>
+    [GET_DETAILUSER]: (state, action) =>
       produce(state, (draft) => {
         draft.detailUser = action.payload.detailUser;
+      }),
     [GET_WILL]: (state, action) =>
       produce(state, (draft) => {
         draft.will = action.payload.will;
-
       }),
   },
   initialState
