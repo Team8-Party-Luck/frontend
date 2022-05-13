@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
@@ -12,46 +11,47 @@ import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
 import PersonInfo from "./PersonInfo";
 
-import {useLocation} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { history } from "../../redux/configStore";
-
-
 
 import HeaderNav from "../../shared/HeaderNav";
 
 const PartyRevise = () => {
   const location = useLocation();
-  const partyId = location.state
+  const partyId = location.state;
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
   const partyUser = useSelector((state) => state?.crew?.info);
+  console.log(partyUser);
 
-  const [image, setImage] = useState(partyUser?.image || '');
-  const [title, setTitle] = useState(partyUser?.title || '');
-  const [store, setStore] = useState(partyUser?.store || '');
-  const [address, setAddress] = useState(partyUser?.address || '');
-  const [place_url, setPlace_url] = useState(partyUser?.place_url || '');
-  const [xy, setXy] = useState(partyUser?.xy || '');
-  const [capacity, setCapacity] = useState(partyUser?.capacity || '');
-  const [ageGroup, setAgeGroup] = useState(partyUser?.ageGroup || '');
-  const [gender, setGender] = useState(partyUser?.gender || '');
-  const [date, setDate] = useState(partyUser?.date || '');
-  const [time, setTime] = useState(partyUser?.time || '');
-  const [meeting, setMeeting] = useState(partyUser?.meeting || '');
-  const [desc, setDesc] = useState(partyUser?.desc || '');
+  const [image, setImage] = useState(partyUser?.image || "");
+  const [title, setTitle] = useState(partyUser?.title || "");
+  const [store, setStore] = useState(partyUser?.store || "");
+  const [address, setAddress] = useState(partyUser?.address || "");
+  const [place_url, setPlace_url] = useState(partyUser?.place_url || "");
+  const [xy, setXy] = useState(partyUser?.xy || "");
+  const [capacity, setCapacity] = useState(partyUser?.capacity || "");
+  const [ageGroup, setAgeGroup] = useState(partyUser?.age || "");
+  const [gender, setGender] = useState(partyUser?.gender || "");
+  const [date, setDate] = useState(partyUser?.date || "");
+  const [time, setTime] = useState(partyUser?.time || "");
+  const [meeting, setMeeting] = useState(partyUser?.meeting || "");
+  const [desc, setDesc] = useState(partyUser?.desc || "");
+
+  console.log(ageGroup);
 
   const sendReviseData = () => {
     const Write_info = {
-      image: image,
+      // image: image,
       title: title,
       store: store,
       address: address,
-      place_url:place_url,
-      xy:xy,
+      place_url: place_url,
+      xy: xy,
       capacity: capacity,
       age: ageGroup,
       gender: gender,
@@ -77,9 +77,9 @@ const PartyRevise = () => {
 
   return (
     <React.Fragment>
-      <HeaderNav name="파티수정"/>
+      <HeaderNav name="파티수정" />
       <Grid container alignItems="center" justifyContent="center">
-        <Images image={image} setImage={setImage} />
+        {/* <Images image={image} setImage={setImage} /> */}
         <TextField
           id="partyName"
           label="파티제목"
@@ -98,7 +98,7 @@ const PartyRevise = () => {
           setPlace_url={setPlace_url}
           setXy={setXy}
         />
-         <PersonInfo
+        <PersonInfo
           capacity={capacity}
           setCapacity={setCapacity}
           ageGroup={ageGroup}
@@ -107,7 +107,6 @@ const PartyRevise = () => {
           setGender={setGender}
           value="안녕"
         />
-
         <Box component="div" sx={{ display: "inline", width: "10rem" }}>
           <RealDay date={date} setDate={setDate} />
         </Box>
@@ -115,7 +114,7 @@ const PartyRevise = () => {
           <TimeSelect time={time} setTime={setTime} />
         </Box>
         <TextField
-        value={meeting}
+          value={meeting}
           id="meetPlace"
           label="만날 장소"
           variant="standard"
@@ -126,7 +125,7 @@ const PartyRevise = () => {
           }}
         />{" "}
         <TextField
-        value={desc}
+          value={desc}
           multiline
           id="partyDesc"
           label="설명글을 입력해주세요!"

@@ -23,13 +23,14 @@ const RegiWrite = () => {
   const [address, setAddress] = useState(null);
   const [place_url, setPlace_url] = useState(null);
   const [xy, setXy] = useState(null);
-  const [capacity, setCapacity] = useState(null);
-  const [ageGroup, setAgeGroup] = useState(null);
-  const [gender, setGender] = useState(null);
+  const [capacity, setCapacity] = useState("2");
+  const [ageGroup, setAgeGroup] = useState("전체");
+  const [gender, setGender] = useState("모두");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
+  const [value, setValue] = useState(false);
 
   console.log(image);
   const sendWriteData = () => {
@@ -168,7 +169,6 @@ const RegiWrite = () => {
           style={{ height: "3rem", width: "7rem", marginBottom: "4rem" }}
           onClick={() => {
             sendWriteData();
-
           }}
         >
           등록

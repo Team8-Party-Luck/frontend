@@ -84,9 +84,9 @@ const reviseSend = (Write_info, partyId) => {
     file.append("meeting", Write_info.meeting);
     file.append("desc", Write_info.desc);
 
-    Array.from(Write_info.image).forEach((a) => {
-      file.append("image", a);
-    });
+    // Array.from(Write_info.image).forEach((a) => {
+    //   file.append("image", a);
+    // });
 
     axios
       .put(`http://3.38.180.96/api/party/${partyId}`, file, {
