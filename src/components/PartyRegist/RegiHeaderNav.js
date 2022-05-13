@@ -36,9 +36,15 @@ const RegiHeaderNav = () => {
               handleOpen();
             }}
           />
-          <Box sx={{ flexGrow: 0.45 }} />
+          <Box sx={{ flexGrow: 1.1 }} />
           <div style={{ color: "#161616", fontSize: "20px" }}>파티등록</div>
+
+          <Box sx={{ flexGrow: 1 }} />
+          <span   onClick={() => {
+            console.log('hi');
+          }}style={{ color: "#FF6853", fontSize: "18px"}}>완료</span>
         </Toolbar>
+       
       </AppBar>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style} justifyContent="center" alignItems="center">

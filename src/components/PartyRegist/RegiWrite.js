@@ -30,9 +30,8 @@ const RegiWrite = () => {
   const [time, setTime] = useState(null);
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
-  const [value, setValue] = useState(false);
+  // const [value, setValue] = useState(false);
 
-  console.log(image);
   const sendWriteData = () => {
     if (image.length === 0) {
       alert("이미지 값이 입력되지 않았습니다.");
@@ -95,8 +94,6 @@ const RegiWrite = () => {
     ) {
       console.log(image);
       dispatch(crewActions.regiWriteSend(Write_info));
-      alert("파티를 등록하시겠습니까?");
-      history.push("/home");
     }
   };
 
@@ -108,7 +105,7 @@ const RegiWrite = () => {
           id="partyName"
           label="파티제목"
           variant="standard"
-          style={{ width: "80%" }}
+          style={{ width: "85%" }}
           sx={{ mb: 1.5 }}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -130,17 +127,17 @@ const RegiWrite = () => {
           setGender={setGender}
           value="안녕"
         />
-        <Box component="div" sx={{ display: "inline", width: "10rem" }}>
+        <Box component="div" sx={{ display: "inline", width: "11rem" }}>
           <RealDay date={date} setDate={setDate} />
         </Box>
-        <Box component="div" sx={{ display: "inline", width: "10rem" }}>
+        <Box component="div" sx={{ display: "inline", width: "11rem" }}>
           <TimeSelect time={time} setTime={setTime} />
         </Box>
         <TextField
           id="meetPlace"
           label="만날 장소"
           variant="standard"
-          style={{ width: "80%" }}
+          style={{ width: "85%" }}
           sx={{ mb: 1.5 }}
           onChange={(e) => {
             setMeeting(e.target.value);
@@ -152,7 +149,7 @@ const RegiWrite = () => {
           label="설명글을 입력해주세요!"
           rows={5}
           variant="standard"
-          style={{ width: "80%" }}
+          style={{ width: "85%" }}
           inputProps={{
             style: {
               height: "10rem",
