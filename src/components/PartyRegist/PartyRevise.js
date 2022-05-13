@@ -26,7 +26,17 @@ const PartyRevise = () => {
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
   const partyUser = useSelector((state) => state?.crew?.info);
-  console.log(partyUser);
+
+  const dateConfig = () => {
+    const reviseDate = new Date(`2022-${partyUser?.date}`)
+    let month = String(reviseDate.getMonth()+1)
+    month = month >= 10 ? month: '0' + month;
+    let day = String(reviseDate.getDate());
+    day = day >= 10 ? day : '0' + day;
+    return (`${month}월 ${day}일`)
+  }
+
+ 
 
   const [image, setImage] = useState(partyUser?.image || "");
   const [title, setTitle] = useState(partyUser?.title || "");
@@ -42,7 +52,7 @@ const PartyRevise = () => {
   const [meeting, setMeeting] = useState(partyUser?.meeting || "");
   const [desc, setDesc] = useState(partyUser?.desc || "");
 
-  console.log(ageGroup);
+
 
   const sendReviseData = () => {
     const Write_info = {

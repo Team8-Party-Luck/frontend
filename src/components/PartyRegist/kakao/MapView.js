@@ -25,7 +25,7 @@ export default function MapView({store, setStore, setAddress, setPlace_url, setX
   const handleClose = () => setOpen(false);
 
   return (
-    <div style={{ width: "80%" }}>
+    <div style={{ width: "85%" }}>
       <TextField
         value={store || ''}
         id="eateryName"

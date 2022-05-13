@@ -84,7 +84,7 @@ const PersonInfo = ({
 
       <Button
         sx={{
-          width: "80%",
+          width: "85%",
           ml: "2rem",
           my: "2rem",
           border: 1,
@@ -98,7 +98,7 @@ const PersonInfo = ({
   );
 
   return (
-    <div style={{ width: "80%" }}>
+    <div style={{ width: "85%" }}>
       {["bottom"].map((anchor) => (
         <React.Fragment key={anchor}>
           <TextField

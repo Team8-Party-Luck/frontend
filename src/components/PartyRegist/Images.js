@@ -39,20 +39,17 @@ const Images = ({ image, setImage }) => {
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (id) => {
     setShowImages(showImages.filter((_, index) => index !== id));
-    setImage(showImages.filter((_, index) => index !== id))
-
+    setImage(showImages.filter((_, index) => index !== id));
   };
 
   return (
-    <div className="addPicture">
-
+    <div className="addPicture" style={{marginBottom:'1.5rem'}}>
       <label>
         <ImageRadio
           type="radio"
           value="basic"
           checked={form === "basic"}
           onChange={handleRadio}
-         
         />
         기본 이미지
       </label>
@@ -75,10 +72,10 @@ const Images = ({ image, setImage }) => {
           <Box>첫번째 사진이 프로필 사진입니다</Box>
           <div
             style={{
-              border: "1px solid black",
-              borderRadius: "10px",
-              margin: "0.5rem",
-              width: "20rem",
+              // border: "1px solid black",
+              // borderRadius: "10px",
+              // margin: "0.5rem",
+              width: "21rem",
             }}
           >
             <Box
@@ -100,8 +97,8 @@ const Images = ({ image, setImage }) => {
                 />
                 <Box component="div" sx={{ display: "inline-block" }}>
                   <AddPhotoAlternateIcon
-                    sx={{ fontSize: "4rem", p: 2, m: 1 }}
-                    style={{ border: "1px solid black", borderRadius: "4px" }}
+                    sx={{ fontSize: "4.5rem", p: 2, m: 1 }}
+                    style={{ border: "1px solid black", borderRadius: "9px" }}
                   />
                 </Box>
               </label>
@@ -110,13 +107,13 @@ const Images = ({ image, setImage }) => {
                 {showImages.map((image, id) => (
                   <span className="imageContainer" key={id}>
                     <Img
-                      style={{ marginRight: "0", marginBottom: "0.5rem" }}
+                      style={{ marginRight: "0", marginBottom: "0.5rem", borderRadius:'0.7rem',width:'4.5rem', height:'4.5rem' }}
                       src={image}
                       alt={`${image}-${id}`}
                     />
                     <span onClick={() => handleDeleteImage(id)}>
                       {" "}
-                      <DeleteIcon sx={{ mb: 7.5 }} />
+                      <DeleteIcon sx={{ mb: 8, ml:-1.5, fontSize:'1.5rem' }} />
                     </span>
                     {console.log(image)}
                   </span>
