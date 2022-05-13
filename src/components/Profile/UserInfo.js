@@ -17,60 +17,6 @@ const UserInfo = (props) => {
 
   return (
     <Box sx={{ padding: 2 }}>
-      {/* <Card
-        sx={{
-          width: "100%",
-          margin: "0 auto",
-          position: "relative",
-        }}
-      >
-        <CardHeader
-          avatar={
-            <Avatar
-              sx={{ bgcolor: red[400], width: "4em", height: "4em" }}
-              aria-label="recipe"
-              src={user_info?.image}
-            ></Avatar>
-          }
-          action={
-            <IconButton
-              aria-label="settings"
-              onClick={() => {
-                history.push("/edit");
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-          }
-        />
-        <hr style={{ margin: "0 1em" }} />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {user_info?.intro}
-          </Typography>
-          <Typography
-            component="h3"
-            variant="p"
-            sx={{ position: "absolute", top: "1.5em", left: "6em" }}
-          >
-            {user_info?.nickname}
-          </Typography>
-          <Typography
-            component="h4"
-            variant="p"
-            sx={{
-              position: "absolute",
-              top: "4.5em",
-              left: "8.1em",
-              color: "gray",
-              fontSize: "14px",
-            }}
-          >
-            {user_info?.gender} {user_info?.age} {user_info?.city}{" "}
-            {user_info?.region}
-          </Typography>
-        </CardContent>
-      </Card> */}
       <Box sx={{ display: "flex", marginTop: 3 }}>
         <Avatar
           sx={{

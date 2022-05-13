@@ -18,6 +18,7 @@ import { useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import RegionSelect from "./RegionSelect";
+import AllData from "./AllData";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,6 +64,28 @@ const PartyList = (props) => {
   const [city, setCity] = useState("서울");
   const [district, setDistrict] = useState("");
 
+  React.useEffect(() => {
+    axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
+      console.log(res.data.results);
+      setPartyList([...partyList, ...res.data.results]);
+      setIsLoading(false);
+      if (res.data.results.length < 10) {
+        setHasNext(false);
+      } else {
+        setHasNext(true);
+      }
+      setPage(page + 1);
+    });
+  }, []);
+
+  React.useEffect(() => {
+    dispatch(crewActions.getWillData());
+    dispatch(crewActions.getScrapData());
+  }, []);
+
+  const willData = useSelector((state) => state?.crew?.will);
+  const scrapData = useSelector((state) => state?.crew?.scrap?.results);
+
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
   const InfinityScroll = _.throttle((e) => {
@@ -82,20 +105,6 @@ const PartyList = (props) => {
       });
     }
   }, 300);
-
-  React.useEffect(() => {
-    axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
-      console.log(res.data.results);
-      setPartyList([...partyList, ...res.data.results]);
-      setIsLoading(false);
-      if (res.data.results.length < 10) {
-        setHasNext(false);
-      } else {
-        setHasNext(true);
-      }
-      setPage(page + 1);
-    });
-  }, []);
 
   // const crewList = useSelector((state) => state?.crew?.crew);
   // console.log(crewList);
@@ -130,96 +139,56 @@ const PartyList = (props) => {
 
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
-          {/* <Box sx={{ height: "50vh" }} > */}
           {partyList?.map((cur, idx) => (
-            <Box
-              onClick={() => {
-                history.push(`/partyInfo/${cur?.partyId}`);
-              }}
-              key={idx}
-              sx={{ marginTop: "1em" }}
-            >
-              <Typography sx={{ fontWeight: "bold", marginBottom: 0.3 }}>
-                {cur?.title}
-              </Typography>
-              <Box sx={{ display: "flex" }} key={cur?.partyId}>
-                <Avatar
-                  variant={"rounded"}
-                  alt="The image"
-                  src={cur?.image[0]}
-                  style={{
-                    width: 65,
-                    height: 65,
-                    borderRadius: "0.5em",
-                  }}
-                />
-                <Box sx={{ marginLeft: "0.5em" }}>
-                  <Typography style={{ fontSize: "0.9em", color: "gray" }}>
-                    {cur?.store}
-                  </Typography>
-                  <Box sx={{ display: "flex", marginTop: 0.3 }}>
-                    <img
-                      src="image/home/ic_location.png"
-                      style={{ width: 18, height: 18 }}
-                      alt="위치"
-                    />
-                    <Typography sx={{ fontSize: 12 }}>
-                      &nbsp;{cur?.address}&nbsp;&nbsp;
-                    </Typography>
-
-                    <img
-                      src="image/home/ic_calendar.png"
-                      style={{ width: 17, height: 17 }}
-                      alt="달력"
-                    />
-                    <Typography sx={{ fontSize: 12 }}>
-                      &nbsp;{cur?.date}&nbsp;&nbsp;
-                    </Typography>
-                    <img
-                      src="image/home/ic_time.png"
-                      style={{ width: 17, height: 17 }}
-                      alt="시간"
-                    />
-                    <Typography sx={{ fontSize: 12 }}>
-                      &nbsp;{cur?.time}&nbsp;&nbsp;
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", marginTop: 0.5 }}>
-                    <img
-                      src="image/home/ic_people.png"
-                      style={{ width: 17, height: 17 }}
-                      alt="시간"
-                    />
-                    <Typography sx={{ fontSize: 12 }}>
-                      &nbsp;{cur?.capacity}명&nbsp; {cur?.age} {cur?.gender}모임
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+            <AllData
+              key={cur?.partyId}
+              partyId={cur?.partyId}
+              title={cur?.title}
+              image={cur?.image}
+              store={cur?.store}
+              address={cur?.address}
+              date={cur?.date}
+              time={cur?.time}
+              capacity={cur?.capacity}
+              age={cur?.age}
+              gender={cur?.gender}
+            />
           ))}
-          {/* </Box> */}
         </ListBox>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
+        {willData?.map((cur, idx) => (
+          <AllData
+            key={cur?.partyId}
+            partyId={cur?.partyId}
+            title={cur?.title}
+            image={cur?.image}
+            store={cur?.store}
+            address={cur?.address}
+            date={cur?.date}
+            time={cur?.time}
+            capacity={cur?.capacity}
+            age={cur?.age}
+            gender={cur?.gender}
+          />
+        ))}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
-        <PartyCard />
+        {scrapData?.map((cur, idx) => (
+          <AllData
+            key={cur?.partyId}
+            partyId={cur?.partyId}
+            title={cur?.title}
+            image={cur?.image}
+            store={cur?.store}
+            address={cur?.address}
+            date={cur?.date}
+            time={cur?.time}
+            capacity={cur?.capacity}
+            age={cur?.age}
+            gender={cur?.gender}
+          />
+        ))}
       </TabPanel>
     </Box>
   );
