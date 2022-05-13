@@ -11,10 +11,7 @@ import Box from "@mui/material/Box";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 
-
-
 const PartyInfo = () => {
-  
   const { partyId } = useParams();
 
   const dispatch = useDispatch();
@@ -25,12 +22,11 @@ const PartyInfo = () => {
   const userCheck = useSelector((state) => state?.user?.user?.result);
   const partyUser = useSelector((state) => state?.crew?.info);
 
+  //상세정보
   const image = partyUser?.image;
   const title = partyUser?.title;
   const store = partyUser?.store;
   const address = partyUser?.address;
-  const capacity = partyUser?.capacity;
-  const memberCnt = partyUser?.memberCnt;
   const date = partyUser?.date;
   const time = partyUser?.time;
   const desc = partyUser?.desc;
@@ -39,6 +35,10 @@ const PartyInfo = () => {
   const gender = partyUser?.gender;
   const meeting = partyUser?.meeting;
 
+  //참여한 유저 리스트
+  const capacity = partyUser?.capacity;
+  const memberCnt = partyUser?.memberCnt;
+  const userimageurls = partyUser?.userimageurls;
 
   return (
     <React.Fragment>
@@ -56,18 +56,11 @@ const PartyInfo = () => {
         meeting={meeting}
         age={age}
       />
-      <PartyDetailUser memberCnt={memberCnt} capacity={capacity}/>
-      <PartyDetailDesc desc={desc}/>
+      <PartyDetailUser memberCnt={memberCnt} capacity={capacity} userimageurls={userimageurls} partyId={partyId}/>
+      <PartyDetailDesc desc={desc} />
       <PartyDetailBottomNav />
     </React.Fragment>
   );
 };
 
 export default PartyInfo;
-
-// gender: "남자"
-// host: "qwer"
-// hostid: 2
-// join: true
-// meeting: "우리집"
-// sub: true

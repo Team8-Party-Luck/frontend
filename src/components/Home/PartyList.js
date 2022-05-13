@@ -227,7 +227,7 @@ const PartyList = (props) => {
 
 const ListBox = styled.div`
   width: 100%;
-  height: 30em;
+  height: 35em;
   // padding-top: 1.5em;
   overflow-y: auto;
 `;

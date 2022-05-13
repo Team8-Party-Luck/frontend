@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
 
 import Taste from "./Taste";
 const Images = ({ image, setImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
+
+  const handleRadio = (e) => {
+    setForm(e.target.value);
+  };
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
@@ -44,28 +43,27 @@ const Images = ({ image, setImage }) => {
 
   return (
     <div className="addPicture">
-      <FormControl sx={{ ml: "0.7rem" }}>
-        <RadioGroup row defaultValue="직접 업로드">
-          <FormControlLabel
-            value="기본 이미지"
-            control={<Radio />}
-            label="기본 이미지"
-            onClick={() => {
-              setForm("basic");
-            }}
-          />
-          <FormControlLabel
-            value="직접 업로드"
-            control={<Radio />}
-            label="직접 업로드"
-            onClick={() => {
-              setForm("directly");
-            }}
-          />
-        </RadioGroup>
-      </FormControl>
+      <label>
+        <ImageRadio
+          type="radio"
+          value="basic"
+          checked={form === "basic"}
+          onChange={handleRadio}
+        />
+        기본 이미지
+      </label>
+
+      <label>
+        <ImageRadio
+          type="radio"
+          value="directly"
+          checked={form === "directly"}
+          onChange={handleRadio}
+        />
+        직접 업로드
+      </label>
       {form === "basic" ? (
-        <Box sx={{ width: "21rem" }}>
+        <Box sx={{ width: "22rem" }}>
           <Taste image={image} setImage={setImage} />
         </Box>
       ) : (
@@ -83,13 +81,11 @@ const Images = ({ image, setImage }) => {
               component="div"
               sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
             >
-             
               <label
                 htmlFor="input-file"
                 className="addButton"
                 onChange={handleAddImages}
               >
-                
                 <input
                   type="file"
                   id="input-file"
@@ -110,7 +106,7 @@ const Images = ({ image, setImage }) => {
                 {showImages.map((image, id) => (
                   <span className="imageContainer" key={id}>
                     <Img
-                      style={{ marginRight: "0", marginBottom:'0.5rem' }}
+                      style={{ marginRight: "0", marginBottom: "0.5rem" }}
                       src={image}
                       alt={`${image}-${id}`}
                     />
@@ -138,11 +134,12 @@ const Img = styled.img`
   border-radius: 5px;
 `;
 
-const AddPhoto = styled.span`
-  border: 1px solid #dddddd;
-  padding: 2rem;
-  width: 5.5rem;
-  margin: 0;
+const ImageRadio = styled.input`
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+  margin: 15px 5px 15px 10px;
+  accent-color: #f7543e;
 `;
 
 export default Images;
