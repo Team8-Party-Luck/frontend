@@ -33,7 +33,7 @@ console.log(para);
             alt="home"
             style={{ width: "2rem" }}
           />
-          <div style={{}}>홈</div>
+          {/* <div style={{}}>홈</div> */}
         </div>
       </Link>
 
@@ -51,7 +51,7 @@ console.log(para);
             style={{ width: "2rem" }}
           />
         </div>
-        채팅
+        {/* 채팅 */}
       </Link>
 
       <Link to="/regi" className="nav-link" onClick={() => numconfig(3)}>
@@ -70,7 +70,7 @@ console.log(para);
 
           />
         </div>
-        파티작성
+        {/* 파티작성 */}
       </Link>
 
       <Link to="/profile" className="nav-link" onClick={() => numconfig(4)}>
@@ -87,7 +87,7 @@ console.log(para);
             style={{ width: "2rem" }}
           />
         </div>
-        메인
+        {/* 메인 */}
       </Link>
     </Nav>
   );
@@ -101,6 +101,6 @@ const Nav = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 75px;
+  height: 60px;
   background-color: #ffffff;
 `;
