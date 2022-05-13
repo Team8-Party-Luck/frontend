@@ -6,17 +6,14 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartyCard from "./PartyCard";
-import PartySpread from "./PartySpread";
-import { useInView } from "react-intersection-observer";
+
 import { Avatar, CardContent, Stack } from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { history } from "../../redux/configStore";
 import { useState } from "react";
 import _ from "lodash";
-import { useCallback } from "react";
 import { useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
@@ -231,7 +228,7 @@ const PartyList = (props) => {
 const ListBox = styled.div`
   width: 100%;
   height: 30em;
-  padding-top: 1.5em;
+  // padding-top: 1.5em;
   overflow-y: auto;
 `;
 

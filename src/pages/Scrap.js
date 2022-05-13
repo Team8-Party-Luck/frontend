@@ -9,102 +9,164 @@ import Avatar from "@mui/material/Avatar";
 import BottomNav from "../shared/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
+import { useState } from "react";
+import _ from "lodash";
+import { useRef } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
 const Scrap = () => {
-  const data = [
-    {
-      image: "",
-      title: "제목이 들어갈 자립니다",
-      store: "가게이름",
-      capacity: "인원",
-      address: "주소",
-      date: "날짜",
-      time: "시간",
-      partyId: 1,
-    },
-  ];
-
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(crewActions.getScrapData()), []);
+  const token = sessionStorage.getItem("token");
 
-  const scrapData = useSelector((state) => state?.crew?.scrap?.results);
-  console.log(scrapData);
+  const ref = useRef();
+
+  const [partyList, setPartyList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasNext, setHasNext] = useState(null);
+  console.log(page);
+
+  // 무한스크롤을 함수
+  // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
+  const InfinityScroll = _.throttle((e) => {
+    if (
+      e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
+      100
+    ) {
+      axios
+        .get(`http://3.38.180.96:8080/api/parties/sub/${page}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json,",
+          },
+        })
+        .then((res) => {
+          setPartyList([...partyList, ...res.data.results]);
+          setIsLoading(false);
+          if (res.data.results.length < 10) {
+            setHasNext(false);
+          } else {
+            setHasNext(true);
+          }
+          setPage(page + 1);
+        });
+    }
+  }, 300);
+
+  React.useEffect(() => {
+    axios
+      .get(`http://3.38.180.96:8080/api/parties/sub/${page}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.results);
+        setPartyList([...partyList, ...res.data.results]);
+        setIsLoading(false);
+        if (res.data.results.length < 10) {
+          setHasNext(false);
+        } else {
+          setHasNext(true);
+        }
+        setPage(page + 1);
+      });
+  }, []);
+
+  // useEffect(() => dispatch(crewActions.getScrapData()), []);
+
+  // const scrapData = useSelector((state) => state?.crew?.scrap?.results);
+  // console.log(scrapData);
 
   return (
     <Box>
-      <Header />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          margin: "2em",
-        }}
-      >
-        <Avatar
-          variant={"rounded"}
-          alt="The image"
-          src={"props.image"}
-          style={{
-            width: 90,
-            height: 90,
-          }}
-          onClick={() => {
-            history.push(`/partyInfo/${data?.partyId}`);
-          }}
-        />
-        <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 2 }}>
-          <Stack spacing={0.8}>
-            <Typography component="div" variant="h6">
-              제목이 들어갈 자리입니다
-            </Typography>
-
-            <Typography style={{ fontSize: "0.8rem" }}>
-              가게 &nbsp; 인원
-            </Typography>
-            <Typography style={{ fontSize: "0.8rem" }}>
-              주소 날짜 시간
-            </Typography>
-          </Stack>
-        </CardContent>
-      </Box>
-      {scrapData?.map((cur, idx) => (
-        <Box
-          sx={{ display: "flex", flexDirection: "row", margin: "2em" }}
-          key={idx}
-        >
-          <Avatar
-            variant={"rounded"}
-            alt="The image"
-            src={"props.image"}
-            style={{
-              width: 90,
-              height: 90,
-            }}
+      <Header name={"찜한 파티"} />
+      <ListBox ref={ref} onScroll={InfinityScroll}>
+        {partyList?.map((cur, idx) => (
+          <Box
             onClick={() => {
               history.push(`/partyInfo/${cur?.partyId}`);
             }}
-          />
-          <CardContent sx={{ flex: " 1 auto", p: 0, ml: 1, mb: 2 }}>
-            <Stack spacing={0.8}>
-              <Typography component="div" variant="h6">
-                {cur?.title}
-              </Typography>
+            key={idx}
+            sx={{ marginTop: "1em" }}
+          >
+            <Typography sx={{ fontWeight: "bold", marginBottom: 0.3 }}>
+              {cur?.title}
+            </Typography>
+            <Box sx={{ display: "flex" }} key={cur?.partyId}>
+              <Avatar
+                variant={"rounded"}
+                alt="The image"
+                src={cur?.image[0]}
+                style={{
+                  width: 65,
+                  height: 65,
+                  borderRadius: "0.5em",
+                }}
+              />
+              <Box sx={{ marginLeft: "0.5em" }}>
+                <Typography style={{ fontSize: "0.9em", color: "gray" }}>
+                  {cur?.store}
+                </Typography>
+                <Box sx={{ display: "flex", marginTop: 0.3 }}>
+                  <img
+                    src="image/home/ic_location.png"
+                    style={{ width: 18, height: 18 }}
+                    alt="위치"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.address}&nbsp;&nbsp;
+                  </Typography>
 
-              <Typography style={{ fontSize: "0.8rem" }}>
-                {cur?.store} &nbsp; {cur?.capacity}
-              </Typography>
-              <Typography style={{ fontSize: "0.8rem" }}>
-                {cur?.address} {cur?.date} {cur?.time}
-              </Typography>
-            </Stack>
-          </CardContent>
-        </Box>
-      ))}
-
+                  <img
+                    src="image/home/ic_calendar.png"
+                    style={{ width: 17, height: 17 }}
+                    alt="달력"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.date}&nbsp;&nbsp;
+                  </Typography>
+                  <img
+                    src="image/home/ic_time.png"
+                    style={{ width: 17, height: 17 }}
+                    alt="시간"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.time}&nbsp;&nbsp;
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", marginTop: 0.5 }}>
+                  <img
+                    src="image/home/ic_people.png"
+                    style={{ width: 17, height: 17 }}
+                    alt="시간"
+                  />
+                  <Typography sx={{ fontSize: 12 }}>
+                    &nbsp;{cur?.capacity}명&nbsp; {cur?.age} {cur?.gender}모임
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        ))}
+      </ListBox>
       <BottomNav />
     </Box>
   );
 };
+
+const ListBox = styled.div`
+  width: 100%;
+  height: 60em;
+  padding: 1.5em;
+  padding-top: 3em;
+  padding-bottom: 5em;
+  overflow-y: auto;
+`;
 
 export default Scrap;
