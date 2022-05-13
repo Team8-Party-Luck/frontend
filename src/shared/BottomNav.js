@@ -4,29 +4,24 @@ import { Link } from "react-router-dom";
 import "../style/BottomNav.css";
 import styled from "styled-components";
 
-
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
   console.log(activeNav);
 
-  React.useEffect(() => {
+  React.useEffect(() => {}, []);
+  const numconfig = (num) => {
+    setActiveNav(num);
+  };
 
-  }, [])
-const numconfig = (num) => {
-  setActiveNav(num)
-}
-
-let para = document.location.href.split('/')[3]
-console.log(para);
+  let para = document.location.href.split("/")[3];
+  console.log(para);
   return (
-
     <Nav className="wrapper">
       <Link to="/home" className="nav-link" onClick={() => numconfig(1)}>
         <div>
           <img
             src={
-              para === 'home'
-
+              para === "home"
                 ? "image/bar/home_active.png"
                 : "image/bar/home_inactive.png"
             }
@@ -41,9 +36,7 @@ console.log(para);
         <div>
           <img
             src={
-
-              para === 'chat'
-
+              para === "chat"
                 ? "image/bar/chat_active.png"
                 : "image/bar/chat_inactive.png"
             }
@@ -58,16 +51,12 @@ console.log(para);
         <div>
           <img
             src={
-
-              para === 'regi'
-
+              para === "regi"
                 ? "image/bar/write_active.png"
                 : "image/bar/write_inactive.png"
             }
             alt="regi"
-
-            style={{ width: "2rem", }}
-
+            style={{ width: "2rem" }}
           />
         </div>
         {/* 파티작성 */}
@@ -77,9 +66,7 @@ console.log(para);
         <div>
           <img
             src={
-
-              para === 'profile'
-
+              para === "profile"
                 ? "image/bar/my_active.png"
                 : "image/bar/my_inactive.png"
             }

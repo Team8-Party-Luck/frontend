@@ -15,7 +15,7 @@ const HeaderNav = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ bgcolor: "white", position: "relative", height: "5em" }}>
         <Toolbar sx={{ marginTop: "0.8em" }}>
-          <img src="image/bar/exam.png" style={{ width: 170 }} />
+          <img src="image/home/topbar_logo.png" alt="홈로고" />
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { md: "flex" } }}>
@@ -27,9 +27,7 @@ const HeaderNav = () => {
                 history.push("/alarm");
               }}
             >
-              <Badge badgeContent={20} color="error">
-                <NotificationsIcon />
-              </Badge>
+              <img src="image/home/ic_alarm.png" alt="알람" />
             </IconButton>
           </Box>
         </Toolbar>
