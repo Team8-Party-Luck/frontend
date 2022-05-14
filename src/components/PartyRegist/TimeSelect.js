@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function TimeSelect({time, setTime}) {
   const [value, setValue] = React.useState(new Date('2018-01-01T00:00:00.000Z'));
@@ -12,12 +13,20 @@ export default function TimeSelect({time, setTime}) {
   // console.log(hi)
 
   const str = new Date(`2022-01-01 ${time}`)
-  console.log(str);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
+      },
+    },
+  });
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
+       <ThemeProvider theme={theme}>
         <MobileTimePicker
-          label="만날 시간"
+          placeholder="만날 시간"
           value={isNaN(str) !== true ? str : value}
           onChange={(newValue) => {
             setValue(newValue);
@@ -30,6 +39,7 @@ export default function TimeSelect({time, setTime}) {
           }}
           renderInput={(params) => <TextField {...params} />}
         />
+        </ThemeProvider>
     </LocalizationProvider>
   );
 }

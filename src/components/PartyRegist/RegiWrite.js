@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -7,6 +8,9 @@ import Box from "@mui/material/Box";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
+import Toolbar from "@mui/material/Toolbar";
+import Modal from "@mui/material/Modal";
+import styled from "styled-components";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
@@ -97,13 +101,76 @@ const RegiWrite = () => {
     }
   };
 
+  //모달
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const modal = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 340,
+    bgcolor: "#FFFFFF",
+    borderRadius: "15px",
+    boxShadow: 24,
+    p: 3.5,
+  };
   return (
     <React.Fragment>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
+          <Toolbar>
+            <img
+              alt="back"
+              src="image/bar/back.png"
+              onClick={() => {
+                handleOpen();
+              }}
+            />
+            <Box sx={{ flexGrow: 1.1 }} />
+            <div style={{ color: "#161616", fontSize: "20px" }}>파티등록</div>
+
+            <Box sx={{ flexGrow: 1 }} />
+            <span
+              onClick={() => {
+                sendWriteData();
+              }}
+              style={{ color: "#FF6853", fontSize: "18px" }}
+            >
+              완료
+            </span>
+          </Toolbar>
+        </AppBar>
+        <Modal open={open} onClose={handleClose}>
+          <Box sx={modal} justifyContent="center" alignItems="center">
+            <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
+              작성을 취소하시겠습니까?
+            </div>
+            <CancelButton
+              onClick={() => {
+                handleClose();
+              }}
+              style={{ marginRight: "1rem" }}
+            >
+              취소
+            </CancelButton>
+            <CancelButton
+              onClick={() => {
+                history.push("/home");
+              }}
+              style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
+            >
+              작성 취소
+            </CancelButton>
+          </Box>
+        </Modal>
+      </Box>
       <Grid container alignItems="center" justifyContent="center">
         <Images image={image} setImage={setImage} />
         <TextField
           id="partyName"
-          label="파티제목"
+          placeholder="파티제목"
           variant="standard"
           style={{ width: "85%" }}
           sx={{ mb: 1.5 }}
@@ -135,7 +202,7 @@ const RegiWrite = () => {
         </Box>
         <TextField
           id="meetPlace"
-          label="만날 장소"
+          placeholder="만날 장소"
           variant="standard"
           style={{ width: "85%" }}
           sx={{ mb: 1.5 }}
@@ -145,9 +212,8 @@ const RegiWrite = () => {
         />{" "}
         <TextField
           multiline
-          id="partyDesc"
-          label="설명글을 입력해주세요!"
-          rows={5}
+          placeholder="설명글을 입력해주세요!"
+          rows={4}
           variant="standard"
           style={{ width: "85%" }}
           inputProps={{
@@ -161,18 +227,18 @@ const RegiWrite = () => {
             setDesc(e.target.value);
           }}
         />
-        <Button
-          variant="outlined"
-          style={{ height: "3rem", width: "7rem", marginBottom: "4rem" }}
-          onClick={() => {
-            sendWriteData();
-          }}
-        >
-          등록
-        </Button>
+      
       </Grid>
     </React.Fragment>
   );
 };
 
 export default RegiWrite;
+
+//취소버튼
+const CancelButton = styled.button`
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  width: 130px;
+  height: 48px;
+`;

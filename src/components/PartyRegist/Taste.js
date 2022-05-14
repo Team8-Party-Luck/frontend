@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 const Taste = ({ image, setImage }) => {
   return (
     <Stack>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} sx={{mb:2}}>
         {image === "한식" ? (
           <Stack spacing={2}>
             <img

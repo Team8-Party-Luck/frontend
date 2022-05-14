@@ -1,28 +1,32 @@
 import * as React from "react";
+
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
+import styled from "styled-components";
+
 export default function Age({capacity, setCapacity}) {
-  const [value, setValue] = React.useState(top100Films);
+  const [value, setValue] = React.useState(number);
+  
 
   return (
-    <Autocomplete
+    <AutoComplete
       disablePortal
-      variant="standard"
-      value={capacity || "2"}
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: "90%",}}
-      renderInput={(params) => <TextField {...params} />}
+      value={capacity || number[0]}
+      options={number}
+      sx={{ width: "95%",}}
+      renderInput={(params) => <TextField  {...params}/>}
       onChange={(event, newValue) => {
         setCapacity(newValue.label);
       }}
+      isOptionEqualToValue={(option, value) =>
+        option.iso === value.iso
+      }
     />
   );
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const number = [
   { label: "2" },
   { label: "3" },
   { label: "4" },
@@ -31,3 +35,9 @@ const top100Films = [
   { label: "7" },
   { label: "8" },
 ];
+
+const AutoComplete = styled(Autocomplete)`
+  & .MuiInputBase-input {
+    height: 1rem;
+  }
+`;
