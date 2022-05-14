@@ -248,6 +248,7 @@ const sendScrapData = (partyId) => {
   };
 };
 
+//파티 신청
 const sendJoinData = (partyId) => {
   return function (dispatch, getState, { history }) {
     axios
@@ -259,7 +260,8 @@ const sendJoinData = (partyId) => {
         },
       })
       .then((res) => {
-        alert(res.data);
+        alert("파티신청이 완료되었습니다");
+        dispatch(getDetail(res.data));
         console.log(res.data);
       })
       .catch((error) => {
@@ -268,6 +270,7 @@ const sendJoinData = (partyId) => {
   };
 };
 
+//파티 신청 취소
 const sendCancelData = (partyId) => {
   return function (dispatch, getState, { history }) {
     axios
@@ -279,7 +282,8 @@ const sendCancelData = (partyId) => {
         },
       })
       .then((res) => {
-        alert(res.data);
+        alert("파티취소가 완료되었습니다");
+        dispatch(getDetail(res.data));
         console.log(res.data);
       })
       .catch((error) => {

@@ -10,12 +10,9 @@ const Spinner = () => {
         alignItems: "center",
       }}
     >
-      {/* <Box sx={{ marginTop: 38 }}> */}
-      {/* <img src="image/login/img_loading.png" alt="asdasd" /> */}
-      {/* <img
-          src={require("../../public/image/login/img_loading.png").default}
-        /> */}
-      {/* </Box> */}
+      <Box sx={{ marginTop: 38 }}>
+        <img src="image/login/img_loading.png" alt="asdasd" />
+      </Box>
       <Typography sx={{ marginTop: 3, color: "gray", fontWeight: "bold" }}>
         Loading...
       </Typography>
