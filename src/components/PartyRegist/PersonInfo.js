@@ -106,7 +106,7 @@ const PersonInfo = ({
             }
             variant="standard"
             style={{ width: "100%" }}
-            sx={{ mb: 1.5 }}
+            sx={{ mb: 3 }}
             onClick={toggleDrawer(anchor, true)}
             InputProps={{
               readOnly: true,

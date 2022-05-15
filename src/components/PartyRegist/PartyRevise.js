@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 
-import Button from "@mui/material/Button";
+import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Modal from "@mui/material/Modal";
+import styled from "styled-components";
 
+import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { useSelector, useDispatch } from "react-redux";
+import { history } from "../../redux/configStore";
+import { useLocation } from "react-router-dom";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
 import PersonInfo from "./PersonInfo";
 
-import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as crewActions } from "../../redux/modules/crew";
-import { history } from "../../redux/configStore";
+
+
+
 
 import HeaderNav from "../../shared/HeaderNav";
 

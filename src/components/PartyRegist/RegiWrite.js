@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -27,9 +26,9 @@ const RegiWrite = () => {
   const [address, setAddress] = useState(null);
   const [place_url, setPlace_url] = useState(null);
   const [xy, setXy] = useState(null);
-  const [capacity, setCapacity] = useState('');
+  const [capacity, setCapacity] = useState("");
   const [ageGroup, setAgeGroup] = useState([]);
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState("");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [meeting, setMeeting] = useState(null);
@@ -142,7 +141,7 @@ const RegiWrite = () => {
           </Toolbar>
         </AppBar>
         <Modal open={open} onClose={handleClose}>
-          <Box sx={modal} justifyContent="center" alignItems="center">
+          <Box sx={modal} justifyContent="center" alignItems="center" >
             <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
               작성을 취소하시겠습니까?
             </div>
@@ -165,18 +164,19 @@ const RegiWrite = () => {
           </Box>
         </Modal>
       </Box>
-      <Grid container alignItems="center" justifyContent="center">
+      <Grid container alignItems="center" justifyContent="center" >
         <Images image={image} setImage={setImage} />
         <TextField
           id="partyName"
           placeholder="파티제목"
           variant="standard"
           style={{ width: "85%" }}
-          sx={{ mb: 1.5 }}
+          sx={{ mb: 3 }}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         />
+
         <MapView
           store={store}
           setStore={setStore}
@@ -184,6 +184,7 @@ const RegiWrite = () => {
           setPlace_url={setPlace_url}
           setXy={setXy}
         />
+
         <PersonInfo
           capacity={capacity}
           setCapacity={setCapacity}
@@ -192,17 +193,21 @@ const RegiWrite = () => {
           gender={gender}
           setGender={setGender}
         />
-        <Box component="div" sx={{ display: "inline", width: "11rem" }}>
+        <Box
+          component="div"
+          sx={{ display: "inline", width: "9rem", marginRight: "2rem",mb: 4 }}
+        >
           <RealDay date={date} setDate={setDate} />
         </Box>
-        <Box component="div" sx={{ display: "inline", width: "11rem" }}>
+        <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4  }}>
           <TimeSelect time={time} setTime={setTime} />
         </Box>
+
         <TextField
           placeholder="만날 장소"
           variant="standard"
           style={{ width: "85%" }}
-          sx={{ mb: 1.5 }}
+          sx={{ mb: 3 }}
           onChange={(e) => {
             setMeeting(e.target.value);
           }}
@@ -218,7 +223,6 @@ const RegiWrite = () => {
             setDesc(e.target.value);
           }}
         />
-      
       </Grid>
     </React.Fragment>
   );

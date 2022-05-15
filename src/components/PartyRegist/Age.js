@@ -12,7 +12,7 @@ export default function Age({capacity, setCapacity}) {
   return (
     <AutoComplete
       disablePortal
-      value={capacity || number[0]}
+      value={capacity || ''}
       options={number}
       sx={{ width: "95%",}}
       renderInput={(params) => <TextField  {...params}/>}
