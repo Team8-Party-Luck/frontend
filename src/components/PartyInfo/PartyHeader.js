@@ -48,7 +48,7 @@ const PartyHeader = (props) => {
       </Typography>
       {props?.partyUser?.sub === false ? (
         <FavoriteBorderIcon
-          style={{ color: "black", position: "absolute", right: 20 }}
+          style={{ color: "black", position: "absolute", right: 40 }}
           onClick={() => {
             sendScrap();
           }}
@@ -62,7 +62,7 @@ const PartyHeader = (props) => {
         //       }}
         //   />
         <FavoriteIcon
-          style={{ color: "black", position: "absolute", right: 20 }}
+          style={{ color: "black", position: "absolute", right: 40 }}
           onClick={() => {
             sendScrap();
           }}

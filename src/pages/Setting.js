@@ -178,4 +178,9 @@ const Progress = styled.div`
   border-radius: 20px;
 `;
 
+// const Container = styled.div`
+//   width: 100%;
+//   padding: 1em;
+// `;
+
 export default Setting;

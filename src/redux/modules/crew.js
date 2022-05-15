@@ -25,11 +25,12 @@ const getWill = createAction(GET_WILL, (will) => ({ will }));
 const initialState = { crew: [] };
 
 //토큰 가져오기
-const token = sessionStorage.getItem("token");
 
 //미들웨어
 //등록하기
 const regiWriteSend = (Write_info) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("title", Write_info.title);
@@ -71,6 +72,8 @@ const regiWriteSend = (Write_info) => {
 };
 
 const reviseSend = (Write_info, partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("title", Write_info.title);
@@ -100,7 +103,8 @@ const reviseSend = (Write_info, partyId) => {
       })
       .then((response) => {
         console.log(response.data);
-        console.log("성공");
+        alert("파티를 수정이 완료되었습니다");
+        history.push(`/partyInfo/${partyId}`);
       })
       .catch((error) => {
         console.log(error);
@@ -110,6 +114,8 @@ const reviseSend = (Write_info, partyId) => {
 
 //등록한 글 삭제기능
 const deleteSend = (partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .delete(`http://3.38.180.96/api/party/${partyId}`, {
@@ -131,6 +137,8 @@ const deleteSend = (partyId) => {
 
 // 홈화면에서 전체 데이터 받아오기
 const getDataDB = (pageNum) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
@@ -150,6 +158,8 @@ const getDataDB = (pageNum) => {
 
 //상세정보 받아오기
 const getDetailInfo = (partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get(`http://3.38.180.96:8080/api/party/details/${partyId}`, {
@@ -169,6 +179,8 @@ const getDetailInfo = (partyId) => {
 };
 //파티 유저리스트 조회
 const getUserList = (partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get(`http://3.38.180.96:8080/api/party/userlist/${partyId}`, {
@@ -188,6 +200,8 @@ const getUserList = (partyId) => {
 };
 // 내가 참여한 파티 조회
 const getJoinedData = () => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get("http://3.38.180.96:8080/api/parties/history/in", {
@@ -209,6 +223,8 @@ const getJoinedData = () => {
 
 //내가 찜한 파티 조회
 const getScrapData = () => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get("http://3.38.180.96:8080/api/parties/sub", {
@@ -230,6 +246,8 @@ const getScrapData = () => {
 
 //파티 찜하기 기능
 const sendScrapData = (partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get(`http://3.38.180.96:8080/api/party/sub/${partyId}`, {
@@ -250,6 +268,8 @@ const sendScrapData = (partyId) => {
 
 //파티 신청
 const sendJoinData = (partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get(`http://3.38.180.96:8080/api/party/in/${partyId}`, {
@@ -272,6 +292,8 @@ const sendJoinData = (partyId) => {
 
 //파티 신청 취소
 const sendCancelData = (partyId) => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .delete(`http://3.38.180.96:8080/api/party/out/${partyId}`, {
@@ -294,6 +316,8 @@ const sendCancelData = (partyId) => {
 
 //참여할 파티 조회
 const getWillData = () => {
+  const token = sessionStorage.getItem("token");
+
   return function (dispatch, getState, { history }) {
     axios
       .get("http://3.38.180.96:8080/home/parties/join", {
