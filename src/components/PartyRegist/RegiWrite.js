@@ -4,9 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Images from "./Images";
-import TimeSelect from "./TimeSelect";
-import RealDay from "./RealDay";
 import Toolbar from "@mui/material/Toolbar";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
@@ -16,6 +13,9 @@ import { useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
 import PersonInfo from "./PersonInfo";
 import MapView from "./kakao/MapView";
+import Images from "./Images";
+import TimeSelect from "./TimeSelect";
+import RealDay from "./RealDay";
 
 const RegiWrite = () => {
   const dispatch = useDispatch();
@@ -167,7 +167,6 @@ const RegiWrite = () => {
       <Grid container alignItems="center" justifyContent="center" >
         <Images image={image} setImage={setImage} />
         <TextField
-          id="partyName"
           placeholder="파티제목"
           variant="standard"
           style={{ width: "85%" }}
@@ -195,7 +194,7 @@ const RegiWrite = () => {
         />
         <Box
           component="div"
-          sx={{ display: "inline", width: "9rem", marginRight: "2rem",mb: 4 }}
+          sx={{ display: "inline", width: "9rem", mb: 4,marginRight: "2rem" }}
         >
           <RealDay date={date} setDate={setDate} />
         </Box>
