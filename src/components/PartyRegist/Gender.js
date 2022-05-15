@@ -7,17 +7,18 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
 const RowRadioButtonsGroup = ({ gender, setGender }) => {
-  const [form, setForm] = useState("whole");
+  const [form, setForm] = useState("모두");
   const handleRadio = (e) => {
     setForm(e.target.value);
+    setGender(e.target.value);
   };
   return (
     <React.Fragment>
     <label>
         <ImageRadio
           type="radio"
-          value="whole"
-          checked={form === "whole"}
+          value="모두"
+          checked={form === "모두"}
           onChange={handleRadio}
         />
         모두
@@ -25,8 +26,8 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
       <label>
         <ImageRadio
           type="radio"
-          value="male"
-          checked={form === "male"}
+          value="남성"
+          checked={form === "남성"}
           onChange={handleRadio}
         />
         남성
@@ -34,8 +35,8 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
       <label>
         <ImageRadio
           type="radio"
-          value="female"
-          checked={form === "female"}
+          value="여성"
+          checked={form === "여성"}
           onChange={handleRadio}
         />
        여성

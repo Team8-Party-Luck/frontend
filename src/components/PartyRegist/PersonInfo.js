@@ -22,7 +22,9 @@ const PersonInfo = ({
   const [state, setState] = React.useState({
     bottom: false,
   });
-
+  console.log(capacity);
+  console.log(ageGroup);
+  console.log(gender);
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -79,21 +81,16 @@ const PersonInfo = ({
       </Box>
       <Divider />
 
-      <Button
-        sx={{
-          width: "85%",
-          ml: "2rem",
-          my: "2rem",
-          border: 1,
-          borderColor: "primary.main",
-        }}
+      <ResistButton
         onClick={toggleDrawer(anchor, false)}
+        style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
       >
         등록
-      </Button>
+      </ResistButton>
     </Box>
   );
 
+  // capacity && ageGroup && gender
   return (
     <div style={{ width: "85%" }}>
       {["bottom"].map((anchor) => (
@@ -101,11 +98,12 @@ const PersonInfo = ({
           <TextField
             placeholder="모집인원 정보"
             value={
-              `${capacity || ""}명 모집 / ${ageGroup || ""} / ${
-                gender || ""
-              }`
+              ageGroup.length === 0 && (capacity || gender) === ""
+                ? ""
+                : `${capacity || ""}명 모집 / ${ageGroup || ""} / ${
+                    gender || ""
+                  }`
             }
-
             variant="standard"
             style={{ width: "100%" }}
             sx={{ mb: 1.5 }}
@@ -134,3 +132,11 @@ const PersonInfo = ({
 };
 
 export default PersonInfo;
+
+const ResistButton = styled.button`
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  width: 21rem;
+  height: 48px;
+  margin: 1.3rem;
+`;

@@ -27,14 +27,13 @@ const RegiWrite = () => {
   const [address, setAddress] = useState(null);
   const [place_url, setPlace_url] = useState(null);
   const [xy, setXy] = useState(null);
-  const [capacity, setCapacity] = useState("2");
-  const [ageGroup, setAgeGroup] = useState("전체");
-  const [gender, setGender] = useState("모두");
+  const [capacity, setCapacity] = useState('');
+  const [ageGroup, setAgeGroup] = useState([]);
+  const [gender, setGender] = useState('');
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
-  // const [value, setValue] = useState(false);
 
   const sendWriteData = () => {
     if (image.length === 0) {
@@ -101,7 +100,7 @@ const RegiWrite = () => {
     }
   };
 
-  //모달
+  //back modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -192,7 +191,6 @@ const RegiWrite = () => {
           setAgeGroup={setAgeGroup}
           gender={gender}
           setGender={setGender}
-          value="안녕"
         />
         <Box component="div" sx={{ display: "inline", width: "11rem" }}>
           <RealDay date={date} setDate={setDate} />
@@ -201,7 +199,6 @@ const RegiWrite = () => {
           <TimeSelect time={time} setTime={setTime} />
         </Box>
         <TextField
-          id="meetPlace"
           placeholder="만날 장소"
           variant="standard"
           style={{ width: "85%" }}
@@ -209,19 +206,13 @@ const RegiWrite = () => {
           onChange={(e) => {
             setMeeting(e.target.value);
           }}
-        />{" "}
+        />
         <TextField
           multiline
-          placeholder="설명글을 입력해주세요!"
-          rows={4}
+          placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
+          rows={6}
           variant="standard"
           style={{ width: "85%" }}
-          inputProps={{
-            style: {
-              height: "10rem",
-              padding: "0 14px",
-            },
-          }}
           sx={{ pb: 1, mt: 2 }}
           onChange={(e) => {
             setDesc(e.target.value);
