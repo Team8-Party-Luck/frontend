@@ -10,6 +10,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
 import Foodlist from "../Edit/Foodlist";
 import SetFood from "../components/Settings/SetFood";
+import DefaultImg from "../static/images/profile/default.png";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -102,16 +103,7 @@ const Edit = (props) => {
       <Header name={"프로필 수정"} />
       <Box sx={{ padding: 2.5, paddingTop: "5.5em" }}>
         <Box sx={{ marginBottom: 5, display: "flex", position: "relative" }}>
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "3em",
-              height: "3em",
-              marginRight: "0.7em",
-            }}
-            aria-label="recipe"
-            src={imageSrc}
-          />
+          <ImgBox src={user_info?.image ? imageSrc : DefaultImg} />
           <Box sx={{ width: "100%", paddingTop: 1 }}>
             <Typography
               component="p"
@@ -286,6 +278,13 @@ const NonFixBox = styled.div`
   margin-top: 0.3em;
   padding-left: 0.7em;
   padding-top: 0.6em;
+`;
+
+const ImgBox = styled.img`
+  width: 3.8em;
+  height: 3.8em;
+  border-radius: 2.5em;
+  margin-right: 0.5em;
 `;
 
 export default Edit;

@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 //file
 import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { actionCreators as userActions } from "../../redux/modules/user";
 import AllData from "./AllData";
 // import RegionSelect from "./RegionSelect";
 
@@ -77,10 +78,13 @@ const PartyList = (props) => {
   React.useEffect(() => {
     dispatch(crewActions.getWillData());
     dispatch(crewActions.getScrapData());
+    dispatch(userActions.userCheckDB());
   }, []);
 
   const willData = useSelector((state) => state?.crew?.will);
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
+  const userInfo = useSelector((state) => state?.user?.user?.result);
+  console.log(userInfo);
 
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
@@ -127,7 +131,6 @@ const PartyList = (props) => {
           </Tabs>
         </ThemeProvider>
       </Box>
-
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
@@ -143,6 +146,8 @@ const PartyList = (props) => {
               capacity={cur?.capacity}
               age={cur?.age}
               gender={cur?.gender}
+              hostId={cur?.hostId}
+              userInfo={userInfo}
             />
           ))}
         </ListBox>

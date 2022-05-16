@@ -63,10 +63,10 @@ const SetFood = (props) => {
           <FoodText>한식</FoodText>
         </Wrap>
         <Wrap>
-          {food?.includes("중식") ? (
+          {food?.includes("중식/아시안") ? (
             <ListBox
               onClick={() => {
-                setFood(food.filter((food) => food !== "중식"));
+                setFood(food.filter((food) => food !== "중식/아시안"));
                 if (food?.length === 1) {
                   setCount(count - 1);
                 }
@@ -76,9 +76,9 @@ const SetFood = (props) => {
             </ListBox>
           ) : (
             <ListBox
-              value="중식"
+              value="중식/아시안"
               onClick={() => {
-                setFood(food.concat("중식"));
+                setFood(food.concat("중식/아시안"));
                 if (food?.length === 0) {
                   add_count();
                 }
@@ -87,7 +87,7 @@ const SetFood = (props) => {
               <FoodImg src={ChiImg} />
             </ListBox>
           )}
-          <FoodText>중식</FoodText>
+          <FoodText>중식/아시안</FoodText>
         </Wrap>
         <Wrap>
           {food?.includes("일식") ? (
@@ -198,10 +198,10 @@ const SetFood = (props) => {
           <FoodText>샐러드</FoodText>
         </Wrap>
         <Wrap>
-          {food?.includes("디저트") ? (
+          {food?.includes("커피/디저트") ? (
             <ListBox
               onClick={() => {
-                setFood(food.filter((food) => food !== "디저트"));
+                setFood(food.filter((food) => food !== "커피/디저트"));
                 if (food?.length === 1) {
                   setCount(count - 1);
                 }
@@ -211,9 +211,9 @@ const SetFood = (props) => {
             </ListBox>
           ) : (
             <ListBox
-              value="디저트"
+              value="커피/디저트"
               onClick={() => {
-                setFood(food.concat("디저트"));
+                setFood(food.concat("커피/디저트"));
                 if (food?.length === 0) {
                   add_count();
                 }
@@ -222,7 +222,7 @@ const SetFood = (props) => {
               <FoodImg src={CoffeeImg} />
             </ListBox>
           )}
-          <FoodText>디저트</FoodText>
+          <FoodText>커피/디저트</FoodText>
         </Wrap>
         <Wrap>
           {food?.includes("기타") ? (
