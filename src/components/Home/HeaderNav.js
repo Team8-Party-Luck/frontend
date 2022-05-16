@@ -3,9 +3,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import HomeLogo from "../../static/images/logo/topbar_logo.png";
+import AlarmImg from "../../static/images/icon/ic_alarm.png";
 import { useHistory } from "react-router";
 
 const HeaderNav = () => {
@@ -15,7 +14,7 @@ const HeaderNav = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ bgcolor: "white", position: "relative", height: "5em" }}>
         <Toolbar sx={{ marginTop: "0.8em" }}>
-          <img src="image/home/topbar_logo.png" alt="홈로고" />
+          <img src={HomeLogo} alt="홈로고" />
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { md: "flex" } }}>
@@ -27,7 +26,11 @@ const HeaderNav = () => {
                 history.push("/alarm");
               }}
             >
-              <img src="image/home/ic_alarm.png" alt="알람" />
+              <img
+                src={AlarmImg}
+                alt="알람"
+                style={{ width: 25, height: 25 }}
+              />
             </IconButton>
           </Box>
         </Toolbar>

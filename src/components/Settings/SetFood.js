@@ -1,17 +1,22 @@
 import React from "react";
-import {
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-  Box,
-  Typography,
-  Fab,
-  Grid,
-  Button,
-} from "@mui/material";
 import { useState } from "react";
 import styled from "styled-components";
+import KorImg from "../../static/images/category/korean.png";
+import ChiImg from "../../static/images/category/chinese.png";
+import JapImg from "../../static/images/category/japanese.png";
+import WesImg from "../../static/images/category/western.png";
+import FastImg from "../../static/images/category/fastfood.png";
+import CoffeeImg from "../../static/images/category/coffee.png";
+import SaladImg from "../../static/images/category/salad.png";
+import EtcImg from "../../static/images/category/etc.png";
+import SelectedKorImg from "../../static/images/category_selected/korean.png";
+import SelectedChiImg from "../../static/images/category_selected/chinese.png";
+import SelectedJapImg from "../../static/images/category_selected/japanese.png";
+import SelectedWesImg from "../../static/images/category_selected/western.png";
+import SelectedFastImg from "../../static/images/category_selected/fastfood.png";
+import SelectedCoffeeImg from "../../static/images/category_selected/coffee.png";
+import SelectedSaladImg from "../../static/images/category_selected/salad.png";
+import SelectedEtcImg from "../../static/images/category_selected/etc.png";
 
 const SetFood = (props) => {
   const { food, setFood, count, setCount } = props;
@@ -40,7 +45,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/korean.png" />
+              <FoodImg src={SelectedKorImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -52,7 +57,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/korean.png" />
+              <FoodImg src={KorImg} />
             </ListBox>
           )}
           <FoodText>한식</FoodText>
@@ -67,7 +72,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/chinese.png" />
+              <FoodImg src={SelectedChiImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -79,7 +84,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/chinese.png" />
+              <FoodImg src={ChiImg} />
             </ListBox>
           )}
           <FoodText>중식</FoodText>
@@ -94,7 +99,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/japanese.png" />
+              <FoodImg src={SelectedJapImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -106,7 +111,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/japanese.png" />
+              <FoodImg src={JapImg} />
             </ListBox>
           )}
           <FoodText>일식</FoodText>
@@ -121,7 +126,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/western.png" />
+              <FoodImg src={SelectedWesImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -133,7 +138,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/western.png" />
+              <FoodImg src={WesImg} />
             </ListBox>
           )}
           <FoodText>양식</FoodText>
@@ -148,7 +153,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/fastfood.png" />
+              <FoodImg src={SelectedFastImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -160,7 +165,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/fastfood.png" />
+              <FoodImg src={FastImg} />
             </ListBox>
           )}
           <FoodText>패스트푸드</FoodText>
@@ -175,7 +180,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/salad.png" />
+              <FoodImg src={SelectedSaladImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -187,7 +192,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/salad.png" />
+              <FoodImg src={SaladImg} />
             </ListBox>
           )}
           <FoodText>샐러드</FoodText>
@@ -202,7 +207,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/coffee.png" />
+              <FoodImg src={SelectedCoffeeImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -214,7 +219,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/coffee.png" />
+              <FoodImg src={CoffeeImg} />
             </ListBox>
           )}
           <FoodText>디저트</FoodText>
@@ -229,7 +234,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/hilighting/etc.png" />
+              <FoodImg src={SelectedEtcImg} />
             </ListBox>
           ) : (
             <ListBox
@@ -241,7 +246,7 @@ const SetFood = (props) => {
                 }
               }}
             >
-              <FoodImg src="image/category/selected/etc.png" />
+              <FoodImg src={EtcImg} />
             </ListBox>
           )}
           <FoodText>기타</FoodText>
