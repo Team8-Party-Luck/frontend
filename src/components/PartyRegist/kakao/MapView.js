@@ -35,12 +35,13 @@ export default function MapView({
         value={store || ""}
         id="eateryName"
         variant="standard"
-        label="식당명"
+        placeholder='식당명' 
         onClick={handleOpen}
         style={{ width: "100%" }}
-        sx={{ mb: 1.5 }}
+        sx={{ mb: 3 }}
         InputProps={{
           readOnly: true,
+          endAdornment: <img src="image/profile/arw_gray.png" />
         }}
       ></TextField>
       <Modal

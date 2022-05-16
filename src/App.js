@@ -8,7 +8,6 @@ import { history } from "./redux/configStore";
 import Home from "./pages/Home";
 import PartyRegist from "./pages/PartyRegist";
 import Alarm from "./pages/Alarm";
-import SeeMore from "./components/Home/SeeMore";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
@@ -38,7 +37,6 @@ function App() {
         <Route path="/" exact component={Login} />
         <Route path="/home" exact component={Home} />
         <Route path="/alarm" exact component={Alarm} />
-        <Route path="/seeMore" exact component={SeeMore} />
         <Route path="/chat" exact component={Chat} />
         <Route path="/chat/:roomId" exact component={ChatDetail} />
         <Route path="/regi" exact component={PartyRegist} />

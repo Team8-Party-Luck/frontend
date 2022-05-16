@@ -1,24 +1,21 @@
-import * as React from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+import _ from "lodash";
+import axios from "axios";
+import styled from "styled-components";
 
+//mui
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import PartyCard from "./PartyCard";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { Avatar, CardContent, Stack } from "@mui/material";
-
-import { useSelector, useDispatch } from "react-redux";
+//file
 import { actionCreators as crewActions } from "../../redux/modules/crew";
-import { history } from "../../redux/configStore";
-import { useState } from "react";
-import _ from "lodash";
-import { useRef } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import RegionSelect from "./RegionSelect";
 import AllData from "./AllData";
+// import RegionSelect from "./RegionSelect";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,7 +51,6 @@ function a11yProps(index) {
 
 const PartyList = (props) => {
   const dispatch = useDispatch();
-
   const ref = useRef();
 
   const [partyList, setPartyList] = useState([]);
@@ -106,36 +102,31 @@ const PartyList = (props) => {
     }
   }, 300);
 
-  // const crewList = useSelector((state) => state?.crew?.crew);
-  // console.log(crewList);
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
+      },
+    },
+  });
+
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          centered
-        >
-          <Tab label="파티 탐색" {...a11yProps(0)} />
-          <Tab label="참여할 파티" {...a11yProps(1)} />
-          <Tab label="찜한 파티" {...a11yProps(2)} />
-        </Tabs>
+        <ThemeProvider theme={theme}>
+          <Tabs value={value} onChange={handleChange} centered>
+            <Tab label="파티 탐색" {...a11yProps(0)} />
+            <Tab label="참여할 파티" {...a11yProps(1)} />
+            <Tab label="찜한 파티" {...a11yProps(2)} />
+          </Tabs>
+        </ThemeProvider>
       </Box>
-
-      {/* <RegionSelect
-        city={city}
-        setCity={setCity}
-        district={district}
-        setDistrict={setDistrict}
-      /> */}
 
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>

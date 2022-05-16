@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ClearIcon from "@mui/icons-material/Clear";
 
 import Taste from "./Taste";
 const Images = ({ image, setImage }) => {
@@ -43,7 +43,7 @@ const Images = ({ image, setImage }) => {
   };
 
   return (
-    <div className="addPicture" style={{marginBottom:'1.5rem'}}>
+    <div className="addPicture" style={{ marginBottom: "1.5rem" }}>
       <label>
         <ImageRadio
           type="radio"
@@ -69,7 +69,7 @@ const Images = ({ image, setImage }) => {
         </Box>
       ) : (
         <React.Fragment>
-          <Box>첫번째 사진이 프로필 사진입니다</Box>
+          <Box style={{marginLeft:'2rem', }}>{showImages.length}/10 </Box>
           <div
             style={{
               // border: "1px solid black",
@@ -95,9 +95,9 @@ const Images = ({ image, setImage }) => {
                   name="안녕"
                   style={{ display: "none" }}
                 />
-                <Box component="div" sx={{ display: "inline-block" }}>
+                <Box component="div" sx={{ display: "inline-block", }}>
                   <AddPhotoAlternateIcon
-                    sx={{ fontSize: "4.5rem", p: 2, m: 1 }}
+                    sx={{ fontSize: "4.5rem", p: 2.5, m: 1 }}
                     style={{ border: "1px solid black", borderRadius: "9px" }}
                   />
                 </Box>
@@ -107,13 +107,19 @@ const Images = ({ image, setImage }) => {
                 {showImages.map((image, id) => (
                   <span className="imageContainer" key={id}>
                     <Img
-                      style={{ marginRight: "0", marginBottom: "0.5rem", borderRadius:'0.7rem',width:'4.5rem', height:'4.5rem' }}
+                      style={{
+                        marginRight: "0",
+                        marginBottom: "0.5rem",
+                        borderRadius: "0.7rem",
+                        width: "4.5rem",
+                        height: "4.5rem",
+                      }}
                       src={image}
                       alt={`${image}-${id}`}
                     />
                     <span onClick={() => handleDeleteImage(id)}>
                       {" "}
-                      <DeleteIcon sx={{ mb: 8, ml:-1.5, fontSize:'1.5rem' }} />
+                      <ClearIcon sx={{ mb: 8, ml: -1.7, fontSize: "1.3rem" }} />
                     </span>
                     {console.log(image)}
                   </span>
