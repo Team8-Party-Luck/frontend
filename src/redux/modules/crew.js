@@ -104,7 +104,7 @@ const reviseSend = (Write_info, partyId) => {
         console.log(response.data);
 
         alert("수정 성공했습니다")
-        history.push(`/partyInfo/${partyId}`)
+        history.replace(`/partyInfo/${partyId}`)
 
       })
       .catch((error) => {

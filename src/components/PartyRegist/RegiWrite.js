@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Modal from "@mui/material/Modal";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -85,7 +86,7 @@ const RegiWrite = () => {
     };
 
     if (
-      // (image.length !== 0) &&
+      (image.length !== 0 || defaultImage !== null) &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -99,6 +100,15 @@ const RegiWrite = () => {
       dispatch(crewActions.regiWriteSend(Write_info));
     }
   };
+
+  //색깔 입히기
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
+      },
+    },
+  });
 
   //back modal
   const [open, setOpen] = React.useState(false);
@@ -117,6 +127,7 @@ const RegiWrite = () => {
   };
   return (
     <React.Fragment>
+       <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
           <Toolbar>
@@ -224,6 +235,7 @@ const RegiWrite = () => {
           }}
         />
       </Grid>
+      </ThemeProvider>
     </React.Fragment>
   );
 };
