@@ -24,8 +24,6 @@ const getWill = createAction(GET_WILL, (will) => ({ will }));
 // 초기값
 const initialState = { crew: [] };
 
-//토큰 가져오기
-
 //미들웨어
 //등록하기
 const regiWriteSend = (Write_info) => {

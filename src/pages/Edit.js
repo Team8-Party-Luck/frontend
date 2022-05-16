@@ -22,6 +22,7 @@ const Edit = (props) => {
 
   console.log(user_info);
 
+  const [count, setCount] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
   const [imageSrc, setImageSrc] = useState(user_info?.image);
   const [age, setAge] = useState(user_info?.age);
@@ -70,32 +71,9 @@ const Edit = (props) => {
 
   const updateProfile = () => {
     const Update_info = new FormData();
-    Update_info.append("image", imageUrl);
-    Update_info.append("city", city);
-    Update_info.append("age", age);
-    Update_info.append("gender", gender);
-    Update_info.append("region", region);
-    Update_info.append("food", food);
-    Update_info.append("nickname", values.nickname);
-    Update_info.append("sns", values.sns);
-    Update_info.append("intro", values.intro);
-
-    // // FormData의 key 확인
-    // for (let key of Update_info.keys()) {
-    //   console.log(key);
-    // }
-
-    // // FormData의 value 확인
-    // for (let value of Update_info.values()) {
-    //   // console.log(typeof value);
-    //   console.log(value);
-    // }
-
-    dispatch(userActions.updateSettingsData(Update_info));
-  };
-
-  const updateProfile2 = () => {
-    const Update_info = new FormData();
+    if (imageUrl !== null) {
+      Update_info.append("image", imageUrl);
+    }
     Update_info.append("city", city);
     Update_info.append("age", age);
     Update_info.append("gender", gender);
@@ -236,7 +214,12 @@ const Edit = (props) => {
           setRegion={setRegion}
         />
 
-        <SetFood food={food} setFood={setFood} />
+        <SetFood
+          food={food}
+          setFood={setFood}
+          count={count}
+          setCount={setCount}
+        />
         <Typography
           component="h6"
           variant="p"
@@ -275,9 +258,7 @@ const Edit = (props) => {
           fullWidth
           sx={{ marginTop: 5, backgroundColor: "#dfdfdf", color: "black" }}
           onClick={() => {
-            {
-              imageUrl == null ? updateProfile2() : updateProfile();
-            }
+            updateProfile();
           }}
         >
           수정완료

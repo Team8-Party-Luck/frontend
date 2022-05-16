@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
+import { actionCreators as userActions } from "../redux/modules/user";
 import PartyHeader from "../components/PartyInfo/PartyHeader";
 
 const PartyInfo = () => {
@@ -17,10 +18,13 @@ const PartyInfo = () => {
 
   const dispatch = useDispatch();
   React.useEffect(() => {
+    dispatch(userActions.userCheckDB());
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
 
   const userCheck = useSelector((state) => state?.user?.user?.result);
+  console.log(userCheck);
+
   const partyUser = useSelector((state) => state?.crew?.info);
 
   //상세정보
@@ -64,7 +68,11 @@ const PartyInfo = () => {
         partyId={partyId}
       />
       <PartyDetailDesc desc={desc} />
-      <PartyDetailBottomNav memberCnt={memberCnt} capacity={capacity} />
+      <PartyDetailBottomNav
+        memberCnt={memberCnt}
+        capacity={capacity}
+        userCheck={userCheck}
+      />
     </React.Fragment>
   );
 };

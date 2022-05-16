@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme } from "@mui/material/styles";
 import { purple } from "@mui/material/colors";
+import styled from "styled-components";
 
 const SetAge = (props) => {
   const { age, setAge, count, setCount } = props;
@@ -19,37 +20,17 @@ const SetAge = (props) => {
 
   return (
     <React.Fragment>
-      <Typography component="h4" variant="p" sx={{ marginTop: 6 }}>
-        연령대를 설정해볼까요?
-      </Typography>
-      <Box sx={{ display: "flex", marginTop: 2 }}>
+      <WrapBox>
         {age === "10대" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              background: "#FF6853",
-            }}
+          <CheckBox
             onClick={() => {
               setAge("10대");
             }}
           >
-            10대
-          </Button>
+            <CheckText>10대</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
               setAge("10대");
               {
@@ -57,36 +38,19 @@ const SetAge = (props) => {
               }
             }}
           >
-            10대
-          </Button>
+            <NonCheckText>10대</NonCheckText>
+          </NonCheckBox>
         )}
         {age === "20대" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              background: "#FF6853",
-            }}
+          <CheckBox
             onClick={() => {
               setAge("20대");
             }}
           >
-            20대
-          </Button>
+            <CheckText>20대</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
               setAge("20대");
               {
@@ -94,36 +58,19 @@ const SetAge = (props) => {
               }
             }}
           >
-            20대
-          </Button>
+            <NonCheckText>20대</NonCheckText>
+          </NonCheckBox>
         )}
         {age === "30대" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              background: "#FF6853",
-            }}
+          <CheckBox
             onClick={() => {
               setAge("30대");
             }}
           >
-            30대
-          </Button>
+            <CheckText>30대</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
               setAge("30대");
               {
@@ -131,36 +78,19 @@ const SetAge = (props) => {
               }
             }}
           >
-            30대
-          </Button>
+            <NonCheckText>30대</NonCheckText>
+          </NonCheckBox>
         )}
         {age === "40대" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              background: "#FF6853",
-            }}
+          <CheckBox
             onClick={() => {
               setAge("40대");
             }}
           >
-            40대
-          </Button>
+            <CheckText>40대</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
               setAge("40대");
               {
@@ -168,36 +98,19 @@ const SetAge = (props) => {
               }
             }}
           >
-            40대
-          </Button>
+            <NonCheckText>40대</NonCheckText>
+          </NonCheckBox>
         )}
         {age === "50대" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              background: "#FF6853",
-            }}
+          <CheckBox
             onClick={() => {
               setAge("50대");
             }}
           >
-            50대
-          </Button>
+            <CheckText>50대</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.45em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
               setAge("50대");
               {
@@ -205,12 +118,51 @@ const SetAge = (props) => {
               }
             }}
           >
-            50대
-          </Button>
+            <NonCheckText>50대</NonCheckText>
+          </NonCheckBox>
         )}
-      </Box>
+      </WrapBox>
     </React.Fragment>
   );
 };
+
+const WrapBox = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+`;
+
+const CheckBox = styled.div`
+  width: 4em;
+  height: 2em;
+  border-radius: 3em;
+  background: #ff6853;
+  padding: 0.5em;
+  margin: 0 auto;
+`;
+const NonCheckBox = styled.div`
+  width: 4em;
+  height: 2em;
+  border-radius: 3em;
+  border: 1px solid #dfdfdf;
+  padding: 0.45em;
+  margin: 0 auto;
+`;
+
+const CheckText = styled.p`
+  width: fit-content;
+  color: white;
+  font-size: 0.9em;
+  margin: 0 auto;
+`;
+
+const NonCheckText = styled.p`
+  width: fit-content;
+  color: black;
+  font-size: 0.9em;
+  margin: 0 auto;
+`;
 
 export default SetAge;

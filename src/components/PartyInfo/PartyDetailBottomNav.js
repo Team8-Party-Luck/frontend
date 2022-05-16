@@ -17,9 +17,6 @@ const PartyDetailBottomNav = (props) => {
 
   const dispatch = useDispatch();
 
-  const userCheck = useSelector((state) => state?.user?.user?.result);
-  console.log(userCheck);
-
   const partyUser = useSelector((state) => state?.crew?.info);
   console.log(partyUser);
 
@@ -27,7 +24,7 @@ const PartyDetailBottomNav = (props) => {
     dispatch(crewActions.deleteSend(partyId));
   };
 
-  if (userCheck?.userid === partyUser?.hostid) {
+  if (props?.userCheck?.userid === partyUser?.hostid) {
     return (
       <Box>
         <Box

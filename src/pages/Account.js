@@ -13,6 +13,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button, TextField } from "@mui/material";
 import { history } from "../redux/configStore";
+import styled from "styled-components";
+import goArrow from "../static/images/icon/arw_gray.png";
 
 const Account = () => {
   const [openLogout, setOpenLogout] = useState(false);
@@ -44,143 +46,40 @@ const Account = () => {
   };
 
   return (
-    <Box>
+    <React.Fragment>
       <Header name={"계정"} />
-      <List
-        component="nav"
-        aria-label="mailbox folders"
-        sx={{ paddingTop: "4em" }}
-      >
-        <ListItem
-          button
-          onClick={() => {
-            handleClickOpen();
-          }}
-        >
-          <ListItemText primary="로그아웃" />
-        </ListItem>
-        <Divider />
-        <ListItem
-          button
-          onClick={() => {
-            handleClickOpenResign();
-          }}
-        >
-          <ListItemText primary="회원탈퇴" />
-        </ListItem>
-      </List>
-      <BottomNav />
-      <Dialog
-        open={openLogout}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          로그아웃 하시겠습니까?
-        </DialogTitle>
-        <DialogActions style={{ margin: "0 auto" }}>
-          <Button
-            variant="contained"
-            sx={{ background: "#FF6853", width: "100%" }}
-            onClick={handleClose}
-          >
-            취소하기
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#FF6853",
-              border: "1px solid #FF6853",
-              width: "100%",
-            }}
-            onClick={() => {
-              handleClose();
-              sessionStorage.removeItem("token");
-              sessionStorage.removeItem("userid");
-              history.push("/");
-            }}
-            autoFocus
-          >
-            로그아웃
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog
-        open={openResign}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          정말 탈퇴하시겠습니까?
-        </DialogTitle>
-        <DialogActions style={{ margin: "0 auto" }}>
-          <Button
-            variant="contained"
-            sx={{ background: "#FF6853", width: "100%" }}
-            onClick={handleCloseResign}
-          >
-            취소하기
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#FF6853",
-              border: "1px solid #FF6853",
-              width: "100%",
-            }}
-            onClick={() => {
-              handleCloseResign();
-              handleClickOpenConfirm();
-            }}
-            autoFocus
-          >
-            탈퇴하기
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog open={openConfirm} onClose={handleCloseConfirm}>
-        <DialogTitle>' 탈퇴 ' 글자를 입력해주세요</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            탈퇴로 인해 서비스 이용에 제한이 <br /> 있을 수 있습니다
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="탈퇴"
-            fullWidth
-            variant="standard"
-            onChange={() => {}}
-          />
-        </DialogContent>
-        <DialogActions style={{ margin: "0 auto" }}>
-          <Button
-            variant="contained"
-            sx={{ background: "#FF6853", width: "100%" }}
-            onClick={handleCloseConfirm}
-          >
-            취소하기
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#FF6853",
-              border: "1px solid #FF6853",
-              width: "100%",
-            }}
-            onClick={() => {
-              handleCloseConfirm();
-            }}
-            autoFocus
-          >
-            탈퇴하기
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
+      <WrapBox>
+        <ListBox onClick={() => {}}>
+          <div>로그아웃</div>
+          <img src={goArrow} style={{ width: 9, height: 15 }} />
+        </ListBox>
+        <ListBox onClick={() => {}}>
+          <div>탈퇴하기</div>
+          <img src={goArrow} style={{ width: 9, height: 15 }} />
+        </ListBox>
+      </WrapBox>
+    </React.Fragment>
   );
 };
+
+const WrapBox = styled.div`
+  width: 100%;
+  padding: 1.2em;
+  padding-top: 4em;
+`;
+
+const ListBox = styled.div`
+  width: 100%;
+  height: 3em;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+`;
+
+const CountText = styled.span`
+  color: #ccc;
+  margin-left: 0.5em;
+`;
 
 export default Account;

@@ -28,15 +28,13 @@ const PartyRevise = () => {
   const partyUser = useSelector((state) => state?.crew?.info);
 
   const dateConfig = () => {
-    const reviseDate = new Date(`2022-${partyUser?.date}`)
-    let month = String(reviseDate.getMonth()+1)
-    month = month >= 10 ? month: '0' + month;
+    const reviseDate = new Date(`2022-${partyUser?.date}`);
+    let month = String(reviseDate.getMonth() + 1);
+    month = month >= 10 ? month : "0" + month;
     let day = String(reviseDate.getDate());
-    day = day >= 10 ? day : '0' + day;
-    return (`${month}월 ${day}일`)
-  }
-
- 
+    day = day >= 10 ? day : "0" + day;
+    return `${month}월 ${day}일`;
+  };
 
   const [image, setImage] = useState(partyUser?.image || "");
   const [title, setTitle] = useState(partyUser?.title || "");
@@ -51,8 +49,6 @@ const PartyRevise = () => {
   const [time, setTime] = useState(partyUser?.time || "");
   const [meeting, setMeeting] = useState(partyUser?.meeting || "");
   const [desc, setDesc] = useState(partyUser?.desc || "");
-
-
 
   const sendReviseData = () => {
     const Write_info = {
@@ -158,8 +154,6 @@ const PartyRevise = () => {
           style={{ height: "3rem", width: "7rem" }}
           onClick={() => {
             sendReviseData();
-            // alert("파티를 수정하시겠습니까?");
-            // history.push(`/partyInfo/${partyId}`);
           }}
         >
           등록
