@@ -109,7 +109,7 @@ const PartyRevise = () => {
       meeting !== null &&
       desc !== null
     ) {
-      dispatch(crewActions.reviseSend(Write_info));
+      dispatch(crewActions.reviseSend(Write_info, partyId));
     }
   };
 

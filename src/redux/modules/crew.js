@@ -100,7 +100,8 @@ const reviseSend = (Write_info, partyId) => {
       })
       .then((response) => {
         console.log(response.data);
-        console.log("성공");
+        alert("수정 성공했습니다")
+        history.push(`/partyInfo/${partyId}`)
       })
       .catch((error) => {
         console.log(error);

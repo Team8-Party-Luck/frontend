@@ -7,6 +7,13 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
+import PickersDay, {
+  PickersDayProps,
+  pickersDayClasses
+} from "@mui/lab/PickersDay";
+
+
+
 
 
 const theme = createTheme({
@@ -14,9 +21,9 @@ const theme = createTheme({
     primary: {
       main: "#FF6853",
     },
+    
   },
-  
-  
+
 });
 
 const RealDay = ({ date, setDate }) => {
@@ -30,6 +37,7 @@ const RealDay = ({ date, setDate }) => {
   // const hi = new Date(str[0], str[1]-1, str[2] )
   // console.log(hi)
 
+  
   return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
