@@ -31,6 +31,7 @@ const regiWriteSend = (Write_info) => {
 
   return function (dispatch, getState, { history }) {
     const file = new FormData();
+    file.append('defaultImage', Write_info.defaultImage)
     file.append("title", Write_info.title);
     file.append("store", Write_info.store);
     file.append("address", Write_info.address);

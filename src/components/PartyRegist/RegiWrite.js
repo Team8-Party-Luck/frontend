@@ -20,6 +20,7 @@ import RealDay from "./RealDay";
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
+  const [defaultImage, setDefaultImage] = useState(null)
   const [image, setImage] = useState([]);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
@@ -35,7 +36,7 @@ const RegiWrite = () => {
   const [desc, setDesc] = useState(null);
 
   const sendWriteData = () => {
-    if (image.length === 0) {
+    if (image.length === 0 && defaultImage === null) {
       alert("이미지 값이 입력되지 않았습니다.");
     }
     if (title === null) {
@@ -67,6 +68,7 @@ const RegiWrite = () => {
     }
 
     const Write_info = {
+      defaultImage:defaultImage,
       image: image,
       title: title,
       store: store,
@@ -83,7 +85,7 @@ const RegiWrite = () => {
     };
 
     if (
-      image.length !== 0 &&
+      // (image.length !== 0) &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -94,7 +96,6 @@ const RegiWrite = () => {
       meeting !== null &&
       desc !== null
     ) {
-      console.log(image);
       dispatch(crewActions.regiWriteSend(Write_info));
     }
   };
@@ -165,7 +166,7 @@ const RegiWrite = () => {
         </Modal>
       </Box>
       <Grid container alignItems="center" justifyContent="center" >
-        <Images image={image} setImage={setImage} />
+        <Images image={image} setImage={setImage} defaultImage={defaultImage} setDefaultImage={setDefaultImage}/>
         <TextField
           placeholder="파티제목"
           variant="standard"
