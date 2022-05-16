@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import styled from "styled-components";
 
 const SetGender = (props) => {
   const { gender, setGender, count, setCount } = props;
@@ -17,86 +18,93 @@ const SetGender = (props) => {
 
   return (
     <React.Fragment>
-      <Typography component="h4" variant="p" sx={{ marginTop: 2 }}>
-        성별을 선택해주세요!
-      </Typography>
-      <Box sx={{ display: "flex", marginTop: 2 }}>
-        {gender === "여성" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.5em",
-              background: "#FF6853",
-            }}
+      <WrapBox>
+        {gender === "남자" ? (
+          <CheckBox
             onClick={() => {
-              setGender("여성");
+              setGender("남자");
               setValue(!value);
             }}
           >
-            여성
-          </Button>
+            <CheckText>남자</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              marginRight: "0.5em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
-              setGender("여성");
+              setGender("남자");
               {
                 !gender ? add_count() : setValue();
               }
             }}
           >
-            여성
-          </Button>
+            <NonCheckText>남자</NonCheckText>
+          </NonCheckBox>
         )}
-        {gender === "남성" ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              background: "#FF6853",
-            }}
+        {gender === "여자" ? (
+          <CheckBox
             onClick={() => {
-              setGender("남성");
+              setGender("여자");
+              setValue(!value);
             }}
           >
-            남성
-          </Button>
+            <CheckText>여자</CheckText>
+          </CheckBox>
         ) : (
-          <Button
-            variant="outlined"
-            sx={{
-              width: "3em",
-              height: "2em",
-              borderRadius: "3em",
-              border: "1px solid #FF6853",
-              color: "#FF6853",
-            }}
+          <NonCheckBox
             onClick={() => {
-              setGender("남성");
+              setGender("여자");
               {
                 !gender ? add_count() : setValue();
               }
             }}
           >
-            남성
-          </Button>
+            <NonCheckText>여자</NonCheckText>
+          </NonCheckBox>
         )}
-      </Box>
+      </WrapBox>
     </React.Fragment>
   );
 };
+
+const WrapBox = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+`;
+
+const CheckBox = styled.div`
+  width: 4em;
+  height: 2em;
+  border-radius: 3em;
+  margin-right: 0.5em;
+  background: #ff6853;
+  padding: 0.5em;
+  margin: 0 auto;
+`;
+const NonCheckBox = styled.div`
+  width: 4em;
+  height: 2em;
+  border-radius: 3em;
+  margin-right: 0.5em;
+  border: 1px solid #dfdfdf;
+  padding: 0.45em;
+  margin: 0 auto;
+`;
+
+const CheckText = styled.p`
+  width: fit-content;
+  color: white;
+  font-size: 0.9em;
+  margin: 0 auto;
+`;
+
+const NonCheckText = styled.p`
+  width: fit-content;
+  color: black;
+  font-size: 0.9em;
+  margin: 0 auto;
+`;
 
 export default SetGender;

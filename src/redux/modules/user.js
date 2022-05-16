@@ -74,7 +74,9 @@ const kakaoLogin = (code) => {
           .then((res) => {
             console.log(res.data, "여기까지는 성공");
             sessionStorage.setItem("userid", res.data.result.userid);
-            res.data.ok ? history.push("/home") : history.push("/setting");
+            res.data.ok
+              ? history.replace("/home")
+              : history.replace("/setting");
           })
           .catch((err) => {
             console.log("두번 호출 실패", err.response);

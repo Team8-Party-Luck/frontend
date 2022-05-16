@@ -124,7 +124,6 @@ const ChatDetail = () => {
       <Box
         sx={{
           width: "100%",
-
           padding: 1,
           paddingBottom: "4em",
           paddingTop: "3.5em",

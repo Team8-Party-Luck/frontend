@@ -7,61 +7,137 @@ const FoodList = (props) => {
   console.log(user_info);
 
   return (
-    <Box
-      sx={{
-        margin: "0 1em",
-        padding: "1em",
-        background: "#eee",
-        borderRadius: 1,
-      }}
-    >
-      <Typography
-        component="h4"
-        variant="p"
-        sx={{ width: "100%", marginBottom: "1em", textAlign: "center" }}
-      >
-        선호 음식 종류
-      </Typography>
-      <FoodBox>
-        {user_info?.food?.map((cur, idx) => (
-          <Box key={idx}>
-            <CheckBox />
-            <Typography
-              component="p"
-              variant="p"
-              sx={{
-                color: "black",
-                fontSize: "0.8em",
-                marginTop: "0.5em",
-                textAlign: "center",
-              }}
-            >
-              {cur}
-            </Typography>
-          </Box>
-        ))}
-      </FoodBox>
-    </Box>
+    <React.Fragment>
+      <FoodText>선호 음식 종류</FoodText>
+      <WrapBox>
+        {user_info?.food?.includes("한식") ? <KorBox>한식</KorBox> : null}
+        {user_info?.food?.includes("중식") ? (
+          <ChiBox>중식/아시안</ChiBox>
+        ) : null}
+        {user_info?.food?.includes("일식") ? <JapBox>일식</JapBox> : null}
+        {user_info?.food?.includes("양식") ? <WesBox>양식</WesBox> : null}
+        {user_info?.food?.includes("패스트푸드") ? (
+          <FastBox>패스트푸드</FastBox>
+        ) : null}
+        {user_info?.food?.includes("디저트") ? (
+          <CoffeeBox>커피/디저트</CoffeeBox>
+        ) : null}
+        {user_info?.food?.includes("샐러드") ? (
+          <SaladBox>샐러드류</SaladBox>
+        ) : null}
+        {user_info?.food?.includes("기타") ? <EtcBox>기타</EtcBox> : null}
+      </WrapBox>
+    </React.Fragment>
   );
 };
 
-const FoodBox = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-row-gap: 0.5em;
-  margin: 0 auto;
+const FoodText = styled.p`
+  font-size: 0.7em;
+  color: gray;
+  font-weight: 600;
   margin-top: 1em;
+  margin-bottom: 0.5em;
 `;
 
-const CheckBox = styled.div`
-  width: 2.2em;
-  height: 2.2em;
-  border-radius: 2.2em;
-  background: #ff6853;
-  margin: 0 auto;
-  position: relative;
-  cursor: pointer;
+const WrapBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+const KorBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #ee9d00;
+  color: #ee9d00;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const ChiBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #ff5b33;
+  color: #ff5b33;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const JapBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #003159;
+  color: #003159;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const WesBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #23b762;
+  color: #23b762;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const FastBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #d69554;
+  color: #d69554;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const SaladBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #3db1dd;
+  color: #3db1dd;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const CoffeeBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #b28146;
+  color: #b28146;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+`;
+const EtcBox = styled.div`
+  width: fit-content;
+  min-width: 3.5em;
+  border-radius: 1.5em;
+  border: 1px solid #999;
+  color: #999;
+  padding: 0.3em 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
 `;
 
 export default FoodList;

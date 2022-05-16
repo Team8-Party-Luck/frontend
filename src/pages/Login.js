@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configStore";
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
 import styled from "styled-components";
+import LoginImg from "../static/images/logo/img_login.png";
 
 const Login = () => {
   return (
@@ -26,7 +20,7 @@ const Login = () => {
             marginTop: 20,
           }}
         >
-          <img src="image/login/img_login.png" />
+          <img src={LoginImg} alt="로그인 이미지" />
         </Box>
         <Box
           sx={{
@@ -36,7 +30,10 @@ const Login = () => {
             window.location.href = KAKAO_AUTH_URL;
           }}
         >
-          <img src="image/kakao/kakao_login_medium_wide.png" />
+          <img
+            src="image/kakao/kakao_login_medium_wide.png"
+            alt="카카오 로그인 버튼"
+          />
         </Box>
         <JustSee
           onClick={() => {
@@ -56,6 +53,7 @@ const JustSee = styled.button`
   border-radius: 5px;
   border: none;
   margin-top: 1em;
+  background: #dfdfdf;
 `;
 
 export default Login;

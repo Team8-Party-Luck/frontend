@@ -2,8 +2,6 @@ import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 
-const token = sessionStorage.getItem("token");
-
 //액션
 const GET_CHAT_LIST = "GET_CHAT_LIST";
 const GET_MSG_LIST = "GET_CHAT_LIST";
@@ -18,6 +16,7 @@ const initialState = {};
 // 채팅 페이지에서 채팅 리스트 데이터 받아오기
 const getChatListDB = () => {
   return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
     axios
       .get(`http://3.38.180.96/chatroom/get`, {
         headers: {
@@ -39,6 +38,7 @@ const getChatListDB = () => {
 //과거에 나눴던 채팅들 받아오기
 const getMsgListDB = (roomId) => {
   return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
     axios
       .get(`http://3.38.180.96/chatroom/get/${roomId}`, {
         headers: {

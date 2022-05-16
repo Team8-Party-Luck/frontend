@@ -20,226 +20,226 @@ const ChatBox = (props) => {
   console.log(userInfo);
 
   return (
-    <React.Fragment>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={asd}>
-        {asd ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            // src={}
-          />
-        )}
-        <MsgBox user={asd}>
-          <Msg user={asd}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={asd}>
-        {asd ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            // src={}
-          />
-        )}
-        <MsgBox user={asd}>
-          <Msg user={asd}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={asd}>
-        {asd ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            // src={}
-          />
-        )}
-        <MsgBox user={asd}>
-          <Msg user={asd}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-      <WrapBox user={user}>
-        {user ? null : (
-          <Avatar
-            sx={{
-              bgcolor: red[400],
-              width: "2em",
-              height: "2em",
-              marginRight: "0.5em",
-            }}
-            aria-label="recipe"
-            //   src={}
-          />
-        )}
-        <MsgBox user={user}>
-          <Msg user={user}>
-            어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
-          </Msg>
-          <SendTime>오후 6:30</SendTime>
-        </MsgBox>
-      </WrapBox>
-    </React.Fragment>
-    // <WrapBox user={user}>
-    //   {user ? null : (
-    //     <Avatar
-    //       sx={{
-    //         bgcolor: red[400],
-    //         width: "2em",
-    //         height: "2em",
-    //         marginRight: "0.5em",
-    //       }}
-    //       aria-label="recipe"
-    //       //   src={}
-    //     />
-    //   )}
-    //   <MsgBox user={user}>
-    //     <Msg user={user}>{message}</Msg>
-    //     <SendTime>{createdAt}</SendTime>
-    //   </MsgBox>
-    // </WrapBox>
+    // <React.Fragment>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={asd}>
+    //     {asd ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         // src={}
+    //       />
+    //     )}
+    //     <MsgBox user={asd}>
+    //       <Msg user={asd}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={asd}>
+    //     {asd ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         // src={}
+    //       />
+    //     )}
+    //     <MsgBox user={asd}>
+    //       <Msg user={asd}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={asd}>
+    //     {asd ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         // src={}
+    //       />
+    //     )}
+    //     <MsgBox user={asd}>
+    //       <Msg user={asd}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    //   <WrapBox user={user}>
+    //     {user ? null : (
+    //       <Avatar
+    //         sx={{
+    //           bgcolor: red[400],
+    //           width: "2em",
+    //           height: "2em",
+    //           marginRight: "0.5em",
+    //         }}
+    //         aria-label="recipe"
+    //         //   src={}
+    //       />
+    //     )}
+    //     <MsgBox user={user}>
+    //       <Msg user={user}>
+    //         어쩌구 저쩌구~~~~~~~~~~~~~~~~~~어쩌구 저쩌구~~~~~~~~~~~~~~~~~~
+    //       </Msg>
+    //       <SendTime>오후 6:30</SendTime>
+    //     </MsgBox>
+    //   </WrapBox>
+    // </React.Fragment>
+    <WrapBox user={user}>
+      {user ? null : (
+        <Avatar
+          sx={{
+            bgcolor: red[400],
+            width: "2em",
+            height: "2em",
+            marginRight: "0.5em",
+          }}
+          aria-label="recipe"
+          //   src={}
+        />
+      )}
+      <MsgBox user={user}>
+        <Msg user={user}>{message}</Msg>
+        <SendTime>{createdAt}</SendTime>
+      </MsgBox>
+    </WrapBox>
   );
 };
 

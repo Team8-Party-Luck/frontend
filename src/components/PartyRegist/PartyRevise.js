@@ -27,6 +27,7 @@ const PartyRevise = () => {
   }, []);
   const partyUser = useSelector((state) => state?.crew?.info);
 
+
   // const dateConfig = () => {
   //   const reviseDate = new Date(`2022-${partyUser?.date}`)
   //   let month = String(reviseDate.getMonth()+1)
@@ -36,7 +37,6 @@ const PartyRevise = () => {
   //   return (`${month}월 ${day}일`)
   // }
 
- 
 
   // const [image, setImage] = useState(partyUser?.image || "");
   const [title, setTitle] = useState(partyUser?.title || "");
@@ -51,8 +51,6 @@ const PartyRevise = () => {
   const [time, setTime] = useState(partyUser?.time || "");
   const [meeting, setMeeting] = useState(partyUser?.meeting || "");
   const [desc, setDesc] = useState(partyUser?.desc || "");
-
-
 
   const sendReviseData = () => {
     if (title === null) {
@@ -238,6 +236,7 @@ const PartyRevise = () => {
             setDesc(e.target.value);
           }}
         />
+
       </Grid>
     </React.Fragment>
   );

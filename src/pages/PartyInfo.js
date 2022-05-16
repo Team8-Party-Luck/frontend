@@ -10,16 +10,21 @@ import Box from "@mui/material/Box";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
+import { actionCreators as userActions } from "../redux/modules/user";
+import PartyHeader from "../components/PartyInfo/PartyHeader";
 
 const PartyInfo = () => {
   const { partyId } = useParams();
 
   const dispatch = useDispatch();
   React.useEffect(() => {
+    dispatch(userActions.userCheckDB());
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
 
   const userCheck = useSelector((state) => state?.user?.user?.result);
+  console.log(userCheck);
+
   const partyUser = useSelector((state) => state?.crew?.info);
 
   //상세정보
@@ -42,7 +47,7 @@ const PartyInfo = () => {
 
   return (
     <React.Fragment>
-      <HeaderNav name="파티상세보기" partyId={partyId} partyUser={partyUser} />
+      <PartyHeader partyId={partyId} partyUser={partyUser} />
       <PartyInfoSlide image={image} />
       <PartyDetailInfo
         title={title}
@@ -56,9 +61,18 @@ const PartyInfo = () => {
         meeting={meeting}
         age={age}
       />
-      <PartyDetailUser memberCnt={memberCnt} capacity={capacity} userimageurls={userimageurls} partyId={partyId}/>
+      <PartyDetailUser
+        memberCnt={memberCnt}
+        capacity={capacity}
+        userimageurls={userimageurls}
+        partyId={partyId}
+      />
       <PartyDetailDesc desc={desc} />
-      <PartyDetailBottomNav />
+      <PartyDetailBottomNav
+        memberCnt={memberCnt}
+        capacity={capacity}
+        userCheck={userCheck}
+      />
     </React.Fragment>
   );
 };

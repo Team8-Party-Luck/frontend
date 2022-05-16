@@ -11,13 +11,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import styled from "styled-components";
 
 import { Box, Grid } from "@mui/material";
+import FoodList from "./FoodList";
 
 const UserInfo = (props) => {
   const { user_info } = props;
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Box sx={{ display: "flex", marginTop: 3 }}>
+    <ProfileBox>
+      <InfoBox>
         <Avatar
           sx={{
             bgcolor: red[400],
@@ -29,38 +30,58 @@ const UserInfo = (props) => {
           src={user_info?.image}
         />
         <Box sx={{ width: "100%", paddingTop: 0.4 }}>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ fontSize: "1em", marginBottom: 0.5 }}
-          >
-            {user_info?.nickname}
-          </Typography>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ color: "gray", fontSize: "0.7em" }}
-          >
+          <NameText>{user_info?.nickname}</NameText>
+          <DetailText>
             {user_info?.gender} · {user_info?.age} · {user_info?.city}{" "}
             {user_info?.region}
-          </Typography>
+          </DetailText>
         </Box>
-      </Box>
+      </InfoBox>
       <NonFixBox>{user_info?.intro}</NonFixBox>
-    </Box>
+      <FoodList user_info={user_info} />
+    </ProfileBox>
   );
 };
 
-const NonFixBox = styled.div`
+const ProfileBox = styled.div`
   width: 100%;
   border: 1px solid #dfdfdf;
-  border-radius: 3px;
+  border-radius: 0.5em;
+  margin: 1em auto;
+  padding: 1em;
+`;
 
-  margin-top: 1.5em;
-  padding-left: 0.7em;
-  padding-top: 0.6em;
-  padding-bottom: 0.6em;
+const InfoBox = styled.div`
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #dfdfdf;
+  padding-bottom: 1em;
+`;
+
+const NameText = styled.p`
+  font-size: 1em;
+  font-weight: 600;
+`;
+
+const DetailText = styled.p`
+  font-size: 0.7em;
+  color: gray;
+`;
+
+const FoodText = styled.p`
+  font-size: 0.7em;
+  color: gray;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+`;
+
+const NonFixBox = styled.div`
+  width: 100%;
   font-size: 0.8em;
+  margin-top: 1em;
+  word-wrap: break-word;
+  word-break: break-word;
 `;
 
 export default UserInfo;

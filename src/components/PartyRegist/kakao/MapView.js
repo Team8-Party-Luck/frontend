@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import KakaoMap from "./KakaoMap";
-import $ from "jquery";
 import { history } from "../../../redux/configStore";
 
 const style = {
@@ -19,7 +18,13 @@ const style = {
   height: "40rem",
 };
 
-export default function MapView({store, setStore, setAddress, setPlace_url, setXy}) {
+export default function MapView({
+  store,
+  setStore,
+  setAddress,
+  setPlace_url,
+  setXy,
+}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -27,7 +32,7 @@ export default function MapView({store, setStore, setAddress, setPlace_url, setX
   return (
     <div style={{ width: "85%" }}>
       <TextField
-        value={store || ''}
+        value={store || ""}
         id="eateryName"
         variant="standard"
         placeholder='식당명' 
@@ -46,7 +51,13 @@ export default function MapView({store, setStore, setAddress, setPlace_url, setX
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <KakaoMap setStore={setStore} setAddress={setAddress} setPlace_url={setPlace_url}  setXy={setXy} setOpen={setOpen}/>
+          <KakaoMap
+            setStore={setStore}
+            setAddress={setAddress}
+            setPlace_url={setPlace_url}
+            setXy={setXy}
+            setOpen={setOpen}
+          />
         </Box>
       </Modal>
     </div>

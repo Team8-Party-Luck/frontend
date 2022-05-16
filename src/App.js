@@ -1,6 +1,5 @@
 import Login from "./pages/Login";
 import Setting from "./pages/Setting";
-import Setting2 from "./pages/Setting2";
 import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";
@@ -48,7 +47,6 @@ function App() {
         <Route path="/edit" exact component={Edit} />
         <Route path="/spin" exact component={Spinner} />
         <Route path="/setting" exact component={Setting} />
-        <Route path="/setting2" exact component={Setting2} />
         <Route path="/joined" exact component={Joined} />
         <Route path="/scrap" exact component={Scrap} />
         <Route path="/Account" exact component={Account} />

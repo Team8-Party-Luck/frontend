@@ -68,7 +68,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
     }
   }
 
-
   // 검색 결과 목록과 마커를 표출하는 함수입니다
   function displayPlaces(places) {
     var listEl = document.getElementById("placesList"),
@@ -88,7 +87,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
         marker = addMarker(placePosition, i),
         itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
 
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
       // LatLngBounds 객체에 좌표를 추가합니다
@@ -113,7 +111,9 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
           setAddress(address_name);
           setPlace_url(place_url);
           setXy(`${x},${y}`);
+
           // setOpen(false)
+
         };
 
         itemEl.onmouseout = function () {
@@ -129,7 +129,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       );
       console.log(marker);
       fragment.appendChild(itemEl);
-
     }
 
     // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
@@ -138,8 +137,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
-
-
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
@@ -172,7 +169,9 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       itemStr += "    <span>" + places.address_name + "</span>";
     }
 
+
     itemStr += '  <span class="tel">' + places.phone +"</span>" + "</div>" ;
+
 
     el.innerHTML = itemStr;
     el.className = "item";

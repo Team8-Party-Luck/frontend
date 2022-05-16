@@ -3,27 +3,12 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-const Container = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const StyledSlider = styled(Slider)`
-  .slick-slide div {
-    outline: none;
-  }
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 22rem;
-  object-fit: cover;
-`;
+import { red } from "@mui/material/colors";
 
 const PartyInfoSlide = ({ image }) => {
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -43,5 +28,21 @@ const PartyInfoSlide = ({ image }) => {
     </Container>
   );
 };
+
+const Container = styled.div`
+  margin-bottom: 1rem;
+`;
+
+const StyledSlider = styled(Slider)`
+  .slick-slide div {
+    outline: none;
+  }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 22rem;
+  object-fit: cover;
+`;
 
 export default PartyInfoSlide;

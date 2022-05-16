@@ -34,7 +34,15 @@ const SetLocation = (props) => {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", width: "100%", margin: " auto" }}>
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+          margin: " auto",
+          marginTop: 2,
+          marginBottom: 4,
+        }}
+      >
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-label">시/도</InputLabel>
           <Select
@@ -44,7 +52,7 @@ const SetLocation = (props) => {
             defaultValue={user_info?.city}
             label="Age"
             onChange={handleChangeCity}
-            sx={{ width: "100%", margin: "0 auto" }}
+            sx={{ width: "96%", margin: "0 auto" }}
           >
             {cityArea.map((cur, idx) => (
               <MenuItem value={cur} key={idx}>
@@ -71,7 +79,7 @@ const SetLocation = (props) => {
             // defaultValue={user_info?.region}
             label="Age"
             onChange={handleChangeRegion}
-            sx={{ width: "100%", margin: "0 auto" }}
+            sx={{ width: "96%", margin: "0 auto" }}
           >
             {city === "서울특별시"
               ? regionArea[0].map((cur, idx) => (

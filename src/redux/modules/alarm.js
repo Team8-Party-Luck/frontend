@@ -3,7 +3,6 @@ import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import history from "../configStore";
-import $ from "jquery";
 
 import SockJS from "sockjs-client";
 import * as Stomp from "stompjs";
@@ -151,7 +150,7 @@ const actionCreators = {
   ConnectSub,
   getAlarm,
   onSend,
-  DisConnectUnsub
+  DisConnectUnsub,
 };
 
 export { actionCreators };
