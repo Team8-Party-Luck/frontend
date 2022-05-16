@@ -1,7 +1,6 @@
 /* eslint-disable no-loop-func */
 import React, { useState, useEffect } from "react";
 import "../../../style/KakaoMap.css";
-import $ from "jquery";
 
 const { kakao } = window;
 
@@ -41,6 +40,8 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   }, []);
 
   const searchPlaces = () => {
+    var keyword = document.getElementById('keyword').value;
+
     if (!keyword.replace(/^\s+|\s+$/g, "")) {
       alert("키워드를 입력해주세요!");
       return false;
@@ -82,7 +83,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
 
-    for (var i = 0; i < places.length; i++) {
+    for (let i = 0; i < places.length; i++) {
       // 마커를 생성하고 지도에 표시합니다
       var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
         marker = addMarker(placePosition, i),
@@ -99,7 +100,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       (function (marker, place_name, address_name, place_url, x, y) {
         kakao.maps.event.addListener(marker, "mouseover", function (e) {
           displayInfowindow(marker, place_name);
-          console.log(marker);
+          // console.log(marker);
         });
 
         kakao.maps.event.addListener(marker, "mouseout", function () {
@@ -112,7 +113,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
           setAddress(address_name);
           setPlace_url(place_url);
           setXy(`${x},${y}`);
-          setOpen(false)
+          // setOpen(false)
         };
 
         itemEl.onmouseout = function () {
@@ -142,12 +143,12 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
-    console.log(places);
-    console.log(places.place_name);
-    console.log(places.address_name);
-    console.log(places.place_url);
-    console.log(places.x);
-    console.log(places.y);
+    // console.log(places);
+    // console.log(places.place_name);
+    // console.log(places.address_name);
+    // console.log(places.place_url);
+    // console.log(places.x);
+    // console.log(places.y);
 
     var el = document.createElement("li"),
       itemStr =
@@ -171,7 +172,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       itemStr += "    <span>" + places.address_name + "</span>";
     }
 
-    itemStr += '  <span class="tel">' + places.phone +"</span>"+`<button id="gather">여기모여</button>` + "</div>" ;
+    itemStr += '  <span class="tel">' + places.phone +"</span>" + "</div>" ;
 
     el.innerHTML = itemStr;
     el.className = "item";
@@ -193,6 +194,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       marker = new kakao.maps.Marker({
         position: position, // 마커의 위치
         image: markerImage,
+        clickable: true
       });
 
     marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -243,7 +245,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
   // 인포윈도우에 장소명을 표시합니다
   function displayInfowindow(marker, title) {
-    var content = '<div style="padding:5px;z-index:1;">' + title;
+    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 
     infowindow.setContent(content);
     infowindow.open(map, marker);
