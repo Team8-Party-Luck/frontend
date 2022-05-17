@@ -49,7 +49,7 @@ const regiWriteSend = (Write_info) => {
       file.append("image", a);
     });
 
-    console.log(file);
+
     axios
       .post("http://3.38.180.96/api/party", file, {
         headers: {
@@ -139,23 +139,34 @@ const deleteSend = (partyId) => {
 };
 
 // 홈화면에서 전체 데이터 받아오기
-const getDataDB = (pageNum) => {
+const  getDataDB =  (pageNum) => {
   const token = sessionStorage.getItem("token");
 
-  return function (dispatch, getState, { history }) {
-    axios
-      .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
-      .then((res) => {
-        console.log(res.data.results);
+  return async function  (dispatch, getState, { history }) {
+    try{
+      const res = axios.get(`http://3.38.180.96/api/parties/raw/${pageNum}`);
+      await console.log(res.data.results);
 
         let asd = getState();
         console.log(asd.crew.crew);
 
         dispatch(getCrew(res.data.results));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    } catch(error){
+      console.log(error)
+    }
+    // axios
+      // .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
+      // .then((res) => {
+      //   console.log(res.data.results);
+
+      //   let asd = getState();
+      //   console.log(asd.crew.crew);
+
+      //   dispatch(getCrew(res.data.results));
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
   };
 };
 
