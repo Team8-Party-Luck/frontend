@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import BackIcon from "../static/images/icon/back.png";
@@ -19,7 +18,6 @@ const Header = (props) => {
         <img src={BackIcon} alt="뒤로가기" style={{ width: 12, height: 22 }} />
       </Box>
       <HeaderText>{props.name}</HeaderText>
-      {/* {props.classname ? } */}
     </WrapBox>
   );
 };

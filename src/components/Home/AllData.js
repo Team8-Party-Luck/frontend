@@ -55,33 +55,27 @@ const AllData = (props) => {
         <Box sx={{ marginLeft: "0.5em" }}>
           <StoreText>{store}</StoreText>
           <CenterBox>
-            <img
-              src={LocationImg}
-              style={{ width: 16, height: 16 }}
-              alt="위치"
-            />
+            <IconBox src={LocationImg} alt="위치" />
             <DetailText>&nbsp;{address}&nbsp;</DetailText>
-            <img
-              src={CalenderImg}
-              style={{ width: 16, height: 16 }}
-              alt="달력"
-            />
+            <IconBox src={CalenderImg} alt="달력" />
             <DetailText>
               &nbsp;{newDate}({day})&nbsp;
             </DetailText>
-            <img src={DateImg} style={{ width: 16, height: 16 }} alt="시간" />
+            <IconBox src={DateImg} alt="시간" />
             <DetailText>&nbsp;{time}&nbsp;</DetailText>
           </CenterBox>
-          <Box sx={{ display: "flex", marginTop: 0.5 }}>
-            <img src={PersonImg} style={{ width: 16, height: 16 }} alt="시간" />
-            <Typography sx={{ fontSize: 12 }}>
+          <FlexBox style={{ marginTop: 0.5 }}>
+            <IconBox src={PersonImg} alt="시간" />
+            <DetailText>
               &nbsp;{capacity}명&nbsp; {age} {gender}
               모임
-            </Typography>
-          </Box>
+            </DetailText>
+          </FlexBox>
         </Box>
       </FlexBox>
-      {hostId === userInfo?.userid ? <HostImg src={HostImage} /> : null}
+      {hostId !== undefined && hostId === userInfo?.userid ? (
+        <HostImg src={HostImage} />
+      ) : null}
     </WrapBox>
   );
 };
@@ -102,11 +96,6 @@ const StoreText = styled.p`
   color: gray;
 `;
 
-const BorderLine = styled.span`
-  font-size: 0.8em;
-  color: gray;
-`;
-
 const DetailText = styled.p`
   font-size: 0.8em;
 `;
@@ -119,12 +108,18 @@ const CenterBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 0.1em;
 `;
 
 const ImgBox = styled.img`
-  width: 3.9em;
-  height: 3.9em;
+  width: 4em;
+  height: 4em;
   border-radius: 0.5em;
+`;
+
+const IconBox = styled.img`
+  width: 0.9em;
+  height: 0.9em;
 `;
 
 const HostImg = styled.img`

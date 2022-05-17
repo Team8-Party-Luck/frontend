@@ -19,46 +19,47 @@ const SetGender = (props) => {
   return (
     <React.Fragment>
       <WrapBox>
-        {gender === "남자" ? (
+        {gender === "남성" ? (
           <CheckBox
             onClick={() => {
-              setGender("남자");
+              setGender("남성");
               setValue(!value);
             }}
           >
-            <CheckText>남자</CheckText>
+            <CheckText>남성</CheckText>
           </CheckBox>
         ) : (
           <NonCheckBox
             onClick={() => {
-              setGender("남자");
+              setGender("남성");
+
               {
                 !gender ? add_count() : setValue();
               }
             }}
           >
-            <NonCheckText>남자</NonCheckText>
+            <NonCheckText>남성</NonCheckText>
           </NonCheckBox>
         )}
-        {gender === "여자" ? (
+        {gender === "여성" ? (
           <CheckBox
             onClick={() => {
-              setGender("여자");
+              setGender("여성");
               setValue(!value);
             }}
           >
-            <CheckText>여자</CheckText>
+            <CheckText>여성</CheckText>
           </CheckBox>
         ) : (
           <NonCheckBox
             onClick={() => {
-              setGender("여자");
+              setGender("여성");
               {
                 !gender ? add_count() : setValue();
               }
             }}
           >
-            <NonCheckText>여자</NonCheckText>
+            <NonCheckText>여성</NonCheckText>
           </NonCheckBox>
         )}
       </WrapBox>

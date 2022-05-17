@@ -29,7 +29,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ paddingLeft: 3 }}>
+        <Box sx={{ paddingLeft: 2.5 }}>
           <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
@@ -193,7 +193,7 @@ const PartyList = (props) => {
 const ListBox = styled.div`
   width: 100%;
   height: 35em;
-  // padding-top: 1.5em;
+  padding-bottom: 2.5em;
   overflow-y: auto;
 `;
 
