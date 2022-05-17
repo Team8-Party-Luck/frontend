@@ -103,8 +103,10 @@ const reviseSend = (Write_info, partyId) => {
       .then((response) => {
         console.log(response.data);
 
+
         alert("수정 성공했습니다")
         history.replace(`/partyInfo/${partyId}`)
+
 
       })
       .catch((error) => {

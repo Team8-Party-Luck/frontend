@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 //file
 import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { actionCreators as userActions } from "../../redux/modules/user";
 import AllData from "./AllData";
 import RegionSelect from "./RegionSelect";
 
@@ -28,7 +29,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ paddingLeft: 3 }}>
+        <Box sx={{ paddingLeft: 2.5 }}>
           <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
@@ -77,10 +78,13 @@ const PartyList = (props) => {
   React.useEffect(() => {
     dispatch(crewActions.getWillData());
     dispatch(crewActions.getScrapData());
+    dispatch(userActions.userCheckDB());
   }, []);
 
   const willData = useSelector((state) => state?.crew?.will);
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
+  const userInfo = useSelector((state) => state?.user?.user?.result);
+  console.log(userInfo);
 
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
@@ -126,8 +130,10 @@ const PartyList = (props) => {
             <Tab label="참여할 파티" {...a11yProps(2)} />
             <Tab label="찜한 파티" {...a11yProps(3)} />
           </Tabs>
+
         </Box>
       </ThemeProvider>
+
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
@@ -143,6 +149,8 @@ const PartyList = (props) => {
               capacity={cur?.capacity}
               age={cur?.age}
               gender={cur?.gender}
+              hostId={cur?.hostId}
+              userInfo={userInfo}
             />
           ))}
         </ListBox>
@@ -215,7 +223,7 @@ const PartyList = (props) => {
 const ListBox = styled.div`
   width: 100%;
   height: 35em;
-  // padding-top: 1.5em;
+  padding-bottom: 2.5em;
   overflow-y: auto;
 `;
 

@@ -21,56 +21,90 @@ const PartyDetailInfo = ({
   meeting,
   age,
 }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h6" component="div" style={{ fontWeight: 1000 }}>
-          {title}
-        </Typography>
-        <Typography sx={{}} color="text.secondary">
-          {store} | {address}
-        </Typography>
-
-        <Button
-          href={place_url}
-          variant="outlined"
-          style={{
-            width: "90%",
-            height: "3rem",
-            borderRadius: "1rem",
-            marginLeft: "1rem",
-            marginTop: "1rem",
-          }}
-        >
-          식당 상세 정보 확인하기
-        </Button>
-        <Stack spacing={1} style={{ marginTop: "1rem" }}>
-          <Typography sx={{ fontSize: "0.9rem" }}>
-            만나는장소 &nbsp;&nbsp; {meeting}
-          </Typography>
-          <Typography sx={{ fontSize: "0.9rem" }}>
-            날짜, 시간 &nbsp;&nbsp;&nbsp; {date} | {time}
-          </Typography>
-          <Typography sx={{ fontSize: "0.9rem" }}>
-            모집 인원 &nbsp;&nbsp;&nbsp;&nbsp; {capacity}명 | {age} {gender}{" "}
-            모임
-          </Typography>
-        </Stack>
-      </CardContent>
-    </Card>
+    <React.Fragment>
+      <WrapBox>
+        <Title>{title}</Title>
+        <FlexBox>
+          <ColorText>{store}</ColorText>
+          <GrayBar>ㅣ</GrayBar>
+          <LocationText>{address}</LocationText>
+        </FlexBox>
+        <DetailInfoBtn href={place_url}>식당 상세 정보 확인하기</DetailInfoBtn>
+      </WrapBox>
+      <WrapBox>
+        <FlexBox>
+          <div style={{ marginRight: "1em" }}>
+            <LocDetailText>만나는 장소</LocDetailText>
+            <LocDetailText style={{ margin: "1em 0" }}>
+              날짜, 시간
+            </LocDetailText>
+            <LocDetailText>모집 인원</LocDetailText>
+          </div>
+          <div>
+            <LocDetailText2>{meeting}</LocDetailText2>
+            <LocDetailText2 style={{ margin: "1em 0" }}>
+              {date} {time}
+            </LocDetailText2>
+            <LocDetailText2>
+              {capacity}명 <GrayBar>ㅣ</GrayBar> {age} {gender}
+            </LocDetailText2>
+          </div>
+        </FlexBox>
+      </WrapBox>
+    </React.Fragment>
   );
 };
 
-const Title = styled;
+const WrapBox = styled.div`
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 1.2em;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+`;
+
+const Title = styled.p`
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+`;
+
+const ColorText = styled.p`
+  font-size: 0.9em;
+  color: #ff6853;
+`;
+
+const LocationText = styled.p`
+  font-size: 0.9em;
+  color: gray;
+`;
+
+const LocDetailText = styled.p`
+  color: gray;
+  font-weight: 650;
+  font-size: 0.8em;
+`;
+
+const LocDetailText2 = styled.p`
+  font-size: 0.8em;
+`;
+
+const DetailInfoBtn = styled.button`
+  width: 100%;
+  height: 3.5em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background: white;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+`;
+
+const GrayBar = styled.span`
+  color: #ccc;
+`;
 
 export default PartyDetailInfo;

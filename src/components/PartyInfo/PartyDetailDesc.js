@@ -1,15 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-import Box from "@mui/material/Box";
-
 const PartyDetailDesc = ({ desc }) => {
   return (
-    <Box sx={{ mb: "4rem", mx:'2rem' }}>
-     {desc}
-    </Box>
+    <WrapBox>
+      <DescBox>{desc}</DescBox>
+    </WrapBox>
   );
 };
 
-export default PartyDetailDesc;
+const WrapBox = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.2em;
+`;
 
+const DescBox = styled.div`
+  width: 100%;
+`;
+
+export default PartyDetailDesc;
