@@ -32,6 +32,8 @@ const PartyInfo = () => {
   const partyUser = useSelector((state) => state?.crew?.info);
   console.log(partyUser);
 
+
+
   //상세정보
   const image = partyUser?.image;
   const title = partyUser?.title;

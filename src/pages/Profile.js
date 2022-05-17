@@ -26,7 +26,7 @@ const Profile = () => {
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   console.log(scrapData);
 
-  const user_info = useSelector((state) => state?.user?.user);
+  const user_info = useSelector((state) => state.user.user);
   console.log(user_info);
 
   return (

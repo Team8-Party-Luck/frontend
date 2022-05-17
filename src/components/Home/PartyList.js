@@ -61,7 +61,7 @@ const PartyList = (props) => {
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
       console.log(res.data.results);
       setPartyList([...partyList, ...res.data.results]);
@@ -85,6 +85,10 @@ const PartyList = (props) => {
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   const userInfo = useSelector((state) => state?.user?.user?.result);
   console.log(userInfo);
+
+  //지역필터
+  const regionData = useSelector((state) => state?.crew?.region);
+  console.log(regionData);
 
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
@@ -130,7 +134,6 @@ const PartyList = (props) => {
             <Tab label="참여할 파티" {...a11yProps(2)} />
             <Tab label="찜한 파티" {...a11yProps(3)} />
           </Tabs>
-
         </Box>
       </ThemeProvider>
 

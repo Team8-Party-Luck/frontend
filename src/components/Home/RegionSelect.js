@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   MenuItem,
@@ -10,14 +11,20 @@ import {
 
 import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
 
-export default function RegionSelect({ city, setCity, region, setRegion }) {
+const RegionSelect =({ city, setCity, region, setRegion })  => {
+
+  
+
 
   const handleChangeCity = (e) => {
     setCity(e.target.value);
   };
   const handleChangeRegion = (e) => {
     setRegion(e.target.value);
+    let answer = `${city} ${region}`
+    dispatchEvent(crewActions.getRegionData(answer));
     console.log('hi')
   };
 
@@ -50,11 +57,11 @@ export default function RegionSelect({ city, setCity, region, setRegion }) {
           fullWidth
           sx={{ minWidth: 120 }}
           size="small"
-          onClick={() => {
-            {
-              // !region ? add_count() : setValue();
-            }
-          }}
+          // onClick={() => {
+          //   {
+          //     !region ? add_count() : setValue();
+          //   }
+          // }}
         >
           <InputLabel>구/군</InputLabel>
           <Select
@@ -175,3 +182,4 @@ export default function RegionSelect({ city, setCity, region, setRegion }) {
 
 
 
+export default RegionSelect;

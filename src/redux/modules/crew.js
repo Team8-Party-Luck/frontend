@@ -3,6 +3,8 @@ import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configStore";
 
+const token = sessionStorage.getItem("token");
+
 //액션
 const GET_CREW = "GET_CREW";
 const GET_DETAIL = "GET_PARTYDETAIL";
@@ -10,6 +12,7 @@ const GET_JOINED = "GET_JOINED";
 const GET_SCRAP = "GET_SCRAP";
 const GET_DETAILUSER = "GET_DETAILUSER";
 const GET_WILL = "GET_WILL";
+const GET_REGION = "GET_REGION";
 
 //액션크레이터
 const getCrew = createAction(GET_CREW, (crew) => ({ crew }));
@@ -20,6 +23,7 @@ const getDetailUser = createAction(GET_DETAILUSER, (detailUser) => ({
   detailUser,
 }));
 const getWill = createAction(GET_WILL, (will) => ({ will }));
+const getRegion = createAction(GET_REGION, (region) => ({region}));
 
 // 초기값
 const initialState = { crew: [] };
@@ -139,36 +143,48 @@ const deleteSend = (partyId) => {
 };
 
 // 홈화면에서 전체 데이터 받아오기
-const  getDataDB =  (pageNum) => {
+const getDataDB = (pageNum) => {
   const token = sessionStorage.getItem("token");
 
-  return async function  (dispatch, getState, { history }) {
-    try{
-      const res = axios.get(`http://3.38.180.96/api/parties/raw/${pageNum}`);
-      await console.log(res.data.results);
+  return function (dispatch, getState, { history }) {
+    axios
+      .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
+      .then((res) => {
+        console.log(res.data.results);
 
         let asd = getState();
         console.log(asd.crew.crew);
 
         dispatch(getCrew(res.data.results));
-    } catch(error){
-      console.log(error)
-    }
-    // axios
-      // .get(`http://3.38.180.96/api/parties/raw/${pageNum}`)
-      // .then((res) => {
-      //   console.log(res.data.results);
-
-      //   let asd = getState();
-      //   console.log(asd.crew.crew);
-
-      //   dispatch(getCrew(res.data.results));
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
+
+//지역필터
+const getRegionData = (answer) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("/home/parties/local/{pageid}", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+        data:{answer:answer}
+      })
+      .then((res) => {
+        console.log(res.data.results);
+        dispatch(getRegion(res.data.results));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 
 //상세정보 받아오기
 const getDetailInfo = (partyId) => {
@@ -351,6 +367,8 @@ const getWillData = () => {
   };
 };
 
+
+
 export default handleActions(
   {
     [GET_CREW]: (state, action) =>
@@ -377,6 +395,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.will = action.payload.will;
       }),
+      [GET_REGION]: (state, action) =>
+      produce(state, (draft) => {
+        draft.region = action.payload.region;
+      }),
   },
   initialState
 );
@@ -400,6 +422,8 @@ const actionCreators = {
   getDetailUser,
   getWillData,
   getWill,
+  getRegionData,
+  getRegion,
 };
 
 export { actionCreators };
