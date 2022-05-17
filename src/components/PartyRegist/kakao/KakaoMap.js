@@ -153,8 +153,8 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       '<span class="tel">' +
       places.phone +
       "</span>" +
-      `<a href=${places.place_url} style="color:blue" target="_blank">상세정보보기</a>` +
-      `<button id=${places.id}>여기 모여<button/>`+
+      `<a href=${places.place_url} style="color:blue" target="_blank">상세정보보기</a>`+
+      `___<button style="color:#FF6853" id=${places.id}>여기 모여<button/>`+
       "</div>";
 
     el.innerHTML = itemStr;
