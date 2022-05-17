@@ -61,7 +61,7 @@ const PartyList = (props) => {
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
 
-  React.useEffect(() => {
+  React.useEffect( () => {
     axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
       console.log(res.data.results);
       setPartyList([...partyList, ...res.data.results]);
