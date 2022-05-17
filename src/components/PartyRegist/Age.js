@@ -8,11 +8,11 @@ import styled from "styled-components";
 export default function Age({capacity, setCapacity}) {
   const [value, setValue] = React.useState(number);
   
-
+  console.log(capacity)
   return (
     <AutoComplete
       disablePortal
-      value={capacity || ''}
+      value={String(capacity) || ''}
       options={number}
       sx={{ width: "95%",}}
       renderInput={(params) => <TextField  {...params}/>}
