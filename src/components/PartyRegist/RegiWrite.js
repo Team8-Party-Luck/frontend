@@ -21,8 +21,8 @@ import RealDay from "./RealDay";
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
-  const [defaultImage, setDefaultImage] = useState(null)
-  const [image, setImage] = useState([]);
+  const [defaultImage, setDefaultImage] = useState([])
+  const [image, setImage] = useState(null);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
   const [address, setAddress] = useState(null);
@@ -37,7 +37,7 @@ const RegiWrite = () => {
   const [desc, setDesc] = useState(null);
 
   const sendWriteData = () => {
-    if (image.length === 0 && defaultImage === null) {
+    if (image.length === 0 && defaultImage === []) {
       alert("이미지 값이 입력되지 않았습니다.");
     }
     if (title === null) {
@@ -85,8 +85,9 @@ const RegiWrite = () => {
       desc: desc,
     };
 
+    console.log(image)
     if (
-      (image.length !== 0 || defaultImage !== null) &&
+      (image.length !== 0 && defaultImage !== [])&&
       title !== null &&
       store !== null &&
       capacity !== null &&
