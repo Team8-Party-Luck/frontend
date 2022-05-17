@@ -44,7 +44,7 @@ const ChatInput = (props) => {
   //         }
   //         // 로딩 중
   //         waitForConnection(ws, function () {
-  //             ws.send("/pub/chat/message", { token: token }, JSON.stringify(message));
+  //             ws.send("/app/send", { token: token }, JSON.stringify(message));
   //             console.log(ws.ws.readyState);
   //             // setText("");
   //         });

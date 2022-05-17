@@ -31,6 +31,7 @@ const PartyInfoSlide = ({ image }) => {
 
 const Container = styled.div`
   margin-bottom: 1rem;
+  padding-top: 3.7em;
 `;
 
 const StyledSlider = styled(Slider)`

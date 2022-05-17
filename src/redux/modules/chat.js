@@ -4,11 +4,13 @@ import axios from "axios";
 
 //액션
 const GET_CHAT_LIST = "GET_CHAT_LIST";
-const GET_MSG_LIST = "GET_CHAT_LIST";
+const GET_MSG_LIST = "GET_MSG_LIST";
+const GET_ROOMID = "GET_ROOMID";
 
 //액션크레이터
-const getChatList = createAction(GET_CHAT_LIST, (chat) => ({ chat }));
+const getChatList = createAction(GET_CHAT_LIST, (list) => ({ list }));
 const getMsgList = createAction(GET_MSG_LIST, (msg) => ({ msg }));
+const getRoomId = createAction(GET_ROOMID, (id) => ({ id }));
 
 // 초기값
 const initialState = {};
@@ -57,15 +59,48 @@ const getMsgListDB = (roomId) => {
   };
 };
 
+//채팅방 번호 받아오기
+const getRoomIdDB = (roomId) => {
+  return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    console.log(roomId);
+    axios
+      .post(
+        `http://3.38.180.96/chatroom/create`,
+        {
+          otherId: roomId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json,",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getRoomId(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CHAT_LIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.chat = action.payload.chat;
+        draft.list = action.payload.list;
       }),
     [GET_MSG_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.msg = action.payload.msg;
+      }),
+    [GET_ROOMID]: (state, action) =>
+      produce(state, (draft) => {
+        draft.id = action.payload.id;
       }),
   },
   initialState
@@ -76,6 +111,8 @@ const actionCreators = {
   getChatListDB,
   getMsgList,
   getMsgListDB,
+  getRoomId,
+  getRoomIdDB,
 };
 
 export { actionCreators };

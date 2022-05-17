@@ -24,57 +24,62 @@ const ChatDetail = () => {
   console.log(roomId);
 
   // 채팅방 이전 메시지 가져오기
-  // useEffect(() => {
-  //   dispatch(chatActions.getMsgListDB(roomId));
-  // }, []);
+  useEffect(() => {
+    // dispatch(chatActions.getMsgListDB(roomId));
+    dispatch(chatActions.getRoomIdDB(roomId));
+  }, []);
+
+  const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
+  console.log(chatRoomId);
 
   // const messages = useSelector((state) => state?.chat);
   const messages = [];
   console.log(messages);
 
   // 소켓 연결
-  // React.useEffect(() => {
-  //   wsConnect();
+  React.useEffect(() => {
+    wsConnect();
 
-  //   return () => {
-  //     wsDisConnect();
-  //   };
-  // }, []);
+    return () => {
+      wsDisConnect();
+    };
+  }, []);
 
   // 1. stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
   let sock = new SockJs("http://3.38.180.96:8080/ws-stomp");
   let ws = Stomp.over(sock);
   console.log(ws);
 
-  // // 연결 및 구독. 파라미터로 토큰 넣어야 함
-  // function wsConnect() {
-  //   try {
-  //     ws.connect({ token: token, type: "CHAT" }, () => {
-  //       ws.subscribe(
-  //         `app/hello/${roomId}}`,
-  //         (res) => {
-  //           const newMessage = JSON.parse(res.body);
-  //           console.log(res);
-  //           console.log(newMessage);
-  //           // dispatch(subMessage(newMessage));
-  //         }
-  //         // {},
-  //       );
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  // 연결 및 구독. 파라미터로 토큰 넣어야 함
+  function wsConnect() {
+    try {
+      ws.connect({ token: token, type: "ENTER" }, () => {
+        console.log(chatRoomId);
+        ws.subscribe(
+          `queue/${chatRoomId}`,
+          (res) => {
+            const newMessage = JSON.parse(res.body);
+            console.log(res);
+            console.log(newMessage);
+            // dispatch(subMessage(newMessage));
+          }
+          // {},
+        );
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  // function wsDisConnect() {
-  //   try {
-  //     ws.disconnect(() => {
-  //       ws.unsubscribe("sub-0");
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  function wsDisConnect() {
+    try {
+      ws.disconnect(() => {
+        ws.unsubscribe("sub-0");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Box position={"relative"}>

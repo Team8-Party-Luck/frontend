@@ -16,12 +16,12 @@ import { actionCreators as chatActions } from "../../redux/modules/chat";
 const MsgList = () => {
   const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   dispatch(chatActions.getChatListDB());
-  // });
+  React.useEffect(() => {
+    dispatch(chatActions.getChatListDB());
+  }, []);
 
-  // const chatList = useSelector((state) => state?.chat?.chat);
-  // console.log(chatList);
+  const chatList = useSelector((state) => state?.chat?.list);
+  console.log(chatList);
 
   return (
     <Box>

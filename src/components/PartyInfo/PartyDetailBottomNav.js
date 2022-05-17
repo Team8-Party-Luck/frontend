@@ -184,10 +184,7 @@ const PartyDetailBottomNav = (props) => {
       <FlexBox>
         <LeftBtn
           onClick={() => {
-            history.push({
-              pathname: `/chat/${partyUser?.hostid}`,
-              state: partyId,
-            });
+            history.push(`/chat/${partyUser?.hostid}`);
           }}
         >
           호스트에게 문의
@@ -207,10 +204,7 @@ const PartyDetailBottomNav = (props) => {
       <FlexBox>
         <LeftBtn
           onClick={() => {
-            history.push({
-              pathname: `/chat/${partyUser?.hostid}`,
-              state: partyId,
-            });
+            history.push(history.push(`/chat/${partyUser?.hostid}`));
           }}
         >
           호스트에게 문의

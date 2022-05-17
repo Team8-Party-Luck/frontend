@@ -23,7 +23,7 @@ const UserList = () => {
     dispatch(userActions.userCheckDB());
   }, []);
 
-  const userList = useSelector((state) => state?.crew.detailUser);
+  const userList = useSelector((state) => state?.crew?.detailUser);
   console.log(userList);
 
   const userId = useSelector((state) => state?.user?.user?.result?.userid);
@@ -32,21 +32,30 @@ const UserList = () => {
   return (
     <React.Fragment>
       <Header name="유저 리스트" />
-
       <ListBox>
-        {userList?.map((cur, idx) => {
+        {userList?.result?.map((cur, idx) => {
           return (
             <List key={idx}>
               <InfoBox>
-                <ImgBox src={cur?.image ? cur?.image : DefaultImg} />
-                <div style={{ width: "100%", paddingTop: 10 }}>
+                <ImgBox src={cur?.imageUrl ? cur?.imageUrl : DefaultImg} />
+                <div style={{ width: "100%" }}>
                   <NameText>{cur?.nickname}</NameText>
                   <DetailText>
                     {cur?.gender} · {cur?.age} · {cur?.location}
                   </DetailText>
                 </div>
+                {userId === cur?.userId ? null : (
+                  <ChatBox
+                    src={chatImg}
+                    onClick={() => {
+                      history.push(`/chat/${cur?.userId}`);
+                    }}
+                  />
+                )}
+                {userList?.hostId === cur?.userId ? (
+                  <HostBox src={HostImg} />
+                ) : null}
               </InfoBox>
-              <ChatBox src={chatImg} />
             </List>
           );
         })}
@@ -57,20 +66,21 @@ const UserList = () => {
 
 const ListBox = styled.div`
   width: 100%;
-  padding-top: 4em;
-  positon: relative;
+  padding-top: 3.55em;
 `;
 
 const List = styled.div`
   width: 100%;
   display: flex;
-  border: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
   padding: 1em;
 `;
 
 const InfoBox = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const NameText = styled.p`
@@ -89,15 +99,22 @@ const ImgBox = styled.img`
   height: 4em;
   border-radius: 2.5em;
   margin-right: 0.5em;
+  position: relative;
 `;
 
 const ChatBox = styled.img`
   width: 3em;
   height: 3em;
   border-radius: 2.5em;
+`;
+
+const HostBox = styled.img`
+  width: 1.5em;
+  height: 1.5em;
   position: absolute;
-  right: 1.2em;
-  top: 5.5em;
+  left: 3.5em;
+  top: 7.1em;
+  z-index: 1000;
 `;
 
 export default UserList;
