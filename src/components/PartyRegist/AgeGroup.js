@@ -21,7 +21,8 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
 
 
       <Box>
-        {ageGroup?.includes("전체") ? (
+        {/* 모집인원 정보를 다중 선택할때 하는법 */}
+        {/* {ageGroup?.includes("전체") ? (
           <Button
             variant="contained"
             sx={{
@@ -54,8 +55,8 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
           >
             전체
           </Button>
-        )}
-        {ageGroup?.includes("10대") ? (
+        )} */}
+        {ageGroup === "전체" ? (
           <Button
             variant="contained"
             sx={{
@@ -66,7 +67,41 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               background: "#FF6853",
             }}
             onClick={() => {
-              setAgeGroup(ageGroup.filter((ageGroup) => ageGroup !== "10대"));
+              setAgeGroup("전체");
+            }}
+          >
+            전체
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              border: "1px solid #FF6853",
+              color: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("전체");
+            }}
+          >
+            전체
+          </Button>
+        )}
+        {ageGroup === "10대" ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "3em",
+              height: "2em",
+              borderRadius: "3em",
+              marginRight: "0.5em",
+              background: "#FF6853",
+            }}
+            onClick={() => {
+              setAgeGroup("10대");
             }}
           >
             10대
@@ -83,13 +118,13 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               color: "#FF6853",
             }}
             onClick={() => {
-              setAgeGroup(ageGroup.concat("10대"));
+              setAgeGroup("10대");
             }}
           >
             10대
           </Button>
         )}
-        {ageGroup?.includes("20대") ? (
+        {ageGroup === "20대" ? (
           <Button
             variant="contained"
             sx={{
@@ -100,7 +135,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               background: "#FF6853",
             }}
             onClick={() => {
-              setAgeGroup(ageGroup.filter((ageGroup) => ageGroup !== "20대"));
+              setAgeGroup("20대");
             }}
           >
             20대
@@ -117,14 +152,14 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               color: "#FF6853",
             }}
             onClick={() => {
-              setAgeGroup(ageGroup.concat("20대"));
+              setAgeGroup("20대");
             }}
           >
             20대
           </Button>
         )}
         <Box sx={{ mt: 2 }}>
-          {ageGroup?.includes('30대') ? (
+          {ageGroup === "30대" ? (
             <Button
               variant="contained"
               sx={{
@@ -135,7 +170,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 background: "#FF6853",
               }}
               onClick={() => {
-                setAgeGroup(ageGroup.filter((ageGroup) => ageGroup !== "30대"));
+                setAgeGroup("30대");
               }}
             >
               30대
@@ -152,13 +187,13 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 color: "#FF6853",
               }}
               onClick={() => {
-                setAgeGroup(ageGroup.concat("30대"));
+                setAgeGroup("30대");
               }}
             >
               30대
             </Button>
           )}
-          {ageGroup?.includes('40대') ? (
+          {ageGroup === "40대" ? (
             <Button
               variant="contained"
               sx={{
@@ -169,7 +204,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 background: "#FF6853",
               }}
               onClick={() => {
-                setAgeGroup(ageGroup.filter((ageGroup) => ageGroup !== "40대"));
+                setAgeGroup("40대");
               }}
             >
               40대
@@ -186,13 +221,13 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 color: "#FF6853",
               }}
               onClick={() => {
-                setAgeGroup(ageGroup.concat("40대"));
+                setAgeGroup("40대");
               }}
             >
               40대
             </Button>
           )}
-          {ageGroup?.includes('50대') ? (
+          {ageGroup === "50대" ? (
             <Button
               variant="contained"
               sx={{
@@ -203,7 +238,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 background: "#FF6853",
               }}
               onClick={() => {
-                setAgeGroup(ageGroup.filter((ageGroup) => ageGroup !== "50대"));
+                setAgeGroup("50대");
               }}
             >
               50대
@@ -220,7 +255,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 color: "#FF6853",
               }}
               onClick={() => {
-                setAgeGroup(ageGroup.concat("50대"));
+                setAgeGroup("50대");
               }}
             >
               50대

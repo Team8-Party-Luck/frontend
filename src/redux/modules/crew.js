@@ -31,6 +31,7 @@ const regiWriteSend = (Write_info) => {
 
   return function (dispatch, getState, { history }) {
     const file = new FormData();
+    file.append('defaultImage', Write_info.defaultImage)
     file.append("title", Write_info.title);
     file.append("store", Write_info.store);
     file.append("address", Write_info.address);
@@ -102,8 +103,11 @@ const reviseSend = (Write_info, partyId) => {
       .then((response) => {
         console.log(response.data);
 
-        alert("수정 성공했습니다");
-        history.push(`/partyInfo/${partyId}`);
+
+        alert("수정 성공했습니다")
+        history.replace(`/partyInfo/${partyId}`)
+
+
       })
       .catch((error) => {
         console.log(error);

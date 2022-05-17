@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import AllData from "./AllData";
-// import RegionSelect from "./RegionSelect";
+import RegionSelect from "./RegionSelect";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,8 +58,8 @@ const PartyList = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasNext, setHasNext] = useState(null);
-  const [city, setCity] = useState("서울");
-  const [district, setDistrict] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
 
   React.useEffect(() => {
     axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
@@ -122,15 +122,18 @@ const PartyList = (props) => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange} centered>
             <Tab label="파티 탐색" {...a11yProps(0)} />
-            <Tab label="참여할 파티" {...a11yProps(1)} />
-            <Tab label="찜한 파티" {...a11yProps(2)} />
+            <Tab label="파티 탐색" {...a11yProps(1)} />
+            <Tab label="참여할 파티" {...a11yProps(2)} />
+            <Tab label="찜한 파티" {...a11yProps(3)} />
           </Tabs>
-        </ThemeProvider>
-      </Box>
+
+        </Box>
+      </ThemeProvider>
+
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
@@ -153,6 +156,33 @@ const PartyList = (props) => {
         </ListBox>
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <ThemeProvider theme={theme}>
+          <RegionSelect
+            city={city}
+            setCity={setCity}
+            region={region}
+            setRegion={setRegion}
+          />
+        </ThemeProvider>
+        <ListBox ref={ref} onScroll={InfinityScroll}>
+          {partyList?.map((cur, idx) => (
+            <AllData
+              key={cur?.partyId}
+              partyId={cur?.partyId}
+              title={cur?.title}
+              image={cur?.image}
+              store={cur?.store}
+              address={cur?.address}
+              date={cur?.date}
+              time={cur?.time}
+              capacity={cur?.capacity}
+              age={cur?.age}
+              gender={cur?.gender}
+            />
+          ))}
+        </ListBox>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
         {willData?.map((cur, idx) => (
           <AllData
             key={cur?.partyId}
@@ -169,7 +199,7 @@ const PartyList = (props) => {
           />
         ))}
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={3}>
         {scrapData?.map((cur, idx) => (
           <AllData
             key={cur?.partyId}

@@ -6,13 +6,14 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Modal from "@mui/material/Modal";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useSelector, useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
 import { useLocation } from "react-router-dom";
-import Images from "./Images";
+// import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
@@ -26,17 +27,6 @@ const PartyRevise = () => {
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
   const partyUser = useSelector((state) => state?.crew?.info);
-
-
-  // const dateConfig = () => {
-  //   const reviseDate = new Date(`2022-${partyUser?.date}`)
-  //   let month = String(reviseDate.getMonth()+1)
-  //   month = month >= 10 ? month: '0' + month;
-  //   let day = String(reviseDate.getDate());
-  //   day = day >= 10 ? day : '0' + day;
-  //   return (`${month}월 ${day}일`)
-  // }
-
 
   // const [image, setImage] = useState(partyUser?.image || "");
   const [title, setTitle] = useState(partyUser?.title || "");
@@ -111,6 +101,15 @@ const PartyRevise = () => {
     }
   };
 
+    //색깔 입히기
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: "#FF6853",
+        },
+      },
+    });
+
   //back modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -129,6 +128,7 @@ const PartyRevise = () => {
 
   return (
     <React.Fragment>
+      <ThemeProvider theme={theme}>
        <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
           <Toolbar>
@@ -238,6 +238,7 @@ const PartyRevise = () => {
         />
 
       </Grid>
+      </ThemeProvider>
     </React.Fragment>
   );
 };

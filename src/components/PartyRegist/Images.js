@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import Taste from "./Taste";
-const Images = ({ image, setImage }) => {
+const Images = ({ image, setImage,defaultImage, setDefaultImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
 
@@ -28,7 +28,9 @@ const Images = ({ image, setImage }) => {
     if (imageUrlLists.length > 10) {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
-
+    // if(defaultImage === !null){
+    //   setDefaultImage(null);
+    // }
     setImage(imageLists);
 
     // blob형식으로 보내기
@@ -65,7 +67,7 @@ const Images = ({ image, setImage }) => {
 
       {form === "basic" ? (
         <Box sx={{ width: "21em" }}>
-          <Taste image={image} setImage={setImage} />
+          <Taste defaultImage={defaultImage} setDefaultImage={setDefaultImage} />
         </Box>
       ) : (
         <React.Fragment>
@@ -121,7 +123,6 @@ const Images = ({ image, setImage }) => {
                       {" "}
                       <ClearIcon sx={{ mb: 8, ml: -1.7, fontSize: "1.3rem" }} />
                     </span>
-                    {console.log(image)}
                   </span>
                 ))}
               </Box>

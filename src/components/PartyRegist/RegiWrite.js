@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Modal from "@mui/material/Modal";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -20,6 +21,7 @@ import RealDay from "./RealDay";
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
+  const [defaultImage, setDefaultImage] = useState(null)
   const [image, setImage] = useState([]);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
@@ -35,7 +37,7 @@ const RegiWrite = () => {
   const [desc, setDesc] = useState(null);
 
   const sendWriteData = () => {
-    if (image.length === 0) {
+    if (image.length === 0 && defaultImage === null) {
       alert("이미지 값이 입력되지 않았습니다.");
     }
     if (title === null) {
@@ -67,6 +69,7 @@ const RegiWrite = () => {
     }
 
     const Write_info = {
+      defaultImage:defaultImage,
       image: image,
       title: title,
       store: store,
@@ -83,7 +86,7 @@ const RegiWrite = () => {
     };
 
     if (
-      image.length !== 0 &&
+      (image.length !== 0 || defaultImage !== null) &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -94,10 +97,18 @@ const RegiWrite = () => {
       meeting !== null &&
       desc !== null
     ) {
-      console.log(image);
       dispatch(crewActions.regiWriteSend(Write_info));
     }
   };
+
+  //색깔 입히기
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
+      },
+    },
+  });
 
   //back modal
   const [open, setOpen] = React.useState(false);
@@ -116,6 +127,7 @@ const RegiWrite = () => {
   };
   return (
     <React.Fragment>
+       <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
           <Toolbar>
@@ -165,7 +177,7 @@ const RegiWrite = () => {
         </Modal>
       </Box>
       <Grid container alignItems="center" justifyContent="center" >
-        <Images image={image} setImage={setImage} />
+        <Images image={image} setImage={setImage} defaultImage={defaultImage} setDefaultImage={setDefaultImage}/>
         <TextField
           placeholder="파티제목"
           variant="standard"
@@ -223,6 +235,7 @@ const RegiWrite = () => {
           }}
         />
       </Grid>
+      </ThemeProvider>
     </React.Fragment>
   );
 };
