@@ -3,9 +3,19 @@ import styled from "styled-components";
 import DefaultImg from "../../static/images/profile/default.png";
 import { Box, Grid } from "@mui/material";
 import FoodList from "./FoodList";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const UserInfo = (props) => {
-  const { user_info } = props;
+const UserInfo = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(userActions.getUserInfoDB());
+  }, []);
+
+  const user_info = useSelector((state) => state.user.user);
+  console.log(user_info);
 
   return (
     <ProfileBox>

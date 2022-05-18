@@ -135,9 +135,9 @@ const sendSettingsData = (Settings_info) => {
   };
 };
 
-
 //유저 세팅정보 받아오기
 const getUserInfoDB = () => {
+
   return  async function (dispatch, getState, { history }) {
     try {
       const res =  await axios

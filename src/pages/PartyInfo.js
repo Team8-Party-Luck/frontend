@@ -4,14 +4,12 @@ import PartyDetailDesc from "../components/PartyInfo/PartyDetailDesc";
 import PartyDetailInfo from "../components/PartyInfo/PartyDetailInfo";
 import PartyDetailUser from "../components/PartyInfo/PartyDetailUser";
 import PartyInfoSlide from "../components/PartyInfo/PartyInfoSlide";
-import HeaderNav from "../shared/HeaderNav";
-import { useParams } from "react-router-dom";
-import Box from "@mui/material/Box";
+import PartyHeader from "../components/PartyInfo/PartyHeader";
 
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/user";
-import PartyHeader from "../components/PartyInfo/PartyHeader";
 
 const PartyInfo = () => {
   const { partyId } = useParams();

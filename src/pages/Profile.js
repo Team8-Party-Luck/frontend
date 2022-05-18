@@ -15,7 +15,6 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(userActions.getUserInfoDB());
     dispatch(crewActions.getJoinedData());
     dispatch(crewActions.getScrapData());
   }, []);
@@ -26,14 +25,11 @@ const Profile = () => {
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   console.log(scrapData);
 
-  
-  const user_info = useSelector((state) => state?.user?.user);
-  console.log(user_info);
 
   return (
     <React.Fragment>
       <WrapBox>
-        <UserInfo user_info={user_info} />
+        <UserInfo />
         <EditButton
           onClick={() => {
             history.push("/edit");

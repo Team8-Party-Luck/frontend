@@ -58,7 +58,18 @@ const Setting = () => {
     <React.Fragment>
       <HeaderBox>
         <Contain>
-          <Progress width={(count / 5) * 100 + "%"} />
+          {gender &&
+          age &&
+          city &&
+          region &&
+          food.length !== 0 &&
+          values.nickname &&
+          values.intro ? (
+            <Progress width={(5 / 5) * 100 + "%"} />
+          ) : (
+            <Progress width={(count / 5) * 100 + "%"} />
+          )}
+          {/* <Progress width={(count / 5) * 100 + "%"} /> */}
         </Contain>
         <HeaderText>
           이제 프로필 정보 입력 후 <br /> 바로 잇츠링을 사용할 수 있습니다!🙌🏻
