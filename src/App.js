@@ -1,8 +1,9 @@
 import Login from "./pages/Login";
 import Setting from "./pages/Setting";
 import "./App.css";
-import React from "react";
+import React, {} from "react";
 import { Route } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
 import Home from "./pages/Home";
@@ -23,7 +24,15 @@ import ChatDetail from "./pages/ChatDetail";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
 import Modal from "./shared/Modal";
 
+
+import { actionCreators as alarmActions } from "./redux/modules/alarm";
+
 function App() {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(alarmActions.ConnectSub());
+  }, []);
+
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
