@@ -74,51 +74,57 @@ const MsgList = () => {
           </Typography>
         </Box>
       </Box>
-      {/* {chatList?.map((cur,idx)=>{
-      return(
-        <Box sx={{ display: "flex", borderBottom: "1px solid #dfdfdf", padding: 1.5 }}>
-        <Avatar
-          sx={{
-            bgcolor: red[400],
-            width: "2.7em",
-            height: "2.7em",
-            marginRight: "0.7em",
-          }}
-          aria-label="recipe"
-            src={chatList?.image}
-        />
-        <Box sx={{ width: "100%", paddingTop: 0.2, position: "relative" }}>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ fontSize: "1em", marginBottom: 0.5 }}
-          >
-            {chatList?.sender}
-          </Typography>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ color: "gray", fontSize: "0.7em" }}
-          >
-            {chatList?.lastMessage}
-          </Typography>
-          <Typography
-            component="p"
-            variant="p"
+      {chatList?.map((cur, idx) => {
+        return (
+          <Box
             sx={{
-              color: "gray",
-              fontSize: "0.5em",
-              position: "absolute",
-              top: 3,
-              right: 1,
+              display: "flex",
+              borderBottom: "1px solid #dfdfdf",
+              padding: 1.5,
             }}
           >
-            {chatList?.createdAt}
-          </Typography>
-        </Box>
-      </Box>
-      )
-    })} */}
+            <Avatar
+              sx={{
+                bgcolor: red[400],
+                width: "2.7em",
+                height: "2.7em",
+                marginRight: "0.7em",
+              }}
+              aria-label="recipe"
+              src={chatList?.image}
+            />
+            <Box sx={{ width: "100%", paddingTop: 0.2, position: "relative" }}>
+              <Typography
+                component="p"
+                variant="p"
+                sx={{ fontSize: "1em", marginBottom: 0.5 }}
+              >
+                {chatList?.senderNickname}
+              </Typography>
+              <Typography
+                component="p"
+                variant="p"
+                sx={{ color: "gray", fontSize: "0.7em" }}
+              >
+                {chatList?.lastMessage}
+              </Typography>
+              <Typography
+                component="p"
+                variant="p"
+                sx={{
+                  color: "gray",
+                  fontSize: "0.5em",
+                  position: "absolute",
+                  top: 3,
+                  right: 1,
+                }}
+              >
+                {chatList?.createdAt}
+              </Typography>
+            </Box>
+          </Box>
+        );
+      })}
     </Box>
   );
 };

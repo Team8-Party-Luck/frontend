@@ -38,11 +38,11 @@ const getChatListDB = () => {
 };
 
 //과거에 나눴던 채팅들 받아오기
-const getMsgListDB = (roomId) => {
+const getMsgListDB = (chatRoomId) => {
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     axios
-      .get(`http://3.38.180.96/chatroom/get/${roomId}`, {
+      .get(`http://3.38.180.96/chatroom/get/${chatRoomId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "content-type": "application/json;charset=UTF-8",
@@ -51,7 +51,7 @@ const getMsgListDB = (roomId) => {
       })
       .then((res) => {
         console.log(res.data);
-        dispatch(getMsgList(res.data));
+        // dispatch(getMsgList(res.data));
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +63,6 @@ const getMsgListDB = (roomId) => {
 const getRoomIdDB = (roomId) => {
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
-    console.log(roomId);
     axios
       .post(
         `http://3.38.180.96/chatroom/create`,
@@ -80,7 +79,8 @@ const getRoomIdDB = (roomId) => {
       )
       .then((res) => {
         console.log(res.data);
-        dispatch(getRoomId(res.data));
+        // dispatch(getRoomId(res.data));
+        history.push(`/chat/${res.data.chatRoomId}`);
       })
       .catch((error) => {
         console.log(error);

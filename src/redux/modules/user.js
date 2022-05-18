@@ -14,14 +14,13 @@ const setLogin = createAction(LOGIN, (Login) => ({ Login }));
 // const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
 const saveInfo = createAction(SAVE_INFO, (setting) => ({ setting }));
 const getUserInfo = createAction(GET_USER_INFO, (user) => ({ user }));
-const userCheck = createAction(USER_CHECK, (user) => ({ user }));
+const userCheck = createAction(USER_CHECK, (check) => ({ check }));
 // const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 
 const token = sessionStorage.getItem("token");
 
 // 초기값
 const initialState = {};
-
 
 //미들웨어
 
@@ -116,6 +115,7 @@ const signupDB = (Signup_info) => {
 
 //세팅 데이터 보내기
 const sendSettingsData = (Settings_info) => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     axios
       .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
@@ -137,53 +137,10 @@ const sendSettingsData = (Settings_info) => {
 
 //유저 세팅정보 받아오기
 const getUserInfoDB = () => {
-
-  return  async function (dispatch, getState, { history }) {
-    try {
-      const res =  await axios
-      .get("http://3.38.180.96:8080/api/user/initial", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      });
-       console.log(res.data);
-       dispatch(getUserInfo(res.data));
-    } catch(error) {
-      console.log(error);
-    }
-  };
-};
-
-//유저 정보 업데이트
-const updateSettingsData = (Update_info) => {
-    return async function (dispatch, getState, { history }) {
-      try {
-        const res = await axios
-        .put('http://3.38.180.96:8080/api/user/initial', Update_info, {
-          headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type":
-                    "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
-                },
-        });
-        console.log(res.data);
-        history.push('/profile');
-      } catch(error) {
-        console.log(error);
-      }
-  };
-};
-
-//파티 유저가 호스트인지,좋아요를 눌렀는지 등 확인
-const userCheckDB = () => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
-    try{
-      //왜 도대체 왜 여기서 await을 뺘야만 값이 불러 와지지??? 내 생각엔 액션 크레이터 변수값이 user로 
-      //통일되어 있어서 데이터를 받아올 때 
-      const res =   await axios
-      .get("http://3.38.180.96:8080/api/user", {
+    try {
+      const res = await axios.get("http://3.38.180.96:8080/api/user/initial", {
         headers: {
           Authorization: `Bearer ${token}`,
           "content-type": "application/json;charset=UTF-8",
@@ -191,10 +148,56 @@ const userCheckDB = () => {
         },
       });
       console.log(res.data);
-      dispatch(userCheck(res.data));
-    } catch (error){
-      console.log(error)
+      dispatch(getUserInfo(res.data));
+    } catch (error) {
+      console.log(error);
     }
+  };
+};
+
+//유저 정보 업데이트
+const updateSettingsData = (Update_info) => {
+  const token = sessionStorage.getItem("token");
+  return async function (dispatch, getState, { history }) {
+    try {
+      const res = await axios.put(
+        "http://3.38.180.96:8080/api/user/initial",
+        Update_info,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type":
+              "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+          },
+        }
+      );
+      console.log(res.data);
+      history.push("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+//파티 유저가 호스트인지,좋아요를 눌렀는지 등 확인
+const userCheckDB = () => {
+  const token = sessionStorage.getItem("token");
+  return function (dispatch, getState, { history }) {
+    axios
+      .get("http://3.38.180.96:8080/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(userCheck(res.data));
+      })
+      .catch((err) => {
+        console.log(err.res);
+      });
   };
 };
 
@@ -214,7 +217,7 @@ export default handleActions(
       }),
     [USER_CHECK]: (state, action) =>
       produce(state, (draft) => {
-        draft.user = action.payload.user;
+        draft.check = action.payload.check;
       }),
   },
   initialState

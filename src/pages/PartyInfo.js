@@ -16,69 +16,27 @@ const PartyInfo = () => {
 
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(userActions.userCheckDB());
     dispatch(userActions.getUserInfoDB());
     dispatch(crewActions.getDetailInfo(partyId));
+    dispatch(userActions.userCheckDB());
   }, []);
 
-  const userCheck = useSelector((state) => state?.user?.user?.result);
-  console.log(userCheck);
+  const userId = useSelector((state) => state?.user?.check?.result?.userid);
+  const partyData = useSelector((state) => state?.crew?.info);
+  const userSettingData = useSelector((state) => state?.user?.user);
 
-  const user_info = useSelector((state) => state?.user?.user);
-  console.log(user_info);
-
-  const partyUser = useSelector((state) => state?.crew?.info);
-  console.log(partyUser);
-
-
-
-  //상세정보
-  const image = partyUser?.image;
-  const title = partyUser?.title;
-  const store = partyUser?.store;
-  const address = partyUser?.address;
-  const date = partyUser?.date;
-  const time = partyUser?.time;
-  const desc = partyUser?.desc;
-  const age = partyUser?.age;
-  const place_url = partyUser?.place_url;
-  const gender = partyUser?.gender;
-  const meeting = partyUser?.meeting;
-
-  //참여한 유저 리스트
-  const capacity = partyUser?.capacity;
-  const memberCnt = partyUser?.memberCnt;
-  const userimageurls = partyUser?.userimageurls;
+  console.log(userId);
+  console.log(partyData);
+  console.log(userSettingData);
 
   return (
     <React.Fragment>
-      <PartyHeader partyId={partyId} partyUser={partyUser} />
-      <PartyInfoSlide image={image} />
-      <PartyDetailInfo
-        title={title}
-        store={store}
-        address={address}
-        capacity={capacity}
-        date={date}
-        time={time}
-        place_url={place_url}
-        gender={gender}
-        meeting={meeting}
-        age={age}
-      />
-      <PartyDetailUser
-        memberCnt={memberCnt}
-        capacity={capacity}
-        userimageurls={userimageurls}
-        partyId={partyId}
-      />
-      <PartyDetailDesc desc={desc} />
-      <PartyDetailBottomNav
-        memberCnt={memberCnt}
-        capacity={capacity}
-        userCheck={userCheck}
-        user_info={user_info}
-      />
+      <PartyHeader partyData={partyData} />
+      <PartyInfoSlide partyData={partyData} />
+      <PartyDetailInfo partyData={partyData} />
+      <PartyDetailUser partyId={partyId} partyData={partyData} />
+      <PartyDetailDesc partyData={partyData} />
+      <PartyDetailBottomNav userId={userId} partyData={partyData} />
     </React.Fragment>
   );
 };

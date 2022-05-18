@@ -8,6 +8,8 @@ import BackIcon from "../../static/images/icon/back.png";
 import styled from "styled-components";
 
 const PartyHeader = (props) => {
+  const { partyData } = props;
+  console.log(partyData);
   const dispatch = useDispatch();
 
   const sendScrap = () => {
@@ -24,7 +26,7 @@ const PartyHeader = (props) => {
         <img src={BackIcon} alt="뒤로가기" style={{ width: 12, height: 22 }} />
       </BackBox>
       <HeaderText>파티정보</HeaderText>
-      {props?.partyUser?.sub === false ? (
+      {partyData?.sub === false ? (
         <ScrapBox
           src={ScrapIcon}
           alt="빈하트"

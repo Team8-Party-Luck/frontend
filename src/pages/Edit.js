@@ -204,6 +204,8 @@ const Edit = (props) => {
           setCity={setCity}
           region={region}
           setRegion={setRegion}
+          count={count}
+          setCount={setCount}
         />
 
         <SetFood

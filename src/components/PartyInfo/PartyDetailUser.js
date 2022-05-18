@@ -10,17 +10,18 @@ import styled from "styled-components";
 import DefaultImage from "../../static/images/profile/default.png";
 import ArrowImg from "../../static/images/icon/arw_s@2x.png";
 
-const PartyDetailUser = ({ memberCnt, capacity, userimageurls, partyId }) => {
+const PartyDetailUser = (props) => {
+  const { partyId, partyData } = props;
   return (
     <WrapBox>
       <FlexBox>
         <UserText>참여자 리스트</UserText>
         <MemberText>
-          {memberCnt}/{capacity}
+          {partyData?.memberCnt}/{partyData?.capacity}
         </MemberText>
       </FlexBox>
       <GridBox>
-        {userimageurls?.map((cur, idx) =>
+        {partyData?.userimageurls?.map((cur, idx) =>
           cur === null ? (
             <ImgBox src={DefaultImage} key={idx} />
           ) : (
@@ -30,10 +31,7 @@ const PartyDetailUser = ({ memberCnt, capacity, userimageurls, partyId }) => {
       </GridBox>
       <SeeMore
         onClick={() => {
-          history.push({
-            pathname: "/userList",
-            state: partyId,
-          });
+          history.push(`/userList/${partyData?.partyid}`);
         }}
       >
         더보기&nbsp;

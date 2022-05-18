@@ -5,7 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { red } from "@mui/material/colors";
 
-const PartyInfoSlide = ({ image }) => {
+const PartyInfoSlide = (props) => {
+  const { partyData } = props;
+
   const settings = {
     dots: true,
     infinite: false,
@@ -18,10 +20,10 @@ const PartyInfoSlide = ({ image }) => {
   return (
     <Container>
       <StyledSlider {...settings}>
-        {image?.map((v, idx) => {
+        {partyData?.image?.map((cur, idx) => {
           return (
             <div key={idx}>
-              <Image src={v} />
+              <Image src={cur} />
             </div>
           );
         })}

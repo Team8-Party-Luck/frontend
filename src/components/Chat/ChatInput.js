@@ -3,11 +3,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
+import { useRef } from "react";
 
 const ChatInput = (props) => {
-  const { roomId } = props;
+  const { msg, setMsg, onSend } = props;
+
+  const ws = useRef();
+
   const token = sessionStorage.getItem("token");
-  const [msg, setMsg] = useState("");
+
   console.log(msg);
 
   // let sock = new SockJS("http://121.139.34.35:8080/stomp/chat");
@@ -58,8 +62,12 @@ const ChatInput = (props) => {
   const onKeyDownHandler = (e) => {
     if (e.key === "Enter") {
       console.log("엔터 눌렀당");
-      // onSend();
+      onSend();
     }
+  };
+
+  const onClick = (e) => {
+    onSend();
   };
 
   return (
@@ -77,12 +85,13 @@ const ChatInput = (props) => {
       }}
     >
       <MsgInput
+        type="text"
         onChange={(e) => {
           setMsg(e.target.value);
         }}
         onKeyDown={onKeyDownHandler}
       />
-      <MsgButton>보내기</MsgButton>
+      <MsgButton onClick={onClick}>보내기</MsgButton>
     </Box>
   );
 };
