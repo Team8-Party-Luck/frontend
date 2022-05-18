@@ -63,7 +63,6 @@ const getMsgListDB = (chatRoomId) => {
 const getRoomIdDB = (roomId) => {
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
-
     axios
       .post(
         `http://3.38.180.96/chatroom/create`,
@@ -80,7 +79,8 @@ const getRoomIdDB = (roomId) => {
       )
       .then((res) => {
         console.log(res.data);
-        dispatch(getRoomId(res.data));
+        // dispatch(getRoomId(res.data));
+        history.push(`/chat/${res.data.chatRoomId}`);
       })
       .catch((error) => {
         console.log(error);

@@ -10,6 +10,7 @@ import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { actionCreators as chatActions } from "../../redux/modules/chat";
 import { useState } from "react";
 import styled from "styled-components";
 import Toast from "../../shared/Toast";
@@ -23,8 +24,7 @@ const PartyDetailBottomNav = (props) => {
   const [ToastStatus, setToastStatus] = useState(false);
   const [ToastMsg, setToastMsg] = useState("");
 
-  const partyUser = useSelector((state) => state?.crew?.info);
-  console.log(partyUser);
+  // const partyUser = useSelector((state) => state?.crew?.info);
 
   // React.useEffect(() => {
   //   if (ToastStatus) {
@@ -82,7 +82,8 @@ const PartyDetailBottomNav = (props) => {
       <FlexBox>
         <LeftBtn
           onClick={() => {
-            history.push(`/chat/${partyUser?.hostid}`);
+            // history.push(`/chat/${partyUser?.hostid}`);
+            dispatch(chatActions.getRoomIdDB(partyData?.hostid));
           }}
         >
           호스트에게 문의
@@ -102,7 +103,8 @@ const PartyDetailBottomNav = (props) => {
       <FlexBox>
         <LeftBtn
           onClick={() => {
-            history.push(history.push(`/chat/${partyUser?.hostid}`));
+            // history.push(history.push(`/chat/${partyUser?.hostid}`));
+            dispatch(chatActions.getRoomIdDB(partyData?.hostid));
           }}
         >
           호스트에게 문의

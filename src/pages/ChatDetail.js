@@ -23,11 +23,11 @@ const ChatDetail = () => {
   const [msg, setMsg] = useState("");
 
   const { roomId } = useParams();
+  console.log(roomId);
 
   // 소켓 연결
   React.useEffect(() => {
-    dispatch(chatActions.getMsgListDB(chatRoomId));
-    dispatch(chatActions.getRoomIdDB(roomId));
+    dispatch(chatActions.getMsgListDB(roomId));
     wsConnect();
 
     return () => {
@@ -35,7 +35,7 @@ const ChatDetail = () => {
     };
   }, []);
 
-  console.log(roomId);
+  // console.log(roomId);
 
   // 채팅방 이전 메시지 가져오기
   // useEffect(() => {
@@ -43,10 +43,10 @@ const ChatDetail = () => {
   //   dispatch(chatActions.getRoomIdDB(roomId));
   // }, []);
 
-  const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
-  console.log(chatRoomId);
+  // const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
+  // console.log(chatRoomId);
 
-  // const messages = useSelector((state) => state?.chat);
+  // // const messages = useSelector((state) => state?.chat);
   const messages = [];
   console.log(messages);
 
@@ -59,9 +59,9 @@ const ChatDetail = () => {
   function wsConnect() {
     try {
       ws.connect({ token: token, type: "ENTER" }, () => {
-        console.log(chatRoomId);
+        console.log(roomId);
         ws.subscribe(
-          `queue/${chatRoomId}`,
+          `/queue/${roomId}`,
           (res) => {
             const newMessage = JSON.parse(res.body);
             console.log(res);
@@ -70,8 +70,8 @@ const ChatDetail = () => {
           }
           // {},
         );
+        console.log(ws.ws.readyState);
       });
-      console.log(ws.ws.readyState);
     } catch (error) {
       console.log(error);
     }
@@ -93,15 +93,17 @@ const ChatDetail = () => {
     try {
       // send할 데이터
       const message = {
-        chatRoomId: chatRoomId,
+        chatRoomId: roomId,
         message: msg,
         type: "TALK",
       };
+      console.log(msg);
       //값이 없으면 아무것도 실행 x
       if (msg === "") {
         return;
       }
       ws.send("/app/send", { token: token }, JSON.stringify(message));
+      console.log(JSON.stringify(message));
       console.log(ws.ws.readyState);
       setMsg("");
     } catch (error) {
