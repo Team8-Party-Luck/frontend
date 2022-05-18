@@ -20,8 +20,8 @@ const MsgList = () => {
     dispatch(chatActions.getChatListDB());
   }, []);
 
-  const chatList = useSelector((state) => state?.chat?.list);
-  console.log(chatList);
+  const msgList = useSelector((state) => state?.chat?.list);
+  console.log(msgList);
 
   return (
     <Box>
@@ -74,7 +74,7 @@ const MsgList = () => {
           </Typography>
         </Box>
       </Box>
-      {chatList?.map((cur, idx) => {
+      {msgList?.map((cur, idx) => {
         return (
           <Box
             sx={{
@@ -82,6 +82,10 @@ const MsgList = () => {
               borderBottom: "1px solid #dfdfdf",
               padding: 1.5,
             }}
+            onClick={() => {
+              history.push(`/chatdetail/${cur?.chatRoomId}`);
+            }}
+            key={idx}
           >
             <Avatar
               sx={{
@@ -91,7 +95,7 @@ const MsgList = () => {
                 marginRight: "0.7em",
               }}
               aria-label="recipe"
-              src={chatList?.image}
+              src={cur?.image}
             />
             <Box sx={{ width: "100%", paddingTop: 0.2, position: "relative" }}>
               <Typography
@@ -99,14 +103,14 @@ const MsgList = () => {
                 variant="p"
                 sx={{ fontSize: "1em", marginBottom: 0.5 }}
               >
-                {chatList?.senderNickname}
+                {cur?.senderNickname}
               </Typography>
               <Typography
                 component="p"
                 variant="p"
                 sx={{ color: "gray", fontSize: "0.7em" }}
               >
-                {chatList?.lastMessage}
+                {cur?.lastMessage}
               </Typography>
               <Typography
                 component="p"
@@ -119,7 +123,7 @@ const MsgList = () => {
                   right: 1,
                 }}
               >
-                {chatList?.createdAt}
+                {cur?.createdAt}
               </Typography>
             </Box>
           </Box>

@@ -5,19 +5,15 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const ChatBox = (props) => {
-  const { message, userId, createdAt } = props;
+  const { message, userId, createdAt, image, userInfo } = props;
 
-  const userInfo = useSelector((state) => state?.user?.user?.result?.userid);
+  // console.log(userInfo);
 
-  console.log(userInfo);
+  const user = userId === userInfo ? true : false;
+  // console.log(user);
 
-  // const user = userId === userInfo.userId ? true : false;
-  // console.log(userId);
-
-  const user = false;
-  const asd = true;
-
-  console.log(userInfo);
+  // const user = false;
+  // const asd = true;
 
   return (
     // <React.Fragment>
@@ -232,7 +228,7 @@ const ChatBox = (props) => {
             marginRight: "0.5em",
           }}
           aria-label="recipe"
-          //   src={}
+          src={image}
         />
       )}
       <MsgBox user={user}>

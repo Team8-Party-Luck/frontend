@@ -13,7 +13,10 @@ const getMsgList = createAction(GET_MSG_LIST, (msg) => ({ msg }));
 const getRoomId = createAction(GET_ROOMID, (id) => ({ id }));
 
 // 초기값
-const initialState = {};
+const initialState = {
+  list: [],
+  msg: [],
+};
 
 // 채팅 페이지에서 채팅 리스트 데이터 받아오기
 const getChatListDB = () => {
@@ -51,7 +54,7 @@ const getMsgListDB = (chatRoomId) => {
       })
       .then((res) => {
         console.log(res.data);
-        // dispatch(getMsgList(res.data));
+        dispatch(getMsgList(res.data));
       })
       .catch((error) => {
         console.log(error);
@@ -79,8 +82,7 @@ const getRoomIdDB = (roomId) => {
       )
       .then((res) => {
         console.log(res.data);
-        // dispatch(getRoomId(res.data));
-        history.push(`/chat/${res.data.chatRoomId}`);
+        history.push(`/chatdetail/${res.data.chatRoomId}`);
       })
       .catch((error) => {
         console.log(error);
@@ -96,7 +98,10 @@ export default handleActions(
       }),
     [GET_MSG_LIST]: (state, action) =>
       produce(state, (draft) => {
+        // console.log(draft.msg);
+        // draft.msg.push(...action.payload.msg);
         draft.msg = action.payload.msg;
+        console.log(draft.msg);
       }),
     [GET_ROOMID]: (state, action) =>
       produce(state, (draft) => {

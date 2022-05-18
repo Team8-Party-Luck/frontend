@@ -31,7 +31,7 @@ function App() {
         <Route path="/home" exact component={Home} />
         <Route path="/alarm" exact component={Alarm} />
         <Route path="/chat" exact component={Chat} />
-        <Route path="/chat/:roomId" exact component={ChatDetail} />
+        <Route path="/chatdetail/:roomId" exact component={ChatDetail} />
         <Route path="/regi" exact component={PartyRegist} />
         <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
         <Route path="/revise" exact component={PartyRevise} />

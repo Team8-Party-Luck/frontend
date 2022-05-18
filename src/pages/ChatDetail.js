@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { history } from "../redux/configStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { Box, Typography, Avatar } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { red } from "@mui/material/colors";
@@ -27,13 +28,19 @@ const ChatDetail = () => {
 
   // 소켓 연결
   React.useEffect(() => {
-    dispatch(chatActions.getMsgListDB(roomId));
     wsConnect();
 
     return () => {
       wsDisConnect();
     };
   }, []);
+
+  React.useEffect(() => {
+    dispatch(chatActions.getMsgListDB(roomId));
+    dispatch(userActions.userCheckDB());
+  }, []);
+
+  const userInfo = useSelector((state) => state?.user?.check?.result?.userid);
 
   // console.log(roomId);
 
@@ -46,8 +53,7 @@ const ChatDetail = () => {
   // const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
   // console.log(chatRoomId);
 
-  // // const messages = useSelector((state) => state?.chat);
-  const messages = [];
+  const messages = useSelector((state) => state?.chat?.msg);
   console.log(messages);
 
   // stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
@@ -66,7 +72,7 @@ const ChatDetail = () => {
             const newMessage = JSON.parse(res.body);
             console.log(res);
             console.log(newMessage);
-            // dispatch(subMessage(newMessage));
+            // dispatch(chatActions.getMsgList(newMessage));
           }
           // {},
         );
@@ -168,16 +174,18 @@ const ChatDetail = () => {
           paddingTop: "3.5em",
         }}
       >
-        {/* {messages?.map((cur, idx) => {
+        {messages?.map((cur, idx) => {
           return (
             <ChatBox
               key={idx}
               message={cur?.message}
+              image={cur?.image}
               userId={cur?.userId}
               createdAt={cur?.createdAt}
+              userInfo={userInfo}
             />
           );
-        })} */}
+        })}
         <ChatBox />
       </Box>
       <ChatInput msg={msg} setMsg={setMsg} onSend={onSend} />
