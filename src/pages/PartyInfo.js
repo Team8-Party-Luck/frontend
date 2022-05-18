@@ -29,24 +29,6 @@ const PartyInfo = () => {
   console.log(partyData);
   console.log(userSettingData);
 
-  // //상세정보
-  // const image = partyUser?.image;
-  // const title = partyUser?.title;
-  // const store = partyUser?.store;
-  // const address = partyUser?.address;
-  // const date = partyUser?.date;
-  // const time = partyUser?.time;
-  // const desc = partyUser?.desc;
-  // const age = partyUser?.age;
-  // const place_url = partyUser?.place_url;
-  // const gender = partyUser?.gender;
-  // const meeting = partyUser?.meeting;
-
-  // //참여한 유저 리스트
-  // const capacity = partyUser?.capacity;
-  // const memberCnt = partyUser?.memberCnt;
-  // const userimageurls = partyUser?.userimageurls;
-
   return (
     <React.Fragment>
       <PartyHeader partyData={partyData} />

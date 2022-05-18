@@ -15,6 +15,7 @@ import styled from "styled-components";
 import Toast from "../../shared/Toast";
 
 const PartyDetailBottomNav = (props) => {
+  const { userId, partyData } = props;
   const { partyId } = useParams();
 
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const PartyDetailBottomNav = (props) => {
     dispatch(crewActions.deleteSend(partyId));
   };
 
-  if (props?.userCheck?.userid === partyUser?.hostid) {
+  if (userId === partyData?.hostid) {
     return (
       <FlexBox>
         <LeftBtn
@@ -76,7 +77,7 @@ const PartyDetailBottomNav = (props) => {
         </RightBtn>
       </FlexBox>
     );
-  } else if (partyUser?.join === true) {
+  } else if (partyData?.join === true) {
     return (
       <FlexBox>
         <LeftBtn
@@ -106,7 +107,7 @@ const PartyDetailBottomNav = (props) => {
         >
           호스트에게 문의
         </LeftBtn>
-        {partyUser?.memberCnt === partyUser?.capacity ? (
+        {partyData?.memberCnt === partyData?.capacity ? (
           <RightBtn>모집 마감</RightBtn>
         ) : (
           <RightBtn

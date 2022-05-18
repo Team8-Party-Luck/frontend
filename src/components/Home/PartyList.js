@@ -128,7 +128,7 @@ const PartyList = (props) => {
       <ThemeProvider theme={theme}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange} centered>
-            <Tab label="파티 탐색" {...a11yProps(0)} />
+            <Tab label="전체 파티" {...a11yProps(0)} />
             <Tab label="파티 탐색" {...a11yProps(1)} />
             <Tab label="참여할 파티" {...a11yProps(2)} />
             <Tab label="찜한 파티" {...a11yProps(3)} />

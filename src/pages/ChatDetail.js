@@ -26,6 +26,8 @@ const ChatDetail = () => {
 
   // 소켓 연결
   React.useEffect(() => {
+    dispatch(chatActions.getMsgListDB(chatRoomId));
+    dispatch(chatActions.getRoomIdDB(roomId));
     wsConnect();
 
     return () => {
@@ -36,10 +38,10 @@ const ChatDetail = () => {
   console.log(roomId);
 
   // 채팅방 이전 메시지 가져오기
-  useEffect(() => {
-    dispatch(chatActions.getMsgListDB(chatRoomId));
-    dispatch(chatActions.getRoomIdDB(roomId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(chatActions.getMsgListDB(chatRoomId));
+  //   dispatch(chatActions.getRoomIdDB(roomId));
+  // }, []);
 
   const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
   console.log(chatRoomId);
@@ -69,6 +71,7 @@ const ChatDetail = () => {
           // {},
         );
       });
+      console.log(ws.ws.readyState);
     } catch (error) {
       console.log(error);
     }
@@ -98,8 +101,8 @@ const ChatDetail = () => {
       if (msg === "") {
         return;
       }
-      ws.current.send("/app/send", { token: token }, JSON.stringify(message));
-      console.log(ws.current.ws.readyState);
+      ws.send("/app/send", { token: token }, JSON.stringify(message));
+      console.log(ws.ws.readyState);
       setMsg("");
     } catch (error) {
       console.log(error);
