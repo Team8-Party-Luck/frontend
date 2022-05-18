@@ -134,33 +134,37 @@ const sendSettingsData = (Settings_info) => {
   };
 };
 
-
 //유저 세팅정보 받아오기
 const getUserInfoDB = () => {
   const token = sessionStorage.getItem("token");
-  return  async function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     try {
-      const res =  await axios
-      .get("http://3.38.180.96:8080/api/user/initial", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
-       console.log(res.data);
-       dispatch(getUserInfo(res.data));
-    } catch(error) {
+      const response = await axios.get(
+        "http://3.38.180.96:8080/api/user/initial",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json,",
+          },
+        }
+      );
+      console.log(response.data);
+      if (response.status === 200) {
+        console.log(response.data);
+        dispatch(getUserInfo(response.data));
+      }
+    } catch (error) {
       console.log(error);
     }
-   
-      // .then((res) => {
-      //   console.log(res.data);
-      //   dispatch(getUserInfo(res.data));
-      // })
-      // .catch((err) => {
-      //   console.log("에러", err.response);
-      // });
+
+    // .then((res) => {
+    //   console.log(res.data);
+    //   dispatch(getUserInfo(res.data));
+    // })
+    // .catch((err) => {
+    //   console.log("에러", err.response);
+    // });
   };
 };
 
