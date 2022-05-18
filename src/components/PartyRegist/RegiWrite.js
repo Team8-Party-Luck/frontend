@@ -68,13 +68,6 @@ const RegiWrite = () => {
       alert("파티 설명 값이 입력되지 않았습니다.");
     }
 
-    //시간 데이터 문자열 변환
-    let hours = time.getHours();
-    hours = hours < 10 ? `0${hours}` : hours;
-    let minutes = time.getMinutes();
-    minutes = minutes < 10 ? `0${minutes}` : minutes;
-    let realTime = `${hours}:${minutes}`;
-
     const Write_info = {
       defaultImage: defaultImage,
       image: image,
@@ -87,7 +80,7 @@ const RegiWrite = () => {
       age: ageGroup,
       gender: gender,
       date: date,
-      time: realTime,
+      time: time,
       meeting: meeting,
       desc: desc,
     };

@@ -79,6 +79,7 @@ yarn add react-daum-postcode
 $ yarn add react-device-detect을 설치함
 jquery 설치
 yarn add pretendard설치함(2022-05-10 / 13:24)
+date-fns 설치함(2022-05-19 / 06:16)
 
 고쳐야 될것!
 1.nav바 icon클릭하면 바로 icon event적용되게할것
