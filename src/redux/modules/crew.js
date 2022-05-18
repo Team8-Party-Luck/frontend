@@ -32,6 +32,7 @@ const initialState = { crew: [] };
 
 //파티생성
 const regiWriteSend = (Write_info) => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("defaultImage", Write_info.defaultImage);
@@ -74,6 +75,7 @@ const regiWriteSend = (Write_info) => {
 
 //파티수정
 const reviseSend = (Write_info, partyId) => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("title", Write_info.title);
@@ -115,6 +117,7 @@ const reviseSend = (Write_info, partyId) => {
 
 //등록한 글 삭제기능
 const deleteSend = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     axios
       .delete(`http://3.38.180.96/api/party/${partyId}`, {
@@ -138,7 +141,9 @@ const deleteSend = (partyId) => {
 const getDataDB = (pageNum) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await axios.get(`http://3.38.180.96/api/parties/raw/${pageNum}`);
+      const res = await axios.get(
+        `http://3.38.180.96/api/parties/raw/${pageNum}`
+      );
       console.log(res.data.results);
       dispatch(getCrew(res.data.results));
     } catch (error) {
@@ -149,10 +154,10 @@ const getDataDB = (pageNum) => {
 
 //지역필터
 const getRegionData = (answer) => {
-  
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await axios.get('/home/parties/local/${pageid}', {
+      const res = await axios.get("/home/parties/local/${pageid}", {
         headers: {
           Authorization: `Bearer ${token}`,
           "content-type": "application/json;charset=UTF-8",
@@ -170,6 +175,7 @@ const getRegionData = (answer) => {
 
 //상세정보 받아오기
 const getDetailInfo = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get(
@@ -191,6 +197,7 @@ const getDetailInfo = (partyId) => {
 
 //파티 유저리스트 조회
 const getUserList = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get(
@@ -212,15 +219,19 @@ const getUserList = (partyId) => {
 
 // 내가 참여한 파티 조회
 const getJoinedData = () => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await axios.get("http://3.38.180.96:8080/api/parties/history/in", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      });
+      const res = await axios.get(
+        "http://3.38.180.96:8080/api/parties/history/in",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json,",
+          },
+        }
+      );
       console.log(res.data);
       dispatch(getJoined(res.data));
     } catch (err) {
@@ -231,6 +242,7 @@ const getJoinedData = () => {
 
 //내가 찜한 파티 조회
 const getScrapData = () => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get("http://3.38.180.96:8080/api/parties/sub", {
@@ -250,6 +262,7 @@ const getScrapData = () => {
 
 //파티 찜하기 기능
 const sendScrapData = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get(
@@ -271,16 +284,19 @@ const sendScrapData = (partyId) => {
 
 //파티 신청
 const sendJoinData = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await axios.get(`http://3.38.180.96:8080/api/party/in/${partyId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      });
-      alert("파티신청이 완료되었습니다");
+      const res = await axios.get(
+        `http://3.38.180.96:8080/api/party/in/${partyId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json,",
+          },
+        }
+      );
       dispatch(getDetail(res.data));
       console.log(res.data);
     } catch (err) {
@@ -291,6 +307,7 @@ const sendJoinData = (partyId) => {
 
 //파티 신청 취소
 const sendCancelData = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.delete(
@@ -303,7 +320,6 @@ const sendCancelData = (partyId) => {
           },
         }
       );
-      alert("파티취소가 완료되었습니다");
       dispatch(getDetail(res.data));
       console.log(res.data);
     } catch (err) {
@@ -314,6 +330,7 @@ const sendCancelData = (partyId) => {
 
 //참여할 파티 조회
 const getWillData = () => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get("http://3.38.180.96:8080/home/parties/join", {

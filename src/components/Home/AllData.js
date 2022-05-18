@@ -27,7 +27,6 @@ const AllData = (props) => {
   const splitDate = date.split("-");
   const newDate = splitDate.join(".");
   const forDay = splitDate.join("");
-  console.log(newDate);
 
   //요일 구하는 함수
   function getDateStr(dateStr) {
@@ -41,7 +40,6 @@ const AllData = (props) => {
     return week[date.getDay()];
   }
   const day = getDateStr(`2022${forDay}`);
-  console.log(day);
 
   return (
     <WrapBox

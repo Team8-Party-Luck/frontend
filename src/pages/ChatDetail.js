@@ -14,27 +14,15 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { red } from "@mui/material/colors";
 import styled from "styled-components";
 import { style } from "@mui/system";
+import { useState } from "react";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
+  const [msg, setMsg] = useState("");
+
   const { roomId } = useParams();
-
-  console.log(roomId);
-
-  // 채팅방 이전 메시지 가져오기
-  useEffect(() => {
-    // dispatch(chatActions.getMsgListDB(roomId));
-    dispatch(chatActions.getRoomIdDB(roomId));
-  }, []);
-
-  const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
-  console.log(chatRoomId);
-
-  // const messages = useSelector((state) => state?.chat);
-  const messages = [];
-  console.log(messages);
 
   // 소켓 연결
   React.useEffect(() => {
@@ -45,12 +33,27 @@ const ChatDetail = () => {
     };
   }, []);
 
-  // 1. stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
+  console.log(roomId);
+
+  // 채팅방 이전 메시지 가져오기
+  useEffect(() => {
+    dispatch(chatActions.getMsgListDB(chatRoomId));
+    dispatch(chatActions.getRoomIdDB(roomId));
+  }, []);
+
+  const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
+  console.log(chatRoomId);
+
+  // const messages = useSelector((state) => state?.chat);
+  const messages = [];
+  console.log(messages);
+
+  // stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
   let sock = new SockJs("http://3.38.180.96:8080/ws-stomp");
   let ws = Stomp.over(sock);
   console.log(ws);
 
-  // 연결 및 구독. 파라미터로 토큰 넣어야 함
+  // 연결 및 구독
   function wsConnect() {
     try {
       ws.connect({ token: token, type: "ENTER" }, () => {
@@ -71,6 +74,7 @@ const ChatDetail = () => {
     }
   }
 
+  //소켓 연결 끊기
   function wsDisConnect() {
     try {
       ws.disconnect(() => {
@@ -79,6 +83,31 @@ const ChatDetail = () => {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  //메세지 전송
+  const onSend = async () => {
+    try {
+      // send할 데이터
+      const message = {
+        chatRoomId: chatRoomId,
+        message: msg,
+        type: "TALK",
+      };
+      //값이 없으면 아무것도 실행 x
+      if (msg === "") {
+        return;
+      }
+      ws.current.send("/app/send", { token: token }, JSON.stringify(message));
+      console.log(ws.current.ws.readyState);
+      setMsg("");
+    } catch (error) {
+      console.log(error);
+      console.log(ws.ws.readyState);
+    }
+  };
+  if (messages === null) {
+    return;
   }
 
   return (
@@ -146,7 +175,7 @@ const ChatDetail = () => {
         })} */}
         <ChatBox />
       </Box>
-      <ChatInput roomId={roomId} />
+      <ChatInput msg={msg} setMsg={setMsg} onSend={onSend} />
     </Box>
   );
 };

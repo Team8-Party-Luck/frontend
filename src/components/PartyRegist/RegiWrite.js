@@ -21,7 +21,7 @@ import RealDay from "./RealDay";
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
-  const [defaultImage, setDefaultImage] = useState([])
+  const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
@@ -69,7 +69,7 @@ const RegiWrite = () => {
     }
 
     const Write_info = {
-      defaultImage:defaultImage,
+      defaultImage: defaultImage,
       image: image,
       title: title,
       store: store,
@@ -85,9 +85,10 @@ const RegiWrite = () => {
       desc: desc,
     };
 
-    console.log(image)
+    console.log(image);
     if (
-      (image.length !== 0 && defaultImage !== [])&&
+      image.length !== 0 &&
+      defaultImage !== [] &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -128,114 +129,129 @@ const RegiWrite = () => {
   };
   return (
     <React.Fragment>
-       <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
-          <Toolbar>
-            <img
-              alt="back"
-              src="image/bar/back.png"
-              onClick={() => {
-                handleOpen();
-              }}
-            />
-            <Box sx={{ flexGrow: 1.1 }} />
-            <div style={{ color: "#161616", fontSize: "20px" }}>파티등록</div>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
+            <Toolbar>
+              <img
+                alt="back"
+                src="image/bar/back.png"
+                onClick={() => {
+                  handleOpen();
+                }}
+              />
+              <Box sx={{ flexGrow: 1.1 }} />
+              <div style={{ color: "#161616", fontSize: "20px" }}>파티등록</div>
 
-            <Box sx={{ flexGrow: 1 }} />
-            <span
-              onClick={() => {
-                sendWriteData();
-              }}
-              style={{ color: "#FF6853", fontSize: "18px" }}
-            >
-              완료
-            </span>
-          </Toolbar>
-        </AppBar>
-        <Modal open={open} onClose={handleClose}>
-          <Box sx={modal} justifyContent="center" alignItems="center" >
-            <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
-              작성을 취소하시겠습니까?
-            </div>
-            <CancelButton
-              onClick={() => {
-                handleClose();
-              }}
-              style={{ marginRight: "1rem" }}
-            >
-              취소
-            </CancelButton>
-            <CancelButton
-              onClick={() => {
-                history.push("/home");
-              }}
-              style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
-            >
-              작성 취소
-            </CancelButton>
-          </Box>
-        </Modal>
-      </Box>
-      <Grid container alignItems="center" justifyContent="center" >
-        <Images image={image} setImage={setImage} defaultImage={defaultImage} setDefaultImage={setDefaultImage}/>
-        <TextField
-          placeholder="파티제목"
-          variant="standard"
-          style={{ width: "85%" }}
-          sx={{ mb: 3 }}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-
-        <MapView
-          store={store}
-          setStore={setStore}
-          setAddress={setAddress}
-          setPlace_url={setPlace_url}
-          setXy={setXy}
-        />
-
-        <PersonInfo
-          capacity={capacity}
-          setCapacity={setCapacity}
-          ageGroup={ageGroup}
-          setAgeGroup={setAgeGroup}
-          gender={gender}
-          setGender={setGender}
-        />
-        <Box
-          component="div"
-          sx={{ display: "inline", width: "9rem", mb: 4,marginRight: "2rem" }}
+              <Box sx={{ flexGrow: 1 }} />
+              <span
+                onClick={() => {
+                  sendWriteData();
+                }}
+                style={{ color: "#FF6853", fontSize: "18px" }}
+              >
+                완료
+              </span>
+            </Toolbar>
+          </AppBar>
+          <Modal open={open} onClose={handleClose}>
+            <Box sx={modal} justifyContent="center" alignItems="center">
+              <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
+                작성을 취소하시겠습니까?
+              </div>
+              <CancelButton
+                onClick={() => {
+                  handleClose();
+                }}
+                style={{ marginRight: "1rem" }}
+              >
+                취소
+              </CancelButton>
+              <CancelButton
+                onClick={() => {
+                  history.push("/home");
+                }}
+                style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
+              >
+                작성 취소
+              </CancelButton>
+            </Box>
+          </Modal>
+        </Box>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          sx={{ paddingTop: "1em;" }}
         >
-          <RealDay date={date} setDate={setDate} />
-        </Box>
-        <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4  }}>
-          <TimeSelect time={time} setTime={setTime} />
-        </Box>
+          <Images
+            image={image}
+            setImage={setImage}
+            defaultImage={defaultImage}
+            setDefaultImage={setDefaultImage}
+          />
+          <TextField
+            placeholder="파티제목"
+            variant="standard"
+            style={{ width: "85%" }}
+            sx={{ mb: 3 }}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
 
-        <TextField
-          placeholder="만날 장소"
-          variant="standard"
-          style={{ width: "85%" }}
-          sx={{ mb: 3 }}
-          onChange={(e) => {
-            setMeeting(e.target.value);
-          }}
-        />
-        <TextField
-          multiline
-          placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
-          rows={6}
-          variant="standard"
-          style={{ width: "85%" }}
-          sx={{ pb: 1, mt: 2 }}
-          onChange={(e) => {
-            setDesc(e.target.value);
-          }}
-        />
-      </Grid>
+          <MapView
+            store={store}
+            setStore={setStore}
+            setAddress={setAddress}
+            setPlace_url={setPlace_url}
+            setXy={setXy}
+          />
+
+          <PersonInfo
+            capacity={capacity}
+            setCapacity={setCapacity}
+            ageGroup={ageGroup}
+            setAgeGroup={setAgeGroup}
+            gender={gender}
+            setGender={setGender}
+          />
+          <Box
+            component="div"
+            sx={{
+              display: "inline",
+              width: "9rem",
+              mb: 4,
+              marginRight: "2rem",
+            }}
+          >
+            <RealDay date={date} setDate={setDate} />
+          </Box>
+          <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4 }}>
+            <TimeSelect time={time} setTime={setTime} />
+          </Box>
+
+          <TextField
+            placeholder="만날 장소"
+            variant="standard"
+            style={{ width: "85%" }}
+            sx={{ mb: 3 }}
+            onChange={(e) => {
+              setMeeting(e.target.value);
+            }}
+          />
+          <TextField
+            multiline
+            placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
+            rows={6}
+            variant="standard"
+            style={{ width: "85%" }}
+            sx={{ pb: 1, mt: 2 }}
+            onChange={(e) => {
+              setDesc(e.target.value);
+            }}
+          />
+        </Grid>
       </ThemeProvider>
     </React.Fragment>
   );

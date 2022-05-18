@@ -83,19 +83,18 @@ const PartyList = (props) => {
 
   const willData = useSelector((state) => state?.crew?.will);
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
-  const userInfo = useSelector((state) => state?.user?.user?.result);
+  const userInfo = useSelector((state) => state?.user?.check?.result);
   console.log(userInfo);
 
   //지역필터
   const regionData = useSelector((state) => state?.crew?.region);
-  console.log(regionData);
 
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
-  const InfinityScroll = _.throttle((e) => {
+  const InfinityScroll = _.debounce((e) => {
     if (
       e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
-      100
+      10
     ) {
       axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
         setPartyList([...partyList, ...res.data.results]);

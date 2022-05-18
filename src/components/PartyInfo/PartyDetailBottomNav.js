@@ -7,155 +7,52 @@ import Stack from "@mui/material/Stack";
 import { history } from "../../redux/configStore";
 import { useParams } from "react-router-dom";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { actionCreators as userActions } from "../../redux/modules/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
+import Toast from "../../shared/Toast";
 
 const PartyDetailBottomNav = (props) => {
-  console.log(props);
-
   const { partyId } = useParams();
 
   const dispatch = useDispatch();
 
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState("");
+
   const partyUser = useSelector((state) => state?.crew?.info);
   console.log(partyUser);
+
+  // React.useEffect(() => {
+  //   if (ToastStatus) {
+  //     setTimeout(() => {
+  //       setToastStatus(false);
+  //       setToastMsg("");
+  //     }, 1000);
+  //   }
+  // }, [ToastStatus]);
+
+  // //토스트 팝업 메시지 리스트
+  // const msgList = {
+  //   complete: "파티가 신청되었습니다",
+  //   full: "모집이 마감되었습니다",
+  //   cancel: "파티 신청을 취소하였습니다",
+  //   update: "수정이 완료되었습니다",
+  // };
+
+  // //토스트 팝업 메시지 중복 동작 방지
+  // const handleToast = (type) => {
+  //   if (!ToastStatus) {
+  //     setToastStatus(true);
+  //     setToastMsg(msgList[type]);
+  //   }
+  // };
 
   const deleteParty = (partyId) => {
     dispatch(crewActions.deleteSend(partyId));
   };
-
-  // if (props?.userCheck?.userid === partyUser?.hostid) {
-  //   return (
-  //     <Box>
-  //       <Box
-  //         sx={{
-  //           width: "95%",
-  //           position: "relative",
-  //           display: "flex",
-  //           bottom: 10,
-  //         }}
-  //         justifyContent="center"
-  //         alignItems="center"
-  //       >
-  //         <Stack spacing={2} direction="row">
-  //           <Button
-  //             variant="outlined"
-  //             sx={{ width: "9rem" }}
-  //             onClick={() => {
-  //               history.push({
-  //                 pathname: "/revise",
-  //                 state: partyId,
-  //               });
-  //             }}
-  //           >
-  //             수정
-  //           </Button>
-  //           <Button
-  //             variant="outlined"
-  //             sx={{ width: "9rem" }}
-  //             onClick={() => {
-  //               deleteParty(partyId);
-  //               alert("파티 정말 삭제하시겠습니까?");
-  //             }}
-  //           >
-  //             파티삭제
-  //           </Button>
-  //         </Stack>
-  //       </Box>
-  //     </Box>
-  //   );
-  // } else if (partyUser?.join === true) {
-  //   return (
-  //     <Box>
-  //       <Box
-  //         sx={{
-  //           width: "95%",
-  //           position: "relative",
-  //           display: "flex",
-  //           bottom: 10,
-  //         }}
-  //         justifyContent="center"
-  //         alignItems="center"
-  //       >
-  //         <Stack spacing={2} direction="row">
-  //           <Button
-  //             variant="outlined"
-  //             sx={{ width: "9rem" }}
-  //             onClick={() => {
-  //               history.push({
-  //                 pathname: `/chat/${partyUser?.hostid}`,
-  //                 state: partyId,
-  //               });
-  //             }}
-  //           >
-  //             호스트에게 문의
-  //           </Button>
-  //           <Button
-  //             variant="outlined"
-  //             sx={{ width: "9rem" }}
-  //             onClick={() => {
-  //               dispatch(crewActions.sendCancelData(partyId));
-  //             }}
-  //           >
-  //             신청취소
-  //           </Button>
-  //         </Stack>
-  //       </Box>
-  //     </Box>
-  //   );
-  // } else {
-  //   return (
-  //     <Box>
-  //       <Box
-  //         sx={{
-  //           width: "95%",
-  //           position: "relative",
-  //           display: "flex",
-  //           bottom: 10,
-  //         }}
-  //         justifyContent="center"
-  //         alignItems="center"
-  //       >
-  //         <Stack spacing={2} direction="row">
-  //           <Button
-  //             variant="outlined"
-  //             sx={{ width: "9rem" }}
-  //             onClick={() => {
-  //               history.push({
-  //                 pathname: `/chat/${partyUser?.hostid}`,
-  //                 state: partyId,
-  //               });
-  //             }}
-  //           >
-  //             호스트에게 문의
-  //           </Button>
-  //           {props?.memberCnt === props?.capacity ? (
-  //             <Button
-  //               variant="outlined"
-  //               sx={{ width: "9rem" }}
-  //               onClick={() => {
-  //                 alert.apply("모집이 마감되었습니다");
-  //               }}
-  //             >
-  //               모집마감
-  //             </Button>
-  //           ) : (
-  //             <Button
-  //               variant="outlined"
-  //               sx={{ width: "9rem" }}
-  //               onClick={() => {
-  //                 dispatch(crewActions.sendJoinData(partyId));
-  //               }}
-  //             >
-  //               파티신청
-  //             </Button>
-  //           )}
-  //         </Stack>
-  //       </Box>
-  //     </Box>
-  //   );
-  // }
 
   if (props?.userCheck?.userid === partyUser?.hostid) {
     return (
@@ -191,12 +88,12 @@ const PartyDetailBottomNav = (props) => {
         </LeftBtn>
         <RightBtn
           onClick={() => {
-            // {partyUser?.age === }
             dispatch(crewActions.sendCancelData(partyId));
           }}
         >
           신청 취소
         </RightBtn>
+        {ToastStatus && <Toast msg={ToastMsg} />}
       </FlexBox>
     );
   } else {
@@ -209,7 +106,7 @@ const PartyDetailBottomNav = (props) => {
         >
           호스트에게 문의
         </LeftBtn>
-        {props?.memberCnt === props?.capacity ? (
+        {partyUser?.memberCnt === partyUser?.capacity ? (
           <RightBtn>모집 마감</RightBtn>
         ) : (
           <RightBtn
@@ -220,6 +117,13 @@ const PartyDetailBottomNav = (props) => {
             파티 신청
           </RightBtn>
         )}
+        {/* {partyUser?.age === "전체" && partyUser?.gender ==="모두" ?           <RightBtn
+            onClick={() => {
+              dispatch(crewActions.sendJoinData(partyId));
+            }}
+          >
+            파티 신청
+          </RightBtn> : partyUser?.age === "전체" && partyUser?.gender ===} */}
       </FlexBox>
     );
   }

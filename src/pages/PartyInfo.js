@@ -16,21 +16,14 @@ const PartyInfo = () => {
 
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(userActions.userCheckDB());
     dispatch(userActions.getUserInfoDB());
     dispatch(crewActions.getDetailInfo(partyId));
+    dispatch(userActions.userCheckDB());
   }, []);
 
-  const userCheck = useSelector((state) => state?.user?.user?.result);
-  console.log(userCheck);
-
-  const user_info = useSelector((state) => state?.user?.user);
-  console.log(user_info);
+  const userCheck = useSelector((state) => state?.user?.check?.result);
 
   const partyUser = useSelector((state) => state?.crew?.info);
-  console.log(partyUser);
-
-
 
   //상세정보
   const image = partyUser?.image;
@@ -73,12 +66,7 @@ const PartyInfo = () => {
         partyId={partyId}
       />
       <PartyDetailDesc desc={desc} />
-      <PartyDetailBottomNav
-        memberCnt={memberCnt}
-        capacity={capacity}
-        userCheck={userCheck}
-        user_info={user_info}
-      />
+      <PartyDetailBottomNav userCheck={userCheck} />
     </React.Fragment>
   );
 };
