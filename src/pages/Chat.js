@@ -4,11 +4,12 @@ import MsgList from "../components/Chat/MsgList";
 import BottomNav from "../shared/BottomNav";
 import Header from "../shared/Header";
 
-const Chat = () => {
+const Chat = ({_handleModal}) => {
   return (
     <React.Fragment>
-      <Header name="메시지" />
+      <Header name="메시지"/>
       <MsgList />
+      <Chat/>
       <BottomNav></BottomNav>
     </React.Fragment>
   );

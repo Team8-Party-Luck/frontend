@@ -17,11 +17,11 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
     <label>
         <ImageRadio
           type="radio"
-          value="모두"
-          checked={form === "모두"}
+          value="전체"
+          checked={form === "전체"}
           onChange={handleRadio}
         />
-        모두
+        전체
       </label>
       <label>
         <ImageRadio

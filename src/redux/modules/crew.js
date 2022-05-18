@@ -148,20 +148,19 @@ const getDataDB = (pageNum) => {
 };
 
 //지역필터
-const getRegionData = (answer) => {
+const getRegionData = (regionInfo) => {
   
   return async function (dispatch, getState, { history }) {
+    const file = new FormData();
+    file.append("answer", regionInfo.answer);
     try {
-      const res = await axios.get('/home/parties/local/${pageid}', {
+      const res = await axios.post('http://3.38.180.96/home/parties/local', file, {
         headers: {
           Authorization: `Bearer ${token}`,
           "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
         },
-        data: { answer: answer },
       });
-      // console.log(res.data.results);
-      // dispatch(getRegion(res.data.results));
+      dispatch(getRegion(res.data.results));
     } catch (err) {
       console.log(err);
     }

@@ -81,43 +81,43 @@ const SetLocation = (props) => {
             onChange={handleChangeRegion}
             sx={{ width: "96%", margin: "0 auto" }}
           >
-            {city === "서울특별시"
+            {city === "서울"
               ? regionArea[0].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "부산광역시"
+              : city === "부산"
               ? regionArea[1].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "대구광역시"
+              : city === "대구"
               ? regionArea[2].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "인천광역시"
+              : city === "인천"
               ? regionArea[3].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "광주광역시"
+              : city === "광주"
               ? regionArea[4].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "대전광역시"
+              : city === "대전"
               ? regionArea[5].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "울산광역시"
+              : city === "울산"
               ? regionArea[6].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
@@ -129,49 +129,49 @@ const SetLocation = (props) => {
                     {cur}
                   </MenuItem>
                 ))
-              : city === "경기도"
+              : city === "경기"
               ? regionArea[8].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "강원도"
+              : city === "강원"
               ? regionArea[9].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "충청북도"
+              : city === "충북"
               ? regionArea[10].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "충청남도"
+              : city === "충남"
               ? regionArea[11].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "전라북도"
+              : city === "전북"
               ? regionArea[12].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "전라남도"
+              : city === "전남"
               ? regionArea[13].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "경상북도"
+              : city === "경북"
               ? regionArea[14].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
                   </MenuItem>
                 ))
-              : city === "경상남도"
+              : city === "경남"
               ? regionArea[15].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>
                     {cur}
