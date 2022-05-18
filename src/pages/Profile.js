@@ -25,6 +25,7 @@ const Profile = () => {
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   console.log(scrapData);
 
+
   return (
     <React.Fragment>
       <WrapBox>

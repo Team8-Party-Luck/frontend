@@ -4,7 +4,6 @@ import axios from "axios";
 
 // 액션
 const LOGIN = "LOGIN";
-
 const GET_USER_INFO = "GET_USER_INFO";
 // const SET_CODE = "SET_CODE";
 const SAVE_INFO = "SAVE_INFO";
@@ -18,12 +17,14 @@ const getUserInfo = createAction(GET_USER_INFO, (user) => ({ user }));
 const userCheck = createAction(USER_CHECK, (user) => ({ user }));
 // const setCode = createAction(SET_CODE, (Code) => ({ Code }));
 
+const token = sessionStorage.getItem("token");
+
 // 초기값
 const initialState = {};
 
-//
 
 //미들웨어
+
 //로그인요청
 const loginDB = (Login_info) => {
   return function (dispatch, getState, { history }) {
@@ -51,6 +52,7 @@ const loginDB = (Login_info) => {
   };
 };
 
+//카카오로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -112,9 +114,8 @@ const signupDB = (Signup_info) => {
   };
 };
 
+//세팅 데이터 보내기
 const sendSettingsData = (Settings_info) => {
-  const token = sessionStorage.getItem("token");
-  console.log(token);
   return function (dispatch, getState, { history }) {
     axios
       .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
@@ -136,78 +137,64 @@ const sendSettingsData = (Settings_info) => {
 
 //유저 세팅정보 받아오기
 const getUserInfoDB = () => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
+
+  return  async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.get(
-        "http://3.38.180.96:8080/api/user/initial",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-            accept: "application/json,",
-          },
-        }
-      );
-      console.log(response.data);
-      if (response.status === 200) {
-        console.log(response.data);
-        dispatch(getUserInfo(response.data));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
-    // .then((res) => {
-    //   console.log(res.data);
-    //   dispatch(getUserInfo(res.data));
-    // })
-    // .catch((err) => {
-    //   console.log("에러", err.response);
-    // });
-  };
-};
-
-const updateSettingsData = (Update_info) => {
-  const token = sessionStorage.getItem("token");
-  return function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    axios
-      .put("http://3.38.180.96:8080/api/user/initial", Update_info, {
+      const res =  await axios
+      .get("http://3.38.180.96:8080/api/user/initial", {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type":
-            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
         },
-      })
-      .then((res) => {
-        console.log(res.data);
-        history.push("/profile");
-      })
-      .catch((err) => {
-        console.log("에러", err.response);
       });
+       console.log(res.data);
+       dispatch(getUserInfo(res.data));
+    } catch(error) {
+      console.log(error);
+    }
   };
 };
 
+//유저 정보 업데이트
+const updateSettingsData = (Update_info) => {
+    return async function (dispatch, getState, { history }) {
+      try {
+        const res = await axios
+        .put('http://3.38.180.96:8080/api/user/initial', Update_info, {
+          headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type":
+                    "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+                },
+        });
+        console.log(res.data);
+        history.push('/profile');
+      } catch(error) {
+        console.log(error);
+      }
+  };
+};
+
+//파티 유저가 호스트인지,좋아요를 눌렀는지 등 확인
 const userCheckDB = () => {
-  const token = sessionStorage.getItem("token");
-  return function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    axios
+  return async function (dispatch, getState, { history }) {
+    try{
+      //왜 도대체 왜 여기서 await을 뺘야만 값이 불러 와지지??? 내 생각엔 액션 크레이터 변수값이 user로 
+      //통일되어 있어서 데이터를 받아올 때 
+      const res =   await axios
       .get("http://3.38.180.96:8080/api/user", {
         headers: {
           Authorization: `Bearer ${token}`,
           "content-type": "application/json;charset=UTF-8",
           accept: "application/json,",
         },
-      })
-      .then((res) => {
-        dispatch(userCheck(res.data));
-      })
-      .catch((err) => {
-        console.log("에러", err.response);
       });
+      console.log(res.data);
+      dispatch(userCheck(res.data));
+    } catch (error){
+      console.log(error)
+    }
   };
 };
 

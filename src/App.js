@@ -20,16 +20,9 @@ import Account from "./pages/Account";
 import Joined from "./pages/Joined";
 import Scrap from "./pages/Scrap";
 import ChatDetail from "./pages/ChatDetail";
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "./redux/modules/user";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
 
 function App() {
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(userActions.userCheckDB());
-  }, []);
 
   return (
     <React.Fragment>
