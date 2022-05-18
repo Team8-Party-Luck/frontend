@@ -19,7 +19,7 @@ const getAlarm = createAction(GET_ALARM, (alarm) => ({ alarm }));
 // 초기값
 const initialState = { alarm: [] };
 
-let sock = new SockJS("http://121.141.140.148:8088/gs-guide-websocket");
+let sock = new SockJS("http://121.141.140.148:8080/ws-stomp");
 let ws = Stomp.over(sock);
 
 //실시간 알람 데이터 받아오기

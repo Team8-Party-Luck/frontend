@@ -167,7 +167,7 @@ const PartyList = (props) => {
           />
         </ThemeProvider>
         <ListBox ref={ref} onScroll={InfinityScroll}>
-          {partyList?.map((cur, idx) => (
+          {regionData?.map((cur, idx) => (
             <AllData
               key={cur?.partyId}
               partyId={cur?.partyId}

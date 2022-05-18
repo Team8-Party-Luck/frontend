@@ -21,6 +21,7 @@ import Joined from "./pages/Joined";
 import Scrap from "./pages/Scrap";
 import ChatDetail from "./pages/ChatDetail";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
+import Modal from "./shared/Modal";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/scrap" exact component={Scrap} />
         <Route path="/Account" exact component={Account} />
         <Route path="/inquary" exact component={Inquary} />
+        <Route path="/modal" exact component={Modal} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
     </React.Fragment>
