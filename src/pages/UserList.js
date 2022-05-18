@@ -18,15 +18,17 @@ const UserList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const { partyid } = useParams();
+
   React.useEffect(() => {
-    dispatch(crewActions.getUserList(location.state));
+    dispatch(crewActions.getUserList(partyid));
     dispatch(userActions.userCheckDB());
   }, []);
 
   const userList = useSelector((state) => state?.crew?.detailUser);
   console.log(userList);
 
-  const userId = useSelector((state) => state?.user?.user?.result?.userid);
+  const userId = useSelector((state) => state?.user?.check?.result?.userid);
   console.log(userId);
 
   return (

@@ -9,28 +9,20 @@ import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import styled from "styled-components";
 
-const PartyDetailInfo = ({
-  title,
-  store,
-  address,
-  capacity,
-  date,
-  time,
-  place_url,
-  gender,
-  meeting,
-  age,
-}) => {
+const PartyDetailInfo = (props) => {
+  const { partyData } = props;
   return (
     <React.Fragment>
       <WrapBox>
-        <Title>{title}</Title>
+        <Title>{partyData?.title}</Title>
         <FlexBox>
-          <ColorText>{store}</ColorText>
+          <ColorText>{partyData?.store}</ColorText>
           <GrayBar>ㅣ</GrayBar>
-          <LocationText>{address}</LocationText>
+          <LocationText>{partyData?.address}</LocationText>
         </FlexBox>
-        <DetailInfoBtn href={place_url}>식당 상세 정보 확인하기</DetailInfoBtn>
+        <DetailInfoBtn href={partyData?.place_url}>
+          식당 상세 정보 확인하기
+        </DetailInfoBtn>
       </WrapBox>
       <WrapBox>
         <FlexBox>
@@ -42,12 +34,13 @@ const PartyDetailInfo = ({
             <LocDetailText>모집 인원</LocDetailText>
           </div>
           <div>
-            <LocDetailText2>{meeting}</LocDetailText2>
+            <LocDetailText2>{partyData?.meeting}</LocDetailText2>
             <LocDetailText2 style={{ margin: "1em 0" }}>
-              {date} {time}
+              {partyData?.date} {partyData?.time}
             </LocDetailText2>
             <LocDetailText2>
-              {capacity}명 <GrayBar>ㅣ</GrayBar> {age} {gender}
+              {partyData?.capacity}명 <GrayBar>ㅣ</GrayBar> {partyData?.age}{" "}
+              {partyData?.gender}
             </LocDetailText2>
           </div>
         </FlexBox>
