@@ -69,6 +69,7 @@ const RegiWrite = () => {
     }
 
     const Write_info = {
+       
       defaultImage: defaultImage,
       image: image,
       title: title,

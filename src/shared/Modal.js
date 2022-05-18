@@ -1,50 +1,64 @@
-import { useState } from "react";
+import React from 'react';
 import styled from "styled-components";
 import { history } from "../redux/configStore";
+import {useLocation} from 'react-router-dom'
+import { useDispatch } from "react-redux";
 
-const Modal = ({cancel,}) => {
-  const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
-  const openModalHandler = (event) => {
-    setIsOpen(!isOpen);
-  };
+import { actionCreators as crewActions } from "../redux/modules/crew";
+
+const Modal = ({ state }) => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  console.log(location.state)
 
   return (
     <>
       <ModalContainer>
-        <ModalBtn onClick={openModalHandler}>
-          {isOpen ? "파티 신청" : "파티 신청"}
-        </ModalBtn>
-        {isOpen ? (
-          <ModalBackdrop onClick={openModalHandler}>
-            <ModalView
-              onClick={(event) => {
-                event.stopPropagation();
-              }}
-            >
-              <div>
-                <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
-                  작성을 취소하시겠습니까?
-                </div>
-                <CancelButton
-                  onClick={() => {
-                    // handleClose();
-                  }}
-                  style={{ marginRight: "1rem" }}
-                >
-                  취소
-                </CancelButton>
-                <CancelButton
-                  onClick={() => {
-                    history.push("/home");
-                  }}
-                  style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}s
-                >
-                  작성 취소
-                </CancelButton>
+        <ModalBackdrop>
+          <ModalView
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div>
+              <div style={{ margin:'0 1rem 2rem 1rem'}}>
+                {location.state.title}
               </div>
-            </ModalView>
-          </ModalBackdrop>
-        ) : null}
+              <CancelButton onClick={() => {
+                if(location.state.action === "logout"){
+                  history.push('/account')
+                } else {
+                  history.push(`/partyInfo/${location.state.partyId}`)
+                }
+               
+              }} style={{ marginRight: "1rem" }}>
+                {location.state.leftTitle}
+              </CancelButton>
+              <CancelButton
+                onClick={() => {
+                  if(location.state.action === 'cancel'){
+                    dispatch(crewActions.sendCancelData(location.state.partyId));
+                    history.replace(`/partyInfo/${location.state.partyId}`)
+                  }else if (location.state.action === 'delete') {
+                    dispatch(crewActions.deleteSend(location.state.partyId));
+                    history.replace('/')
+                  }else if (location.state.action === 'logout') {
+                    sessionStorage.removeItem('userid');
+                    sessionStorage.removeItem('token');
+                    history.replace('/')
+                  }
+
+
+                }}
+                style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
+                s
+              >
+                {location.state.rightTitle}
+              </CancelButton>
+            </div>
+          </ModalView>
+        </ModalBackdrop>
       </ModalContainer>
     </>
   );
@@ -53,23 +67,11 @@ const Modal = ({cancel,}) => {
 export default Modal;
 
 const ModalContainer = styled.div`
-  // display : flex;
-  // justify-content: center;
-  // align-items: center;
-  // height: 100%;
-  // position: relative;
-`;
-
-const ModalBtn = styled.button`
-  background-color: #ff6853;
-  text-decoration: none;
-  border: none;
-  font-size: 16px;
-  color: white;
-  border-radius: 8px;
-  height: 51px;
-  width: 163px;
-  cursor: grab;
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
 `;
 
 const ModalBackdrop = styled.div`

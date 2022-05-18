@@ -6,7 +6,7 @@ import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function TimeSelect({ time, setTime }) {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState( new Date());
 
   const str = new Date(`2022-01-01 ${time}`);
   // const str = '13:12'.split(':')
@@ -25,10 +25,9 @@ export default function TimeSelect({ time, setTime }) {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>
         <MobileTimePicker
-          toolbarTitle="만날 시간"
+          label="만날 시간"
           cancelText="취소"
           okText="저장"
-          minutesStep={5}
           inputFormat={"HH:mm"}
           //워닝 방지
           mask={"__:__"}
@@ -36,12 +35,13 @@ export default function TimeSelect({ time, setTime }) {
 
           onChange={(newValue) => {
             setValue(newValue);
-            let hours = newValue.getHours();
-            hours = hours < 10 ? `0${hours}` : hours;
-            let minutes = newValue.getMinutes();
-            minutes = minutes < 10 ? `0${minutes}` : minutes;
-            let answer = `${hours}:${minutes}`;
-            setTime(answer);
+            setTime(newValue);
+            // let hours = newValue.getHours();
+            // hours = hours < 10 ? `0${hours}` : hours;
+            // let minutes = newValue.getMinutes();
+            // minutes = minutes < 10 ? `0${minutes}` : minutes;
+            // let answer = `${hours}:${minutes}`;
+            // setTime(answer);
           }}
           renderInput={(params) => (
             <TextField variant="standard" placeholder="만날 시간" {...params} />

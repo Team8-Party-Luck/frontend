@@ -51,9 +51,7 @@ const PartyDetailBottomNav = (props) => {
   //   }
   // };
 
-  const deleteParty = (partyId) => {
-    dispatch(crewActions.deleteSend(partyId));
-  };
+
 
   if (userId === partyData?.hostid) {
     return (
@@ -70,7 +68,16 @@ const PartyDetailBottomNav = (props) => {
         </LeftBtn>
         <RightBtn
           onClick={() => {
-            deleteParty(partyId);
+            history.push({
+              pathname: "/modal",
+              state: {
+                action:'delete',
+                title: "파티를 정말 삭제하시겠습니까?",
+                leftTitle: "뒤로가기",
+                rightTitle: "파티 삭제하기",
+                partyId: partyId,
+              },
+            });
           }}
         >
           파티 삭제
@@ -90,7 +97,16 @@ const PartyDetailBottomNav = (props) => {
         </LeftBtn>
         <RightBtn
           onClick={() => {
-            dispatch(crewActions.sendCancelData(partyId));
+            history.push({
+              pathname: "/modal",
+              state: {
+                action:'cancel',
+                title: "파티 신청을 정말 취소하시겠습니까?",
+                leftTitle: "뒤로가기",
+                rightTitle: "파티 신청 취소",
+                partyId: partyId,
+              },
+            });
           }}
         >
           신청 취소

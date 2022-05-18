@@ -49,7 +49,20 @@ const Account = () => {
     <React.Fragment>
       <Header name={"계정"} />
       <WrapBox>
-        <ListBox onClick={() => {}}>
+        <ListBox
+          onClick={() => {
+            history.push({
+              pathname: "/modal",
+              state: {
+                action: "logout",
+                title: "로그아웃 하시겠습니까?",
+                leftTitle: "뒤로가기",
+                rightTitle: "로그아웃",
+                partyId: null,
+              },
+            });
+          }}
+        >
           <div>로그아웃</div>
           <img src={goArrow} style={{ width: 9, height: 15 }} />
         </ListBox>
