@@ -7,12 +7,14 @@ const GET_CHAT_LIST = "GET_CHAT_LIST";
 const GET_MSG_LIST = "GET_MSG_LIST";
 const GET_ROOMID = "GET_ROOMID";
 const SUB_MSG = "SUB_MSG";
+const GET_CHAT_USER = "GET_CHAT_USER";
 
 //액션크레이터
 const getChatList = createAction(GET_CHAT_LIST, (list) => ({ list }));
 const getMsgList = createAction(GET_MSG_LIST, (msg) => ({ msg }));
 const getRoomId = createAction(GET_ROOMID, (id) => ({ id }));
 const subMsg = createAction(SUB_MSG, (sub) => ({ sub }));
+const getChatUser = createAction(GET_CHAT_USER, (user) => ({ user }));
 
 // 초기값
 const initialState = {
@@ -93,6 +95,27 @@ const getRoomIdDB = (roomId) => {
   };
 };
 
+//채팅방에 속해있는 유저정보 불러오기
+const getChatUserDB = (roomId) => {
+  return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    axios
+      .get(`http://3.38.180.96/chatroom/user/${roomId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json,",
+        },
+      })
+      .then((res) => {
+        dispatch(getChatUser(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CHAT_LIST]: (state, action) =>
@@ -113,6 +136,10 @@ export default handleActions(
         console.log(state.msg);
         draft.msg.push({ ...action.payload.sub });
       }),
+    [GET_CHAT_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.user;
+      }),
   },
   initialState
 );
@@ -125,6 +152,8 @@ const actionCreators = {
   getRoomId,
   getRoomIdDB,
   subMsg,
+  getChatUserDB,
+  getChatUser,
 };
 
 export { actionCreators };

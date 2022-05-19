@@ -39,12 +39,16 @@ const ChatDetail = () => {
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
     dispatch(userActions.userCheckDB());
+    dispatch(chatActions.getChatUserDB(roomId));
   }, []);
 
   const userInfo = useSelector((state) => state?.user?.check?.result?.userid);
 
   const messages = useSelector((state) => state?.chat?.msg);
   console.log(messages);
+
+  const chatInfo = useSelector((state) => state?.chat?.user);
+  console.log(chatInfo);
 
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
