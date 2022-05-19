@@ -19,7 +19,14 @@ import SelectedCoffeeImg from "../../static/images/category_selected/coffee.png"
 import SelectedSaladImg from "../../static/images/category_selected/salad.png";
 import SelectedEtcImg from "../../static/images/category_selected/etc.png";
 
-const Taste = ({defaultImage, setDefaultImage }) => {
+const Taste = ({image, setImage, defaultImage, setDefaultImage, setShowImages }) => {
+  const settingImage = (props) => {
+    if(image.length !== 0 ){
+        setImage([]);
+        setShowImages([]);
+    }
+    setDefaultImage(props)
+  }
   return (
     <Stack>
       <Stack direction="row" spacing={2.9} sx={{mb:2}}>
@@ -30,11 +37,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedKorImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                // if(image !== []){
-                //   setImage([])
-                // }
-                setDefaultImage("한식");
-
+                settingImage("한식");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>한식</Box>
@@ -46,7 +49,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={KorImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("한식");
+                settingImage("한식");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>한식</Box>
@@ -59,7 +62,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedChiImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("중식/아시안");
+                settingImage("중식/아시안");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "-0.3rem"}}>중식/아시안</Box>
@@ -71,7 +74,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={ChiImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("중식/아시안");
+                settingImage("중식/아시안");
               }}
             />
             <Box style={{ marginTop: 5,  marginLeft: "-0.3rem"}}>중식/아시안</Box>
@@ -84,7 +87,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedJapImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("일식");
+                settingImage("일식");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>일식</Box>
@@ -96,7 +99,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={JapImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("일식");
+                settingImage("일식");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>일식</Box>
@@ -109,7 +112,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedWesImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("양식");
+                settingImage("양식");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>양식</Box>
@@ -121,7 +124,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={WesImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("양식");
+                settingImage("양식");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1rem" }}>양식</Box>
@@ -136,7 +139,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedFastImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("패스트푸드");
+                settingImage("패스트푸드");
               }}
             />
             <Box style={{ marginTop: 5, }}>패스트푸드</Box>
@@ -148,7 +151,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={FastImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("패스트푸드");
+                settingImage("패스트푸드");
               }}
             />
             <Box style={{ marginTop: 5, }}>패스트푸드</Box>
@@ -162,7 +165,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("샐러드");
+                settingImage("샐러드");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "0.7rem" }}>샐러드</Box>
@@ -174,7 +177,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SaladImg}
               style={{ width: "4em", height: "4em", }}
               onClick={() => {
-                setDefaultImage("샐러드");
+                settingImage("샐러드");
               }}
             />
             <Box style={{ marginTop: 5,  marginLeft: "0.7rem" }}>샐러드</Box>
@@ -187,7 +190,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedCoffeeImg}
               style={{ width: "4em", height: "4em",marginLeft:'0.4rem'  }}
               onClick={() => {
-                setDefaultImage("커피/디저트");
+                settingImage("커피/디저트");
               }}
             />
             <Box style={{ marginTop: 5,  }}>커피/디저트</Box>
@@ -199,7 +202,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={CoffeeImg}
               style={{ width: "4em", height: "4em", marginLeft:'0.4rem' }}
               onClick={() => {
-                setDefaultImage("커피/디저트");
+                settingImage("커피/디저트");
               }}
             />
             <Box style={{ marginTop: 5,  }}>커피/디저트</Box>
@@ -212,7 +215,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={SelectedEtcImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("기타");
+                settingImage("기타");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1.1rem" }}>기타</Box>
@@ -224,7 +227,7 @@ const Taste = ({defaultImage, setDefaultImage }) => {
               src={EtcImg}
               style={{ width: "4em", height: "4em" }}
               onClick={() => {
-                setDefaultImage("기타");
+                settingImage("기타");
               }}
             />
             <Box style={{ marginTop: 5, marginLeft: "1.1rem" }}>기타</Box>

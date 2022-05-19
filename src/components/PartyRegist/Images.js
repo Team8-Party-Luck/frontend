@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import Taste from "./Taste";
-const Images = ({ image, setImage,defaultImage, setDefaultImage }) => {
+const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
 
@@ -16,6 +16,9 @@ const Images = ({ image, setImage,defaultImage, setDefaultImage }) => {
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
+    if(defaultImage.length !== 0){
+      setDefaultImage([])
+    }
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
 
@@ -67,11 +70,17 @@ const Images = ({ image, setImage,defaultImage, setDefaultImage }) => {
 
       {form === "basic" ? (
         <Box sx={{ width: "21em" }}>
-          <Taste defaultImage={defaultImage} setDefaultImage={setDefaultImage} />
+          <Taste
+            image={image}
+            setImage={setImage}
+            defaultImage={defaultImage}
+            setDefaultImage={setDefaultImage}
+            setShowImages={setShowImages}
+          />
         </Box>
       ) : (
         <React.Fragment>
-          <Box style={{marginLeft:'2rem', }}>{showImages.length}/10 </Box>
+          <Box style={{ marginLeft: "2rem" }}>{showImages.length}/10 </Box>
           <div
             style={{
               // border: "1px solid black",
@@ -97,7 +106,7 @@ const Images = ({ image, setImage,defaultImage, setDefaultImage }) => {
                   name="안녕"
                   style={{ display: "none" }}
                 />
-                <Box component="div" sx={{ display: "inline-block", }}>
+                <Box component="div" sx={{ display: "inline-block" }}>
                   <AddPhotoAlternateIcon
                     sx={{ fontSize: "4.5rem", p: 2.5, m: 1 }}
                     style={{ border: "1px solid black", borderRadius: "9px" }}

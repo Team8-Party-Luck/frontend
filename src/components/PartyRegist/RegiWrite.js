@@ -22,7 +22,7 @@ const RegiWrite = () => {
   const dispatch = useDispatch();
 
   const [defaultImage, setDefaultImage] = useState([]);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
   const [address, setAddress] = useState(null);
@@ -36,8 +36,9 @@ const RegiWrite = () => {
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
 
+  console.log(defaultImage);
   const sendWriteData = () => {
-    if (image.length === 0 && defaultImage === []) {
+    if ((image.length || defaultImage.length) === 0) {
       alert("이미지 값이 입력되지 않았습니다.");
     }
     if (title === null) {
@@ -85,10 +86,8 @@ const RegiWrite = () => {
       desc: desc,
     };
 
-    console.log(image);
     if (
-      image.length !== 0 &&
-      defaultImage !== [] &&
+      ((image.length || defaultImage.length) !== 0) &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -102,6 +101,7 @@ const RegiWrite = () => {
       dispatch(crewActions.regiWriteSend(Write_info));
     }
   };
+
 
   //색깔 입히기
   const theme = createTheme({
