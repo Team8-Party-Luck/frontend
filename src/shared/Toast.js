@@ -7,7 +7,7 @@ const Toast = ({ msg = "메세지 없음" }) => {
 
 const MsgBox = styled.div`
   position: absolute;
-  top: 100%;
+  top: 85%;
   left: 50%;
   padding: 11px;
   min-width: 22em;
@@ -18,6 +18,7 @@ const MsgBox = styled.div`
   border-radius: 4px;
   border: 1px solid #000;
   text-align: center;
+  font-weight: bold;
 `;
 
 export default Toast;

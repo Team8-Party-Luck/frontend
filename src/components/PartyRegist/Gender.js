@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
 const RowRadioButtonsGroup = ({ gender, setGender }) => {
-  const [form, setForm] = useState("모두");
+  const [form, setForm] = useState("");
   const handleRadio = (e) => {
     setForm(e.target.value);
     setGender(e.target.value);
@@ -17,11 +17,11 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
     <label>
         <ImageRadio
           type="radio"
-          value="전체"
-          checked={form === "전체"}
+          value="모두"
+          checked={form === "모두"}
           onChange={handleRadio}
         />
-        전체
+        모두
       </label>
       <label>
         <ImageRadio

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
@@ -17,9 +17,33 @@ import MapView from "./kakao/MapView";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
+import Toast from "../../shared/Toast";
 
+const msgList = {
+  image: "이미지 값이 입력되지 않았습니다.",
+  amend: "수정되었습니다.",
+  cancel: "취소되었습니다."
+};
 const RegiWrite = () => {
   const dispatch = useDispatch();
+
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState("");
+  const handleToast = (type) => {
+    if (!ToastStatus) {
+      setToastStatus(true);
+      setToastMsg(msgList[type]);
+    }
+  };
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => {
+        setToastStatus(false);
+        setToastMsg("");
+      }, 1000000);
+    }
+  }, [ToastStatus]);
+
 
   const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState([]);
@@ -38,7 +62,8 @@ const RegiWrite = () => {
 
   const sendWriteData = () => {
     if ((image.length || defaultImage.length) === 0) {
-      alert("이미지 값이 입력되지 않았습니다.");
+      // alert("이미지 값이 입력되지 않았습니다.");
+      handleToast("image")
     }
     if (title === null) {
       alert("제목 값이 입력되지 않았습니다.");
@@ -75,9 +100,6 @@ const RegiWrite = () => {
     let minutes = time.getMinutes();
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     let realTime = `${hours}:${minutes}`;
-
-    console.log(realDate);
-    console.log(realTime);
 
     const Write_info = {
       defaultImage: defaultImage,
@@ -136,6 +158,8 @@ const RegiWrite = () => {
     boxShadow: 24,
     p: 3.5,
   };
+
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -262,6 +286,12 @@ const RegiWrite = () => {
           />
         </Grid>
       </ThemeProvider>
+      {ToastStatus && (
+        <>
+          <Toast msg={ToastMsg} />
+        </>
+      )}
+
     </React.Fragment>
   );
 };
