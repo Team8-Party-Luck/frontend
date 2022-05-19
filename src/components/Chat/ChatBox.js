@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const ChatBox = (props) => {
-  const { message, userId, createdAt, image, userInfo } = props;
+  const { message, userId, createdAt, image, chatInfo } = props;
 
   // console.log(userInfo);
 
-  const user = userId === userInfo ? true : false;
+  const user = userId === chatInfo?.userId ? true : false;
   // console.log(user);
 
   return (

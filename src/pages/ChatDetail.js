@@ -38,11 +38,12 @@ const ChatDetail = () => {
 
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
-    dispatch(userActions.userCheckDB());
+    // dispatch(userActions.userCheckDB());
     dispatch(chatActions.getChatUserDB(roomId));
   }, []);
 
-  const userInfo = useSelector((state) => state?.user?.check?.result?.userid);
+  // const userInfo = useSelector((state) => state?.user?.check?.result?.userid);
+  // console.log(userInfo);
 
   const messages = useSelector((state) => state?.chat?.msg);
   console.log(messages);
@@ -155,7 +156,7 @@ const ChatDetail = () => {
             marginRight: "0.5em",
           }}
           aria-label="recipe"
-          //   src={}
+          src={chatInfo?.otherProfile}
         />
         <Typography
           component="p"
@@ -166,7 +167,7 @@ const ChatDetail = () => {
             fontSize: "1.2em",
           }}
         >
-          유저 닉네임
+          {chatInfo?.otherNickname}
         </Typography>
         {/* <ExitButton>나가기</ExitButton> */}
       </Box>
@@ -187,7 +188,7 @@ const ChatDetail = () => {
                 image={cur?.image}
                 userId={cur?.userId}
                 createdAt={cur?.createdAt}
-                userInfo={userInfo}
+                chatInfo={chatInfo}
               />
             );
           })}
