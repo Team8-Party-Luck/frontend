@@ -64,7 +64,7 @@ const regiWriteSend = (Write_info) => {
       .then((response) => {
         console.log(response.data);
         //메인페이지에서 데이터를 불러오는 함수
-        alert("파티를 등록하시겠습니까?");
+        // alert("파티를 등록하시겠습니까?");
         history.push("/home");
       })
       .catch((error) => {

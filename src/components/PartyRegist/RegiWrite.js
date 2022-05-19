@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Modal from "@mui/material/Modal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
@@ -18,6 +17,7 @@ import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import Toast from "../../shared/Toast";
+import Popup from "../../shared/Popup";
 
 //토스트 팝업 메시지
 const msgList = {
@@ -52,6 +52,8 @@ const RegiWrite = () => {
     }
   }, [ToastStatus]);
 
+  
+
   //초기값 설정
   const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState([]);
@@ -70,9 +72,6 @@ const RegiWrite = () => {
 
   //파티생성 정보 보내기
   const sendWriteData = () => {
-    console.log(capacity);
-    console.log(ageGroup);
-    console.log(gender);
     if ((image.length || defaultImage.length) === 0) {
       handleToast("image")
     }
@@ -154,22 +153,10 @@ const RegiWrite = () => {
     },
   });
 
-  //back modal
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const modal = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 340,
-    bgcolor: "#FFFFFF",
-    borderRadius: "15px",
-    boxShadow: 24,
-    p: 3.5,
-  };
 
+//모달
+const [openBack, setOpenBack] = useState(false);
+const [openComplete, setOpenComplete] = useState(false);
 
   return (
     <React.Fragment>
@@ -181,7 +168,7 @@ const RegiWrite = () => {
                 alt="back"
                 src="image/bar/back.png"
                 onClick={() => {
-                  handleOpen();
+                  setOpenBack(true);
                 }}
               />
               <Box sx={{ flexGrow: 1.1 }} />
@@ -190,7 +177,7 @@ const RegiWrite = () => {
               <Box sx={{ flexGrow: 1 }} />
               <span
                 onClick={() => {
-                  sendWriteData();
+                  setOpenComplete(true);
                 }}
                 style={{ color: "#FF6853", fontSize: "18px" }}
               >
@@ -198,29 +185,33 @@ const RegiWrite = () => {
               </span>
             </Toolbar>
           </AppBar>
-          <Modal open={open} onClose={handleClose}>
-            <Box sx={modal} justifyContent="center" alignItems="center">
-              <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
-                작성을 취소하시겠습니까?
-              </div>
-              <CancelButton
-                onClick={() => {
-                  handleClose();
-                }}
-                style={{ marginRight: "1rem" }}
-              >
-                취소
-              </CancelButton>
-              <CancelButton
-                onClick={() => {
-                  history.push("/home");
-                }}
-                style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
-              >
-                작성 취소
-              </CancelButton>
-            </Box>
-          </Modal>
+          {openBack && (
+          <Popup
+            title={"작성을 취소하시겠습니까?"}
+            close={() => setOpenBack(false)}
+            event={() => {
+              
+              history.push({
+                pathname: "/home",
+                state: null,
+              });
+            }}
+            confirm={"작성취소"}
+            back={"취소"}
+          />
+        )}
+        {openComplete && (
+          <Popup
+            title={"파티를 만드시겠습니까?"}
+            close={() => setOpenComplete(false)}
+            event={async () => {
+              sendWriteData()
+            }}
+            confirm={"작성완료"}
+            back={"취소"}
+          />
+        )}
+
         </Box>
         <Grid
           container
