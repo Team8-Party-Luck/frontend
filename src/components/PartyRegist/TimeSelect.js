@@ -8,9 +8,6 @@ export default function TimeSelect({ time, setTime }) {
   const [value, setValue] = useState(new Date());
 
   const str = new Date(`2022-01-01 ${time}`);
-  // const str = '13:12'.split(':')
-  // const hi = new Date(`2019-12-11 ${str[0]}:${str[1]}:30`)
-  // console.log(hi)
 
   return (
     <LocalizationProvider locale={ko} dateAdapter={AdapterDateFns}>
@@ -25,12 +22,12 @@ export default function TimeSelect({ time, setTime }) {
         value={isNaN(str) !== true ? str : value}
         onChange={(newValue) => {
           setValue(newValue);
-          // let hours = newValue.getHours();
-          // hours = hours < 10 ? `0${hours}` : hours;
-          // let minutes = newValue.getMinutes();
-          // minutes = minutes < 10 ? `0${minutes}` : minutes;
-          // let answer = `${hours}:${minutes}`;
-          setTime(newValue);
+          let hours = newValue.getHours();
+          hours = hours < 10 ? `0${hours}` : hours;
+          let minutes = newValue.getMinutes();
+          minutes = minutes < 10 ? `0${minutes}` : minutes;
+          let realTime = `${hours}:${minutes}`;
+          setTime(realTime);
         }}
         renderInput={(params) => <TextField variant="standard" {...params} />}
       />

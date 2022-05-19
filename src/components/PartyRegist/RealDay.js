@@ -10,9 +10,6 @@ const RealDay = ({ date, setDate }) => {
   const [value, setValue] = useState(new Date());
 
   const str = new Date(`2022-${date}`);
-  // const str = '2022-09-20'.split('-')
-  // const hi = new Date(str[0], str[1]-1, str[2] )
-  // console.log(hi)
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -29,12 +26,13 @@ const RealDay = ({ date, setDate }) => {
         value={isNaN(str) !== true ? str : value}
         onChange={(newValue) => {
           setValue(newValue);
-          // let month = newValue.getMonth() + 1;
-          // month = month >= 10 ? month : "0" + month;
-          // let day = newValue.getDate();
-          // day = day >= 10 ? day : "0" + day;
-          // let answer = `${month}-${day}`;
-          setDate(newValue);
+              //날짜 문자열 변환
+              let month = newValue.getMonth() + 1;
+              month = month >= 10 ? month : "0" + month;
+              let day = newValue.getDate();
+              day = day >= 10 ? day : "0" + day;
+              let realDate = `${month}-${day}`;
+          setDate(realDate);
         }}
         renderInput={(params) => <TextField {...params} variant="standard" />}
       />
