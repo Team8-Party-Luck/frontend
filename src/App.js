@@ -25,13 +25,13 @@ import PartyRevise from "./components/PartyRegist/PartyRevise";
 import Modal from "./shared/Modal";
 
 
-import { actionCreators as alarmActions } from "./redux/modules/alarm";
+// import { actionCreators as alarmActions } from "./redux/modules/alarm";
 
 function App() {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(alarmActions.ConnectSub());
-  }, []);
+  // const dispatch = useDispatch();
+  // React.useEffect(() => {
+  //   dispatch(alarmActions.ConnectSub());
+  // }, []);
 
   return (
     <React.Fragment>
