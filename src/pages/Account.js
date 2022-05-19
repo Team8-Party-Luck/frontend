@@ -15,54 +15,21 @@ import { Button, TextField } from "@mui/material";
 import { history } from "../redux/configStore";
 import styled from "styled-components";
 import goArrow from "../static/images/icon/arw_gray.png";
+import Popup from "../shared/Popup";
 
 const Account = () => {
-  const [openLogout, setOpenLogout] = useState(false);
-  const [openResign, setOpenResign] = useState(false);
-  const [openConfirm, setOpenConfirm] = useState(false);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpenLogout(true);
-  };
-
-  const handleClickOpenResign = () => {
-    setOpenResign(true);
-  };
-
-  const handleClickOpenConfirm = () => {
-    setOpenConfirm(true);
-  };
-
-  const handleClose = () => {
-    setOpenLogout(false);
-  };
-
-  const handleCloseResign = () => {
-    setOpenResign(false);
-  };
-
-  const handleCloseConfirm = () => {
-    setOpenConfirm(false);
+  const Logout = () => {
+    sessionStorage.clear();
+    history.push("/");
   };
 
   return (
     <React.Fragment>
       <Header name={"계정"} />
       <WrapBox>
-        <ListBox
-          onClick={() => {
-            history.push({
-              pathname: "/modal",
-              state: {
-                action: "logout",
-                title: "로그아웃 하시겠습니까?",
-                leftTitle: "뒤로가기",
-                rightTitle: "로그아웃",
-                partyId: null,
-              },
-            });
-          }}
-        >
+        <ListBox onClick={() => setIsOpenPopup(true)}>
           <div>로그아웃</div>
           <img src={goArrow} style={{ width: 9, height: 15 }} />
         </ListBox>
@@ -70,6 +37,19 @@ const Account = () => {
           <div>탈퇴하기</div>
           <img src={goArrow} style={{ width: 9, height: 15 }} />
         </ListBox>
+        <React.Fragment>
+          {isOpenPopup && (
+            <Popup
+              title={"로그아웃 하시겠습니까?"}
+              close={() => setIsOpenPopup(false)}
+              event={() => {
+                Logout();
+              }}
+              confirm={"로그아웃"}
+              back={"뒤로가기"}
+            />
+          )}
+        </React.Fragment>
       </WrapBox>
     </React.Fragment>
   );
@@ -88,11 +68,6 @@ const ListBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1em 0;
-`;
-
-const CountText = styled.span`
-  color: #ccc;
-  margin-left: 0.5em;
 `;
 
 export default Account;

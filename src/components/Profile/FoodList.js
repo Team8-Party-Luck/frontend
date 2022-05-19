@@ -43,6 +43,7 @@ const WrapBox = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+
 const KorBox = styled.div`
   width: fit-content;
   min-width: 3.5em;
@@ -55,89 +56,34 @@ const KorBox = styled.div`
   margin-right: 0.3em;
   margin-bottom: 0.3em;
 `;
-const ChiBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+const ChiBox = styled(KorBox)`
   border: 1px solid #ff5b33;
   color: #ff5b33;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
-const JapBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+const JapBox = styled(KorBox)`
   border: 1px solid #003159;
   color: #003159;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
-const WesBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+const WesBox = styled(KorBox)`
   border: 1px solid #23b762;
   color: #23b762;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
-const FastBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+const FastBox = styled(KorBox)`
   border: 1px solid #d69554;
   color: #d69554;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
-const SaladBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+const SaladBox = styled(KorBox)`
   border: 1px solid #3db1dd;
   color: #3db1dd;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
-const CoffeeBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+const CoffeeBox = styled(KorBox)`
   border: 1px solid #b28146;
   color: #b28146;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
-const EtcBox = styled.div`
-  width: fit-content;
-  min-width: 3.5em;
-  border-radius: 1.5em;
+
+const EtcBox = styled(KorBox)`
   border: 1px solid #999;
   color: #999;
-  padding: 0.3em 0.5em;
-  font-size: 0.7em;
-  text-align: center;
-  margin-right: 0.3em;
-  margin-bottom: 0.3em;
 `;
 
 export default FoodList;

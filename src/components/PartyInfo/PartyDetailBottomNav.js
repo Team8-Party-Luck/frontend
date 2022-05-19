@@ -14,6 +14,7 @@ import { actionCreators as chatActions } from "../../redux/modules/chat";
 import { useState } from "react";
 import styled from "styled-components";
 import Toast from "../../shared/Toast";
+import Popup from "../../shared/Popup";
 
 const PartyDetailBottomNav = (props) => {
   const { userId, partyData } = props;
@@ -21,67 +22,41 @@ const PartyDetailBottomNav = (props) => {
 
   const dispatch = useDispatch();
 
-  const [ToastStatus, setToastStatus] = useState(false);
-  const [ToastMsg, setToastMsg] = useState("");
-
-  // const partyUser = useSelector((state) => state?.crew?.info);
-
-  // React.useEffect(() => {
-  //   if (ToastStatus) {
-  //     setTimeout(() => {
-  //       setToastStatus(false);
-  //       setToastMsg("");
-  //     }, 1000);
-  //   }
-  // }, [ToastStatus]);
-
-  // //토스트 팝업 메시지 리스트
-  // const msgList = {
-  //   complete: "파티가 신청되었습니다",
-  //   full: "모집이 마감되었습니다",
-  //   cancel: "파티 신청을 취소하였습니다",
-  //   update: "수정이 완료되었습니다",
-  // };
-
-  // //토스트 팝업 메시지 중복 동작 방지
-  // const handleToast = (type) => {
-  //   if (!ToastStatus) {
-  //     setToastStatus(true);
-  //     setToastMsg(msgList[type]);
-  //   }
-  // };
-
-
+  const [openRevise, setOpenRevise] = useState(false);
+  const [openJoin, setOpenJoin] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openCancel, setOpenCancel] = useState(false);
 
   if (userId === partyData?.hostid) {
     return (
       <FlexBox>
-        <LeftBtn
-          onClick={() => {
-            history.push({
-              pathname: "/revise",
-              state: partyId,
-            });
-          }}
-        >
-          수정
-        </LeftBtn>
-        <RightBtn
-          onClick={() => {
-            history.push({
-              pathname: "/modal",
-              state: {
-                action:'delete',
-                title: "파티를 정말 삭제하시겠습니까?",
-                leftTitle: "뒤로가기",
-                rightTitle: "파티 삭제하기",
-                partyId: partyId,
-              },
-            });
-          }}
-        >
-          파티 삭제
-        </RightBtn>
+        <LeftBtn onClick={() => setOpenRevise(true)}>수정</LeftBtn>
+        {openRevise && (
+          <Popup
+            title={"파티를 수정하시겠습니까?"}
+            close={() => setOpenRevise(false)}
+            event={() => {
+              history.push({
+                pathname: "/revise",
+                state: partyId,
+              });
+            }}
+            confirm={"수정하기"}
+            back={"뒤로가기"}
+          />
+        )}
+        <RightBtn onClick={() => setOpenDelete(true)}>파티 삭제</RightBtn>
+        {openDelete && (
+          <Popup
+            title={"파티를 삭제하시겠습니까?"}
+            close={() => setOpenDelete(false)}
+            event={() => {
+              dispatch(crewActions.deleteSend(partyId));
+            }}
+            confirm={"삭제하기"}
+            back={"뒤로가기"}
+          />
+        )}
       </FlexBox>
     );
   } else if (partyData?.join === true) {
@@ -89,7 +64,6 @@ const PartyDetailBottomNav = (props) => {
       <FlexBox>
         <LeftBtn
           onClick={() => {
-            // history.push(`/chat/${partyUser?.hostid}`);
             dispatch(chatActions.getRoomIdDB(partyData?.hostid));
           }}
         >
@@ -97,21 +71,22 @@ const PartyDetailBottomNav = (props) => {
         </LeftBtn>
         <RightBtn
           onClick={() => {
-            history.push({
-              pathname: "/modal",
-              state: {
-                action:'cancel',
-                title: "파티 신청을 정말 취소하시겠습니까?",
-                leftTitle: "뒤로가기",
-                rightTitle: "파티 신청 취소",
-                partyId: partyId,
-              },
-            });
+            setOpenCancel(true);
           }}
         >
           신청 취소
         </RightBtn>
-        {ToastStatus && <Toast msg={ToastMsg} />}
+        {openCancel && (
+          <Popup
+            title={"파티신청을 취소하시겠습니까?"}
+            close={() => setOpenCancel(false)}
+            event={() => {
+              dispatch(crewActions.sendCancelData(partyId));
+            }}
+            confirm={"취소하기"}
+            back={"뒤로가기"}
+          />
+        )}
       </FlexBox>
     );
   } else {
@@ -119,7 +94,6 @@ const PartyDetailBottomNav = (props) => {
       <FlexBox>
         <LeftBtn
           onClick={() => {
-            // history.push(history.push(`/chat/${partyUser?.hostid}`));
             dispatch(chatActions.getRoomIdDB(partyData?.hostid));
           }}
         >
@@ -128,13 +102,26 @@ const PartyDetailBottomNav = (props) => {
         {partyData?.memberCnt === partyData?.capacity ? (
           <RightBtn>모집 마감</RightBtn>
         ) : (
-          <RightBtn
-            onClick={() => {
-              dispatch(crewActions.sendJoinData(partyId));
-            }}
-          >
-            파티 신청
-          </RightBtn>
+          <>
+            <RightBtn
+              onClick={() => {
+                setOpenJoin(true);
+              }}
+            >
+              파티 신청
+            </RightBtn>
+            {openJoin && (
+              <Popup
+                title={"파티를 신청하시겠습니까?"}
+                close={() => setOpenJoin(false)}
+                event={() => {
+                  dispatch(crewActions.sendJoinData(partyId));
+                }}
+                confirm={"신청하기"}
+                back={"뒤로가기"}
+              />
+            )}
+          </>
         )}
         {/* {partyUser?.age === "전체" && partyUser?.gender ==="모두" ?           <RightBtn
             onClick={() => {
@@ -164,14 +151,10 @@ const LeftBtn = styled.button`
   border-radius: 0.5em;
   font-size: 1em;
 `;
-const RightBtn = styled.button`
-  width: 48%;
-  height: 3.5em;
+const RightBtn = styled(LeftBtn)`
   border: none;
   background: #ff6853;
   color: white;
-  border-radius: 0.5em;
-  font-size: 1em;
 `;
 
 export default PartyDetailBottomNav;
