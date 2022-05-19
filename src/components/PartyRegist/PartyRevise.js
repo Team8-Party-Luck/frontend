@@ -205,7 +205,7 @@ console.log(time);
               display: "inline",
               width: "9rem",
               mb: 4,
-              marginRight: "2rem",
+              marginRight: "1.5rem",
             }}
           >
             <RealDay date={date} setDate={setDate} />

@@ -101,9 +101,9 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                 <input
                   type="file"
                   id="input-file"
+                  accept='image/*'
                   multiple
                   className="addButton"
-                  name="안녕"
                   style={{ display: "none" }}
                 />
                 <Box component="div" sx={{ display: "inline-block" }}>
