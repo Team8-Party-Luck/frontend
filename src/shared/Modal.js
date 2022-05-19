@@ -46,11 +46,13 @@ const Modal = ({ state }) => {
                     history.replace(`/partyInfo/${location.state.partyId}`);
                   } else if (location.state.action === "delete") {
                     dispatch(crewActions.deleteSend(location.state.partyId));
-                    history.replace("/");
-                  } else if (location.state.action === "logout") {
-                    sessionStorage.removeItem("userid");
-                    sessionStorage.removeItem("token");
-                    history.replace("/");
+
+                    history.replace('/home')
+                  }else if (location.state.action === 'logout') {
+                    sessionStorage.removeItem('userid');
+                    sessionStorage.removeItem('token');
+                    history.replace('/')
+
                   }
                 }}
                 style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}

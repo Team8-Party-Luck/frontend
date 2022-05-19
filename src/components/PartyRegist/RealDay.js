@@ -5,11 +5,6 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import styled from "styled-components";
-import {ko} from 'date-fns/locale'
-
-
-
 
 const RealDay = ({ date, setDate }) => {
   const [value, setValue] = useState(new Date());
@@ -20,47 +15,34 @@ const RealDay = ({ date, setDate }) => {
   // console.log(hi)
 
   return (
-    <LocalizationProvider locale={ko} dateAdapter={AdapterDateFns}>
-        <DatePicker
-         minDate={value}
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        minDate={new Date()}
         label="만날 날짜"
-          toolbarTitle="만날 날짜"
-          cancelText="취소"
-          okText="저장"
-          openTo="day"
-          // inputFormat={"yyyy.MM.dd"}
-          //워닝 방지
-          // mask={"____-__-__"}
-          value={isNaN(str) !== true ? str : value}
-          onChange={(newValue) => {
-            setValue(newValue);
-            let month = newValue.getMonth() + 1;
-            month = month >= 10 ? month : "0" + month;
-            let day = newValue.getDate();
-            day = day >= 10 ? day : "0" + day;
-            let answer = `${month}-${day}`;
-            setDate(answer);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} variant="standard" placeholder="만날 날짜" />
-          )}
-        />
+        toolbarTitle="만날 날짜"
+        cancelText="취소"
+        okText="저장"
+        openTo="day"
+        inputFormat={"yyyy.MM.dd"}
+        // 워닝 방지
+        mask={"____-__-__"}
+        value={isNaN(str) !== true ? str : value}
+        onChange={(newValue) => {
+          setValue(newValue);
+          // let month = newValue.getMonth() + 1;
+          // month = month >= 10 ? month : "0" + month;
+          // let day = newValue.getDate();
+          // day = day >= 10 ? day : "0" + day;
+          // let answer = `${month}-${day}`;
+          setDate(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} variant="standard" />}
+      />
     </LocalizationProvider>
   );
 };
 
-const DayStyle = styled.div`
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-right: 2rem;
-`;
 export default RealDay;
-
-//달과 날짜가 안받아와질때 사용해보기
-// let month = String(value.getMonth() + 1);
-// let day = String(value.getDate());
-
-
 
 //구분자
 // import React, { forwardRef, useState, useRef } from "react";
@@ -79,8 +61,6 @@ export default RealDay;
 //     </DateButton>
 //   ));
 
-  
-
 //   return (
 //     <React.Fragment>
 //       <DatePicker
@@ -98,7 +78,7 @@ export default RealDay;
 //           <CancelButton style={{float:'right'}}>저장</CancelButton>
 //         </div>
 //       </DatePicker>
-      
+
 //     </React.Fragment>
 //   );
 // };
@@ -112,15 +92,12 @@ export default RealDay;
 //   font-size: 1rem;
 // `;
 
-
-
 // const CancelButton = styled.button`
 // border: 1px solid #cccccc;
 // border-radius: 8px;
 // width: 7rem;
 // height: 3rem;
 // `
-
 
 // import React, { useState } from "react";
 // // import "react-modern-calendar-datepicker/lib/DatePicker.css";

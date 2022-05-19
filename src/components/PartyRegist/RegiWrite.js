@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
@@ -17,12 +17,36 @@ import MapView from "./kakao/MapView";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
+import Toast from "../../shared/Toast";
 
+const msgList = {
+  image: "이미지 값이 입력되지 않았습니다.",
+  amend: "수정되었습니다.",
+  cancel: "취소되었습니다."
+};
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState("");
+  const handleToast = (type) => {
+    if (!ToastStatus) {
+      setToastStatus(true);
+      setToastMsg(msgList[type]);
+    }
+  };
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => {
+        setToastStatus(false);
+        setToastMsg("");
+      }, 1000000);
+    }
+  }, [ToastStatus]);
+
+
   const [defaultImage, setDefaultImage] = useState([]);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [title, setTitle] = useState(null);
   const [store, setStore] = useState(null);
   const [address, setAddress] = useState(null);
@@ -31,14 +55,15 @@ const RegiWrite = () => {
   const [capacity, setCapacity] = useState("");
   const [ageGroup, setAgeGroup] = useState([]);
   const [gender, setGender] = useState("");
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
 
   const sendWriteData = () => {
-    if (image.length === 0 && defaultImage === []) {
-      alert("이미지 값이 입력되지 않았습니다.");
+    if ((image.length || defaultImage.length) === 0) {
+      // alert("이미지 값이 입력되지 않았습니다.");
+      handleToast("image")
     }
     if (title === null) {
       alert("제목 값이 입력되지 않았습니다.");
@@ -55,18 +80,26 @@ const RegiWrite = () => {
     if (gender === null) {
       alert("성별 값이 입력되지 않았습니다.");
     }
-    if (date === null) {
-      alert("날짜 값이 입력되지 않았습니다.");
-    }
-    if (time === null) {
-      alert("시간 값이 입력되지 않았습니다.");
-    }
     if (meeting === null) {
       alert("만날 장소 값이 입력되지 않았습니다.");
     }
     if (desc === null) {
       alert("파티 설명 값이 입력되지 않았습니다.");
     }
+
+    //날짜 문자열 변환
+    let month = date.getMonth() + 1;
+    month = month >= 10 ? month : "0" + month;
+    let day = date.getDate();
+    day = day >= 10 ? day : "0" + day;
+    let realDate = `${month}-${day}`;
+
+    //시간 문자열 변환
+    let hours = time.getHours();
+    hours = hours < 10 ? `0${hours}` : hours;
+    let minutes = time.getMinutes();
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let realTime = `${hours}:${minutes}`;
 
     const Write_info = {
       defaultImage: defaultImage,
@@ -79,16 +112,14 @@ const RegiWrite = () => {
       capacity: capacity,
       age: ageGroup,
       gender: gender,
-      date: date,
-      time: time,
+      date: realDate,
+      time: realTime,
       meeting: meeting,
       desc: desc,
     };
 
-    console.log(image);
     if (
-      image.length !== 0 &&
-      defaultImage !== [] &&
+      (image.length || defaultImage.length) !== 0 &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -127,6 +158,8 @@ const RegiWrite = () => {
     boxShadow: 24,
     p: 3.5,
   };
+
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -221,7 +254,7 @@ const RegiWrite = () => {
             sx={{
               display: "inline",
               width: "9rem",
-              mb: 5.4,
+              mb: 4,
               marginRight: "2rem",
             }}
           >
@@ -253,6 +286,12 @@ const RegiWrite = () => {
           />
         </Grid>
       </ThemeProvider>
+      {ToastStatus && (
+        <>
+          <Toast msg={ToastMsg} />
+        </>
+      )}
+
     </React.Fragment>
   );
 };
