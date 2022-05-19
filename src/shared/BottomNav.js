@@ -4,6 +4,15 @@ import { Link } from "react-router-dom";
 import "../style/BottomNav.css";
 import styled from "styled-components";
 
+import home_active from "../static/images/icon/home_active.png";
+import home_inactive from "../static/images/icon/home_inactive.png";
+import chat_active from "../static/images/icon/chat_active.png";
+import chat_inactive from "../static/images/icon/chat_inactive.png";
+import write_active from "../static/images/icon/write_active.png";
+import write_inactive from "../static/images/icon/write_inactive.png";
+import my_active from "../static/images/icon/my_active.png";
+import my_inactive from "../static/images/icon/my_inactive.png";
+
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
 
@@ -20,8 +29,8 @@ const BottomNav = () => {
           <img
             src={
               para === "home"
-                ? "image/bar/home_active.png"
-                : "image/bar/home_inactive.png"
+                ? home_active
+                : home_inactive
             }
             alt="home"
             style={{ width: "2rem" }}
@@ -35,8 +44,8 @@ const BottomNav = () => {
           <img
             src={
               para === "chat"
-                ? "image/bar/chat_active.png"
-                : "image/bar/chat_inactive.png"
+                ? chat_active
+                : chat_inactive
             }
             alt="chat"
             style={{ width: "2rem" }}
@@ -50,8 +59,8 @@ const BottomNav = () => {
           <img
             src={
               para === "regi"
-                ? "image/bar/write_active.png"
-                : "image/bar/write_inactive.png"
+                ? write_active
+                : write_inactive
             }
             alt="regi"
             style={{ width: "2rem" }}
@@ -65,8 +74,8 @@ const BottomNav = () => {
           <img
             src={
               para === "profile"
-                ? "image/bar/my_active.png"
-                : "image/bar/my_inactive.png"
+                ? my_active
+                : my_inactive
             }
             alt="profile"
             style={{ width: "2rem" }}

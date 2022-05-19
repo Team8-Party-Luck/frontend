@@ -19,7 +19,7 @@ const PartyHeader = (props) => {
     <WrapBox>
       <BackBox
         onClick={() => {
-          history.goBack();
+          history.push('/home');
         }}
         style={{ position: "absolute" }}
       >
