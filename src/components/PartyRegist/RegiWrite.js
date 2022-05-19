@@ -221,7 +221,7 @@ const RegiWrite = () => {
             sx={{
               display: "inline",
               width: "9rem",
-              mb: 4,
+              mb: 5.4,
               marginRight: "2rem",
             }}
           >
