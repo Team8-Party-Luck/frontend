@@ -15,13 +15,14 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { red } from "@mui/material/colors";
 import styled from "styled-components";
 import { style } from "@mui/system";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
   const [msg, setMsg] = useState("");
+  const scrollRef = useRef();
 
   const { roomId } = useParams();
   console.log(roomId);
@@ -42,19 +43,18 @@ const ChatDetail = () => {
 
   const userInfo = useSelector((state) => state?.user?.check?.result?.userid);
 
-  // console.log(roomId);
-
-  // 채팅방 이전 메시지 가져오기
-  // useEffect(() => {
-  //   dispatch(chatActions.getMsgListDB(chatRoomId));
-  //   dispatch(chatActions.getRoomIdDB(roomId));
-  // }, []);
-
-  // const chatRoomId = useSelector((state) => state?.chat?.id?.chatRoomId);
-  // console.log(chatRoomId);
-
   const messages = useSelector((state) => state?.chat?.msg);
   console.log(messages);
+
+  // 방 입장 시 스크롤 아래로 이동
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, []);
+
+  // 메시지 state 변경 시 스크롤 아래로 이동
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages]);
 
   // stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
   let sock = new SockJs("http://3.38.180.96:8080/ws-stomp");
@@ -72,7 +72,7 @@ const ChatDetail = () => {
             const newMessage = JSON.parse(res.body);
             console.log(res);
             console.log(newMessage);
-            // dispatch(chatActions.getMsgList(newMessage));
+            dispatch(chatActions.subMsg(newMessage));
           }
           // {},
         );
@@ -170,23 +170,24 @@ const ChatDetail = () => {
         sx={{
           width: "100%",
           padding: 1,
-          paddingBottom: "4em",
+          // paddingBottom: "4.5em",
           paddingTop: "3.5em",
         }}
       >
-        {messages?.map((cur, idx) => {
-          return (
-            <ChatBox
-              key={idx}
-              message={cur?.message}
-              image={cur?.image}
-              userId={cur?.userId}
-              createdAt={cur?.createdAt}
-              userInfo={userInfo}
-            />
-          );
-        })}
-        <ChatBox />
+        {messages?.length > 0 &&
+          messages?.map((cur, idx) => {
+            return (
+              <ChatBox
+                key={idx}
+                message={cur?.message}
+                image={cur?.image}
+                userId={cur?.userId}
+                createdAt={cur?.createdAt}
+                userInfo={userInfo}
+              />
+            );
+          })}
+        <div style={{ marginTop: "5em" }} ref={scrollRef} />
       </Box>
       <ChatInput msg={msg} setMsg={setMsg} onSend={onSend} />
     </Box>

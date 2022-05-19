@@ -77,8 +77,8 @@ const ChatInput = (props) => {
         position: "fixed",
         bottom: 0,
         width: "100%",
-        height: "3.5em",
-        padding: 1,
+        height: "4.5em",
+        padding: 2,
         paddingTop: "0.5em",
         background: "white",
         borderTop: "1px solid #dfdfdf",
@@ -90,6 +90,7 @@ const ChatInput = (props) => {
           setMsg(e.target.value);
         }}
         onKeyDown={onKeyDownHandler}
+        value={msg}
       />
       <MsgButton onClick={onClick}>보내기</MsgButton>
     </Box>
@@ -98,12 +99,22 @@ const ChatInput = (props) => {
 
 const MsgInput = styled.input`
   width: 100%;
-  height: 3em;
+  height: 4em;
   padding: 0.5em;
+  padding-right: 2em;
+  border: 2px solid #e3e3e3;
+  border-radius: 0.5em;
+  position: relative;
 `;
 
 const MsgButton = styled.button`
-  width: 20%;
+  position: absolute;
+  top: 35%;
+  right: 8%;
+  border: none;
+  background: white;
+  font-size: 1em;
+  color: #ff6853;
 `;
 
 export default ChatInput;
