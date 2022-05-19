@@ -158,14 +158,16 @@ const getRegionData = (regionInfo) => {
     const file = new FormData();
     file.append("answer", regionInfo.answer);
     try {
-
-      const res = await axios.post('http://3.38.180.96/home/parties/local', file, {
-
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-        },
-      });
+      const res = await axios.post(
+        "http://3.38.180.96/home/parties/local",
+        file,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json;charset=UTF-8",
+          },
+        }
+      );
       dispatch(getRegion(res.data.results));
     } catch (err) {
       console.log(err);
@@ -297,8 +299,14 @@ const sendJoinData = (partyId) => {
           },
         }
       );
-      dispatch(getDetail(res.data));
-      console.log(res.data);
+      if (res.data === "") {
+        history.push(`/confirm/${partyId}`);
+        dispatch(getDetail(res.data));
+      } else {
+        history.push(`/confirm/${partyId}`);
+        dispatch(getDetail(res.data));
+      }
+      console.log(res);
     } catch (err) {
       console.log(err);
     }

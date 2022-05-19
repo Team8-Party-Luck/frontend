@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
-import {useLocation} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as crewActions } from "../redux/modules/crew";
@@ -10,7 +10,7 @@ const Modal = ({ state }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  console.log(location.state)
+  console.log(location.state);
 
   return (
     <>
@@ -22,34 +22,38 @@ const Modal = ({ state }) => {
             }}
           >
             <div>
-              <div style={{ margin:'0 1rem 2rem 1rem'}}>
+              <div style={{ margin: "0 1rem 2rem 1rem" }}>
                 {location.state.title}
               </div>
-              <CancelButton onClick={() => {
-                if(location.state.action === "logout"){
-                  history.push('/account')
-                } else {
-                  history.push(`/partyInfo/${location.state.partyId}`)
-                }
-               
-              }} style={{ marginRight: "1rem" }}>
+              <CancelButton
+                onClick={() => {
+                  if (location.state.action === "logout") {
+                    history.push("/account");
+                  } else {
+                    history.push(`/partyInfo/${location.state.partyId}`);
+                  }
+                }}
+                style={{ marginRight: "1rem" }}
+              >
                 {location.state.leftTitle}
               </CancelButton>
               <CancelButton
                 onClick={() => {
-                  if(location.state.action === 'cancel'){
-                    dispatch(crewActions.sendCancelData(location.state.partyId));
-                    history.replace(`/partyInfo/${location.state.partyId}`)
-                  }else if (location.state.action === 'delete') {
+                  if (location.state.action === "cancel") {
+                    dispatch(
+                      crewActions.sendCancelData(location.state.partyId)
+                    );
+                    history.replace(`/partyInfo/${location.state.partyId}`);
+                  } else if (location.state.action === "delete") {
                     dispatch(crewActions.deleteSend(location.state.partyId));
+
                     history.replace('/home')
                   }else if (location.state.action === 'logout') {
                     sessionStorage.removeItem('userid');
                     sessionStorage.removeItem('token');
                     history.replace('/')
+
                   }
-
-
                 }}
                 style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
                 s
@@ -67,7 +71,7 @@ const Modal = ({ state }) => {
 export default Modal;
 
 const ModalContainer = styled.div`
-  display : flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;

@@ -13,13 +13,13 @@ const PartyHeader = (props) => {
   const dispatch = useDispatch();
 
   const sendScrap = () => {
-    dispatch(crewActions.sendScrapData(props?.partyId));
+    dispatch(crewActions.sendScrapData(partyData?.partyid));
   };
   return (
     <WrapBox>
       <BackBox
         onClick={() => {
-          history.push('/home');
+          history.push("/home");
         }}
         style={{ position: "absolute" }}
       >
