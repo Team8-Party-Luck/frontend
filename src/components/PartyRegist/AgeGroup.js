@@ -13,6 +13,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
         main: "#FF6853",
       },
     },
+
   });
   
   return (
@@ -65,6 +66,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               borderRadius: "3em",
               marginRight: "0.5em",
               background: "#FF6853",
+              color:'#212121'
             }}
             onClick={() => {
               setAgeGroup("전체");
@@ -81,7 +83,8 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               borderRadius: "3em",
               marginRight: "0.5em",
               border: "1px solid #FF6853",
-              color: "#FF6853",
+              color: "#212121",
+              
             }}
             onClick={() => {
               setAgeGroup("전체");
@@ -99,6 +102,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               borderRadius: "3em",
               marginRight: "0.5em",
               background: "#FF6853",
+              color:'#212121'
             }}
             onClick={() => {
               setAgeGroup("10대");
@@ -115,7 +119,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               borderRadius: "3em",
               marginRight: "0.5em",
               border: "1px solid #FF6853",
-              color: "#FF6853",
+              color:'#212121'
             }}
             onClick={() => {
               setAgeGroup("10대");
@@ -133,6 +137,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               borderRadius: "3em",
               marginRight: "0.5em",
               background: "#FF6853",
+              color:'#212121'
             }}
             onClick={() => {
               setAgeGroup("20대");
@@ -149,7 +154,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
               borderRadius: "3em",
               marginRight: "0.5em",
               border: "1px solid #FF6853",
-              color: "#FF6853",
+              color:'#212121'
             }}
             onClick={() => {
               setAgeGroup("20대");
@@ -168,6 +173,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 borderRadius: "3em",
                 marginRight: "0.5em",
                 background: "#FF6853",
+                color:'#212121'
               }}
               onClick={() => {
                 setAgeGroup("30대");
@@ -184,7 +190,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 borderRadius: "3em",
                 marginRight: "0.5em",
                 border: "1px solid #FF6853",
-                color: "#FF6853",
+                color:'#212121'
               }}
               onClick={() => {
                 setAgeGroup("30대");
@@ -202,6 +208,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 borderRadius: "3em",
                 marginRight: "0.5em",
                 background: "#FF6853",
+                color:'#212121'
               }}
               onClick={() => {
                 setAgeGroup("40대");
@@ -218,7 +225,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 borderRadius: "3em",
                 marginRight: "0.5em",
                 border: "1px solid #FF6853",
-                color: "#FF6853",
+                color:'#212121'
               }}
               onClick={() => {
                 setAgeGroup("40대");
@@ -236,6 +243,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 borderRadius: "3em",
                 marginRight: "0.5em",
                 background: "#FF6853",
+                color:'#212121'
               }}
               onClick={() => {
                 setAgeGroup("50대");
@@ -252,7 +260,7 @@ const AgeGroup = ({ ageGroup, setAgeGroup }) => {
                 borderRadius: "3em",
                 marginRight: "0.5em",
                 border: "1px solid #FF6853",
-                color: "#FF6853",
+                color:'#212121'
               }}
               onClick={() => {
                 setAgeGroup("50대");
