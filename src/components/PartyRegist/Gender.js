@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -7,18 +7,16 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
 const RowRadioButtonsGroup = ({ gender, setGender }) => {
-  const [form, setForm] = useState("");
   const handleRadio = (e) => {
-    setForm(e.target.value);
     setGender(e.target.value);
   };
   return (
     <React.Fragment>
-    <label>
+      <label>
         <ImageRadio
           type="radio"
           value="모두"
-          checked={form === "모두"}
+          checked={gender === "모두"}
           onChange={handleRadio}
         />
         모두
@@ -27,7 +25,7 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
         <ImageRadio
           type="radio"
           value="남성"
-          checked={form === "남성"}
+          checked={gender === "남성"}
           onChange={handleRadio}
         />
         남성
@@ -36,13 +34,11 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
         <ImageRadio
           type="radio"
           value="여성"
-          checked={form === "여성"}
+          checked={gender === "여성"}
           onChange={handleRadio}
         />
-       여성
+        여성
       </label>
-
-
     </React.Fragment>
     // <FormControl>
     //   <RadioGroup
@@ -82,7 +78,6 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
     // </FormControl>
   );
 };
-
 
 const ImageRadio = styled.input`
   height: 18px;

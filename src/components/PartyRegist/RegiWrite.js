@@ -19,14 +19,22 @@ import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import Toast from "../../shared/Toast";
 
+//토스트 팝업 메시지
 const msgList = {
   image: "이미지 값이 입력되지 않았습니다.",
-  amend: "수정되었습니다.",
-  cancel: "취소되었습니다."
+  title: "제목 값이 입력되지 않았습니다.",
+  store: "가게명 값이 입력되지 않았습니다.",
+  capacity: "인원수 값이 입력되지 않았습니다.",
+  ageGroup: "연령대 값이 입력되지 않았습니다.",
+  gender: "성별 값이 입력되지 않았습니다.",
+  meeting: "만날 장소 값이 입력되지 않았습니다.",
+  desc: "파티 설명 값이 입력되지 않았습니다.",
 };
+
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
+  //토스트 팝업 세팅
   const [ToastStatus, setToastStatus] = useState(false);
   const [ToastMsg, setToastMsg] = useState("");
   const handleToast = (type) => {
@@ -40,11 +48,11 @@ const RegiWrite = () => {
       setTimeout(() => {
         setToastStatus(false);
         setToastMsg("");
-      }, 1000000);
+      }, 2000);
     }
   }, [ToastStatus]);
 
-
+  //초기값 설정
   const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState([]);
   const [title, setTitle] = useState(null);
@@ -53,38 +61,41 @@ const RegiWrite = () => {
   const [place_url, setPlace_url] = useState(null);
   const [xy, setXy] = useState(null);
   const [capacity, setCapacity] = useState("");
-  const [ageGroup, setAgeGroup] = useState([]);
+  const [ageGroup, setAgeGroup] = useState("");
   const [gender, setGender] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
 
+  //파티생성 정보 보내기
   const sendWriteData = () => {
+    console.log(capacity);
+    console.log(ageGroup);
+    console.log(gender);
     if ((image.length || defaultImage.length) === 0) {
-      // alert("이미지 값이 입력되지 않았습니다.");
       handleToast("image")
     }
     if (title === null) {
-      alert("제목 값이 입력되지 않았습니다.");
+      handleToast("title")
     }
     if (store === null) {
-      alert("가게명이 값이 입력되지 않았습니다.");
+      handleToast("store")
     }
-    if (capacity === null) {
-      alert("인원수 값이 입력되지 않았습니다.");
+    if (capacity === '') {
+      handleToast("capacity")
     }
-    if (ageGroup === null) {
-      alert("연령대 값이 입력되지 않았습니다.");
+    if (ageGroup === '') {
+      handleToast("ageGroup")
     }
-    if (gender === null) {
-      alert("성별 값이 입력되지 않았습니다.");
+    if (gender === '') {
+      handleToast("gender")
     }
     if (meeting === null) {
-      alert("만날 장소 값이 입력되지 않았습니다.");
+      handleToast("meeting")
     }
     if (desc === null) {
-      alert("파티 설명 값이 입력되지 않았습니다.");
+      handleToast("desc")
     }
 
     //날짜 문자열 변환
@@ -255,7 +266,7 @@ const RegiWrite = () => {
               display: "inline",
               width: "9rem",
               mb: 4,
-              marginRight: "2rem",
+              marginRight: "1.5rem",
             }}
           >
             <RealDay date={date} setDate={setDate} />
