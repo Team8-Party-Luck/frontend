@@ -31,12 +31,11 @@ const RegiWrite = () => {
   const [capacity, setCapacity] = useState("");
   const [ageGroup, setAgeGroup] = useState([]);
   const [gender, setGender] = useState("");
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
   const [meeting, setMeeting] = useState(null);
   const [desc, setDesc] = useState(null);
 
-  console.log(defaultImage);
   const sendWriteData = () => {
     if ((image.length || defaultImage.length) === 0) {
       alert("이미지 값이 입력되지 않았습니다.");
@@ -56,18 +55,29 @@ const RegiWrite = () => {
     if (gender === null) {
       alert("성별 값이 입력되지 않았습니다.");
     }
-    if (date === null) {
-      alert("날짜 값이 입력되지 않았습니다.");
-    }
-    if (time === null) {
-      alert("시간 값이 입력되지 않았습니다.");
-    }
     if (meeting === null) {
       alert("만날 장소 값이 입력되지 않았습니다.");
     }
     if (desc === null) {
       alert("파티 설명 값이 입력되지 않았습니다.");
     }
+
+    //날짜 문자열 변환
+    let month = date.getMonth() + 1;
+    month = month >= 10 ? month : "0" + month;
+    let day = date.getDate();
+    day = day >= 10 ? day : "0" + day;
+    let realDate = `${month}-${day}`;
+
+    //시간 문자열 변환
+    let hours = time.getHours();
+    hours = hours < 10 ? `0${hours}` : hours;
+    let minutes = time.getMinutes();
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let realTime = `${hours}:${minutes}`;
+
+    console.log(realDate);
+    console.log(realTime);
 
     const Write_info = {
       defaultImage: defaultImage,
@@ -80,14 +90,14 @@ const RegiWrite = () => {
       capacity: capacity,
       age: ageGroup,
       gender: gender,
-      date: date,
-      time: time,
+      date: realDate,
+      time: realTime,
       meeting: meeting,
       desc: desc,
     };
 
     if (
-      ((image.length || defaultImage.length) !== 0) &&
+      (image.length || defaultImage.length) !== 0 &&
       title !== null &&
       store !== null &&
       capacity !== null &&
@@ -101,7 +111,6 @@ const RegiWrite = () => {
       dispatch(crewActions.regiWriteSend(Write_info));
     }
   };
-
 
   //색깔 입히기
   const theme = createTheme({
@@ -221,7 +230,7 @@ const RegiWrite = () => {
             sx={{
               display: "inline",
               width: "9rem",
-              mb: 5.4,
+              mb: 4,
               marginRight: "2rem",
             }}
           >

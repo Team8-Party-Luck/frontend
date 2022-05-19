@@ -18,22 +18,21 @@ export default function TimeSelect({ time, setTime }) {
         cancelText="취소"
         okText="저장"
         toolbarTitle="만날 시간"
+        label="만날 시간"
         inputFormat={"a hh:mm "}
         //워닝 방지
         mask={"__:__"}
         value={isNaN(str) !== true ? str : value}
         onChange={(newValue) => {
           setValue(newValue);
-          let hours = newValue.getHours();
-          hours = hours < 10 ? `0${hours}` : hours;
-          let minutes = newValue.getMinutes();
-          minutes = minutes < 10 ? `0${minutes}` : minutes;
-          let answer = `${hours}:${minutes}`;
-          setTime(answer);
+          // let hours = newValue.getHours();
+          // hours = hours < 10 ? `0${hours}` : hours;
+          // let minutes = newValue.getMinutes();
+          // minutes = minutes < 10 ? `0${minutes}` : minutes;
+          // let answer = `${hours}:${minutes}`;
+          setTime(newValue);
         }}
-        renderInput={(params) => (
-          <TextField variant="standard"  {...params} />
-        )}
+        renderInput={(params) => <TextField variant="standard" {...params} />}
       />
     </LocalizationProvider>
   );
