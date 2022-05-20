@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styled from "styled-components";
 import Toast from "../shared/Toast";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 
@@ -87,6 +88,15 @@ const Setting = () => {
     dispatch(userActions.sendSettingsData(Settings_info));
   };
 
+  //색깔 입히기
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
+      },
+    },
+  });
+
   return (
     <React.Fragment>
       <HeaderBox>
@@ -130,15 +140,17 @@ const Setting = () => {
           ) : null}
           {age ? (
             <>
-              <InnerText>지역을 선택해주세요</InnerText>
-              <SetLocation
-                city={city}
-                setCity={setCity}
-                region={region}
-                setRegion={setRegion}
-                count={count}
-                setCount={setCount}
-              />
+              <ThemeProvider theme={theme}>
+                <InnerText>지역을 선택해주세요</InnerText>
+                <SetLocation
+                  city={city}
+                  setCity={setCity}
+                  region={region}
+                  setRegion={setRegion}
+                  count={count}
+                  setCount={setCount}
+                />
+              </ThemeProvider>
             </>
           ) : null}
           {city && region ? (

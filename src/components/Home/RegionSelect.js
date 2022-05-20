@@ -8,6 +8,18 @@ import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 
+//지역선택 scroll
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+    },
+  },
+};
+
+
 const RegionSelect = ({ city, setCity, region, setRegion }) => {
   const dispatch = useDispatch();
 
@@ -32,6 +44,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-label">시/도</InputLabel>
           <Select
+          MenuProps={MenuProps}
             labelId="demo-select-small"
             id="demo-select-small"
             value={city || ""}
@@ -48,6 +61,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           <InputLabel id="demo-select-small">구/군</InputLabel>
           <Select
+          MenuProps={MenuProps}
             labelId="demo-select-small"
             id="demo-select-small"
             value={region || ""}
