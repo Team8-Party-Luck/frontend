@@ -248,9 +248,9 @@ const NextBtn = styled.button`
   bottom: 3em;
   width: 92%;
   height: 3em;
-  background: #dfdfdf;
+  background: #FFC3BA;
   border: none;
-  color: gray;
+  color: white;
   margin-top: 4em;
   border-radius: 0.5em; 
   width: "92%",

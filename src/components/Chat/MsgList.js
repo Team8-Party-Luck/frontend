@@ -17,62 +17,66 @@ const MsgList = (props) => {
   const { msgList } = props;
 
   return (
-    <Box>
-      {msgList?.map((cur, idx) => {
-        return (
-          <Box
-            sx={{
-              display: "flex",
-              borderBottom: "1px solid #dfdfdf",
-              padding: 1.5,
-            }}
-            onClick={() => {
-              history.push(`/chatdetail/${cur?.chatRoomId}`);
-            }}
-            key={idx}
-          >
-            <Avatar
+    <Box sx={{ paddingTop: "3.7em" }}>
+      <Box>
+        {msgList?.map((cur, idx) => {
+          return (
+            <Box
               sx={{
-                bgcolor: red[400],
-                width: "2.7em",
-                height: "2.7em",
-                marginRight: "0.7em",
+                display: "flex",
+                borderBottom: "1px solid #dfdfdf",
+                padding: 1.5,
               }}
-              aria-label="recipe"
-              src={cur?.image}
-            />
-            <Box sx={{ width: "100%", paddingTop: 0.2, position: "relative" }}>
-              <Typography
-                component="p"
-                variant="p"
-                sx={{ fontSize: "1em", marginBottom: 0.5 }}
-              >
-                {cur?.senderNickname}
-              </Typography>
-              <Typography
-                component="p"
-                variant="p"
-                sx={{ color: "gray", fontSize: "0.7em" }}
-              >
-                {cur?.lastMessage}
-              </Typography>
-              <Typography
-                component="p"
-                variant="p"
+              onClick={() => {
+                history.push(`/chatdetail/${cur?.chatRoomId}`);
+              }}
+              key={idx}
+            >
+              <Avatar
                 sx={{
-                  color: "gray",
-                  fontSize: "0.5em",
-                  position: "absolute",
-                  top: 3,
-                  right: 1,
+                  bgcolor: red[400],
+                  width: "2.7em",
+                  height: "2.7em",
+                  marginRight: "0.7em",
                 }}
+                aria-label="recipe"
+                src={cur?.image}
+              />
+              <Box
+                sx={{ width: "100%", paddingTop: 0.2, position: "relative" }}
               >
-                {cur?.createdAt}
-              </Typography>
+                <Typography
+                  component="p"
+                  variant="p"
+                  sx={{ fontSize: "1em", marginBottom: 0.5 }}
+                >
+                  {cur?.senderNickname}
+                </Typography>
+                <Typography
+                  component="p"
+                  variant="p"
+                  sx={{ color: "gray", fontSize: "0.7em" }}
+                >
+                  {cur?.lastMessage}
+                </Typography>
+                <Typography
+                  component="p"
+                  variant="p"
+                  sx={{
+                    color: "gray",
+                    fontSize: "0.5em",
+                    position: "absolute",
+                    top: 3,
+                    right: 1,
+                  }}
+                >
+                  {cur?.createdAt}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-        );
-      })}
+          );
+        })}
+      </Box>
     </Box>
   );
 };

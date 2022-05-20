@@ -29,7 +29,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
   return (
     <React.Fragment>
       <RegionBox>
-        <FormControl sx={{ width: "9rem" ,marginRight:'1rem' }}>
+        <FormControl sx={{ width: "9rem", marginRight: "1rem" }}>
           <InputLabel>시/도</InputLabel>
           <Select
             value={city || ""}
@@ -163,11 +163,10 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
 export default RegionSelect;
 
 const RegionBox = styled.div`
+  display: flex;
   width: 100%;
   height: 5rem;
-  background: #e3e3e3;
-  padding-left: 2rem;
-  padding-top:0.5rem;
-  display: flex;
-
+  background: #eee;
+  // padding-left: 2rem;
+  // padding-top: 0.7rem;
 `;

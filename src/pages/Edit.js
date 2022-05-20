@@ -100,8 +100,8 @@ const Edit = (props) => {
 
   return (
     <React.Fragment>
-      <Header name={"프로필 수정"} />
-      <Box sx={{ padding: 2.5, paddingTop: "5.5em" }}>
+      <Header name={"프로필 수정"} type={"완료"} event={updateProfile} />
+      <Box sx={{ padding: 2.5, paddingTop: "4.7em" }}>
         <Box sx={{ marginBottom: 5, display: "flex", position: "relative" }}>
           <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
           <Box sx={{ width: "100%", paddingTop: 1 }}>
@@ -240,23 +240,12 @@ const Edit = (props) => {
             marginTop: "1em",
           }}
         >
-          인스타그램
+          SNS
         </Typography>
         <NicknameInput
           onChange={handleChange("sns")}
           defaultValue={user_info?.sns}
         />
-        <Button
-          variant="contained"
-          size="large"
-          fullWidth
-          sx={{ marginTop: 5, backgroundColor: "#dfdfdf", color: "black" }}
-          onClick={() => {
-            updateProfile();
-          }}
-        >
-          수정완료
-        </Button>
       </Box>
     </React.Fragment>
   );

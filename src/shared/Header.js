@@ -1,12 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { history } from "../redux/configStore";
 import BackIcon from "../static/images/icon/back.png";
 import styled from "styled-components";
 
 const Header = (props) => {
-  const history = useHistory();
-
   return (
     <WrapBox>
       <Box
@@ -18,6 +16,9 @@ const Header = (props) => {
         <img src={BackIcon} alt="뒤로가기" style={{ width: 12, height: 22 }} />
       </Box>
       <HeaderText>{props.name}</HeaderText>
+      {props.type === "완료" ? (
+        <CompleteText onClick={props.event}>{props.type}</CompleteText>
+      ) : null}
     </WrapBox>
   );
 };
@@ -40,10 +41,11 @@ const HeaderText = styled.p`
 `;
 
 const CompleteText = styled.p`
-  font-weight: bold;
   font-size: 1.2em;
   margin: 0 auto;
   color: #ff6853;
+  position: absolute;
+  right: 1em;
 `;
 
 export default Header;

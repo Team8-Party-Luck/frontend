@@ -137,6 +137,10 @@ const PartyDetailBottomNav = (props) => {
 
 const FlexBox = styled.div`
   display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: white;
   justify-content: space-between;
   padding: 1em;
   border-top: 1px solid #f1f1f1;
@@ -144,7 +148,7 @@ const FlexBox = styled.div`
 
 const LeftBtn = styled.button`
   width: 48%;
-  height: 3.5em;
+  height: 3em;
   border: 1px solid #ff6853;
   background: white;
   color: #ff6853;
