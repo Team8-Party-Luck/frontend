@@ -30,18 +30,18 @@ export default function MapView({
   const handleClose = () => setOpen(false);
 
   return (
-    <div style={{ width: "85%" }}>
+    <div style={{ width: "100%" }}>
       <TextField
         value={store || ""}
         id="eateryName"
         variant="standard"
-        placeholder='식당명' 
+        placeholder="식당명"
         onClick={handleOpen}
         style={{ width: "100%" }}
         sx={{ mb: 3 }}
         InputProps={{
           readOnly: true,
-          endAdornment: <img src="image/profile/arw_gray.png" />
+          endAdornment: <img src="image/profile/arw_gray.png" />,
         }}
       ></TextField>
       <Modal

@@ -92,7 +92,7 @@ const PersonInfo = ({
 
   // capacity && ageGroup && gender
   return (
-    <div style={{ width: "85%" }}>
+    <div style={{ width: "100%" }}>
       {["bottom"].map((anchor) => (
         <React.Fragment key={anchor}>
           <TextField
