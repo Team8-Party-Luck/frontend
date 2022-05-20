@@ -181,6 +181,8 @@ const PartyList = (props) => {
               capacity={cur?.capacity}
               age={cur?.age}
               gender={cur?.gender}
+              hostId={cur?.hostId}
+              userInfo={userInfo}
             />
           ))}
         </ListBox>
@@ -205,6 +207,8 @@ const PartyList = (props) => {
                 capacity={cur?.capacity}
                 age={cur?.age}
                 gender={cur?.gender}
+                hostId={cur?.hostId}
+                userInfo={userInfo}
               />
             ))}
           </>
@@ -230,6 +234,8 @@ const PartyList = (props) => {
                 capacity={cur?.capacity}
                 age={cur?.age}
                 gender={cur?.gender}
+                hostId={cur?.hostId}
+                userInfo={userInfo}
               />
             ))}
           </>
