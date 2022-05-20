@@ -7,8 +7,9 @@ import { history } from "../redux/configStore";
 import { useParams } from "react-router-dom";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as chatActions } from "../redux/modules/chat";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+
 import styled from "styled-components";
 import DefaultImg from "../static/images/profile/default.png";
 import HostImg from "../static/images/icon/tag_host-1.png";
@@ -16,7 +17,6 @@ import chatImg from "../static/images/icon/btn_chat.png";
 
 const UserList = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const { partyid } = useParams();
 
@@ -51,6 +51,7 @@ const UserList = () => {
                     src={chatImg}
                     onClick={() => {
                       history.push(`/chat/${cur?.userId}`);
+                      dispatch(chatActions.getRoomIdDB(cur?.userId));
                     }}
                   />
                 )}

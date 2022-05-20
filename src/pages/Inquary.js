@@ -1,16 +1,29 @@
 import React from "react";
+import styled from "styled-components";
 import Header from "../shared/Header";
 import { Box } from "@mui/material";
 import BottomNav from "../shared/BottomNav";
+import NullData from "../shared/NullData";
 
 const Inquary = () => {
   return (
     <div>
       <Header name={"문의하기"} />
-      <Box sx={{ padding: 2.5, paddingTop: "5.5em" }}></Box>
+      <ListBox>
+        <NullData title={"앗! 준비중인 서비스입니다"} />
+      </ListBox>
       <BottomNav />
     </div>
   );
 };
+
+const ListBox = styled.div`
+  width: 100%;
+  height: 60em;
+  padding: 1.5em;
+  padding-top: 3em;
+  padding-bottom: 5em;
+  overflow-y: auto;
+`;
 
 export default Inquary;

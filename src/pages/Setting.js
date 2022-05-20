@@ -6,10 +6,20 @@ import SetLocation from "../components/Settings/SetLocation";
 import SetFood from "../components/Settings/SetFood";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import styled from "styled-components";
+import Toast from "../shared/Toast";
+//유효성 체크
+import { checkNickname, checkIntro } from "../shared/Validatiion";
 
 const Setting = () => {
   const dispatch = useDispatch();
+  // 토스트 메세지목록
+  const msgList = {
+    nickname: "닉네임은 최소 2글자 최대 10글자입니다",
+    intro: "자기소개는 최소 5글자 최대 30글자입니다",
+    sns: "올바른 주소형식이 아닙니다",
+  };
   //페이지 전환
   const [page, setPage] = useState(false);
 
@@ -26,19 +36,42 @@ const Setting = () => {
     intro: "",
   });
 
+  //토스트 메시지
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState(""); // 토스트에 표시할 메세지
+
+  //토스트 핸들러
+  //버튼을 1000ms 이내에 클릭할 때 문구만 실시간으로 바뀌도록 변경
+  const handleToast = (type) => {
+    if (!ToastStatus) {
+      setToastStatus(true);
+      setToastMsg(msgList[type]);
+    }
+  };
+
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => {
+        setToastStatus(false);
+        setToastMsg("");
+      }, 1000);
+    }
+  }, [ToastStatus]);
+
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  function add_count() {
-    if (count === 5) {
-      setCount(0);
-    } else {
-      setCount(count + 1);
-    }
-  }
-
   const sendSettings = () => {
+    if (!checkNickname(values.nickname)) {
+      handleToast("nickname");
+      return;
+    }
+    if (!checkIntro(values.intro)) {
+      handleToast("intro");
+      return;
+    }
+
     const Settings_info = {
       gender: gender,
       age: age,
@@ -160,6 +193,11 @@ const Setting = () => {
             <NextBtn>완성 후 시작</NextBtn>
           )}
         </BodyBox>
+      )}
+      {ToastStatus && (
+        <>
+          <Toast msg={ToastMsg} />
+        </>
       )}
     </React.Fragment>
   );

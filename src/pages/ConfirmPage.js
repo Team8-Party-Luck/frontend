@@ -14,7 +14,7 @@ const ConfirmPage = () => {
         <img
           src={FailLogo}
           alt="컨펌로고"
-          style={{ width: "60%", margin: "0 auto" }}
+          style={{ width: "50%", margin: "0 auto" }}
         />
         <TitleText>앗! 파티신청이 불가합니다</TitleText>
         <GrayText>해당 파티의 모집 인원 정보를 확인해주세요!</GrayText>

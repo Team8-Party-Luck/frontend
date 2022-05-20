@@ -91,6 +91,7 @@ const ChatInput = (props) => {
         }}
         onKeyDown={onKeyDownHandler}
         value={msg}
+        maxLength={100}
       />
       <MsgButton onClick={onClick}>보내기</MsgButton>
     </Box>
@@ -101,7 +102,7 @@ const MsgInput = styled.input`
   width: 100%;
   height: 4em;
   padding: 0.5em;
-  padding-right: 2em;
+  padding-right: 4em;
   border: 2px solid #e3e3e3;
   border-radius: 0.5em;
   position: relative;

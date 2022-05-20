@@ -13,67 +13,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../../redux/modules/chat";
 
-const MsgList = () => {
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(chatActions.getChatListDB());
-  }, []);
-
-  const msgList = useSelector((state) => state?.chat?.list);
-  console.log(msgList);
+const MsgList = (props) => {
+  const { msgList } = props;
 
   return (
     <Box>
-      <Box
-        sx={{
-          display: "flex",
-          borderBottom: "1px solid #dfdfdf",
-          padding: 1.5,
-          paddingTop: "4.5em",
-        }}
-      >
-        <Avatar
-          sx={{
-            bgcolor: red[400],
-            width: "2.7em",
-            height: "2.7em",
-            marginRight: "0.7em",
-          }}
-          aria-label="recipe"
-          //   src={}
-        />
-        <Box sx={{ width: "100%", paddingTop: 0.2, position: "relative" }}>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ fontSize: "1em", marginBottom: 0.5 }}
-          >
-            여기는 유저네임~
-          </Typography>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ color: "gray", fontSize: "0.7em" }}
-          >
-            어쩌구 저쩌구~어쩌구 저쩌구~어쩌구 저쩌구~어쩌구 저쩌구~어쩌구
-            저쩌구~어쩌구 저쩌구~어쩌구 저쩌구~어쩌구 저쩌구~
-          </Typography>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{
-              color: "gray",
-              fontSize: "0.5em",
-              position: "absolute",
-              top: 3,
-              right: 1,
-            }}
-          >
-            오후 2:30
-          </Typography>
-        </Box>
-      </Box>
       {msgList?.map((cur, idx) => {
         return (
           <Box

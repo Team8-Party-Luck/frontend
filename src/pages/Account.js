@@ -51,6 +51,7 @@ const Account = () => {
           )}
         </React.Fragment>
       </WrapBox>
+      <BottomNav />
     </React.Fragment>
   );
 };
