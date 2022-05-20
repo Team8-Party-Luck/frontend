@@ -25,7 +25,6 @@ const Profile = () => {
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   console.log(scrapData);
 
-
   return (
     <React.Fragment>
       <WrapBox>
@@ -53,7 +52,7 @@ const WrapBox = styled.div`
 const EditButton = styled.button`
   width: 100%;
   height: 2.3em;
-  background: #5b5b5b;
+  background: #ff6358;
   color: white;
   border-radius: 0.5em;
   border: none;

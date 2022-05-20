@@ -54,18 +54,25 @@ const AllData = (props) => {
           <StoreText>{store}</StoreText>
           <CenterBox>
             <IconBox src={LocationImg} alt="위치" />
-            <DetailText>&nbsp;{address}&nbsp;</DetailText>
+            <DetailText>&nbsp;{address}</DetailText>
+            <GrayBar>ㅣ</GrayBar>
             <IconBox src={CalenderImg} alt="달력" />
             <DetailText>
-              &nbsp;{newDate}({day})&nbsp;
+              &nbsp;{newDate}({day})
             </DetailText>
+            <GrayBar>ㅣ</GrayBar>
             <IconBox src={DateImg} alt="시간" />
-            <DetailText>&nbsp;{time}&nbsp;</DetailText>
+            <DetailText>&nbsp;{time}</DetailText>
           </CenterBox>
-          <FlexBox style={{ marginTop: 0.5 }}>
+          <FlexBox
+            style={{
+              marginTop: 0.5,
+              alignItems: "center",
+            }}
+          >
             <IconBox src={PersonImg} alt="시간" />
             <DetailText>
-              &nbsp;{capacity}명&nbsp; {age} {gender}
+              &nbsp;{capacity}명 <GrayBar>ㅣ</GrayBar> {age} {gender}
               모임
             </DetailText>
           </FlexBox>
@@ -82,7 +89,7 @@ const WrapBox = styled.div`
   width: 100%;
   margin-top: 1em;
   position: relative;
-  padding-left:1rem;
+  padding-left: 1rem;
 `;
 
 const TitleText = styled.p`
@@ -127,6 +134,11 @@ const HostImg = styled.img`
   bottom: 0;
   width: 3.9em;
   height: 1.35em;
+`;
+
+const GrayBar = styled.span`
+  color: #ccc;
+  font-size: 0.8em;
 `;
 
 export default AllData;

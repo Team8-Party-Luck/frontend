@@ -11,6 +11,24 @@ import styled from "styled-components";
 
 const PartyDetailInfo = (props) => {
   const { partyData } = props;
+
+  const splitDate = partyData?.date?.split("-");
+  const newDate = splitDate?.join(".");
+  const forDay = splitDate?.join("");
+
+  //요일 구하는 함수
+  function getDateStr(dateStr) {
+    let yyyyMMdd = String(dateStr);
+    let sYear = yyyyMMdd.substring(0, 4);
+    let sMonth = yyyyMMdd.substring(4, 6);
+    let sDate = yyyyMMdd.substring(6, 8);
+
+    let date = new Date(Number(sYear), Number(sMonth) - 1, Number(sDate));
+    let week = ["일", "월", "화", "수", "목", "금", "토"];
+    return week[date.getDay()];
+  }
+  const day = getDateStr(`2022${forDay}`);
+
   return (
     <React.Fragment>
       <WrapBox>
@@ -20,7 +38,11 @@ const PartyDetailInfo = (props) => {
           <GrayBar>ㅣ</GrayBar>
           <LocationText>{partyData?.address}</LocationText>
         </FlexBox>
-        <DetailInfoBtn onClick={() => {window.location.href=partyData?.place_url}}>
+        <DetailInfoBtn
+          onClick={() => {
+            window.location.href = partyData?.place_url;
+          }}
+        >
           식당 상세 정보 확인하기
         </DetailInfoBtn>
       </WrapBox>
@@ -36,7 +58,7 @@ const PartyDetailInfo = (props) => {
           <div>
             <LocDetailText2>{partyData?.meeting}</LocDetailText2>
             <LocDetailText2 style={{ margin: "1em 0" }}>
-              {partyData?.date} {partyData?.time}
+              {newDate}({day}) {partyData?.time}
             </LocDetailText2>
             <LocDetailText2>
               {partyData?.capacity}명 <GrayBar>ㅣ</GrayBar> {partyData?.age}{" "}

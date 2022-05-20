@@ -17,6 +17,7 @@ import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import AllData from "./AllData";
 import RegionSelect from "./RegionSelect";
+import NullData from "../../shared/NullData";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -29,8 +30,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box >
-          <Typography  component={"span"}>{children}</Typography>
+        <Box>
+          <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -136,12 +137,10 @@ const PartyList = (props) => {
         </Box>
       </ThemeProvider>
 
-      
       <TabPanel value={value} index={0}>
-        <ListBox  ref={ref} onScroll={InfinityScroll}>
+        <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
             <AllData
-             
               key={cur?.partyId}
               partyId={cur?.partyId}
               title={cur?.title}
@@ -182,43 +181,65 @@ const PartyList = (props) => {
               capacity={cur?.capacity}
               age={cur?.age}
               gender={cur?.gender}
+              hostId={cur?.hostId}
+              userInfo={userInfo}
             />
           ))}
         </ListBox>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        {willData?.map((cur, idx) => (
-          <AllData
-            key={cur?.partyId}
-            partyId={cur?.partyId}
-            title={cur?.title}
-            image={cur?.image}
-            store={cur?.store}
-            address={cur?.address}
-            date={cur?.date}
-            time={cur?.time}
-            capacity={cur?.capacity}
-            age={cur?.age}
-            gender={cur?.gender}
-          />
-        ))}
+        {willData?.length === 0 ? (
+          <Box sx={{ marginTop: "10em" }}>
+            <NullData title={"앗! 참여 예정인 파티가 없습니다"} />
+          </Box>
+        ) : (
+          <>
+            {willData?.map((cur, idx) => (
+              <AllData
+                key={cur?.partyId}
+                partyId={cur?.partyId}
+                title={cur?.title}
+                image={cur?.image}
+                store={cur?.store}
+                address={cur?.address}
+                date={cur?.date}
+                time={cur?.time}
+                capacity={cur?.capacity}
+                age={cur?.age}
+                gender={cur?.gender}
+                hostId={cur?.hostId}
+                userInfo={userInfo}
+              />
+            ))}
+          </>
+        )}
       </TabPanel>
       <TabPanel value={value} index={3}>
-        {scrapData?.map((cur, idx) => (
-          <AllData
-            key={cur?.partyId}
-            partyId={cur?.partyId}
-            title={cur?.title}
-            image={cur?.image}
-            store={cur?.store}
-            address={cur?.address}
-            date={cur?.date}
-            time={cur?.time}
-            capacity={cur?.capacity}
-            age={cur?.age}
-            gender={cur?.gender}
-          />
-        ))}
+        {scrapData?.length === 0 ? (
+          <Box sx={{ marginTop: "10em" }}>
+            <NullData title={"앗! 찜한 파티가 없습니다"} />
+          </Box>
+        ) : (
+          <>
+            {scrapData?.map((cur, idx) => (
+              <AllData
+                key={cur?.partyId}
+                partyId={cur?.partyId}
+                title={cur?.title}
+                image={cur?.image}
+                store={cur?.store}
+                address={cur?.address}
+                date={cur?.date}
+                time={cur?.time}
+                capacity={cur?.capacity}
+                age={cur?.age}
+                gender={cur?.gender}
+                hostId={cur?.hostId}
+                userInfo={userInfo}
+              />
+            ))}
+          </>
+        )}
       </TabPanel>
     </Box>
   );

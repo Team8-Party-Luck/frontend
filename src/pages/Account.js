@@ -65,7 +65,6 @@ const WrapBox = styled.div`
 const ListBox = styled.div`
   width: 100%;
   height: 3em;
-
   display: flex;
   justify-content: space-between;
   padding: 1em 0;
