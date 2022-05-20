@@ -82,6 +82,7 @@ const WrapBox = styled.div`
   width: 100%;
   margin-top: 1em;
   position: relative;
+  padding-left:1rem;
 `;
 
 const TitleText = styled.p`

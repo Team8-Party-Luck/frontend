@@ -54,6 +54,23 @@ const RegiWrite = () => {
     }
   }, [ToastStatus]);
 
+
+
+  const configDate = new Date();
+  //날짜설정
+  let month = configDate.getMonth() + 1;
+  month = month >= 10 ? month : "0" + month;
+  let day = configDate.getDate();
+  day = day >= 10 ? day : "0" + day;
+  let realDate = `${month}-${day}`;
+
+  //시간설정
+  let hours = configDate.getHours();
+  hours = hours < 10 ? `0${hours}` : hours;
+  let minutes = configDate.getMinutes();
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
+  let realTime = `${hours}:${minutes}`;
+
   //초기값 설정
   const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState([]);
@@ -65,8 +82,8 @@ const RegiWrite = () => {
   const [capacity, setCapacity] = useState('');
   const [ageGroup, setAgeGroup] = useState('');
   const [gender, setGender] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
+  const [date, setDate] = useState(realDate);
+  const [time, setTime] = useState(realTime);
   const [meeting, setMeeting] = useState('');
   const [desc, setDesc] = useState('');
 
@@ -95,6 +112,17 @@ const RegiWrite = () => {
     }
     if (desc === '') {
       handleToast("desc");
+    }
+
+
+    if (typeof time === "object") {
+      //시간 문자열 변환
+      let hours = time.getHours();
+      hours = hours < 10 ? `0${hours}` : hours;
+      let minutes = time.getMinutes();
+      minutes = minutes < 10 ? `0${minutes}` : minutes;
+      let realTime = `${hours}:${minutes}`;
+      setTime(realTime);
     }
 
 

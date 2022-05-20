@@ -1,57 +1,40 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-  Box,
-} from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import styled from "styled-components";
 
 import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 
-const RegionSelect =({ city, setCity, region, setRegion })  => {
+const RegionSelect = ({ city, setCity, region, setRegion }) => {
   const dispatch = useDispatch();
-
-  
-
 
   const handleChangeCity = (e) => {
     setCity(e.target.value);
   };
 
-  const handleChangeRegion =  (e) => {
+  const handleChangeRegion = (e) => {
+    setRegion(e.target.value);
 
-       setRegion(e.target.value);
-
-      let answer =  `${city} ${e.target.value}`;
-      const regionInfo = {
-        answer : answer,
-      }
-      console.log(regionInfo)
-      dispatch(crewActions.getRegionData(regionInfo));
+    let answer = `${city} ${e.target.value}`;
+    const regionInfo = {
+      answer: answer,
+    };
+    console.log(regionInfo);
+    dispatch(crewActions.getRegionData(regionInfo));
   };
 
   return (
     <React.Fragment>
-      <Box
-        sx={{
-          display: "flex",
-          width: "100%",
-          margin: "auto",
-          marginTop: 2,
-          marginBottom: 1,
-        }}
-      >
-        <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
+      <RegionBox>
+        <FormControl sx={{ width: "9rem" ,marginRight:'1rem' }}>
           <InputLabel>시/도</InputLabel>
           <Select
-            value={city || ''}
+            value={city || ""}
             onChange={handleChangeCity}
-            sx={{ width: "96%", margin: "0 auto" }}
+            // sx={{ width: "85%", margin: "0 auto" }}
           >
             {cityArea.map((cur, idx) => (
               <MenuItem value={cur} key={idx}>
@@ -60,16 +43,12 @@ const RegionSelect =({ city, setCity, region, setRegion })  => {
             ))}
           </Select>
         </FormControl>
-        <FormControl
-          fullWidth
-          sx={{ minWidth: 120 }}
-          size="small"
-        >
+        <FormControl sx={{ width: "9rem" }}>
           <InputLabel>구/군</InputLabel>
           <Select
-            value={region || ''}
+            value={region || ""}
             onChange={handleChangeRegion}
-            sx={{ width: "85%", margin: "0 auto" }}
+            // sx={{ width: "85%", margin: "0 auto" }}
           >
             {city === "서울"
               ? regionArea[0].map((cur, idx) => (
@@ -167,21 +146,28 @@ const RegionSelect =({ city, setCity, region, setRegion })  => {
                     {cur}
                   </MenuItem>
                 ))
-                : city === "제주특별자치도"
-                ? regionArea[16].map((cur, idx) => (
-                    <MenuItem value={cur} key={idx}>
-                      {cur}
-                    </MenuItem>
-                  ))
+              : city === "제주특별자치도"
+              ? regionArea[16].map((cur, idx) => (
+                  <MenuItem value={cur} key={idx}>
+                    {cur}
+                  </MenuItem>
+                ))
               : null}
           </Select>
         </FormControl>
-      </Box>
+      </RegionBox>
     </React.Fragment>
   );
-}
-
-
-
+};
 
 export default RegionSelect;
+
+const RegionBox = styled.div`
+  width: 100%;
+  height: 5rem;
+  background: #e3e3e3;
+  padding-left: 2rem;
+  padding-top:0.5rem;
+  display: flex;
+
+`;

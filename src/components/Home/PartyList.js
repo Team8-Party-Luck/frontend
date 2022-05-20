@@ -29,8 +29,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ paddingLeft: 2.5 }}>
-          <Typography component={"span"}>{children}</Typography>
+        <Box >
+          <Typography  component={"span"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -136,10 +136,12 @@ const PartyList = (props) => {
         </Box>
       </ThemeProvider>
 
+      
       <TabPanel value={value} index={0}>
-        <ListBox ref={ref} onScroll={InfinityScroll}>
+        <ListBox  ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
             <AllData
+             
               key={cur?.partyId}
               partyId={cur?.partyId}
               title={cur?.title}
