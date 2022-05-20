@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="manifest" href="/manifest.json" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
@@ -17,11 +17,14 @@
   <title>React App</title>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3bc3bb23cd0ab295aa8589ea2e5b3c06&libraries=services"></script>
    <!-- 카카오 지도 api  -->
-   <script type="module">
-    import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-    const el = document.createElement('pwa-update');
-    document.body.appendChild(el);
- </script>
+   
+   <script>
+     if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+  });
+}
+   </script>
 </head>
 
 <body>
