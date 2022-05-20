@@ -29,12 +29,14 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
   return (
     <React.Fragment>
       <RegionBox>
-        <FormControl sx={{ width: "9rem" ,marginRight:'1rem' }}>
-          <InputLabel>시/도</InputLabel>
+        <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
+          <InputLabel id="demo-simple-select-label">시/도</InputLabel>
           <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
             value={city || ""}
             onChange={handleChangeCity}
-            // sx={{ width: "85%", margin: "0 auto" }}
+            style={{ width: "90%", margin: "0 auto", background: "white" }}
           >
             {cityArea.map((cur, idx) => (
               <MenuItem value={cur} key={idx}>
@@ -43,12 +45,14 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
             ))}
           </Select>
         </FormControl>
-        <FormControl sx={{ width: "9rem" }}>
-          <InputLabel>구/군</InputLabel>
+        <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
+          <InputLabel id="demo-select-small">구/군</InputLabel>
           <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
             value={region || ""}
             onChange={handleChangeRegion}
-            // sx={{ width: "85%", margin: "0 auto" }}
+            style={{ width: "90%", margin: "0 auto", background: "white" }}
           >
             {city === "서울"
               ? regionArea[0].map((cur, idx) => (
@@ -163,11 +167,9 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
 export default RegionSelect;
 
 const RegionBox = styled.div`
-  width: 100%;
-  height: 5rem;
-  background: #e3e3e3;
-  padding-left: 2rem;
-  padding-top:0.5rem;
   display: flex;
-
+  width: 100%;
+  height: 4.6em;
+  background: #eee;
+  padding: 1em 2em;
 `;

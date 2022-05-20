@@ -65,6 +65,7 @@ const SendTime = styled.div`
   color: gray;
   margin-left: ${(props) => (props.user ? "0" : "0.5em")};
   margin-right: ${(props) => (props.user ? "0" : "0.5em")};
+  padding-bottom: 0.7em;
 `;
 
 export default ChatBox;

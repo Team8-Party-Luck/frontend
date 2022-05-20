@@ -40,9 +40,8 @@ const Chat = () => {
 };
 const ListBox = styled.div`
   width: 100%;
-  height: 60em;
   padding: 1.5em;
-  padding-top: 3em;
+  padding-top: 20em;
   padding-bottom: 5em;
   overflow-y: auto;
 `;

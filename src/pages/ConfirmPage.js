@@ -8,6 +8,23 @@ import { history } from "../redux/configStore";
 const ConfirmPage = () => {
   const joinData = useSelector((state) => state?.crew?.info);
 
+  const splitDate = joinData?.date?.split("-");
+  const newDate = splitDate?.join(".");
+  const forDay = splitDate?.join("");
+
+  //요일 구하는 함수
+  function getDateStr(dateStr) {
+    let yyyyMMdd = String(dateStr);
+    let sYear = yyyyMMdd.substring(0, 4);
+    let sMonth = yyyyMMdd.substring(4, 6);
+    let sDate = yyyyMMdd.substring(6, 8);
+
+    let date = new Date(Number(sYear), Number(sMonth) - 1, Number(sDate));
+    let week = ["일", "월", "화", "수", "목", "금", "토"];
+    return week[date.getDay()];
+  }
+  const day = getDateStr(`2022${forDay}`);
+
   if (joinData === "") {
     return (
       <Wrapbox>
@@ -48,7 +65,7 @@ const ConfirmPage = () => {
           <PartyInfoRightBox>
             <p>{joinData?.store}</p>
             <p>
-              {joinData?.date}, {joinData?.time}
+              {newDate}({day}) {joinData?.time}
             </p>
           </PartyInfoRightBox>
         </ConfirmBox>

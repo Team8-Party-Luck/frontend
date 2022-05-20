@@ -19,15 +19,15 @@ const LogoBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15em;
+  justify-contents: center;
 `;
 
 const TitleText = styled.p`
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 0 auto;
   text-align: center;
-  margin-top: 1em;
-  color: #ccc;
+  margin-top: 2em;
+  color: #5b5b5b;
 `;
 
 export default NullData;

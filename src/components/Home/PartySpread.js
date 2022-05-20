@@ -8,12 +8,8 @@ import { useHistory } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
 
-
-
 const PartySpread = (props) => {
   let history = useHistory();
-
-
 
   return (
     <React.Fragment>
@@ -21,9 +17,7 @@ const PartySpread = (props) => {
         <Avatar
           variant={"rounded"}
           alt="The image"
-          src={
-            "props.image"
-          }
+          src={"props.image"}
           style={{
             width: 90,
             height: 90,

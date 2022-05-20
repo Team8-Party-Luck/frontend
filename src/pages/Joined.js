@@ -38,7 +38,7 @@ const Joined = () => {
     return (
       <Box>
         <Header name={"찜한 파티"} />
-        <ListBox>
+        <WrapBox>
           {joinedData?.length > 0 &&
             joinedData?.map((cur, idx) => (
               <Box
@@ -107,7 +107,7 @@ const Joined = () => {
                 </Box>
               </Box>
             ))}
-        </ListBox>
+        </WrapBox>
         <BottomNav />
       </Box>
     );
@@ -116,11 +116,17 @@ const Joined = () => {
 
 const ListBox = styled.div`
   width: 100%;
-  height: 60em;
   padding: 1.5em;
-  padding-top: 3em;
+  padding-top: 20em;
   padding-bottom: 5em;
   overflow-y: auto;
+`;
+
+const WrapBox = styled.div`
+  width: 100%;
+  padding: 1.5em;
+  padding-top: 3.5em;
+  padding-bottom: 5em;
 `;
 
 export default Joined;
