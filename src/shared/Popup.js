@@ -5,6 +5,7 @@ import styled from "styled-components";
 function Popup(props) {
   const { title, event, close, confirm, back } = props;
 
+
   const confirmHandler = (e) => {
     e.stopPropagation();
     event();

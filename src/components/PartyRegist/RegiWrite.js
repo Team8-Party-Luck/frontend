@@ -5,9 +5,7 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Modal from "@mui/material/Modal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import styled from "styled-components";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useDispatch } from "react-redux";
@@ -18,15 +16,27 @@ import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import Toast from "../../shared/Toast";
+import Popup from "../../shared/Popup";
 
+//토스트 팝업 메시지
 const msgList = {
   image: "이미지 값이 입력되지 않았습니다.",
-  amend: "수정되었습니다.",
-  cancel: "취소되었습니다."
+  title: "파티제목 값이 입력되지 않았습니다.",
+  store: "식당명 값이 입력되지 않았습니다.",
+  capacity: "인원수 값이 입력되지 않았습니다.",
+  ageGroup: "연령대 값이 입력되지 않았습니다.",
+  gender: "성별 값이 입력되지 않았습니다.",
+  meeting: "만날 장소 값이 입력되지 않았습니다.",
+  desc: "파티 설명 값이 입력되지 않았습니다.",
 };
+
 const RegiWrite = () => {
   const dispatch = useDispatch();
 
+  //모달
+  const [openBack, setOpenBack] = useState(false);
+
+  //토스트 팝업 세팅
   const [ToastStatus, setToastStatus] = useState(false);
   const [ToastMsg, setToastMsg] = useState("");
   const handleToast = (type) => {
@@ -40,66 +50,82 @@ const RegiWrite = () => {
       setTimeout(() => {
         setToastStatus(false);
         setToastMsg("");
-      }, 1000000);
+      }, 2000);
     }
   }, [ToastStatus]);
 
 
+
+  const configDate = new Date();
+  //날짜설정
+  let month = configDate.getMonth() + 1;
+  month = month >= 10 ? month : "0" + month;
+  let day = configDate.getDate();
+  day = day >= 10 ? day : "0" + day;
+  let realDate = `${month}-${day}`;
+
+  //시간설정
+  let hours = configDate.getHours();
+  hours = hours < 10 ? `0${hours}` : hours;
+  let minutes = configDate.getMinutes();
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
+  let realTime = `${hours}:${minutes}`;
+
+  //초기값 설정
   const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState([]);
-  const [title, setTitle] = useState(null);
-  const [store, setStore] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [place_url, setPlace_url] = useState(null);
-  const [xy, setXy] = useState(null);
-  const [capacity, setCapacity] = useState("");
-  const [ageGroup, setAgeGroup] = useState([]);
-  const [gender, setGender] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
-  const [meeting, setMeeting] = useState(null);
-  const [desc, setDesc] = useState(null);
+  const [title, setTitle] = useState('');
+  const [store, setStore] = useState('');
+  const [address, setAddress] = useState('');
+  const [place_url, setPlace_url] = useState('');
+  const [xy, setXy] = useState('');
+  const [capacity, setCapacity] = useState('');
+  const [ageGroup, setAgeGroup] = useState('');
+  const [gender, setGender] = useState('');
+  const [date, setDate] = useState(realDate);
+  const [time, setTime] = useState(realTime);
+  const [meeting, setMeeting] = useState('');
+  const [desc, setDesc] = useState('');
 
+  //파티생성 정보 보내기
   const sendWriteData = () => {
     if ((image.length || defaultImage.length) === 0) {
-      // alert("이미지 값이 입력되지 않았습니다.");
-      handleToast("image")
+      handleToast("image");
     }
-    if (title === null) {
-      alert("제목 값이 입력되지 않았습니다.");
+    if (title === '') {
+      handleToast("title");
     }
-    if (store === null) {
-      alert("가게명이 값이 입력되지 않았습니다.");
+    if (store === '') {
+      handleToast("store");
     }
-    if (capacity === null) {
-      alert("인원수 값이 입력되지 않았습니다.");
+    if (capacity === '') {
+      handleToast("capacity");
     }
-    if (ageGroup === null) {
-      alert("연령대 값이 입력되지 않았습니다.");
+    if (ageGroup === '') {
+      handleToast("ageGroup");
     }
-    if (gender === null) {
-      alert("성별 값이 입력되지 않았습니다.");
+    if (gender === '') {
+      handleToast("gender");
     }
-    if (meeting === null) {
-      alert("만날 장소 값이 입력되지 않았습니다.");
+    if (meeting === '') {
+      handleToast("meeting");
     }
-    if (desc === null) {
-      alert("파티 설명 값이 입력되지 않았습니다.");
+    if (desc === '') {
+      handleToast("desc");
     }
 
-    //날짜 문자열 변환
-    let month = date.getMonth() + 1;
-    month = month >= 10 ? month : "0" + month;
-    let day = date.getDate();
-    day = day >= 10 ? day : "0" + day;
-    let realDate = `${month}-${day}`;
 
-    //시간 문자열 변환
-    let hours = time.getHours();
-    hours = hours < 10 ? `0${hours}` : hours;
-    let minutes = time.getMinutes();
-    minutes = minutes < 10 ? `0${minutes}` : minutes;
-    let realTime = `${hours}:${minutes}`;
+    if (typeof time === "object") {
+      //시간 문자열 변환
+      let hours = time.getHours();
+      hours = hours < 10 ? `0${hours}` : hours;
+      let minutes = time.getMinutes();
+      minutes = minutes < 10 ? `0${minutes}` : minutes;
+      let realTime = `${hours}:${minutes}`;
+      setTime(realTime);
+    }
+
+
 
     const Write_info = {
       defaultImage: defaultImage,
@@ -112,23 +138,21 @@ const RegiWrite = () => {
       capacity: capacity,
       age: ageGroup,
       gender: gender,
-      date: realDate,
-      time: realTime,
+      date: date,
+      time: time,
       meeting: meeting,
       desc: desc,
     };
 
     if (
       (image.length || defaultImage.length) !== 0 &&
-      title !== null &&
-      store !== null &&
-      capacity !== null &&
-      ageGroup !== null &&
-      gender !== null &&
-      date !== null &&
-      time !== null &&
-      meeting !== null &&
-      desc !== null
+      title !== '' &&
+      store !== '' &&
+      capacity !== '' &&
+      ageGroup !== '' &&
+      gender !== '' &&
+      meeting !== '' &&
+      desc !== ''
     ) {
       dispatch(crewActions.regiWriteSend(Write_info));
     }
@@ -143,23 +167,6 @@ const RegiWrite = () => {
     },
   });
 
-  //back modal
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const modal = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 340,
-    bgcolor: "#FFFFFF",
-    borderRadius: "15px",
-    boxShadow: 24,
-    p: 3.5,
-  };
-
-
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -170,7 +177,7 @@ const RegiWrite = () => {
                 alt="back"
                 src="image/bar/back.png"
                 onClick={() => {
-                  handleOpen();
+                  setOpenBack(true);
                 }}
               />
               <Box sx={{ flexGrow: 1.1 }} />
@@ -187,29 +194,19 @@ const RegiWrite = () => {
               </span>
             </Toolbar>
           </AppBar>
-          <Modal open={open} onClose={handleClose}>
-            <Box sx={modal} justifyContent="center" alignItems="center">
-              <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
-                작성을 취소하시겠습니까?
-              </div>
-              <CancelButton
-                onClick={() => {
-                  handleClose();
-                }}
-                style={{ marginRight: "1rem" }}
-              >
-                취소
-              </CancelButton>
-              <CancelButton
-                onClick={() => {
-                  history.push("/home");
-                }}
-                style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
-              >
-                작성 취소
-              </CancelButton>
-            </Box>
-          </Modal>
+          {openBack && (
+            <Popup
+              title={"작성을 취소하시겠습니까?"}
+              close={() => setOpenBack(false)}
+              event={() => {
+                history.push({
+                  pathname: "/home",
+                });
+              }}
+              confirm={"작성취소"}
+              back={"취소"}
+            />
+          )}
         </Box>
         <Grid
           container
@@ -255,7 +252,7 @@ const RegiWrite = () => {
               display: "inline",
               width: "9rem",
               mb: 4,
-              marginRight: "2rem",
+              marginRight: "1.5rem",
             }}
           >
             <RealDay date={date} setDate={setDate} />
@@ -291,17 +288,8 @@ const RegiWrite = () => {
           <Toast msg={ToastMsg} />
         </>
       )}
-
     </React.Fragment>
   );
 };
 
 export default RegiWrite;
-
-//취소버튼
-const CancelButton = styled.button`
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-  width: 130px;
-  height: 48px;
-`;

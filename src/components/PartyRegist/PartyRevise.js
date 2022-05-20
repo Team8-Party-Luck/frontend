@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Modal from "@mui/material/Modal";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import styled from "styled-components";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,58 +17,94 @@ import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
 import PersonInfo from "./PersonInfo";
+import Toast from "../../shared/Toast";
+
+//토스트 팝업 메시지
+const msgList = {
+  image: "이미지 값이 입력되지 않았습니다.",
+  title: "파티제목 값이 입력되지 않았습니다.",
+  store: "식당명 값이 입력되지 않았습니다.",
+  capacity: "인원수 값이 입력되지 않았습니다.",
+  ageGroup: "연령대 값이 입력되지 않았습니다.",
+  gender: "성별 값이 입력되지 않았습니다.",
+  meeting: "만날 장소 값이 입력되지 않았습니다.",
+  desc: "파티 설명 값이 입력되지 않았습니다.",
+};
 
 const PartyRevise = () => {
   const location = useLocation();
   const partyId = location.state;
   const dispatch = useDispatch();
-  React.useEffect(() => {
+
+
+  //토스트 팝업 세팅
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState("");
+  const handleToast = (type) => {
+    if (!ToastStatus) {
+      setToastStatus(true);
+      setToastMsg(msgList[type]);
+    }
+  };
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => {
+        setToastStatus(false);
+        setToastMsg("");
+      }, 2000);
+    }
+  }, [ToastStatus]);
+
+
+
+  useEffect(() => {
     dispatch(crewActions.getDetailInfo(partyId));
   }, []);
+
+
+
   const partyUser = useSelector((state) => state?.crew?.info);
 
   // const [image, setImage] = useState(partyUser?.image || "");
-  const [title, setTitle] = useState(partyUser?.title || "");
-  const [store, setStore] = useState(partyUser?.store || "");
-  const [address, setAddress] = useState(partyUser?.address || "");
-  const [place_url, setPlace_url] = useState(partyUser?.place_url || "");
-  const [xy, setXy] = useState(partyUser?.xy || "");
-  const [capacity, setCapacity] = useState(partyUser?.capacity || "");
-  const [ageGroup, setAgeGroup] = useState(partyUser?.age || "");
-  const [gender, setGender] = useState(partyUser?.gender || "");
-  const [date, setDate] = useState(partyUser?.date || "");
-  const [time, setTime] = useState(partyUser?.time || "");
-  const [meeting, setMeeting] = useState(partyUser?.meeting || "");
-  const [desc, setDesc] = useState(partyUser?.desc || "");
+  const [title, setTitle] = useState(partyUser?.title || '');
+  const [store, setStore] = useState(partyUser?.store || '');
+  const [address, setAddress] = useState(partyUser?.address || '');
+  const [place_url, setPlace_url] = useState(partyUser?.place_url || '');
+  const [xy, setXy] = useState(partyUser?.xy || '');
+  const [capacity, setCapacity] = useState(partyUser?.capacity || '');
+  const [ageGroup, setAgeGroup] = useState(partyUser?.age || '');
+  const [gender, setGender] = useState(partyUser?.gender || '');
+  const [date, setDate] = useState(partyUser?.date || '');
+  const [time, setTime] = useState(partyUser?.time || '');
+  const [meeting, setMeeting] = useState(partyUser?.meeting || '');
+  const [desc, setDesc] = useState(partyUser?.desc || '');
 
   const sendReviseData = () => {
-    if (title === null) {
-      alert("제목 값이 입력되지 않았습니다.");
+    if (title === '') {
+      handleToast("title");
     }
-    if (store === null) {
-      alert("가게명이 값이 입력되지 않았습니다.");
+    if (store === '') {
+      handleToast("store");
     }
-    if (capacity === null) {
-      alert("인원수 값이 입력되지 않았습니다.");
+    if (capacity === '') {
+      handleToast("capacity");
     }
-    if (ageGroup === null) {
-      alert("연령대 값이 입력되지 않았습니다.");
+    if (ageGroup === '') {
+      handleToast("ageGroup");
     }
-    if (gender === null) {
-      alert("성별 값이 입력되지 않았습니다.");
+    if (gender === '') {
+      handleToast("gender");
     }
-    if (date === null) {
-      alert("날짜 값이 입력되지 않았습니다.");
+    if (meeting === '') {
+      handleToast("meeting");
     }
-    if (time === null) {
-      alert("시간 값이 입력되지 않았습니다.");
+    if (desc === '') {
+      handleToast("desc");
     }
-    if (meeting === null) {
-      alert("만날 장소 값이 입력되지 않았습니다.");
-    }
-    if (desc === null) {
-      alert("파티 설명 값이 입력되지 않았습니다.");
-    }
+
+
+console.log(date);
+console.log(time);
 
     const Write_info = {
       title: title,
@@ -87,170 +122,129 @@ const PartyRevise = () => {
     };
 
     if (
-      title !== null &&
-      store !== null &&
-      capacity !== null &&
-      ageGroup !== null &&
-      gender !== null &&
-      date !== null &&
-      time !== null &&
-      meeting !== null &&
-      desc !== null
+      title !== '' &&
+      store !== '' &&
+      capacity !== '' &&
+      ageGroup !== '' &&
+      gender !== '' &&
+      meeting !== '' &&
+      desc !== ''
     ) {
       dispatch(crewActions.reviseSend(Write_info, partyId));
     }
   };
 
-    //색깔 입히기
-    const theme = createTheme({
-      palette: {
-        primary: {
-          main: "#FF6853",
-        },
+  //색깔 입히기
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
       },
-    });
-
-  //back modal
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const modal = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 340,
-    bgcolor: "#FFFFFF",
-    borderRadius: "15px",
-    boxShadow: 24,
-    p: 3.5,
-  };
+    },
+  });
 
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-       <Box sx={{ flexGrow: 1 }}>
-        <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
-          <Toolbar>
-            <img
-              alt="back"
-              src="image/bar/back.png"
-              onClick={() => {
-                handleOpen();
-              }}
-            />
-            <Box sx={{ flexGrow: 1.1 }} />
-            <div style={{ color: "#161616", fontSize: "20px" }}>파티수정</div>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
+            <Toolbar>
+              <img
+                alt="back"
+                src="image/bar/back.png"
+                onClick={() => {
+                  history.push(`partyInfo/${partyId}`)
+                }}
+              />
+              <Box sx={{ flexGrow: 1.1 }} />
+              <div style={{ color: "#161616", fontSize: "20px" }}>파티수정</div>
 
-            <Box sx={{ flexGrow: 1 }} />
-            <span
-              onClick={() => {
-                sendReviseData();
-              }}
-              style={{ color: "#FF6853", fontSize: "18px" }}
-            >
-              완료
-            </span>
-          </Toolbar>
-        </AppBar>
-        <Modal open={open} onClose={handleClose}>
-          <Box sx={modal} justifyContent="center" alignItems="center" >
-            <div style={{ marginLeft: "3.5rem", marginBottom: "2rem" }}>
-              작성을 취소하시겠습니까?
-            </div>
-            <CancelButton
-              onClick={() => {
-                handleClose();
-              }}
-              style={{ marginRight: "1rem" }}
-            >
-              취소
-            </CancelButton>
-            <CancelButton
-              onClick={() => {
-                history.push("/home");
-              }}
-              style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
-            >
-              작성 취소
-            </CancelButton>
+              <Box sx={{ flexGrow: 1 }} />
+              <span
+                onClick={() => {
+                  sendReviseData();
+                }}
+                style={{ color: "#FF6853", fontSize: "18px" }}
+              >
+                완료
+              </span>
+            </Toolbar>
+          </AppBar>
+        </Box>
+
+        <Grid container alignItems="center" justifyContent="center">
+          {/* <Images image={image} setImage={setImage} /> */}
+          <TextField
+            value={title}
+            placeholder="파티제목"
+            variant="standard"
+            style={{ width: "85%" }}
+            sx={{ my: 3 }}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <MapView
+            store={store}
+            setStore={setStore}
+            setAddress={setAddress}
+            setPlace_url={setPlace_url}
+            setXy={setXy}
+          />
+          <PersonInfo
+            capacity={capacity}
+            setCapacity={setCapacity}
+            ageGroup={ageGroup}
+            setAgeGroup={setAgeGroup}
+            gender={gender}
+            setGender={setGender}
+          />
+          <Box
+            component="div"
+            sx={{
+              display: "inline",
+              width: "9rem",
+              mb: 4,
+              marginRight: "1.5rem",
+            }}
+          >
+            <RealDay date={date} setDate={setDate} />
           </Box>
-        </Modal>
-      </Box>
-
-      <Grid container alignItems="center" justifyContent="center">
-        {/* <Images image={image} setImage={setImage} /> */}
-        <TextField
-         value={title}
-          placeholder="파티제목"
-          variant="standard"
-          style={{ width: "85%" }}
-          sx={{ my: 3 }}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <MapView
-          store={store}
-          setStore={setStore}
-          setAddress={setAddress}
-          setPlace_url={setPlace_url}
-          setXy={setXy}
-        />
-        <PersonInfo
-          capacity={capacity}
-          setCapacity={setCapacity}
-          ageGroup={ageGroup}
-          setAgeGroup={setAgeGroup}
-          gender={gender}
-          setGender={setGender}
-        />
-        <Box
-          component="div"
-          sx={{ display: "inline", width: "9rem", mb: 4,marginRight: "2rem" }}
-        >
-          <RealDay date={date} setDate={setDate} />
-        </Box>
-        <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4  }}>
-          <TimeSelect time={time} setTime={setTime} />
-        </Box>
-        <TextField
-        value={meeting}
-          placeholder="만날 장소"
-          variant="standard"
-          style={{ width: "85%" }}
-          sx={{ mb: 3 }}
-          onChange={(e) => {
-            setMeeting(e.target.value);
-          }}
-        />
-        <TextField
-        value={desc}
-          multiline
-          placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
-          rows={6}
-          variant="standard"
-          style={{ width: "85%" }}
-          sx={{ pb: 1, mt: 2 }}
-          onChange={(e) => {
-            setDesc(e.target.value);
-          }}
-        />
-
-      </Grid>
+          <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4 }}>
+            <TimeSelect time={time} setTime={setTime} />
+          </Box>
+          <TextField
+            value={meeting}
+            placeholder="만날 장소"
+            variant="standard"
+            style={{ width: "85%" }}
+            sx={{ mb: 3 }}
+            onChange={(e) => {
+              setMeeting(e.target.value);
+            }}
+          />
+          <TextField
+            value={desc}
+            multiline
+            placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
+            rows={6}
+            variant="standard"
+            style={{ width: "85%" }}
+            sx={{ pb: 1, mt: 2 }}
+            onChange={(e) => {
+              setDesc(e.target.value);
+            }}
+          />
+        </Grid>
       </ThemeProvider>
+      {ToastStatus && (
+        <>
+          <Toast msg={ToastMsg} />
+        </>
+      )}
     </React.Fragment>
   );
 };
 
 export default PartyRevise;
-
-//취소버튼
-const CancelButton = styled.button`
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-  width: 130px;
-  height: 48px;
-`;
-
 

@@ -20,7 +20,7 @@ const PartyDetailInfo = (props) => {
           <GrayBar>ㅣ</GrayBar>
           <LocationText>{partyData?.address}</LocationText>
         </FlexBox>
-        <DetailInfoBtn href={partyData?.place_url}>
+        <DetailInfoBtn onClick={() => {window.location.href=partyData?.place_url}}>
           식당 상세 정보 확인하기
         </DetailInfoBtn>
       </WrapBox>
