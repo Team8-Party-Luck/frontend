@@ -16,8 +16,8 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
-    if(defaultImage.length !== 0){
-      setDefaultImage([])
+    if (defaultImage.length !== 0) {
+      setDefaultImage([]);
     }
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
@@ -101,7 +101,7 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                 <input
                   type="file"
                   id="input-file"
-                  accept='image/*'
+                  accept="image/*"
                   multiple
                   className="addButton"
                   style={{ display: "none" }}
