@@ -17,6 +17,7 @@ import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
 import PersonInfo from "./PersonInfo";
+import Header from "../../shared/Header";
 import Toast from "../../shared/Toast";
 
 //토스트 팝업 메시지
@@ -144,7 +145,7 @@ const PartyRevise = () => {
     return (
       <React.Fragment>
         <ThemeProvider theme={theme}>
-          <Box sx={{ flexGrow: 1 }}>
+          {/* <Box sx={{ flexGrow: 1 }}>
             <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
               <Toolbar>
                 <img
@@ -168,15 +169,15 @@ const PartyRevise = () => {
                 </span>
               </Toolbar>
             </AppBar>
-          </Box>
-  
-          <Grid container alignItems="center" justifyContent="center">
+          </Box> */}
+            <Header name={'파티수정'} type={'완료'} event={sendReviseData}/>
+          <Grid container style={{padding:'20px', paddingTop:'4em'}}>
             {/* <Images image={image} setImage={setImage} /> */}
             <TextField
               value={title}
               placeholder="파티제목"
               variant="standard"
-              style={{ width: "85%" }}
+              style={{ width: "100%" }}
               sx={{ my: 3 }}
               onChange={(e) => {
                 setTitle(e.target.value);
@@ -215,7 +216,7 @@ const PartyRevise = () => {
               value={meeting}
               placeholder="만날 장소"
               variant="standard"
-              style={{ width: "85%" }}
+              style={{ width: "100%" }}
               sx={{ mb: 3 }}
               onChange={(e) => {
                 setMeeting(e.target.value);
@@ -227,7 +228,7 @@ const PartyRevise = () => {
               placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
               rows={6}
               variant="standard"
-              style={{ width: "85%" }}
+              style={{ width: "100%" }}
               sx={{ pb: 1, mt: 2 }}
               onChange={(e) => {
                 setDesc(e.target.value);

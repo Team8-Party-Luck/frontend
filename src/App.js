@@ -37,6 +37,7 @@ function App() {
   // }, []);
 
   return (
+
     <Fullscreen>
       <Wrap>
         <MobileFrame className="MobileFramePage">
@@ -68,10 +69,12 @@ function App() {
         </MobileFrame>
       </Wrap>
     </Fullscreen>
+
   );
 }
 
 export default App;
+
 
 const Wrap = styled.div`
   width: 100vw;
@@ -100,3 +103,4 @@ const Fullscreen = styled.div`
   @media (min-width: 1580px) {
   }
 `;
+

@@ -9,6 +9,9 @@ const Header = (props) => {
     <WrapBox>
       <Box
         onClick={() => {
+          if(props.name==="파티등록"){
+            props.modal()
+          }
           history.goBack();
         }}
         sx={{ position: "absolute" }}

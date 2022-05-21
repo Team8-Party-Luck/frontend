@@ -11,6 +11,8 @@ import Age from "./Age";
 import RowRadioButtonsGroup from "./Gender";
 import AgeGroup from "./AgeGroup";
 
+//이모티콘
+import ic_location from "../../static/images/icon/arw_s@2x.png";
 const PersonInfo = ({
   capacity,
   setCapacity,
@@ -22,9 +24,7 @@ const PersonInfo = ({
   const [state, setState] = React.useState({
     bottom: false,
   });
-  console.log(capacity);
-  console.log(ageGroup);
-  console.log(gender);
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -110,7 +110,7 @@ const PersonInfo = ({
             onClick={toggleDrawer(anchor, true)}
             InputProps={{
               readOnly: true,
-              endAdornment: <img src="image/profile/arw_gray.png" />,
+              endAdornment: <img src={ic_location} alt="locationIcon"/>,
             }}
           ></TextField>
           <Drawer

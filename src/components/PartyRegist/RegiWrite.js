@@ -15,8 +15,10 @@ import MapView from "./kakao/MapView";
 import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
+import Header from "../../shared/Header";
 import Toast from "../../shared/Toast";
 import Popup from "../../shared/Popup";
+
 
 //토스트 팝업 메시지
 const msgList = {
@@ -35,6 +37,9 @@ const RegiWrite = () => {
 
   //모달
   const [openBack, setOpenBack] = useState(false);
+  const handleOpen = () => {
+    setOpenBack(true);
+  }
 
   //토스트 팝업 세팅
   const [ToastStatus, setToastStatus] = useState(false);
@@ -165,30 +170,7 @@ const RegiWrite = () => {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar sx={{ bgcolor: "#ffffff", position: "relative" }}>
-            <Toolbar>
-              <img
-                alt="back"
-                src="image/bar/back.png"
-                onClick={() => {
-                  setOpenBack(true);
-                }}
-              />
-              <Box sx={{ flexGrow: 1.1 }} />
-              <div style={{ color: "#161616", fontSize: "20px" }}>파티등록</div>
-
-              <Box sx={{ flexGrow: 1 }} />
-              <span
-                onClick={() => {
-                  sendWriteData();
-                }}
-                style={{ color: "#FF6853", fontSize: "18px" }}
-              >
-                완료
-              </span>
-            </Toolbar>
-          </AppBar>
+          <Header name={'파티등록'} type={"완료"} event={sendWriteData} modal={handleOpen}/>
           {openBack && (
             <Popup
               title={"작성을 취소하시겠습니까?"}
@@ -202,8 +184,8 @@ const RegiWrite = () => {
               back={"취소"}
             />
           )}
-        </Box>
-        <Grid container sx={{ padding: "2em;" }}>
+        {/* </Box> */}
+        <Grid container style={{padding:'20px', paddingTop:'4em'}}>
           <Images
             image={image}
             setImage={setImage}
@@ -244,10 +226,10 @@ const RegiWrite = () => {
               mb: 3,
             }}
           >
-            <Box component="div" sx={{ width: "45%" }}>
+            <Box component="div">
               <RealDay date={date} setDate={setDate} />
             </Box>
-            <Box component="div" sx={{ width: "45%" }}>
+            <Box component="div" >
               <TimeSelect time={time} setTime={setTime} />
             </Box>
           </Box>
