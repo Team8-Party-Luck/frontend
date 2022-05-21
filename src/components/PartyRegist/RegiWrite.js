@@ -54,8 +54,6 @@ const RegiWrite = () => {
     }
   }, [ToastStatus]);
 
-
-
   const configDate = new Date();
   //날짜설정
   let month = configDate.getMonth() + 1;
@@ -74,46 +72,45 @@ const RegiWrite = () => {
   //초기값 설정
   const [defaultImage, setDefaultImage] = useState([]);
   const [image, setImage] = useState([]);
-  const [title, setTitle] = useState('');
-  const [store, setStore] = useState('');
-  const [address, setAddress] = useState('');
-  const [place_url, setPlace_url] = useState('');
-  const [xy, setXy] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [ageGroup, setAgeGroup] = useState('');
-  const [gender, setGender] = useState('');
+  const [title, setTitle] = useState("");
+  const [store, setStore] = useState("");
+  const [address, setAddress] = useState("");
+  const [place_url, setPlace_url] = useState("");
+  const [xy, setXy] = useState("");
+  const [capacity, setCapacity] = useState("");
+  const [ageGroup, setAgeGroup] = useState("");
+  const [gender, setGender] = useState("");
   const [date, setDate] = useState(realDate);
   const [time, setTime] = useState(realTime);
-  const [meeting, setMeeting] = useState('');
-  const [desc, setDesc] = useState('');
+  const [meeting, setMeeting] = useState("");
+  const [desc, setDesc] = useState("");
 
   //파티생성 정보 보내기
   const sendWriteData = () => {
     if ((image.length || defaultImage.length) === 0) {
       handleToast("image");
     }
-    if (title === '') {
+    if (title === "") {
       handleToast("title");
     }
-    if (store === '') {
+    if (store === "") {
       handleToast("store");
     }
-    if (capacity === '') {
+    if (capacity === "") {
       handleToast("capacity");
     }
-    if (ageGroup === '') {
+    if (ageGroup === "") {
       handleToast("ageGroup");
     }
-    if (gender === '') {
+    if (gender === "") {
       handleToast("gender");
     }
-    if (meeting === '') {
+    if (meeting === "") {
       handleToast("meeting");
     }
-    if (desc === '') {
+    if (desc === "") {
       handleToast("desc");
     }
-
 
     if (typeof time === "object") {
       //시간 문자열 변환
@@ -124,8 +121,6 @@ const RegiWrite = () => {
       let realTime = `${hours}:${minutes}`;
       setTime(realTime);
     }
-
-
 
     const Write_info = {
       defaultImage: defaultImage,
@@ -146,13 +141,13 @@ const RegiWrite = () => {
 
     if (
       (image.length || defaultImage.length) !== 0 &&
-      title !== '' &&
-      store !== '' &&
-      capacity !== '' &&
-      ageGroup !== '' &&
-      gender !== '' &&
-      meeting !== '' &&
-      desc !== ''
+      title !== "" &&
+      store !== "" &&
+      capacity !== "" &&
+      ageGroup !== "" &&
+      gender !== "" &&
+      meeting !== "" &&
+      desc !== ""
     ) {
       dispatch(crewActions.regiWriteSend(Write_info));
     }
@@ -208,12 +203,7 @@ const RegiWrite = () => {
             />
           )}
         </Box>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="center"
-          sx={{ paddingTop: "1em;" }}
-        >
+        <Grid container sx={{ padding: "2em;" }}>
           <Images
             image={image}
             setImage={setImage}
@@ -223,7 +213,7 @@ const RegiWrite = () => {
           <TextField
             placeholder="파티제목"
             variant="standard"
-            style={{ width: "85%" }}
+            style={{ width: "100%" }}
             sx={{ mb: 3 }}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -247,24 +237,25 @@ const RegiWrite = () => {
             setGender={setGender}
           />
           <Box
-            component="div"
             sx={{
-              display: "inline",
-              width: "9rem",
-              mb: 4,
-              marginRight: "1.5rem",
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              mb: 3,
             }}
           >
-            <RealDay date={date} setDate={setDate} />
-          </Box>
-          <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4 }}>
-            <TimeSelect time={time} setTime={setTime} />
+            <Box component="div" sx={{ width: "45%" }}>
+              <RealDay date={date} setDate={setDate} />
+            </Box>
+            <Box component="div" sx={{ width: "45%" }}>
+              <TimeSelect time={time} setTime={setTime} />
+            </Box>
           </Box>
 
           <TextField
             placeholder="만날 장소"
             variant="standard"
-            style={{ width: "85%" }}
+            style={{ width: "100%" }}
             sx={{ mb: 3 }}
             onChange={(e) => {
               setMeeting(e.target.value);
@@ -275,7 +266,7 @@ const RegiWrite = () => {
             placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
             rows={6}
             variant="standard"
-            style={{ width: "85%" }}
+            style={{ width: "100%" }}
             sx={{ pb: 1, mt: 2 }}
             onChange={(e) => {
               setDesc(e.target.value);
