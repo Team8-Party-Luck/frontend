@@ -45,7 +45,7 @@ const Joined = () => {
   } else {
     return (
       <Box>
-        <Header name={"찜한 파티"} />
+        <Header name={"참여 히스토리"} />
         <WrapBox>
           {joinedData?.length > 0 &&
             joinedData?.map((cur, idx) => (
