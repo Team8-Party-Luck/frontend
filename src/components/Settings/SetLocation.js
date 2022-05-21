@@ -11,6 +11,17 @@ import { useState } from "react";
 import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
 
+//지역선택 scroll
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+    },
+  },
+};
+
 const SetLocation = (props) => {
   const { city, setCity, region, setRegion, user_info, count, setCount } =
     props;
@@ -46,6 +57,7 @@ const SetLocation = (props) => {
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-label">시/도</InputLabel>
           <Select
+            MenuProps={MenuProps}
             labelId="demo-select-small"
             id="demo-select-small"
             value={city}
@@ -73,6 +85,7 @@ const SetLocation = (props) => {
         >
           <InputLabel id="demo-select-small">구/군</InputLabel>
           <Select
+            MenuProps={MenuProps}
             labelId="demo-select-small"
             id="demo-select-small"
             value={region}

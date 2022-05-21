@@ -75,42 +75,39 @@ const regiWriteSend = (Write_info) => {
 
 //파티수정
 const reviseSend = (Write_info, partyId) => {
-  const token = sessionStorage.getItem("token");
-  return function (dispatch, getState, { history }) {
-    const file = new FormData();
-    file.append("title", Write_info.title);
-    file.append("store", Write_info.store);
-    file.append("address", Write_info.address);
-    file.append("place_url", Write_info.place_url);
-    file.append("xy", Write_info.xy);
-    file.append("capacity", Write_info.capacity);
-    file.append("age", Write_info.age);
-    file.append("gender", Write_info.gender);
-    file.append("date", Write_info.date);
-    file.append("time", Write_info.time);
-    file.append("meeting", Write_info.meeting);
-    file.append("desc", Write_info.desc);
+  return async function (dispatch, getState, { history }) {
+    try{
+      const file = new FormData();
+      file.append("title", Write_info.title);
+      file.append("store", Write_info.store);
+      file.append("address", Write_info.address);
+      file.append("place_url", Write_info.place_url);
+      file.append("xy", Write_info.xy);
+      file.append("capacity", Write_info.capacity);
+      file.append("age", Write_info.age);
+      file.append("gender", Write_info.gender);
+      file.append("date", Write_info.date);
+      file.append("time", Write_info.time);
+      file.append("meeting", Write_info.meeting);
+      file.append("desc", Write_info.desc);
+  
+      // Array.from(Write_info.image).forEach((a) => {
+      //   file.append("image", a);
+      // });
 
-    // Array.from(Write_info.image).forEach((a) => {
-    //   file.append("image", a);
-    // });
-
-    axios
+      const res = await axios
       .put(`http://3.38.180.96/api/party/${partyId}`, file, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type":
             "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
         },
-      })
-      .then((response) => {
-        console.log(response.data);
-
-        history.replace(`/partyInfo/${partyId}`);
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      console.log(res.data);
+      history.replace(`/partyInfo/${partyId}`);
+    } catch(err){
+      console.log(err);
+    }
   };
 };
 
@@ -176,7 +173,6 @@ const getRegionData = (regionInfo) => {
 
 //상세정보 받아오기
 const getDetailInfo = (partyId) => {
-  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get(

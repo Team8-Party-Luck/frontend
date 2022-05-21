@@ -24,6 +24,8 @@ import ChatDetail from "./pages/ChatDetail";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
 import Modal from "./shared/Modal";
 import ConfirmPage from "./pages/ConfirmPage";
+import styled from "styled-components";
+import background from './static/images/website/웹페이지.png'
 
 // import { actionCreators as alarmActions } from "./redux/modules/alarm";
 
@@ -34,7 +36,9 @@ function App() {
   // }, []);
 
   return (
-    <React.Fragment>
+    <Container>
+    <div id="wrap">
+      <SetDiv>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Login} />
         <Route path="/home" exact component={Home} />
@@ -57,8 +61,52 @@ function App() {
         <Route path="/modal" exact component={Modal} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
-    </React.Fragment>
+      </SetDiv>
+      </div>
+    </Container>
   );
 }
 
 export default App;
+
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  padding-top:-20rem;
+  #wrap {
+    width: 100%;
+    max-width: 20rem;
+    height: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 auto;
+    background-color: #fcfcfc;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    @media (min-width: 500px) {
+      left: 0%;
+      top: 0%;
+      overflow: hidden auto;
+    }
+    @media (min-width: 1000px) {
+      left: 25%;
+      top: 0%;
+      overflow: hidden auto;
+    }
+  }
+  @media (min-width: 500px) {
+    background: url(${background}) 0% 0% / cover no-repeat ;
+  }
+  & ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const SetDiv = styled.div`
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+`;
