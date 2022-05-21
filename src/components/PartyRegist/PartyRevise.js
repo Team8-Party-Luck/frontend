@@ -250,4 +250,3 @@ const PartyRevise = () => {
 
 export default PartyRevise;
 
-// s
