@@ -6,7 +6,8 @@ import user from "./modules/user";
 import crew from "./modules/crew";
 import alarm from "./modules/alarm";
 import chat from "./modules/chat";
-
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
@@ -16,6 +17,13 @@ const rootReducer = combineReducers({
   chat: chat,
   router: connectRouter(history),
 });
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const middlewares = [thunk.withExtraArgument({ history: history })];
 
@@ -36,6 +44,11 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
-let store = (initialStore) => createStore(rootReducer, enhancer);
+// let store = (initialStore) => createStore(rootReducer, enhancer);
+let store = (initialStore) => createStore(persistedReducer, enhancer);
+
+
 
 export default store();
+
+
