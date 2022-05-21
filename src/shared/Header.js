@@ -11,8 +11,10 @@ const Header = (props) => {
         onClick={() => {
           if(props.name==="파티등록"){
             props.modal()
+          }else {
+            history.goBack();
           }
-          history.goBack();
+          
         }}
         sx={{ position: "absolute" }}
       >
