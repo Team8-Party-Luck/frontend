@@ -14,6 +14,7 @@ const RealDay = ({ date, setDate }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
+      sx={{ minWidth: 120 }} 
         minDate={new Date()}
         label="만날 날짜"
         toolbarTitle="만날 날짜"

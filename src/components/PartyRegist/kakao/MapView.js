@@ -6,6 +6,8 @@ import TextField from "@mui/material/TextField";
 import KakaoMap from "./KakaoMap";
 import { history } from "../../../redux/configStore";
 
+//이모티콘
+import ic_location from "../../../static/images/icon/arw_s@2x.png";
 const style = {
   position: "absolute",
   top: "50%",
@@ -41,7 +43,7 @@ export default function MapView({
         sx={{ mb: 3 }}
         InputProps={{
           readOnly: true,
-          endAdornment: <img src="image/profile/arw_gray.png" />,
+          endAdornment: <img src={ic_location} alt="locationIcon"/>,
         }}
       ></TextField>
       <Modal

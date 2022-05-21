@@ -16,6 +16,14 @@ import axios from "axios";
 import styled from "styled-components";
 import NullData from "../shared/NullData";
 
+
+
+//이모티콘
+import ic_location from "../static/images/icon/ic_location.png";
+import ic_calendar from "../static/images/icon/ic_calendar.png";
+import ic_time from "../static/images/icon/ic_time.png";
+import ic_people from "../static/images/icon/ic_people.png";
+
 const Joined = () => {
   const dispatch = useDispatch();
 
@@ -68,7 +76,7 @@ const Joined = () => {
                     </Typography>
                     <Box sx={{ display: "flex", marginTop: 0.3 }}>
                       <img
-                        src="image/home/ic_location.png"
+                        src={ic_location}
                         style={{ width: 18, height: 18 }}
                         alt="위치"
                       />
@@ -77,7 +85,7 @@ const Joined = () => {
                       </Typography>
 
                       <img
-                        src="image/home/ic_calendar.png"
+                        src={ic_calendar}
                         style={{ width: 17, height: 17 }}
                         alt="달력"
                       />
@@ -85,7 +93,7 @@ const Joined = () => {
                         &nbsp;{cur.date}&nbsp;&nbsp;
                       </Typography>
                       <img
-                        src="image/home/ic_time.png"
+                        src={ic_time}
                         style={{ width: 17, height: 17 }}
                         alt="시간"
                       />
@@ -95,7 +103,7 @@ const Joined = () => {
                     </Box>
                     <Box sx={{ display: "flex", marginTop: 0.5 }}>
                       <img
-                        src="image/home/ic_people.png"
+                        src={ic_people}
                         style={{ width: 17, height: 17 }}
                         alt="시간"
                       />

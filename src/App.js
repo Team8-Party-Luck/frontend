@@ -36,9 +36,6 @@ function App() {
   // }, []);
 
   return (
-    <Container>
-    <div id="wrap">
-      <SetDiv>
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Login} />
         <Route path="/home" exact component={Home} />
@@ -61,52 +58,9 @@ function App() {
         <Route path="/modal" exact component={Modal} />
         <Route path="/auth/kakao" component={OAuth2RedirectHandeler}></Route>
       </ConnectedRouter>
-      </SetDiv>
-      </div>
-    </Container>
+
   );
 }
 
 export default App;
 
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
-  padding-top:-20rem;
-  #wrap {
-    width: 100%;
-    max-width: 20rem;
-    height: 100%;
-    min-height: 100vh;
-    margin: 0 auto;
-    padding: 0 auto;
-    background-color: #fcfcfc;
-    position: relative;
-    -webkit-overflow-scrolling: touch;
-    @media (min-width: 500px) {
-      left: 0%;
-      top: 0%;
-      overflow: hidden auto;
-    }
-    @media (min-width: 1000px) {
-      left: 25%;
-      top: 0%;
-      overflow: hidden auto;
-    }
-  }
-  @media (min-width: 500px) {
-    background: url(${background}) 0% 0% / cover no-repeat ;
-  }
-  & ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const SetDiv = styled.div`
-  width: 100%;
-  height: auto;
-  max-height: 100vh;
-`;
