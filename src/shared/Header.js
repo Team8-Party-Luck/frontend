@@ -31,7 +31,7 @@ const WrapBox = styled.div`
   position: fixed;
   background: white;
   paddingtop: 1.1em;
-  z-index: 1000;
+  z-index: 100;
 `;
 
 const HeaderText = styled.p`

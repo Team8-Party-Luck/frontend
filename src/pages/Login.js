@@ -26,16 +26,25 @@ const Login = () => {
     <Wrapbox>
       <StyledSlider {...settings}>
         <ImgBox>
-          <Image src={OnBoarding1} />
-        </ImgBox>
-        <ImgBox>
           <Image src={OnBoarding2} />
+          <ImgText>
+            맛집을 가고싶은데 <br />
+            같이 갈 사람이 없어서 포기하셨나요?
+          </ImgText>
         </ImgBox>
         <ImgBox>
           <Image src={OnBoarding3} />
+          <ImgText>
+            내가 원하는 시간과 장소에서 열리는 <br />
+            맛집 파티에 참여하세요
+          </ImgText>
         </ImgBox>
         <ImgBox>
           <Image src={OnBoarding4} />
+          <ImgText>
+            내가 원하는 조건의 <br />
+            파티원을 모집할 수 있습니다
+          </ImgText>
         </ImgBox>
       </StyledSlider>
       <LoginBox>
@@ -57,6 +66,8 @@ const Wrapbox = styled.div`
   padding-top: 8em;
   background: #fff5f4;
   background-size: cover;
+  /* position: fixed; */
+  background-repeat: no-repeat;
 `;
 
 // const JustSee = styled.button`
@@ -70,8 +81,9 @@ const Wrapbox = styled.div`
 
 const StyledSlider = styled(Slider)`
   .slick-slide div {
-    width: 100%;
+    width: 80%;
     // border: 1px solid;
+    margin: 0 auto;
   }
   .slick-dots li button:before {
     color: gray;
@@ -81,7 +93,7 @@ const StyledSlider = styled(Slider)`
   }
 `;
 const Image = styled.img`
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
 `;
 
@@ -97,6 +109,10 @@ const LoginBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const ImgText = styled.p`
+  font-size: 1.2em;
+  text-align: center;
 `;
 
 const KakaoImg = styled.img`

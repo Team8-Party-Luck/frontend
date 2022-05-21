@@ -3,8 +3,6 @@ import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configStore";
 
-const token = sessionStorage.getItem("token");
-
 //액션
 const GET_CREW = "GET_CREW";
 const GET_DETAIL = "GET_PARTYDETAIL";
@@ -75,8 +73,9 @@ const regiWriteSend = (Write_info) => {
 
 //파티수정
 const reviseSend = (Write_info, partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
-    try{
+    try {
       const file = new FormData();
       file.append("title", Write_info.title);
       file.append("store", Write_info.store);
@@ -90,22 +89,25 @@ const reviseSend = (Write_info, partyId) => {
       file.append("time", Write_info.time);
       file.append("meeting", Write_info.meeting);
       file.append("desc", Write_info.desc);
-  
+
       // Array.from(Write_info.image).forEach((a) => {
       //   file.append("image", a);
       // });
 
-      const res = await axios
-      .put(`http://3.38.180.96/api/party/${partyId}`, file, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type":
-            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
-        },
-      });
+      const res = await axios.put(
+        `http://3.38.180.96/api/party/${partyId}`,
+        file,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type":
+              "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+          },
+        }
+      );
       console.log(res.data);
       history.replace(`/partyInfo/${partyId}`);
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -150,6 +152,7 @@ const getDataDB = (pageNum) => {
 
 //지역필터
 const getRegionData = (regionInfo) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("answer", regionInfo.answer);
@@ -173,6 +176,7 @@ const getRegionData = (regionInfo) => {
 
 //상세정보 받아오기
 const getDetailInfo = (partyId) => {
+  const token = sessionStorage.getItem("token");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get(
@@ -217,6 +221,7 @@ const getUserList = (partyId) => {
 // 내가 참여한 파티 조회
 const getJoinedData = () => {
   const token = sessionStorage.getItem("token");
+  console.log("내가 참여한 파티 조회");
   return async function (dispatch, getState, { history }) {
     try {
       const res = await axios.get(
