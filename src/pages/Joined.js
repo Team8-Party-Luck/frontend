@@ -37,7 +37,7 @@ const Joined = () => {
         <WrapBox>
           {joinedData?.length > 0 &&
             joinedData?.map((cur, idx) => (
-              <AllData {...cur} userInfo={userInfo} />
+              <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
         </WrapBox>
         <BottomNav />

@@ -141,7 +141,7 @@ const PartyList = (props) => {
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
-            <AllData {...cur} userInfo={userInfo} />
+            <AllData {...cur} userInfo={userInfo} key={idx} />
           ))}
         </ListBox>
       </TabPanel>
@@ -155,7 +155,7 @@ const PartyList = (props) => {
           />
         </ThemeProvider>
         {regionData?.map((cur, idx) => (
-          <AllData {...cur} userInfo={userInfo} />
+          <AllData {...cur} userInfo={userInfo} key={idx} />
         ))}
       </TabPanel>
       <TabPanel value={value} index={2}>
@@ -166,7 +166,7 @@ const PartyList = (props) => {
         ) : (
           <>
             {willData?.map((cur, idx) => (
-              <AllData {...cur} userInfo={userInfo} />
+              <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
           </>
         )}
@@ -179,7 +179,7 @@ const PartyList = (props) => {
         ) : (
           <>
             {scrapData?.map((cur, idx) => (
-              <AllData {...cur} userInfo={userInfo} />
+              <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
           </>
         )}
