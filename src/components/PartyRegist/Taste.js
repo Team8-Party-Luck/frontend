@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import styled from "styled-components";
 
 import KorImg from "../../static/images/category/korean.png";
 import ChiImg from "../../static/images/category/chinese.png";
@@ -28,8 +29,175 @@ const Taste = ({image, setImage, defaultImage, setDefaultImage, setShowImages })
     setDefaultImage(props)
   }
   return (
-    <Stack>
-      <Stack direction="row" spacing={2.9} sx={{mb:2}}>
+    <React.Fragment >
+      <FoodBox>
+        <Wrap>
+          {defaultImage === "한식" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("한식");
+              }}
+            >
+              <FoodImg src={SelectedKorImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("한식");
+              }}
+            >
+              <FoodImg src={KorImg} />
+            </ListBox>
+          )}
+          <FoodText>한식</FoodText>
+        </Wrap>
+
+        <Wrap>
+          {defaultImage === "중식/아시안" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("중식/아시안");
+              }}
+            >
+              <FoodImg src={SelectedChiImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("중식/아시안");
+              }}
+            >
+              <FoodImg src={ChiImg} />
+            </ListBox>
+          )}
+          <FoodText>중식/아시안</FoodText>
+        </Wrap>
+        
+        <Wrap>
+          {defaultImage === "일식" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("일식");
+              }}
+            >
+              <FoodImg src={SelectedJapImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("일식");
+              }}
+            >
+              <FoodImg src={JapImg} />
+            </ListBox>
+          )}
+          <FoodText>일식</FoodText>
+        </Wrap>
+
+        <Wrap>
+          {defaultImage === "양식" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("양식");
+              }}
+            >
+              <FoodImg src={SelectedWesImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("양식");
+              }}
+            >
+              <FoodImg src={WesImg} />
+            </ListBox>
+          )}
+          <FoodText>양식</FoodText>
+        </Wrap>
+
+        <Wrap>
+          {defaultImage === "패스트푸드" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("패스트푸드");
+              }}
+            >
+              <FoodImg src={SelectedFastImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("패스트푸드");
+              }}
+            >
+              <FoodImg src={FastImg} />
+            </ListBox>
+          )}
+          <FoodText>패스트푸드</FoodText>
+        </Wrap>
+
+        <Wrap>
+          {defaultImage === "샐러드" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("샐러드");
+              }}
+            >
+              <FoodImg src={SelectedSaladImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("샐러드");
+              }}
+            >
+              <FoodImg src={SaladImg} />
+            </ListBox>
+          )}
+          <FoodText>샐러드</FoodText>
+        </Wrap>
+        <Wrap>
+          {defaultImage === "커피/디저트" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("커피/디저트");
+              }}
+            >
+              <FoodImg src={SelectedCoffeeImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("커피/디저트");
+              }}
+            >
+              <FoodImg src={CoffeeImg} />
+            </ListBox>
+          )}
+          <FoodText>커피/디저트</FoodText>
+        </Wrap>
+
+        <Wrap>
+          {defaultImage === "기타" ? (
+            <ListBox
+              onClick={() => {
+                settingImage("기타");
+              }}
+            >
+              <FoodImg src={SelectedEtcImg} />
+            </ListBox>
+          ) : (
+            <ListBox
+              onClick={() => {
+                settingImage("기타");
+              }}
+            >
+              <FoodImg src={EtcImg} />
+            </ListBox>
+          )}
+          <FoodText>기타</FoodText>
+        </Wrap>
+        {/* <Stack direction="row" spacing={2.9} sx={{mb:2}}>
         {defaultImage === "한식" ? (
           <Stack spacing={10}>
             <img
@@ -233,9 +401,41 @@ const Taste = ({image, setImage, defaultImage, setDefaultImage, setShowImages })
             <Box style={{ marginTop: 5, marginLeft: "1.1rem" }}>기타</Box>
           </Stack>
         )}
-      </Stack>
-    </Stack>
+      </Stack> */}
+      </FoodBox>
+    </React.Fragment>
   );
 };
+
+
+
+const FoodBox = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 1em;
+  margin: 0 auto;
+  margin-top: 1em;
+`;
+
+const ListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Wrap = styled.div``;
+
+const FoodText = styled.p`
+  color: black;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  text-align: center;
+`;
+
+const FoodImg = styled.img`
+  width: 4.5em;
+  height: 4.5em;
+`;
 
 export default Taste;

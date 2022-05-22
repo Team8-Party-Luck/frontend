@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
+
+
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -19,7 +19,6 @@ import MapView from "./kakao/MapView";
 import PersonInfo from "./PersonInfo";
 import Header from "../../shared/Header";
 import Toast from "../../shared/Toast";
-import { CompareSharp } from "@mui/icons-material";
 
 //토스트 팝업 메시지
 const msgList = {
@@ -64,7 +63,7 @@ const PartyRevise = () => {
           },
         }
       );
-      console.log(posts)
+      console.log(posts);
       setTitle(posts.data.title);
       setStore(posts.data.store);
       setAddress(posts.data.address);
@@ -166,7 +165,8 @@ const PartyRevise = () => {
       <ThemeProvider theme={theme}>
         <Header name={"파티수정"} type={"완료"} event={sendReviseData} />
         <Grid container style={{ padding: "20px", paddingTop: "4em" }}>
-          {/* <Images image={image} setImage={setImage} /> */}
+         
+          {/* <Images image=  {image} setImage={setImage} /> */}
           <TextField
             value={title}
             placeholder="파티제목"
