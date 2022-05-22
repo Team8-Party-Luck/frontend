@@ -136,7 +136,7 @@ export const crewApi = {
 
   //파티 신청
   partySub: (partyId) =>
-    api.post(`api/party/in/${partyId}`, {
+    api.get(`api/party/in/${partyId}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
