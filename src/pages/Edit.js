@@ -14,6 +14,7 @@ import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
 import Toast from "../shared/Toast";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { crewApi } from "../shared/api";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 
@@ -50,6 +51,8 @@ const Edit = (props) => {
     sns: user_info?.sns,
     intro: user_info?.intro,
   });
+
+  console.log(imageSrc, imageUrl, age, gender, food, city, region, values);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -116,15 +119,13 @@ const Edit = (props) => {
       Update_info.append("image", imageUrl);
     }
     Update_info.append("city", city);
-    Update_info.append("age", age);
-    Update_info.append("gender", gender);
     Update_info.append("region", region);
     Update_info.append("food", food);
     Update_info.append("nickname", values.nickname);
     Update_info.append("sns", values.sns);
     Update_info.append("intro", values.intro);
 
-    dispatch(userActions.updateSettingsData(Update_info));
+    // dispatch(userActions.updateSettingsData(Update_info));
   };
 
   return (
