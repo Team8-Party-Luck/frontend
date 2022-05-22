@@ -4,8 +4,11 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
-import radioButton from "../../static/images/icon/라디오버튼.png";
-import radioButtonSelc from "../../static/images/icon/라디오버튼-1.png";
+
+import radioButton from '../../static/images/icon/라디오버튼.png';
+import radioButtonSelc from '../../static/images/icon/라디오버튼-1.png';
+import deleteIcon from '../../static/images/icon/파티등록_이미지삭제버튼.png';
+
 
 import Taste from "./Taste";
 const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
@@ -177,7 +180,8 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                     />
                     <span onClick={() => handleDeleteImage(id)}>
                       {" "}
-                      <ClearIcon sx={{ mb: 8, ml: -1.7, fontSize: "1.3rem" }} />
+                      <img src={deleteIcon} alt="deletePhoto" style={{width:'1.3rem', height:'1.3rem', marginBottom:'4rem', marginLeft:'-1rem',}}/>
+                      {/* <deleteIcon sx={{ mb: 8, ml: -1.7, fontSize: "1.3rem" }} /> */}
                     </span>
                   </span>
                 ))}

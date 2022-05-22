@@ -1,9 +1,10 @@
 import { Box, IconButton, Button, Avatar, Typography } from "@mui/material";
+import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import { red } from "@mui/material/colors";
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";

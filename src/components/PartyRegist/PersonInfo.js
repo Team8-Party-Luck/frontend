@@ -39,54 +39,60 @@ const PersonInfo = ({
   const list = (anchor) => (
     <Box
       sx={{
-        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+        width: anchor === "top" || anchor === "bottom" ? "auto" : "250",
       }}
       role="presentation"
     >
-      <h2 style={{ margin: "2rem" }}>모집인원 정보</h2>
+      <h2 style={{ display: "flex", justifyContent: "center", margin: "2rem" }}>
+        모집인원 정보
+      </h2>
 
-      <Box sx={{ m: 2 }}>
-        <Grid container spacing={1}>
-          <Grid item xs={2.5} sx={{ mt: 2 }}>
-            <h4>인원수</h4>
-          </Grid>
-          <Grid item xs={9.5}>
-            <Age capacity={capacity} setCapacity={setCapacity} />
-          </Grid>
-        </Grid>
-      </Box>
-      <Divider />
-
-      <Box sx={{ m: 2 }}>
-        <Grid container spacing={1}>
-          <Grid item xs={2.5} sx={{ mt: 1 }}>
-            <h4>연령대</h4>
-          </Grid>
-          <Grid item>
-            <AgeGroup ageGroup={ageGroup} setAgeGroup={setAgeGroup} />
-          </Grid>
-        </Grid>
-      </Box>
-      <Divider />
-
-      <Box sx={{ m: 2 }}>
-        <Grid container spacing={1}>
-          <Grid item xs={2.1} sx={{ mt: 1.5 }}>
-            <h4>성별</h4>
-          </Grid>
-          <Grid item xs={9}>
-            <RowRadioButtonsGroup gender={gender} setGender={setGender} />
-          </Grid>
-        </Grid>
-      </Box>
-      <Divider />
-
-      <ResistButton
-        onClick={toggleDrawer(anchor, false)}
-        style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "0.5rem",
+          lineHeight: "4rem",
+        }}
       >
-        등록
-      </ResistButton>
+        <h4 style={{marginRight:'2rem'}}>인원수</h4>
+        <Age capacity={capacity} setCapacity={setCapacity} />
+      </div>
+      <Divider />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "1rem",
+          lineHeight: "2rem",
+        }}
+      >
+        <h4 style={{marginRight:'2rem'}} >연령대</h4>
+        <AgeGroup ageGroup={ageGroup} setAgeGroup={setAgeGroup} />
+      </div>
+      <Divider />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "0.5rem",
+          lineHeight: "4rem",
+        }}
+      >
+        <h4 style={{marginRight:'2rem'}}>성별</h4>
+        <RowRadioButtonsGroup gender={gender} setGender={setGender} />
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ResistButton
+          onClick={toggleDrawer(anchor, false)}
+          style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
+        >
+          등록
+        </ResistButton>
+      </div>
     </Box>
   );
 
