@@ -50,6 +50,8 @@ const PartyRevise = () => {
   const [meeting, setMeeting] = useState("");
   const [desc, setDesc] = useState("");
 
+
+
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     (async () => {
