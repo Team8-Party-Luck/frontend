@@ -4,15 +4,14 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
+import radioButton from '../../static/images/icon/라디오버튼.png';
+import radioButtonSelc from '../../static/images/icon/라디오버튼-1.png';
 
 import Taste from "./Taste";
 const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
 
-  const handleRadio = (e) => {
-    setForm(e.target.value);
-  };
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
@@ -49,7 +48,7 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
 
   return (
     <div className="addPicture" style={{ marginBottom: "1.5rem" }}>
-      <label>
+      {/* <label>
         <ImageRadio
           type="radio"
           value="basic"
@@ -66,10 +65,60 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
           onChange={handleRadio}
         />
         직접 업로드
-      </label>
+      </label> */}
+      {/* 라디오 버튼 */}
+      <div style={{ marginBottom: "1rem" }}>
+        <span style={{ display: "flex", alignItems: "center" }}>
+          {form === "basic" ? (
+            <img
+              alt="라디오버튼"
+              src={radioButtonSelc}
+              style={{ width: "1.2rem", height: "1.2rem" }}
+              value="basic"
+              onClick={() => {
+                setForm("basic");
+              }}
+            />
+          ) : (
+            <img
+              alt="라디오버튼"
+              src={radioButton}
+              style={{ width: "1.2rem", height: "1.2rem" }}
+              value="basic"
+              onClick={() => {
+                setForm("basic");
+              }}
+            />
+          )}
+          <span style={{ marginRight: "1rem" }}>기본 이미지</span>
+          {/* </span> */}
+          {/* <span style={{ display:'flex', alignItems:'center'}}> */}
+          {form === "directly" ? (
+            <img
+              alt="라디오버튼"
+              src={radioButtonSelc}
+              style={{ width: "1.2rem", height: "1.2rem", marginRight: "3px" }}
+              value="directly"
+              onClick={(e) => {
+                setForm("directly");
+              }}
+            />
+          ) : (
+            <img
+              alt="라디오버튼"
+              src={radioButton}
+              style={{ width: "1.2rem", height: "1.2rem", marginRight: "3px" }}
+              value="directly"
+              onClick={(e) => {
+                setForm("directly");
+              }}
+            />
+          )}
+          <span>직접 업로드</span>
+        </span>
+      </div>
 
       {form === "basic" ? (
-        <Box sx={{ width: "100%" }}>
           <Taste
             image={image}
             setImage={setImage}
@@ -77,15 +126,11 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
             setDefaultImage={setDefaultImage}
             setShowImages={setShowImages}
           />
-        </Box>
       ) : (
         <React.Fragment>
           <Box style={{ marginLeft: "2rem" }}>{showImages.length}/10 </Box>
           <div
             style={{
-              // border: "1px solid black",
-              // borderRadius: "10px",
-              // margin: "0.5rem",
               width: "21rem",
             }}
           >
@@ -151,12 +196,5 @@ const Img = styled.img`
   border-radius: 5px;
 `;
 
-const ImageRadio = styled.input`
-  height: 16px;
-  width: 16px;
-  vertical-align: middle;
-  margin: 15px 5px 15px 10px;
-  accent-color: #f7543e;
-`;
 
 export default Images;
