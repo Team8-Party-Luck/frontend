@@ -4,8 +4,6 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-
-
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { useSelector, useDispatch } from "react-redux";
@@ -49,8 +47,6 @@ const PartyRevise = () => {
   const [time, setTime] = useState("");
   const [meeting, setMeeting] = useState("");
   const [desc, setDesc] = useState("");
-
-
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -167,7 +163,6 @@ const PartyRevise = () => {
       <ThemeProvider theme={theme}>
         <Header name={"파티수정"} type={"완료"} event={sendReviseData} />
         <Grid container style={{ padding: "20px", paddingTop: "4em" }}>
-         
           {/* <Images image=  {image} setImage={setImage} /> */}
           <TextField
             value={title}
