@@ -48,30 +48,16 @@ const Scrap = () => {
     );
   } else {
     return (
-      <Box>
+      <ConBox>
         <Header name={"찜한 파티"} />
         <WrapBox>
           {scrapData?.length > 0 &&
             scrapData?.map((cur, idx) => (
-              <AllData
-                key={cur?.partyId}
-                partyId={cur?.partyId}
-                title={cur?.title}
-                image={cur?.image}
-                store={cur?.store}
-                address={cur?.address}
-                date={cur?.date}
-                time={cur?.time}
-                capacity={cur?.capacity}
-                age={cur?.age}
-                gender={cur?.gender}
-                hostId={cur?.hostId}
-                userInfo={userInfo}
-              />
+              <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
         </WrapBox>
         <BottomNav />
-      </Box>
+      </ConBox>
     );
   }
 };
@@ -87,6 +73,10 @@ const WrapBox = styled.div`
   width: 100%;
   padding-top: 3.5em;
   padding-bottom: 5em;
+`;
+
+const ConBox = styled.div`
+  width: 100%;
 `;
 
 export default Scrap;

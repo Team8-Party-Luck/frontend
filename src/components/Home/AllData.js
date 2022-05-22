@@ -46,6 +46,7 @@ const AllData = (props) => {
       onClick={() => {
         history.push(`/partyInfo/${partyId}`);
       }}
+      key={partyId}
     >
       <TitleText>{title}</TitleText>
       <FlexBox>
@@ -138,7 +139,7 @@ const IconBox = styled.img`
 const HostImg = styled.img`
   position: absolute;
   right: 1em;
-  bottom: 0;
+  bottom: 0.2em;
   width: 3.9em;
   height: 1.35em;
 `;

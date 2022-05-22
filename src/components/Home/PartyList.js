@@ -126,7 +126,7 @@ const PartyList = (props) => {
   });
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <React.Fragment>
       <ThemeProvider theme={theme}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange} centered>
@@ -141,21 +141,7 @@ const PartyList = (props) => {
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
-            <AllData
-              key={cur?.partyId}
-              partyId={cur?.partyId}
-              title={cur?.title}
-              image={cur?.image}
-              store={cur?.store}
-              address={cur?.address}
-              date={cur?.date}
-              time={cur?.time}
-              capacity={cur?.capacity}
-              age={cur?.age}
-              gender={cur?.gender}
-              hostId={cur?.hostId}
-              userInfo={userInfo}
-            />
+            <AllData {...cur} userInfo={userInfo} />
           ))}
         </ListBox>
       </TabPanel>
@@ -169,21 +155,7 @@ const PartyList = (props) => {
           />
         </ThemeProvider>
         {regionData?.map((cur, idx) => (
-          <AllData
-            key={cur?.partyId}
-            partyId={cur?.partyId}
-            title={cur?.title}
-            image={cur?.image}
-            store={cur?.store}
-            address={cur?.address}
-            date={cur?.date}
-            time={cur?.time}
-            capacity={cur?.capacity}
-            age={cur?.age}
-            gender={cur?.gender}
-            hostId={cur?.hostId}
-            userInfo={userInfo}
-          />
+          <AllData {...cur} userInfo={userInfo} />
         ))}
       </TabPanel>
       <TabPanel value={value} index={2}>
@@ -194,21 +166,7 @@ const PartyList = (props) => {
         ) : (
           <>
             {willData?.map((cur, idx) => (
-              <AllData
-                key={cur?.partyId}
-                partyId={cur?.partyId}
-                title={cur?.title}
-                image={cur?.image}
-                store={cur?.store}
-                address={cur?.address}
-                date={cur?.date}
-                time={cur?.time}
-                capacity={cur?.capacity}
-                age={cur?.age}
-                gender={cur?.gender}
-                hostId={cur?.hostId}
-                userInfo={userInfo}
-              />
+              <AllData {...cur} userInfo={userInfo} />
             ))}
           </>
         )}
@@ -221,26 +179,12 @@ const PartyList = (props) => {
         ) : (
           <>
             {scrapData?.map((cur, idx) => (
-              <AllData
-                key={cur?.partyId}
-                partyId={cur?.partyId}
-                title={cur?.title}
-                image={cur?.image}
-                store={cur?.store}
-                address={cur?.address}
-                date={cur?.date}
-                time={cur?.time}
-                capacity={cur?.capacity}
-                age={cur?.age}
-                gender={cur?.gender}
-                hostId={cur?.hostId}
-                userInfo={userInfo}
-              />
+              <AllData {...cur} userInfo={userInfo} />
             ))}
           </>
         )}
       </TabPanel>
-    </Box>
+    </React.Fragment>
   );
 };
 

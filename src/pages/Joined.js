@@ -1,28 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../shared/Header";
-import Box from "@mui/material/Box";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import { history } from "../redux/configStore";
-import Avatar from "@mui/material/Avatar";
 import BottomNav from "../shared/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useState } from "react";
-import _ from "lodash";
-import { useRef } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import NullData from "../shared/NullData";
 import AllData from "../components/Home/AllData";
-
-//이모티콘
-import ic_location from "../static/images/icon/ic_location.png";
-import ic_calendar from "../static/images/icon/ic_calendar.png";
-import ic_time from "../static/images/icon/ic_time.png";
-import ic_people from "../static/images/icon/ic_people.png";
 
 const Joined = () => {
   const dispatch = useDispatch();
@@ -48,30 +32,16 @@ const Joined = () => {
     );
   } else {
     return (
-      <Box>
+      <React.Fragment>
         <Header name={"참여 히스토리"} />
         <WrapBox>
           {joinedData?.length > 0 &&
             joinedData?.map((cur, idx) => (
-              <AllData
-                key={cur?.partyId}
-                partyId={cur?.partyId}
-                title={cur?.title}
-                image={cur?.image}
-                store={cur?.store}
-                address={cur?.address}
-                date={cur?.date}
-                time={cur?.time}
-                capacity={cur?.capacity}
-                age={cur?.age}
-                gender={cur?.gender}
-                hostId={cur?.hostId}
-                userInfo={userInfo}
-              />
+              <AllData {...cur} userInfo={userInfo} />
             ))}
         </WrapBox>
         <BottomNav />
-      </Box>
+      </React.Fragment>
     );
   }
 };
