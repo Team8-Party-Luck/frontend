@@ -2,7 +2,7 @@ import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configStore";
-import { crewApi } from "../../shared/api";
+import { crewApi, userApi } from "../../shared/api";
 
 //액션
 const GET_CREW = "GET_CREW";
@@ -30,8 +30,50 @@ const initialState = { crew: [] };
 //미들웨어
 
 //파티생성
+// const regiWriteSend = (Write_info) => {
+//   const token = sessionStorage.getItem("token");
+//   return function (dispatch, getState, { history }) {
+//     const file = new FormData();
+//     file.append("defaultImage", Write_info.defaultImage);
+//     file.append("title", Write_info.title);
+//     file.append("store", Write_info.store);
+//     file.append("address", Write_info.address);
+//     file.append("place_url", Write_info.place_url);
+//     file.append("xy", Write_info.xy);
+//     file.append("capacity", Write_info.capacity);
+//     file.append("age", Write_info.age);
+//     file.append("gender", Write_info.gender);
+//     file.append("date", Write_info.date);
+//     file.append("time", Write_info.time);
+//     file.append("meeting", Write_info.meeting);
+//     file.append("desc", Write_info.desc);
+
+//     Array.from(Write_info.image).forEach((a) => {
+//       file.append("image", a);
+//     });
+
+//     axios
+//       .post("http://3.38.180.96/api/party", file, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "Content-Type":
+//             "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response.data);
+//         //메인페이지에서 데이터를 불러오는 함수
+//         // alert("파티를 등록하시겠습니까?");
+//         history.push("/home");
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
+
+//파티생성
 const regiWriteSend = (Write_info) => {
-  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("defaultImage", Write_info.defaultImage);
@@ -52,169 +94,259 @@ const regiWriteSend = (Write_info) => {
       file.append("image", a);
     });
 
-    axios
-      .post("http://3.38.180.96/api/party", file, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type":
-            "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        //메인페이지에서 데이터를 불러오는 함수
-        // alert("파티를 등록하시겠습니까?");
+    crewApi
+      .partyRegi(file)
+      .then((res) => {
+        console.log(res.data);
         history.push("/home");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
 
+
+// //파티수정
+// const reviseSend = (Write_info, partyId) => {
+//   const token = sessionStorage.getItem("token");
+//   return async function (dispatch, getState, { history }) {
+//     try {
+//       const file = new FormData();
+//       file.append("title", Write_info.title);
+//       file.append("store", Write_info.store);
+//       file.append("address", Write_info.address);
+//       file.append("place_url", Write_info.place_url);
+//       file.append("xy", Write_info.xy);
+//       file.append("capacity", Write_info.capacity);
+//       file.append("age", Write_info.age);
+//       file.append("gender", Write_info.gender);
+//       file.append("date", Write_info.date);
+//       file.append("time", Write_info.time);
+//       file.append("meeting", Write_info.meeting);
+//       file.append("desc", Write_info.desc);
+
+//       // Array.from(Write_info.image).forEach((a) => {
+//       //   file.append("image", a);
+//       // });
+
+//       const res = await axios.put(
+//         `http://3.38.180.96/api/party/${partyId}`,
+//         file,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "Content-Type":
+//               "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+//           },
+//         }
+//       );
+//       console.log(res.data);
+//       history.replace(`/partyInfo/${partyId}`);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
 //파티수정
 const reviseSend = (Write_info, partyId) => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    try {
-      const file = new FormData();
-      file.append("title", Write_info.title);
-      file.append("store", Write_info.store);
-      file.append("address", Write_info.address);
-      file.append("place_url", Write_info.place_url);
-      file.append("xy", Write_info.xy);
-      file.append("capacity", Write_info.capacity);
-      file.append("age", Write_info.age);
-      file.append("gender", Write_info.gender);
-      file.append("date", Write_info.date);
-      file.append("time", Write_info.time);
-      file.append("meeting", Write_info.meeting);
-      file.append("desc", Write_info.desc);
+  return function (dispatch, getState, { history }) {
+    const file = new FormData();
+    file.append("title", Write_info.title);
+    file.append("store", Write_info.store);
+    file.append("address", Write_info.address);
+    file.append("place_url", Write_info.place_url);
+    file.append("xy", Write_info.xy);
+    file.append("capacity", Write_info.capacity);
+    file.append("age", Write_info.age);
+    file.append("gender", Write_info.gender);
+    file.append("date", Write_info.date);
+    file.append("time", Write_info.time);
+    file.append("meeting", Write_info.meeting);
+    file.append("desc", Write_info.desc);
 
-      // Array.from(Write_info.image).forEach((a) => {
-      //   file.append("image", a);
-      // });
+    // Array.from(Write_info.image).forEach((a) => {
+    //   file.append("image", a);
+    // });
 
-      const res = await axios.put(
-        `http://3.38.180.96/api/party/${partyId}`,
-        file,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type":
-              "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
-          },
-        }
-      );
-      console.log(res.data);
-      history.replace(`/partyInfo/${partyId}`);
-    } catch (err) {
-      console.log(err);
-    }
+    crewApi
+      .partyRevise(partyId, file)
+      .then((res) => {
+        console.log(res.data);
+        history.replace(`/partyInfo/${partyId}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
 //등록한 글 삭제기능
+// const deleteSend = (partyId) => {
+//   const token = sessionStorage.getItem("token");
+//   return function (dispatch, getState, { history }) {
+//     axios
+//       .delete(`http://3.38.180.96/api/party/${partyId}`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response.data);
+//         history.push("/home");
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
+
+//파티 삭제
 const deleteSend = (partyId) => {
-  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
-    axios
-      .delete(`http://3.38.180.96/api/party/${partyId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
+    crewApi.partyDelete(partyId).then((res) => {
+      console.log(res.data);
+      history.push("/home");
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+};
+
+//홈 화면에서 전체 파티 데이터
+// const getDataDB = (pageNum) => {
+//   return async function (dispatch, getState, { history }) {
+//     try {
+//       const res = await crewApi.getAllList(pageNum);
+//       console.log(res.data.results);
+
+//       dispatch(getCrew(res.data.results));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+
+//홈 화면에서 전체 파티 데이터
+const getDataDB = (pageNum) => {
+  return function (dispatch, getState, { history }) {
+    crewApi
+      .getAllList(pageNum)
+      .then((res) => {
+        console.log(res.data.results);
+        dispatch(getCrew(res.data.results));
       })
-      .then((response) => {
-        console.log(response.data);
-        history.push("/home");
-      })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
 
-// 홈화면에서 전체 데이터 받아오기
-const getDataDB = (pageNum) => {
-  return async function (dispatch, getState, { history }) {
-    try {
-      const res = await crewApi.getAllList(pageNum);
-      console.log(res.data.results);
-
-      dispatch(getCrew(res.data.results));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
 //지역필터
+// const getRegionData = (regionInfo) => {
+//   const token = sessionStorage.getItem("token");
+//   return async function (dispatch, getState, { history }) {
+//     const file = new FormData();
+//     file.append("answer", regionInfo.answer);
+//     try {
+//       const res = await axios.post(
+//         "http://3.38.180.96/home/parties/local",
+//         file,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "content-type": "application/json;charset=UTF-8",
+//           },
+//         }
+//       );
+//       dispatch(getRegion(res.data.results));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
 const getRegionData = (regionInfo) => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
+  return function (dispatch, getState, { history }) {
     const file = new FormData();
     file.append("answer", regionInfo.answer);
-    try {
-      const res = await axios.post(
-        "http://3.38.180.96/home/parties/local",
-        file,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-          },
-        }
-      );
+
+    crewApi.partyRegionData(file).then((res) => {
+      console.log(res)
       dispatch(getRegion(res.data.results));
-    } catch (err) {
+    }).catch((err) => {
       console.log(err);
-    }
+    })
   };
 };
 
-//상세정보 받아오기
+// 상세정보 받아오기
+// const getDetailInfo = (partyId) => {
+//   const token = sessionStorage.getItem("token");
+
+//   return async function (dispatch, getState, { history }) {
+//     try {
+//       const res = await axios.get(
+//         `http://3.38.180.96:8080/api/party/details/${partyId}`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "content-type": "application/json;charset=UTF-8",
+//             accept: "application/json,",
+//           },
+//         }
+//       );
+//       dispatch(getDetail(res.data));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
 const getDetailInfo = (partyId) => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    try {
-      const res = await axios.get(
-        `http://3.38.180.96:8080/api/party/details/${partyId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-            accept: "application/json,",
-          },
-        }
-      );
+  return function (dispatch, getState, { history }) {
+    crewApi.partyDetailInfo(partyId).then((res) => {
+      console.log(res.data);
       dispatch(getDetail(res.data));
-    } catch (err) {
+    }).catch((err) => {
       console.log(err);
-    }
+    });
   };
 };
 
-//파티 유저리스트 조회
+// 파티 신청한 유저 조회
+// const getUserList = (partyId) => {
+//   const token = sessionStorage.getItem("token");
+//   return async function (dispatch, getState, { history }) {
+//     try {
+//       const res = await axios.get(
+//         `http://3.38.180.96:8080/api/party/userlist/${partyId}`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "content-type": "application/json;charset=UTF-8",
+//             accept: "application/json,",
+//           },
+//         }
+//       );
+//       dispatch(getDetailUser(res.data));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
 const getUserList = (partyId) => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    try {
-      const res = await axios.get(
-        `http://3.38.180.96:8080/api/party/userlist/${partyId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-            accept: "application/json,",
-          },
-        }
-      );
-      dispatch(getDetailUser(res.data));
-    } catch (err) {
-      console.log(err);
-    }
+  return function (dispatch, getState, { history }) {
+    crewApi
+      .partySubUser(partyId)
+      .then((res) => {
+        console.log(res);
+        dispatch(getDetailUser(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 

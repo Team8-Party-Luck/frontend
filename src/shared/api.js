@@ -45,8 +45,115 @@ export const alertApi = {};
 
 // 크루 관련 API
 export const crewApi = {
-  //전체 데이터 받아오기
-  getAllList: (pageNum) => api.get(`/api/parties/raw/${pageNum}`),
+  //파티등록
+  partyRegi: (file) =>
+    api.post(`/api/party`, file, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+      },
+    }),
+
+  //파티수정
+  partyRevise: (partyId, file) =>
+    api.put(`api/party/${partyId}`, file, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+      },
+    }),
+
+  //파티삭제
+  partyDelete: (partyId) =>
+    api.delete(`api/party/${partyId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  // 홈 화면에서 전체 파티 데이터
+  getAllList: (pageNum) =>
+    api.get(`api/parties/raw/${pageNum}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //지역필터
+  partyRegionData: (file) =>
+    api.post(`home/parties/local`, file, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+      },
+    }),
+
+  //파티 상세정보
+  partyDetailInfo: (partyId) =>
+    api.get(`api/party/details/${partyId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //파티 신청한 유저 조회
+  partySubUser: (partyId) =>
+    api.get(`api/party/userlist/${partyId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //내가 참가한 파티 조회
+  partyMeTake: () =>
+    api.get(`api/parties/history/in`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //내가 찜한 파티 조회
+  partyMeLike: () =>
+    api.get(`api/parties/sub`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //파티 찜
+  partyLike: (partyId) =>
+    api.get(`api/party/sub/${partyId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //파티 신청
+  partySub: (partyId) =>
+    api.post(`api/party/in/${partyId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //파티 신청 취소
+  partySubCancel: (partyId) =>
+    api.delete(`api/party/out/${partyId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //참여할 파티 조회
+  partySubMe: () =>
+    api.get(`home/parties/join`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
 };
 
 // 실시간채팅 관련 API
