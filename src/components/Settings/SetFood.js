@@ -269,6 +269,7 @@ const ListBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Wrap = styled.div``;

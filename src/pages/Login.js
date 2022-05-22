@@ -84,7 +84,13 @@ const StyledSlider = styled(Slider)`
     width: 80%;
     // border: 1px solid;
     margin: 0 auto;
+    z-index: 999;
+    cursor: pointer;
   }
+  .slick-dots {
+    bottom: -5em;
+  }
+
   .slick-dots li button:before {
     color: gray;
   }
@@ -103,12 +109,13 @@ const ImgBox = styled.div`
 `;
 
 const LoginBox = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 10em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 3em;
+  width: 90%;
+  height: 3em;
+  cursor: pointer;
 `;
 const ImgText = styled.p`
   font-size: 1.2em;
@@ -116,7 +123,7 @@ const ImgText = styled.p`
 `;
 
 const KakaoImg = styled.img`
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 `;
 

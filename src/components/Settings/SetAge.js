@@ -139,16 +139,22 @@ const CheckBox = styled.div`
   height: 2em;
   border-radius: 3em;
   background: #ff6853;
-  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
+  cursor: pointer;
 `;
 const NonCheckBox = styled.div`
   width: 4em;
   height: 2em;
   border-radius: 3em;
   border: 1px solid #dfdfdf;
-  padding: 0.45em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
+  cursor: pointer;
 `;
 
 const CheckText = styled.p`

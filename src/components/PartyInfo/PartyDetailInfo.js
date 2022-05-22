@@ -116,6 +116,7 @@ const DetailInfoBtn = styled.button`
   background: white;
   font-size: 0.9em;
   margin-top: 0.5em;
+  cursor: pointer;
 `;
 
 const GrayBar = styled.span`

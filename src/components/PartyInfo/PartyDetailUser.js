@@ -83,6 +83,7 @@ const SeeMore = styled.div`
   top: 1em;
   font-size: 0.9em;
   color: #909090;
+  cursor: pointer;
 `;
 
 export default PartyDetailUser;

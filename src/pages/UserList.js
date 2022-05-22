@@ -109,6 +109,7 @@ const ChatBox = styled.img`
   width: 3em;
   height: 3em;
   border-radius: 2.5em;
+  cursor: pointer;
 `;
 
 const HostBox = styled.img`

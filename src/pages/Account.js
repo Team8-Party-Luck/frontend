@@ -68,6 +68,7 @@ const ListBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1em 0;
+  cursor: pointer;
 `;
 
 export default Account;

@@ -51,11 +51,12 @@ const WrapBox = styled.div`
 
 const EditButton = styled.button`
   width: 100%;
-  height: 2.3em;
+  height: 3em;
   background: #ff6358;
   color: white;
   border-radius: 0.5em;
   border: none;
+  cursor: pointer;
 `;
 
 const Line = styled.div`

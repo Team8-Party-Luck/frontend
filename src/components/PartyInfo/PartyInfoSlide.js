@@ -40,6 +40,7 @@ const Container = styled.div`
 const StyledSlider = styled(Slider)`
   .slick-slide div {
     outline: none;
+    cursor: pointer;
   }
 `;
 

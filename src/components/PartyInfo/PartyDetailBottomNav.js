@@ -154,6 +154,7 @@ const LeftBtn = styled.button`
   color: #ff6853;
   border-radius: 0.5em;
   font-size: 1em;
+  cursor: pointer;
 `;
 const RightBtn = styled(LeftBtn)`
   border: none;
@@ -162,5 +163,3 @@ const RightBtn = styled(LeftBtn)`
 `;
 
 export default PartyDetailBottomNav;
-
-// dfSDFSFS

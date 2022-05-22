@@ -91,7 +91,7 @@ const TitleBox = styled.p`
   margin: 0 auto;
   font-size: 1em;
   padding-top: 0.7em;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export default Popup;
