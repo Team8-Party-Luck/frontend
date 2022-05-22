@@ -6,6 +6,9 @@ const api = axios.create({
 
 // 유저 관련 API
 export const userApi = {
+  //kakao 로그인
+  kakaoLogin: (code) => api.get(`/auth/kakao?code=${code}`),
+
   //초기 세팅정보 보내기
   settingsData: (Settings_info) =>
     api.post(`/api/user/initial`, Settings_info, {
@@ -50,4 +53,41 @@ export const crewApi = {
 };
 
 // 실시간채팅 관련 API
-export const chatApi = {};
+export const chatApi = {
+  //채팅페이지에서 보여줄 여러 유저들 리스트
+  chatList: () =>
+    api.get(`/chatroom/get`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //채팅방에서 나눴던 과거의 메시지 리스트
+  msgList: (chatRoomId) =>
+    api.get(`/chatroom/get/${chatRoomId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //채팅방 번호 받아오기
+  roomIdDB: (roomId) =>
+    api.post(
+      `/chatroom/create`,
+      {
+        otherId: roomId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    ),
+  //채팅방에 속해있는 유저정보 불러오기
+  chatUser: (roomId) =>
+    api.get(`/chatroom/user/${roomId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+};

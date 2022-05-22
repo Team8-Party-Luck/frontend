@@ -1,6 +1,8 @@
 import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { chatApi } from "../../shared/api";
+console.log(chatApi);
 
 //액션
 const GET_CHAT_LIST = "GET_CHAT_LIST";
@@ -26,15 +28,8 @@ const initialState = {
 // 채팅 페이지에서 채팅 리스트 데이터 받아오기
 const getChatListDB = () => {
   return function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    axios
-      .get(`http://3.38.180.96/chatroom/get`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
+    chatApi
+      .chatList()
       .then((res) => {
         console.log(res.data);
         dispatch(getChatList(res.data));
@@ -44,19 +39,33 @@ const getChatListDB = () => {
       });
   };
 };
+// // 채팅 페이지에서 채팅 리스트 데이터 받아오기
+// const getChatListDB = () => {
+//   return function (dispatch, getState, { history }) {
+//     const token = sessionStorage.getItem("token");
+//     axios
+//       .get(`http://3.38.180.96/chatroom/get`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//         },
+//       })
+//       .then((res) => {
+//         console.log(res.data);
+//         dispatch(getChatList(res.data));
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
 
 //과거에 나눴던 채팅들 받아오기
 const getMsgListDB = (chatRoomId) => {
   return function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    axios
-      .get(`http://3.38.180.96/chatroom/get/${chatRoomId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
+    chatApi
+      .msgList(chatRoomId)
       .then((res) => {
         console.log(res.data);
         dispatch(getMsgList(res.data));
@@ -66,25 +75,33 @@ const getMsgListDB = (chatRoomId) => {
       });
   };
 };
+// //과거에 나눴던 채팅들 받아오기
+// const getMsgListDB = (chatRoomId) => {
+//   return function (dispatch, getState, { history }) {
+//     const token = sessionStorage.getItem("token");
+//     axios
+//       .get(`http://3.38.180.96/chatroom/get/${chatRoomId}`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//         },
+//       })
+//       .then((res) => {
+//         console.log(res.data);
+//         dispatch(getMsgList(res.data));
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
 
 //채팅방 번호 받아오기
 const getRoomIdDB = (roomId) => {
   return function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    axios
-      .post(
-        `http://3.38.180.96/chatroom/create`,
-        {
-          otherId: roomId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-            accept: "application/json,",
-          },
-        }
-      )
+    chatApi
+      .roomIdDB(roomId)
       .then((res) => {
         console.log(res.data);
         history.push(`/chatdetail/${res.data.chatRoomId}`);
@@ -94,19 +111,39 @@ const getRoomIdDB = (roomId) => {
       });
   };
 };
+// //채팅방 번호 받아오기
+// const getRoomIdDB = (roomId) => {
+//   return function (dispatch, getState, { history }) {
+//     const token = sessionStorage.getItem("token");
+//     axios
+//       .post(
+//         `http://3.38.180.96/chatroom/create`,
+//         {
+//           otherId: roomId,
+//         },
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "content-type": "application/json;charset=UTF-8",
+//             accept: "application/json,",
+//           },
+//         }
+//       )
+//       .then((res) => {
+//         console.log(res.data);
+//         history.push(`/chatdetail/${res.data.chatRoomId}`);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
 
 //채팅방에 속해있는 유저정보 불러오기
 const getChatUserDB = (roomId) => {
   return function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    axios
-      .get(`http://3.38.180.96/chatroom/user/${roomId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
+    chatApi
+      .chatUser(roomId)
       .then((res) => {
         dispatch(getChatUser(res.data));
       })
@@ -115,6 +152,26 @@ const getChatUserDB = (roomId) => {
       });
   };
 };
+// //채팅방에 속해있는 유저정보 불러오기
+// const getChatUserDB = (roomId) => {
+//   return function (dispatch, getState, { history }) {
+//     const token = sessionStorage.getItem("token");
+//     axios
+//       .get(`http://3.38.180.96/chatroom/user/${roomId}`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//         },
+//       })
+//       .then((res) => {
+//         dispatch(getChatUser(res.data));
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
 
 export default handleActions(
   {

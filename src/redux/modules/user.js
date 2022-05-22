@@ -19,24 +19,26 @@ const initialState = {};
 //카카오로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
-    axios({
-      method: "GET",
-      url: `http://3.38.180.96:8080/auth/kakao?code=${code}`,
-    })
+    // axios
+    //   .get(`http://3.38.180.96/auth/kakao?code=${code}`)
+    userApi
+      .kakaoLogin(code)
       .then((res) => {
         console.log(res.data); // 토큰이 넘어올 것임
         const KAKAO_TOKEN = res.data;
 
         sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
 
-        axios
-          .get("http://3.38.180.96:8080/api/user", {
-            headers: {
-              Authorization: `Bearer ${res.data}`,
-              "content-type": "application/json;charset=UTF-8",
-              accept: "application/json,",
-            },
-          })
+        // axios
+        //   .get("http://3.38.180.96:8080/api/user", {
+        //     headers: {
+        //       Authorization: `Bearer ${res.data}`,
+        //       "content-type": "application/json;charset=UTF-8",
+        //       accept: "application/json,",
+        //     },
+        //   })
+        userApi
+          .userCheck()
           .then((res) => {
             console.log(res.data, "여기까지는 성공");
             sessionStorage.setItem("userid", res.data.result.userid);
