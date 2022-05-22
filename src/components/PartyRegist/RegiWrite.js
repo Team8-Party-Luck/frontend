@@ -189,7 +189,7 @@ const RegiWrite = () => {
           />
         )}
         {/* </Box> */}
-        <Grid container style={{ padding: "20px", paddingTop: "4em" }}>
+        <Grid container style={{ padding: "1em", paddingTop: "5em" }}>
           <Images
             image={image}
             setImage={setImage}

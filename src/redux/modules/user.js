@@ -1,56 +1,21 @@
 import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { userApi } from "../../shared/api";
 
 // 액션
-const LOGIN = "LOGIN";
 const GET_USER_INFO = "GET_USER_INFO";
-// const SET_CODE = "SET_CODE";
 const SAVE_INFO = "SAVE_INFO";
 const USER_CHECK = "USER_CHECK";
 
 // 액션 크리에이터
-const setLogin = createAction(LOGIN, (Login) => ({ Login }));
-// const setLogout = createAction(LOGOUT, (Logout) => ({ Logout }));
-const saveInfo = createAction(SAVE_INFO, (setting) => ({ setting }));
 const getUserInfo = createAction(GET_USER_INFO, (user) => ({ user }));
 const userCheck = createAction(USER_CHECK, (check) => ({ check }));
-// const setCode = createAction(SET_CODE, (Code) => ({ Code }));
-
-const token = sessionStorage.getItem("token");
 
 // 초기값
 const initialState = {};
 
 //미들웨어
-
-//로그인요청
-const loginDB = (Login_info) => {
-  return function (dispatch, getState, { history }) {
-    axios
-      .post(`http://3.38.180.96:8080/user/login`, Login_info, {
-        headers: {
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-          // Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        sessionStorage.setItem(
-          "token",
-          res.headers.authorization.split(" ")[1]
-        );
-        dispatch(setLogin(Login_info));
-        history.push("/home");
-      })
-      .catch((err) => {
-        alert("이메일 혹은 비밀번호가 일치하지 않습니다");
-        console.log(err.response, "로그인 에러");
-      });
-  };
-};
-
 //카카오로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
@@ -91,40 +56,11 @@ const kakaoLogin = (code) => {
   };
 };
 
-//회원가입 기능
-const signupDB = (Signup_info) => {
-  return function (dispatch, getState, { history }) {
-    axios
-      .post("http://3.38.180.96:8080/api/user", Signup_info, {
-        headers: {
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-          // Authorization: token,
-        },
-      })
-      .then((res) => {
-        alert("가입이 완료되었습니다");
-        history.replace("/login");
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log("회원가입 에러", err.response);
-      });
-  };
-};
-
 //세팅 데이터 보내기
 const sendSettingsData = (Settings_info) => {
-  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
-    axios
-      .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
+    userApi
+      .settingsData(Settings_info)
       .then((res) => {
         console.log(res.data);
         history.push("/home");
@@ -137,60 +73,62 @@ const sendSettingsData = (Settings_info) => {
 
 //유저 세팅정보 받아오기
 const getUserInfoDB = () => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    try {
-      const res = await axios.get("http://3.38.180.96:8080/api/user/initial", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
+  return function (dispatch, getState, { history }) {
+    userApi
+      .userInfo()
+      .then((res) => {
+        dispatch(getUserInfo(res.data));
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
       });
-      console.log(res.data);
-      dispatch(getUserInfo(res.data));
-    } catch (error) {
-      console.log(error);
-    }
   };
 };
 
 //유저 정보 업데이트
 const updateSettingsData = (Update_info) => {
-  const token = sessionStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    try {
-      const res = await axios.put(
-        "http://3.38.180.96:8080/api/user/initial",
-        Update_info,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type":
-              "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
-          },
-        }
-      );
-      console.log(res.data);
-      history.push("/profile");
-    } catch (error) {
-      console.log(error);
-    }
+  return function (dispatch, getState, { history }) {
+    userApi
+      .updateSettings(Update_info)
+      .then((res) => {
+        console.log(res.data);
+        history.push("/profile");
+      })
+      .catch((err) => {
+        console.log("에러", err.response);
+      });
   };
 };
 
+// //유저 정보 업데이트
+// const updateSettingsData = (Update_info) => {
+//   const token = sessionStorage.getItem("token");
+//   return async function (dispatch, getState, { history }) {
+//     try {
+//       const res = await axios.put(
+//         "http://3.38.180.96:8080/api/user/initial",
+//         Update_info,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "Content-Type":
+//               "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+//           },
+//         }
+//       );
+//       console.log(res.data);
+//       history.push("/profile");
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+
 //파티 유저가 호스트인지,좋아요를 눌렀는지 등 확인
 const userCheckDB = () => {
-  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
-    axios
-      .get("http://3.38.180.96:8080/api/user", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
+    userApi
+      .userCheck()
       .then((res) => {
         console.log(res.data);
         dispatch(userCheck(res.data));
@@ -200,13 +138,30 @@ const userCheckDB = () => {
       });
   };
 };
+// //파티 유저가 호스트인지,좋아요를 눌렀는지 등 확인
+// const userCheckDB = () => {
+//   const token = sessionStorage.getItem("token");
+//   return function (dispatch, getState, { history }) {
+//     axios
+//       .get("http://3.38.180.96:8080/api/user", {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "content-type": "application/json;charset=UTF-8",
+//           accept: "application/json,",
+//         },
+//       })
+//       .then((res) => {
+//         console.log(res.data);
+//         dispatch(userCheck(res.data));
+//       })
+//       .catch((err) => {
+//         console.log(err.res);
+//       });
+//   };
+// };
 
 export default handleActions(
   {
-    [LOGIN]: (state, action) =>
-      produce(state, (draft) => {
-        draft.user = action.payload.user;
-      }),
     [GET_USER_INFO]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
@@ -224,10 +179,7 @@ export default handleActions(
 );
 
 const actionCreators = {
-  signupDB,
-  loginDB,
   kakaoLogin,
-  saveInfo,
   sendSettingsData,
   getUserInfoDB,
   updateSettingsData,

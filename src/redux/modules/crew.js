@@ -2,6 +2,7 @@ import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configStore";
+import { crewApi } from "../../shared/api";
 
 //액션
 const GET_CREW = "GET_CREW";
@@ -139,10 +140,9 @@ const deleteSend = (partyId) => {
 const getDataDB = (pageNum) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await axios.get(
-        `http://3.38.180.96/api/parties/raw/${pageNum}`
-      );
+      const res = await crewApi.getAllList(pageNum);
       console.log(res.data.results);
+
       dispatch(getCrew(res.data.results));
     } catch (error) {
       console.log(error);

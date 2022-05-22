@@ -18,6 +18,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import AllData from "./AllData";
 import RegionSelect from "./RegionSelect";
 import NullData from "../../shared/NullData";
+import { crewApi } from "../../shared/api";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,7 +64,7 @@ const PartyList = (props) => {
   const [region, setRegion] = useState("");
 
   React.useEffect(() => {
-    axios.get(`http://3.38.180.96/api/parties/raw/${page}`).then((res) => {
+    crewApi.getAllList(page).then((res) => {
       console.log(res.data.results);
       setPartyList([...partyList, ...res.data.results]);
       setIsLoading(false);
@@ -125,7 +126,7 @@ const PartyList = (props) => {
   });
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <React.Fragment>
       <ThemeProvider theme={theme}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange} centered>
@@ -140,21 +141,7 @@ const PartyList = (props) => {
       <TabPanel value={value} index={0}>
         <ListBox ref={ref} onScroll={InfinityScroll}>
           {partyList?.map((cur, idx) => (
-            <AllData
-              key={cur?.partyId}
-              partyId={cur?.partyId}
-              title={cur?.title}
-              image={cur?.image}
-              store={cur?.store}
-              address={cur?.address}
-              date={cur?.date}
-              time={cur?.time}
-              capacity={cur?.capacity}
-              age={cur?.age}
-              gender={cur?.gender}
-              hostId={cur?.hostId}
-              userInfo={userInfo}
-            />
+            <AllData {...cur} userInfo={userInfo} />
           ))}
         </ListBox>
       </TabPanel>
@@ -167,25 +154,9 @@ const PartyList = (props) => {
             setRegion={setRegion}
           />
         </ThemeProvider>
-        <ListBox ref={ref} onScroll={InfinityScroll}>
-          {regionData?.map((cur, idx) => (
-            <AllData
-              key={cur?.partyId}
-              partyId={cur?.partyId}
-              title={cur?.title}
-              image={cur?.image}
-              store={cur?.store}
-              address={cur?.address}
-              date={cur?.date}
-              time={cur?.time}
-              capacity={cur?.capacity}
-              age={cur?.age}
-              gender={cur?.gender}
-              hostId={cur?.hostId}
-              userInfo={userInfo}
-            />
-          ))}
-        </ListBox>
+        {regionData?.map((cur, idx) => (
+          <AllData {...cur} userInfo={userInfo} />
+        ))}
       </TabPanel>
       <TabPanel value={value} index={2}>
         {willData?.length === 0 ? (
@@ -195,21 +166,7 @@ const PartyList = (props) => {
         ) : (
           <>
             {willData?.map((cur, idx) => (
-              <AllData
-                key={cur?.partyId}
-                partyId={cur?.partyId}
-                title={cur?.title}
-                image={cur?.image}
-                store={cur?.store}
-                address={cur?.address}
-                date={cur?.date}
-                time={cur?.time}
-                capacity={cur?.capacity}
-                age={cur?.age}
-                gender={cur?.gender}
-                hostId={cur?.hostId}
-                userInfo={userInfo}
-              />
+              <AllData {...cur} userInfo={userInfo} />
             ))}
           </>
         )}
@@ -222,26 +179,12 @@ const PartyList = (props) => {
         ) : (
           <>
             {scrapData?.map((cur, idx) => (
-              <AllData
-                key={cur?.partyId}
-                partyId={cur?.partyId}
-                title={cur?.title}
-                image={cur?.image}
-                store={cur?.store}
-                address={cur?.address}
-                date={cur?.date}
-                time={cur?.time}
-                capacity={cur?.capacity}
-                age={cur?.age}
-                gender={cur?.gender}
-                hostId={cur?.hostId}
-                userInfo={userInfo}
-              />
+              <AllData {...cur} userInfo={userInfo} />
             ))}
           </>
         )}
       </TabPanel>
-    </Box>
+    </React.Fragment>
   );
 };
 
