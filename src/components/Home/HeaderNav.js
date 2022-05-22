@@ -47,9 +47,9 @@ const HeaderNav = () => {
         src={AlarmImg}
         style={{ width: "8%", cursor: "pointer" }}
         alt="알람로고"
-        onClick={() => {
-          history.push("/alarm");
-        }}
+        // onClick={() => {
+        //   history.push("/alarm");
+        // }}
       />
     </WrapBox>
   );
