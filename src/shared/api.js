@@ -14,8 +14,30 @@ export const userApi = {
       },
     }),
 
-  // //유저 세팅정보 받아오기
-  // userInfo:
+  //유저 초기 세팅정보 받아오기
+  userInfo: () =>
+    api.get(`/api/user/initial`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+
+  //유저 정보 업데이트
+  updateSettings: (Update_info) =>
+    api.put(`/api/user/initial`, Update_info, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+      },
+    }),
+  //유저 정보 체크
+  userCheck: () =>
+    api.get(`/api/user`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
 };
 
 // 실시간 알림 관련 API

@@ -12,6 +12,7 @@ import Foodlist from "../Edit/Foodlist";
 import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
 import Toast from "../shared/Toast";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 
@@ -90,6 +91,14 @@ const Edit = (props) => {
       };
     });
   };
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF6853",
+      },
+    },
+  });
 
   const updateProfile = () => {
     if (!checkNickname(values.nickname)) {
@@ -218,15 +227,16 @@ const Edit = (props) => {
         >
           지역
         </Typography>
-        <SetLocation
-          city={city}
-          setCity={setCity}
-          region={region}
-          setRegion={setRegion}
-          count={count}
-          setCount={setCount}
-        />
-
+        <ThemeProvider theme={theme}>
+          <SetLocation
+            city={city}
+            setCity={setCity}
+            region={region}
+            setRegion={setRegion}
+            count={count}
+            setCount={setCount}
+          />
+        </ThemeProvider>
         <SetFood
           food={food}
           setFood={setFood}
