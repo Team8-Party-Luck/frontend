@@ -19,7 +19,6 @@ import Header from "../../shared/Header";
 import Toast from "../../shared/Toast";
 import Popup from "../../shared/Popup";
 
-
 //토스트 팝업 메시지
 const msgList = {
   image: "이미지 값이 입력되지 않았습니다.",
@@ -39,7 +38,7 @@ const RegiWrite = () => {
   const [openBack, setOpenBack] = useState(false);
   const handleOpen = () => {
     setOpenBack(true);
-  }
+  };
 
   //토스트 팝업 세팅
   const [ToastStatus, setToastStatus] = useState(false);
@@ -170,22 +169,27 @@ const RegiWrite = () => {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-          <Header name={'파티등록'} type={"완료"} event={sendWriteData} modal={handleOpen}/>
-          {openBack && (
-            <Popup
-              title={"작성을 취소하시겠습니까?"}
-              close={() => setOpenBack(false)}
-              event={() => {
-                history.push({
-                  pathname: "/home",
-                });
-              }}
-              confirm={"작성취소"}
-              back={"취소"}
-            />
-          )}
+        <Header
+          name={"파티등록"}
+          type={"완료"}
+          event={sendWriteData}
+          modal={handleOpen}
+        />
+        {openBack && (
+          <Popup
+            title={"작성을 취소하시겠습니까?"}
+            close={() => setOpenBack(false)}
+            event={() => {
+              history.push({
+                pathname: "/home",
+              });
+            }}
+            confirm={"작성취소"}
+            back={"취소"}
+          />
+        )}
         {/* </Box> */}
-        <Grid container style={{padding:'20px', paddingTop:'4em'}}>
+        <Grid container style={{ padding: "20px", paddingTop: "4em" }}>
           <Images
             image={image}
             setImage={setImage}
@@ -229,7 +233,7 @@ const RegiWrite = () => {
             <Box component="div">
               <RealDay date={date} setDate={setDate} />
             </Box>
-            <Box component="div" >
+            <Box component="div">
               <TimeSelect time={time} setTime={setTime} />
             </Box>
           </Box>

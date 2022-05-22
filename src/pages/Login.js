@@ -26,6 +26,9 @@ const Login = () => {
     <Wrapbox>
       <StyledSlider {...settings}>
         <ImgBox>
+          <LogoImg src={OnBoarding1} />
+        </ImgBox>
+        <ImgBox>
           <Image src={OnBoarding2} />
           <ImgText>
             맛집을 가고싶은데 <br />
@@ -124,6 +127,11 @@ const ImgText = styled.p`
 
 const KakaoImg = styled.img`
   width: 100%;
+  margin: 0 auto;
+`;
+
+const LogoImg = styled.img`
+  width: 70%;
   margin: 0 auto;
 `;
 
