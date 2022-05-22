@@ -20,16 +20,22 @@ import SelectedCoffeeImg from "../../static/images/category_selected/coffee.png"
 import SelectedSaladImg from "../../static/images/category_selected/salad.png";
 import SelectedEtcImg from "../../static/images/category_selected/etc.png";
 
-const Taste = ({image, setImage, defaultImage, setDefaultImage, setShowImages }) => {
+const Taste = ({
+  image,
+  setImage,
+  defaultImage,
+  setDefaultImage,
+  setShowImages,
+}) => {
   const settingImage = (props) => {
-    if(image.length !== 0 ){
-        setImage([]);
-        setShowImages([]);
+    if (image.length !== 0) {
+      setImage([]);
+      setShowImages([]);
     }
-    setDefaultImage(props)
-  }
+    setDefaultImage(props);
+  };
   return (
-    <React.Fragment >
+    <React.Fragment>
       <FoodBox>
         <Wrap>
           {defaultImage === "한식" ? (
@@ -72,7 +78,7 @@ const Taste = ({image, setImage, defaultImage, setDefaultImage, setShowImages })
           )}
           <FoodText>중식/아시안</FoodText>
         </Wrap>
-        
+
         <Wrap>
           {defaultImage === "일식" ? (
             <ListBox
@@ -407,8 +413,6 @@ const Taste = ({image, setImage, defaultImage, setDefaultImage, setShowImages })
   );
 };
 
-
-
 const FoodBox = styled.div`
   width: 100%;
   display: grid;
@@ -424,7 +428,9 @@ const ListBox = styled.div`
   align-items: center;
 `;
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  margin: 0 auto;
+`;
 
 const FoodText = styled.p`
   color: black;

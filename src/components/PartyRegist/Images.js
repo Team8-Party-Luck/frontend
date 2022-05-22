@@ -4,14 +4,13 @@ import styled from "styled-components";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
-import radioButton from '../../static/images/icon/라디오버튼.png';
-import radioButtonSelc from '../../static/images/icon/라디오버튼-1.png';
+import radioButton from "../../static/images/icon/라디오버튼.png";
+import radioButtonSelc from "../../static/images/icon/라디오버튼-1.png";
 
 import Taste from "./Taste";
 const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
-
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
@@ -47,7 +46,10 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   };
 
   return (
-    <div className="addPicture" style={{ marginBottom: "1.5rem" }}>
+    <div
+      className="addPicture"
+      style={{ width: "100%", marginBottom: "1.5rem" }}
+    >
       {/* <label>
         <ImageRadio
           type="radio"
@@ -119,13 +121,13 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
       </div>
 
       {form === "basic" ? (
-          <Taste
-            image={image}
-            setImage={setImage}
-            defaultImage={defaultImage}
-            setDefaultImage={setDefaultImage}
-            setShowImages={setShowImages}
-          />
+        <Taste
+          image={image}
+          setImage={setImage}
+          defaultImage={defaultImage}
+          setDefaultImage={setDefaultImage}
+          setShowImages={setShowImages}
+        />
       ) : (
         <React.Fragment>
           <Box style={{ marginLeft: "2rem" }}>{showImages.length}/10 </Box>
@@ -195,6 +197,5 @@ const Img = styled.img`
   margin: 10px;
   border-radius: 5px;
 `;
-
 
 export default Images;

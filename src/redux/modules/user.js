@@ -1,6 +1,7 @@
 import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { userApi } from "../../shared/api";
 
 // 액션
 const LOGIN = "LOGIN";
@@ -23,34 +24,6 @@ const token = sessionStorage.getItem("token");
 const initialState = {};
 
 //미들웨어
-
-//로그인요청
-const loginDB = (Login_info) => {
-  return function (dispatch, getState, { history }) {
-    axios
-      .post(`http://3.38.180.96:8080/user/login`, Login_info, {
-        headers: {
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-          // Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        sessionStorage.setItem(
-          "token",
-          res.headers.authorization.split(" ")[1]
-        );
-        dispatch(setLogin(Login_info));
-        history.push("/home");
-      })
-      .catch((err) => {
-        alert("이메일 혹은 비밀번호가 일치하지 않습니다");
-        console.log(err.response, "로그인 에러");
-      });
-  };
-};
-
 //카카오로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
@@ -91,40 +64,11 @@ const kakaoLogin = (code) => {
   };
 };
 
-//회원가입 기능
-const signupDB = (Signup_info) => {
-  return function (dispatch, getState, { history }) {
-    axios
-      .post("http://3.38.180.96:8080/api/user", Signup_info, {
-        headers: {
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-          // Authorization: token,
-        },
-      })
-      .then((res) => {
-        alert("가입이 완료되었습니다");
-        history.replace("/login");
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log("회원가입 에러", err.response);
-      });
-  };
-};
-
 //세팅 데이터 보내기
 const sendSettingsData = (Settings_info) => {
-  const token = sessionStorage.getItem("token");
   return function (dispatch, getState, { history }) {
-    axios
-      .post("http://3.38.180.96:8080/api/user/initial", Settings_info, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json;charset=UTF-8",
-          accept: "application/json,",
-        },
-      })
+    userApi
+      .settingsData(Settings_info)
       .then((res) => {
         console.log(res.data);
         history.push("/home");
@@ -224,8 +168,6 @@ export default handleActions(
 );
 
 const actionCreators = {
-  signupDB,
-  loginDB,
   kakaoLogin,
   saveInfo,
   sendSettingsData,

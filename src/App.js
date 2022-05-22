@@ -22,7 +22,6 @@ import Joined from "./pages/Joined";
 import Scrap from "./pages/Scrap";
 import ChatDetail from "./pages/ChatDetail";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
-import Modal from "./shared/Modal";
 import ConfirmPage from "./pages/ConfirmPage";
 import styled from "styled-components";
 import background from "./static/images/website/웹페이지.png";
@@ -37,7 +36,6 @@ function App() {
   // }, []);
 
   return (
-
     <Fullscreen>
       <Wrap>
         <MobileFrame className="MobileFramePage">
@@ -60,7 +58,6 @@ function App() {
             <Route path="/Account" exact component={Account} />
             <Route path="/inquary" exact component={Inquary} />
             <Route path="/confirm/:partyId" exact component={ConfirmPage} />
-            <Route path="/modal" exact component={Modal} />
             <Route
               path="/auth/kakao"
               component={OAuth2RedirectHandeler}
@@ -69,12 +66,10 @@ function App() {
         </MobileFrame>
       </Wrap>
     </Fullscreen>
-
   );
 }
 
 export default App;
-
 
 const Wrap = styled.div`
   width: 100vw;
@@ -103,4 +98,3 @@ const Fullscreen = styled.div`
   @media (min-width: 1580px) {
   }
 `;
-
