@@ -9,7 +9,7 @@ const MsgBox = styled.div`
   position: absolute;
   top: 85%;
   left: 50%;
-  padding: 11px;
+  padding: 0.7em;
   min-width: 22em;
   transform: translate(-50%, -50%);
   z-index: 3;

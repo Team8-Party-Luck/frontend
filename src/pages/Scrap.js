@@ -9,13 +9,14 @@ import Avatar from "@mui/material/Avatar";
 import BottomNav from "../shared/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { useState } from "react";
 import _ from "lodash";
 import { useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import NullData from "../shared/NullData";
-
+import AllData from "../components/Home/AllData";
 
 //이모티콘
 import ic_location from "../static/images/icon/ic_location.png";
@@ -23,13 +24,16 @@ import ic_calendar from "../static/images/icon/ic_calendar.png";
 import ic_time from "../static/images/icon/ic_time.png";
 import ic_people from "../static/images/icon/ic_people.png";
 
-
 const Scrap = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(crewActions.getScrapData()), []);
+  React.useEffect(() => {
+    dispatch(crewActions.getScrapData());
+    dispatch(userActions.userCheckDB());
+  }, []);
 
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
+  const userInfo = useSelector((state) => state?.user?.check?.result);
   console.log(scrapData);
 
   if (scrapData?.length === 0) {
@@ -49,71 +53,21 @@ const Scrap = () => {
         <WrapBox>
           {scrapData?.length > 0 &&
             scrapData?.map((cur, idx) => (
-              <Box
-                onClick={() => {
-                  history.push(`/partyInfo/${cur.partyId}`);
-                }}
-                key={idx}
-                sx={{ marginTop: "1em" }}
-              >
-                <Typography sx={{ fontWeight: "bold", marginBottom: 0.3 }}>
-                  {cur.title}
-                </Typography>
-                <Box sx={{ display: "flex" }} key={cur.partyId}>
-                  <Avatar
-                    variant={"rounded"}
-                    alt="The image"
-                    src={cur.image[0]}
-                    style={{
-                      width: 65,
-                      height: 65,
-                      borderRadius: "0.5em",
-                    }}
-                  />
-                  <Box sx={{ marginLeft: "0.5em" }}>
-                    <Typography style={{ fontSize: "0.9em", color: "gray" }}>
-                      {cur.store}
-                    </Typography>
-                    <Box sx={{ display: "flex", marginTop: 0.3 }}>
-                      <img
-                        src={ic_location}
-                        style={{ width: 18, height: 18 }}
-                        alt="위치"
-                      />
-                      <Typography sx={{ fontSize: 12 }}>
-                        &nbsp;{cur.address}&nbsp;&nbsp;
-                      </Typography>
-
-                      <img
-                        src={ic_calendar}
-                        style={{ width: 17, height: 17 }}
-                        alt="달력"
-                      />
-                      <Typography sx={{ fontSize: 12 }}>
-                        &nbsp;{cur.date}&nbsp;&nbsp;
-                      </Typography>
-                      <img
-                        src={ic_time}
-                        style={{ width: 17, height: 17 }}
-                        alt="시간"
-                      />
-                      <Typography sx={{ fontSize: 12 }}>
-                        &nbsp;{cur.time}&nbsp;&nbsp;
-                      </Typography>
-                    </Box>
-                    <Box sx={{ display: "flex", marginTop: 0.5 }}>
-                      <img
-                        src={ic_people}
-                        style={{ width: 17, height: 17 }}
-                        alt="시간"
-                      />
-                      <Typography sx={{ fontSize: 12 }}>
-                        &nbsp;{cur.capacity}명&nbsp; {cur.age} {cur.gender}모임
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
+              <AllData
+                key={cur?.partyId}
+                partyId={cur?.partyId}
+                title={cur?.title}
+                image={cur?.image}
+                store={cur?.store}
+                address={cur?.address}
+                date={cur?.date}
+                time={cur?.time}
+                capacity={cur?.capacity}
+                age={cur?.age}
+                gender={cur?.gender}
+                hostId={cur?.hostId}
+                userInfo={userInfo}
+              />
             ))}
         </WrapBox>
         <BottomNav />
@@ -131,7 +85,6 @@ const ListBox = styled.div`
 
 const WrapBox = styled.div`
   width: 100%;
-  padding: 1.5em;
   padding-top: 3.5em;
   padding-bottom: 5em;
 `;

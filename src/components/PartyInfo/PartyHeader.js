@@ -60,6 +60,7 @@ const WrapBox = styled.div`
 
 const BackBox = styled.div`
   position: absolute;
+  cursor: pointer;
 `;
 
 const ScrapBox = styled.img`
@@ -67,6 +68,7 @@ const ScrapBox = styled.img`
   height: 1.5em;
   position: absolute;
   right: 1em;
+  cursor: pointer;
 `;
 
 const HeaderText = styled.p`

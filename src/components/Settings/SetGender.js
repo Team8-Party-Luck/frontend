@@ -79,19 +79,23 @@ const CheckBox = styled.div`
   width: 4em;
   height: 2em;
   border-radius: 3em;
-  margin-right: 0.5em;
+
   background: #ff6853;
-  padding: 0.5em;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 const NonCheckBox = styled.div`
   width: 4em;
   height: 2em;
   border-radius: 3em;
-  margin-right: 0.5em;
+
   border: 1px solid #dfdfdf;
-  padding: 0.45em;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const CheckText = styled.p`

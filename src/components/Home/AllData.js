@@ -49,7 +49,9 @@ const AllData = (props) => {
     >
       <TitleText>{title}</TitleText>
       <FlexBox>
-        <ImgBox src={image[0]} />
+        <ImgBox>
+          <img src={image[0]} alt="이미지" />
+        </ImgBox>
         <Box sx={{ marginLeft: "0.5em" }}>
           <StoreText>{store}</StoreText>
           <CenterBox>
@@ -90,6 +92,7 @@ const WrapBox = styled.div`
   margin-top: 1em;
   position: relative;
   padding-left: 1rem;
+  cursor: pointer;
 `;
 
 const TitleText = styled.p`
@@ -117,10 +120,14 @@ const CenterBox = styled.div`
   margin-top: 0.1em;
 `;
 
-const ImgBox = styled.img`
-  width: 4em;
-  height: 4em;
-  border-radius: 0.5em;
+const ImgBox = styled.div`
+  img {
+    width: 4em;
+    height: 4em;
+    border-radius: 0.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 `;
 
 const IconBox = styled.img`

@@ -7,19 +7,19 @@ import styled from "styled-components";
 const Header = (props) => {
   return (
     <WrapBox>
-      <Box
+      <BackBox
         onClick={() => {
+
           if(props.name==="파티등록"){
             props.modal()
           }else {
             history.goBack();
           }
-          
+
         }}
-        sx={{ position: "absolute" }}
       >
         <img src={BackIcon} alt="뒤로가기" style={{ width: 12, height: 22 }} />
-      </Box>
+      </BackBox>
       <HeaderText>{props.name}</HeaderText>
       {props.type === "완료" ? (
         <CompleteText onClick={props.event}>{props.type}</CompleteText>
@@ -39,6 +39,11 @@ const WrapBox = styled.div`
   z-index: 100;
 `;
 
+const BackBox = styled.div`
+  position: absolute;
+  cursor: pointer;
+`;
+
 const HeaderText = styled.p`
   font-weight: bold;
   font-size: 1.2em;
@@ -51,6 +56,7 @@ const CompleteText = styled.p`
   color: #ff6853;
   position: absolute;
   right: 1em;
+  cursor: pointer;
 `;
 
 export default Header;

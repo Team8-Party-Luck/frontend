@@ -3,6 +3,7 @@ import { red } from "@mui/material/colors";
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import DefaultImg from "../../static/images/profile/default.png";
 
 const ChatBox = (props) => {
   const { message, userId, createdAt, image, chatInfo } = props;
@@ -14,18 +15,9 @@ const ChatBox = (props) => {
 
   return (
     <WrapBox user={user}>
-      {user ? null : (
-        <Avatar
-          sx={{
-            bgcolor: red[400],
-            width: "2em",
-            height: "2em",
-            marginRight: "0.5em",
-          }}
-          aria-label="recipe"
-          src={image}
-        />
-      )}
+      <ImgBox>
+        {user ? null : <ProfileImg src={image ? image : DefaultImg} />}
+      </ImgBox>
       <MsgBox user={user}>
         <Msg user={user}>{message}</Msg>
         <SendTime>{createdAt}</SendTime>
@@ -66,6 +58,20 @@ const SendTime = styled.div`
   margin-left: ${(props) => (props.user ? "0" : "0.5em")};
   margin-right: ${(props) => (props.user ? "0" : "0.5em")};
   padding-bottom: 0.7em;
+`;
+
+const ImgBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.2em;
+`;
+
+const ProfileImg = styled.img`
+  width: 2.5em;
+  height: 2.5em;
+  margin-right: 0.5em;
+  border-radius: 2.5em;
 `;
 
 export default ChatBox;

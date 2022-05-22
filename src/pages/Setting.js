@@ -254,7 +254,7 @@ const InnerText = styled.p`
 `;
 
 const NextBtn = styled.button`
-  position: absolute;
+  position: fixed;
   left: 4%;
   right: 4%;
   bottom: 3em;
@@ -271,7 +271,7 @@ const NextBtn = styled.button`
 `;
 
 const ActiveNextBtn = styled.button`
-  position: absolute;
+  position: fixed;
   left: 4%;
   right: 4%;
   bottom: 3em;
@@ -281,6 +281,7 @@ const ActiveNextBtn = styled.button`
   border: none;
   color: white;
   border-radius: 0.5em;
+  cursor: pointer;
 `;
 
 const ValuesInput = styled.input`

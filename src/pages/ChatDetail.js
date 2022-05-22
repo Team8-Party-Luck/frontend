@@ -16,6 +16,8 @@ import { red } from "@mui/material/colors";
 import styled from "styled-components";
 import { style } from "@mui/system";
 import { useState, useRef } from "react";
+import BackIcon from "../static/images/icon/back.png";
+import DefaultImg from "../static/images/profile/default.png";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
@@ -38,12 +40,8 @@ const ChatDetail = () => {
 
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
-    // dispatch(userActions.userCheckDB());
     dispatch(chatActions.getChatUserDB(roomId));
   }, []);
-
-  // const userInfo = useSelector((state) => state?.user?.check?.result?.userid);
-  // console.log(userInfo);
 
   const messages = useSelector((state) => state?.chat?.msg);
   console.log(messages);
@@ -128,64 +126,28 @@ const ChatDetail = () => {
 
   return (
     <Box position={"relative"}>
-      <Box
-        sx={{
-          width: "100%",
-          // height: "3.5em",
-          padding: 2,
-          display: "flex",
-          borderBottom: "1px solid #dfdfdf",
-          position: "fixed",
-          background: "white",
-          paddingTop: 2.2,
-          zIndex: 1000,
-        }}
-      >
-        <Box
+      <WrapBox>
+        <BackBox
           onClick={() => {
             history.push("/chat");
           }}
         >
-          <ArrowBackIosIcon fontSize="medium" />
-        </Box>
-        <Avatar
-          sx={{
-            bgcolor: red[400],
-            width: "1.2em",
-            height: "1.2em",
-            marginRight: "0.5em",
-          }}
-          aria-label="recipe"
-          src={chatInfo?.otherProfile}
+          <img src={BackIcon} alt="뒤로가기" style={{ width: 12 }} />
+        </BackBox>
+        <SmallProfile
+          src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
         />
-        <Typography
-          component="p"
-          variant="p"
-          sx={{
-            fontWeight: "bold",
-            color: "black",
-            fontSize: "1.2em",
-          }}
-        >
-          {chatInfo?.otherNickname}
-        </Typography>
+        <NicknameText>{chatInfo?.otherNickname}</NicknameText>
         {/* <ExitButton>나가기</ExitButton> */}
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-          padding: 1,
-          // paddingBottom: "4.5em",
-          paddingTop: "3.5em",
-        }}
-      >
+      </WrapBox>
+      <MsgWrapBox>
         {messages?.length > 0 &&
           messages?.map((cur, idx) => {
             return (
               <ChatBox
                 key={idx}
                 message={cur?.message}
-                image={cur?.image}
+                image={cur?.imageUrl}
                 userId={cur?.userId}
                 createdAt={cur?.createdAt}
                 chatInfo={chatInfo}
@@ -193,15 +155,46 @@ const ChatDetail = () => {
             );
           })}
         <div style={{ marginTop: "5em" }} ref={scrollRef} />
-      </Box>
+      </MsgWrapBox>
       <ChatInput msg={msg} setMsg={setMsg} onSend={onSend} />
     </Box>
   );
 };
 
-// const ExitButton = styled.div`
-//   color: gray;
-//   width: fit-content;
-// `;
+const WrapBox = styled.div`
+  width: 100%;
+  height: 3.5em;
+  display: flex;
+  border-bottom: 1px solid #dfdfdf;
+  position: fixed;
+  background: white;
+  align-items: center;
+  padding: 0 1em;
+  zindex: 1000;
+`;
+
+const BackBox = styled.div`
+  cursor: pointer;
+  margin-right: 1em;
+`;
+
+const SmallProfile = styled.img`
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+  border-radius: 2em;
+`;
+
+const NicknameText = styled.p`
+  font-weight: bold;
+  color: black;
+  font-size: 1.2em;
+`;
+
+const MsgWrapBox = styled.div`
+  width: 100%;
+  padding: 0.5em;
+  padding-top: 3.5em;
+`;
 
 export default ChatDetail;

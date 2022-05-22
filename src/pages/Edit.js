@@ -11,6 +11,9 @@ import Header from "../shared/Header";
 import Foodlist from "../Edit/Foodlist";
 import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
+import Toast from "../shared/Toast";
+//유효성 체크
+import { checkNickname, checkIntro } from "../shared/Validatiion";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -21,7 +24,16 @@ const Edit = (props) => {
 
   const user_info = useSelector((state) => state?.user?.user);
 
-  console.log(user_info);
+  // 토스트 메세지목록
+  const msgList = {
+    nickname: "닉네임은 최소 2글자 최대 10글자입니다",
+    intro: "자기소개는 최소 5글자 최대 30글자입니다",
+    sns: "올바른 주소형식이 아닙니다",
+  };
+
+  //토스트 메시지
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState(""); // 토스트에 표시할 메세지
 
   const [count, setCount] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
@@ -45,6 +57,24 @@ const Edit = (props) => {
     display: "none",
   });
 
+  //토스트 핸들러
+  //버튼을 1000ms 이내에 클릭할 때 문구만 실시간으로 바뀌도록 변경
+  const handleToast = (type) => {
+    if (!ToastStatus) {
+      setToastStatus(true);
+      setToastMsg(msgList[type]);
+    }
+  };
+
+  React.useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => {
+        setToastStatus(false);
+        setToastMsg("");
+      }, 1000);
+    }
+  }, [ToastStatus]);
+
   // 미리보기
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -61,16 +91,16 @@ const Edit = (props) => {
     });
   };
 
-  console.log(
-    imageUrl,
-    city,
-    region,
-    values.nickname,
-    values.sns,
-    values.intro
-  );
-
   const updateProfile = () => {
+    if (!checkNickname(values.nickname)) {
+      handleToast("nickname");
+      return;
+    }
+    if (!checkIntro(values.intro)) {
+      handleToast("intro");
+      return;
+    }
+
     const Update_info = new FormData();
     if (imageUrl !== null) {
       Update_info.append("image", imageUrl);
@@ -83,17 +113,6 @@ const Edit = (props) => {
     Update_info.append("nickname", values.nickname);
     Update_info.append("sns", values.sns);
     Update_info.append("intro", values.intro);
-
-    // // FormData의 key 확인
-    // for (let key of Update_info.keys()) {
-    //   console.log(key);
-    // }
-
-    // // FormData의 value 확인
-    // for (let value of Update_info.values()) {
-    //   // console.log(typeof value);
-    //   console.log(value);
-    // }
 
     dispatch(userActions.updateSettingsData(Update_info));
   };
@@ -247,6 +266,11 @@ const Edit = (props) => {
           defaultValue={user_info?.sns}
         />
       </Box>
+      {ToastStatus && (
+        <>
+          <Toast msg={ToastMsg} />
+        </>
+      )}
     </React.Fragment>
   );
 };
