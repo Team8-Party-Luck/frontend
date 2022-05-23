@@ -417,7 +417,7 @@ const getJoinedData = () => {
 const getScrapData = () => {
   return function (dispatch, getState, { history }) {
     crewApi
-      .partyMeTake()
+      .partyMeLike()
       .then((res) => {
         console.log(res);
         dispatch(getScrap(res.data));
@@ -453,7 +453,7 @@ const getScrapData = () => {
 const sendScrapData = (partyId) => {
   return function (dispatch, getState, { history }) {
     crewApi
-      .partySub()
+      .partyLike(partyId)
       .then((res) => {
         console.log(res);
         dispatch(getDetail(res.data));
@@ -463,8 +463,6 @@ const sendScrapData = (partyId) => {
       });
   };
 };
-
-
 
 //파티 신청
 // const sendJoinData = (partyId) => {
@@ -514,10 +512,6 @@ const sendJoinData = (partyId) => {
   };
 };
 
-
-
-
-
 //파티 신청 취소
 // const sendCancelData = (partyId) => {
 //   const token = sessionStorage.getItem("token");
@@ -553,7 +547,6 @@ const sendCancelData = (partyId) => {
       });
   };
 };
-
 
 //참여할 파티 조회
 // const getWillData = () => {
