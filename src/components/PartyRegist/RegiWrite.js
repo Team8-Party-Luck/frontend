@@ -230,11 +230,11 @@ const RegiWrite = () => {
               mb: 3,
             }}
           >
-            <Box component="div">
-              <RealDay date={date} setDate={setDate} />
+            <Box style={{maxWidth:'45%'}} component="div">
+              <RealDay  date={date} setDate={setDate} />
             </Box>
-            <Box component="div">
-              <TimeSelect time={time} setTime={setTime} />
+            <Box style={{maxWidth:'45%'}} component="div">
+            <TimeSelect   time={time} setTime={setTime} />
             </Box>
           </Box>
 

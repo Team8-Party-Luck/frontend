@@ -55,7 +55,7 @@ const PersonInfo = ({
           lineHeight: "4rem",
         }}
       >
-        <h4 style={{marginRight:'2rem'}}>인원수</h4>
+        <h4 style={{marginRight:'2rem',  }}>인원수</h4>
         <Age capacity={capacity} setCapacity={setCapacity} />
       </div>
       <Divider />
@@ -68,7 +68,7 @@ const PersonInfo = ({
           lineHeight: "2rem",
         }}
       >
-        <h4 style={{marginRight:'2rem'}} >연령대</h4>
+        <h4 style={{marginRight:'2.6rem'}} >연령대</h4>
         <AgeGroup ageGroup={ageGroup} setAgeGroup={setAgeGroup} />
       </div>
       <Divider />
@@ -81,7 +81,7 @@ const PersonInfo = ({
           lineHeight: "4rem",
         }}
       >
-        <h4 style={{marginRight:'2rem'}}>성별</h4>
+        <h4 style={{marginRight:'3.8rem'}}>성별</h4>
         <RowRadioButtonsGroup gender={gender} setGender={setGender} />
       </div>
 

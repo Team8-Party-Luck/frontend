@@ -3,22 +3,40 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="manifest" href="/manifest.json" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
 
 
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
 
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <link rel="/manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>React App</title>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3bc3bb23cd0ab295aa8589ea2e5b3c06&libraries=services"></script>
-   <!-- 카카오 지도 api  -->
-   
-   <script type="module">
+
+  <!-- Add link tags and icons -->
+  <link rel="manifest" href="./manifest.json" />
+
+  <!-- Add ios meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="eatsring">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon-152x152.png" />
+
+  <!-- Add description here -->
+  <meta name="description" content="eatsring" />
+
+  <!-- Add meta theme-color -->
+  <meta name="theme-color" content="#FF6853" />
+  <link rel="shortcut icon" href="./icons/apple-touch-icon-152x152.png">
+
+
+  <!-- <link rel="/manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+  <title>eatsring</title>
+
+
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3bc3bb23cd0ab295aa8589ea2e5b3c06&libraries=services"></script>
+  <!-- 카카오 지도 api  -->
+
+  <script type="module">
     import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
     const el = document.createElement('pwa-update');
     document.body.appendChild(el);
@@ -28,7 +46,7 @@
 
 <body>
   <div id="root"></div>
-  
+
 </body>
 
 
