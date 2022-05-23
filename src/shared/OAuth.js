@@ -6,9 +6,9 @@ const CLIENT_ID = "36be9be27590932cdc9a43f577d49204";
 
 
 // 웹
-const REDIRECT_URI = "https://www.eatsring.com/auth/kakao"; 
+// const REDIRECT_URI = "https://www.eatsring.com/auth/kakao"; 
 // 로컬
-// const REDIRECT_URI = "http://localhost:3000/auth/kakao"; 
+const REDIRECT_URI = "http://localhost:3000/auth/kakao"; 
 
 // const REDIRECT_URI = 'http://eatsring.com.s3-website.ap-northeast-2.amazonaws.com/auth/kakao'
 
