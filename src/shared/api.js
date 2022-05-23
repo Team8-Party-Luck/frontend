@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://3.38.180.96", //우창님
+  baseURL: "https://epocle.shop/", //우창님
   // baseURL: "http://54.180.88.119", //형빈님
 });
+
 
 // 유저 관련 API
 export const userApi = {
