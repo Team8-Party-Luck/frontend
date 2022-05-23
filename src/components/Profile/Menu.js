@@ -1,7 +1,12 @@
 import React from "react";
-import { history } from "../../redux/configStore";
-import goArrow from "../../static/images/icon/arw_gray.png";
 import styled from "styled-components";
+//리덕스
+import { history } from "../../redux/configStore";
+//이미지
+import goArrow from "../../static/images/icon/arw_gray.png";
+//컬러시스템
+import { color } from "../../shared/ColorSystem";
+
 const Menu = (props) => {
   return (
     <WrapBox>
@@ -14,7 +19,7 @@ const Menu = (props) => {
         <div>
           참여 히스토리 <CountText>{props?.joinedData?.length}</CountText>
         </div>
-        <img src={goArrow} style={{ width: 9, height: 15 }} />
+        <ArrowImg src={goArrow} alt="애로우이미지" />
       </ListBox>
       <ListBox
         onClick={() => {
@@ -24,21 +29,23 @@ const Menu = (props) => {
         <div>
           찜한 파티 <CountText>{props?.scrapData?.length}</CountText>
         </div>
-        <img src={goArrow} style={{ width: 9, height: 15 }} />
+        <ArrowImg src={goArrow} alt="애로우이미지" />
       </ListBox>
       <ListBox
         onClick={() => {
           history.push("/account");
         }}
       >
-        계정 <img src={goArrow} style={{ width: 9, height: 15 }} />
+        계정
+        <ArrowImg src={goArrow} alt="애로우이미지" />
       </ListBox>
       <ListBox
         onClick={() => {
           history.push("/inquary");
         }}
       >
-        문의하기 <img src={goArrow} style={{ width: 9, height: 15 }} />
+        문의하기
+        <ArrowImg src={goArrow} alt="애로우이미지" />
       </ListBox>
     </WrapBox>
   );
@@ -51,8 +58,7 @@ const WrapBox = styled.div`
 
 const MenuText = styled.p`
   font-size: 0.8em;
-  color: gray;
-  font-weight: 600;
+  color: ${color.sub1};
   margin-top: 1em;
   margin-bottom: 0.5em;
 `;
@@ -67,8 +73,12 @@ const ListBox = styled.div`
 `;
 
 const CountText = styled.span`
-  color: #ccc;
+  color: ${color.disabled};
   margin-left: 0.5em;
+`;
+
+const ArrowImg = styled.img`
+  width: 0.55em;
 `;
 
 export default Menu;

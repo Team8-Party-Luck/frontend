@@ -9,13 +9,11 @@ const Header = (props) => {
     <WrapBox>
       <BackBox
         onClick={() => {
-
-          if(props.name==="파티등록"){
-            props.modal()
-          }else {
+          if (props.name === "파티등록") {
+            props.modal();
+          } else {
             history.goBack();
           }
-
         }}
       >
         <img src={BackIcon} alt="뒤로가기" style={{ width: 12, height: 22 }} />
@@ -45,7 +43,7 @@ const BackBox = styled.div`
 `;
 
 const HeaderText = styled.p`
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1.2em;
   margin: 0 auto;
 `;

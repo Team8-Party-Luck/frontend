@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { createTheme } from "@mui/material/styles";
-import { purple } from "@mui/material/colors";
 import styled from "styled-components";
+
+//컬러시스템
+import { color } from "../../shared/ColorSystem";
 
 const SetAge = (props) => {
   const { age, setAge, count, setCount } = props;
@@ -138,7 +136,7 @@ const CheckBox = styled.div`
   width: 4em;
   height: 2em;
   border-radius: 3em;
-  background: #ff6853;
+  background: ${color.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,7 +147,7 @@ const NonCheckBox = styled.div`
   width: 4em;
   height: 2em;
   border-radius: 3em;
-  border: 1px solid #dfdfdf;
+  border: 1px solid ${color.disabled};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,7 +164,6 @@ const CheckText = styled.p`
 
 const NonCheckText = styled.p`
   width: fit-content;
-  color: black;
   font-size: 0.9em;
   margin: 0 auto;
 `;

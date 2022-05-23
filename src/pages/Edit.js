@@ -1,31 +1,45 @@
 import { Box, IconButton, Button, Avatar, Typography } from "@mui/material";
-import axios from "axios";
+
 import EditIcon from "@mui/icons-material/Edit";
-import CheckIcon from "@mui/icons-material/Check";
-import { red } from "@mui/material/colors";
+
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
-import Foodlist from "../Edit/Foodlist";
+import EditProflie from "../components/Edit/EditProflie";
 import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
 import Toast from "../shared/Toast";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { crewApi } from "../shared/api";
+import { userApi } from "../shared/api";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
+//컬러시스템
+import { color } from "../shared/ColorSystem";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(userActions.getUserInfoDB());
+    userApi.userInfo().then((res) => {
+      console.log(res.data);
+      setImageUrl(null);
+      setImageSrc(res.data.image);
+      setNickname(res.data.nickname);
+      setAge(res.data.age);
+      setGender(res.data.gender);
+      setFood(res.data.food);
+      setCity(res.data.city);
+      setRegion(res.data.region);
+      setIntro(res.data.intro);
+      setSns(res.data.sns);
+    });
   }, []);
 
-  const user_info = useSelector((state) => state?.user?.user);
+  // const user_info = useSelector((state) => state?.user?.user);
+  // console.log(user_info);
 
   // 토스트 메세지목록
   const msgList = {
@@ -40,23 +54,16 @@ const Edit = (props) => {
 
   const [count, setCount] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
-  const [imageSrc, setImageSrc] = useState(user_info?.image);
-  const [age, setAge] = useState(user_info?.age);
-  const [gender, setGender] = useState(user_info?.gender);
-  const [food, setFood] = useState(user_info?.food);
-  const [city, setCity] = useState(user_info?.city);
-  const [region, setRegion] = useState(user_info?.region);
-  const [values, setValues] = useState({
-    nickname: user_info?.nickname,
-    sns: user_info?.sns,
-    intro: user_info?.intro,
-  });
+  const [imageSrc, setImageSrc] = useState("");
+  const [nickname, setNickname] = useState("");
 
-  console.log(imageSrc, imageUrl, age, gender, food, city, region, values);
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [food, setFood] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [intro, setIntro] = useState("");
+  const [sns, setSns] = useState("");
 
   const Input = styled("input")({
     display: "none",
@@ -105,11 +112,11 @@ const Edit = (props) => {
   });
 
   const updateProfile = () => {
-    if (!checkNickname(values.nickname)) {
+    if (!checkNickname(nickname)) {
       handleToast("nickname");
       return;
     }
-    if (!checkIntro(values.intro)) {
+    if (!checkIntro(intro)) {
       handleToast("intro");
       return;
     }
@@ -121,38 +128,43 @@ const Edit = (props) => {
     Update_info.append("city", city);
     Update_info.append("region", region);
     Update_info.append("food", food);
-    Update_info.append("nickname", values.nickname);
-    Update_info.append("sns", values.sns);
-    Update_info.append("intro", values.intro);
+    Update_info.append("nickname", nickname);
+    Update_info.append("sns", sns);
+    Update_info.append("intro", intro);
 
-    // dispatch(userActions.updateSettingsData(Update_info));
+    dispatch(userActions.updateSettingsData(Update_info));
   };
 
   return (
     <React.Fragment>
       <Header name={"프로필 수정"} type={"완료"} event={updateProfile} />
-      <Box sx={{ padding: 2.5, paddingTop: "4.7em" }}>
-        <Box sx={{ marginBottom: 5, display: "flex", position: "relative" }}>
+      <Wrapbox>
+        <EditProflie
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
+          imageSrc={imageSrc}
+          setImageSrc={setImageSrc}
+          nickname={nickname}
+          setNickname={setNickname}
+          encodeFileToBase64={encodeFileToBase64}
+        />
+        {/* <ProfileBox>
           <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
-          <Box sx={{ width: "100%", paddingTop: 1 }}>
-            <Typography
-              component="p"
-              variant="p"
-              sx={{ color: "gray", fontSize: "0.8em" }}
-            >
-              닉네임
-            </Typography>
+          <NicknameBox>
+            <NicknameText>닉네임</NicknameText>
             <NicknameInput
-              onChange={handleChange("nickname")}
-              defaultValue={user_info?.nickname}
+              onChange={(e) => {
+                setNickname(e.target.value);
+              }}
+              defaultValue={nickname}
             />
-          </Box>
+          </NicknameBox>
           <Box
             sx={{
-              background: "gray",
-              width: 22,
-              height: 22,
-              borderRadius: 22,
+              background: "#ff6853",
+              width: 25,
+              height: 25,
+              borderRadius: 25,
               position: "absolute",
               top: "2.4em",
               left: "2.5em",
@@ -173,9 +185,9 @@ const Edit = (props) => {
               component="span"
               sx={{
                 position: "absolute",
-                top: "1.4em",
-                left: "1.5em",
-                color: "black",
+                top: "1.5em",
+                left: "1.59em",
+                color: "white",
               }}
             >
               <EditIcon
@@ -186,15 +198,9 @@ const Edit = (props) => {
               />
             </IconButton>
           </label>
-        </Box>
+        </ProfileBox> */}
         <Box sx={{ width: "100%", display: "flex" }}>
-          <Typography
-            component="h6"
-            variant="p"
-            sx={{ color: "black", fontSize: "0.9em", marginRight: "1em" }}
-          >
-            성별
-          </Typography>
+          <NicknameText>성별</NicknameText>
           <Typography
             component="p"
             variant="p"
@@ -203,16 +209,10 @@ const Edit = (props) => {
             수정 불가한 정보입니다
           </Typography>
         </Box>
-        <NonFixBox>{user_info?.gender}</NonFixBox>
+        <NonFixBox>{gender}</NonFixBox>
 
-        <Box sx={{ width: "100%", display: "flex" }}>
-          <Typography
-            component="h6"
-            variant="p"
-            sx={{ color: "black", fontSize: "0.9em", marginRight: "1em" }}
-          >
-            나이
-          </Typography>
+        <FlexBox>
+          <NicknameText>나이</NicknameText>
           <Typography
             component="p"
             variant="p"
@@ -220,15 +220,9 @@ const Edit = (props) => {
           >
             수정 불가한 정보입니다
           </Typography>
-        </Box>
-        <NonFixBox>{user_info?.age}</NonFixBox>
-        <Typography
-          component="h6"
-          variant="p"
-          sx={{ color: "black", fontSize: "0.9em", marginBottom: "0.5em" }}
-        >
-          지역
-        </Typography>
+        </FlexBox>
+        <NonFixBox>{age}</NonFixBox>
+        <NicknameText>동네</NicknameText>
         <ThemeProvider theme={theme}>
           <SetLocation
             city={city}
@@ -245,39 +239,21 @@ const Edit = (props) => {
           count={count}
           setCount={setCount}
         />
-        <Typography
-          component="h6"
-          variant="p"
-          sx={{
-            color: "black",
-            fontSize: "0.9em",
-            marginBottom: "0.7em",
-            marginTop: "1em",
-          }}
-        >
-          자기소개
-        </Typography>
+        <NicknameText>자기소개</NicknameText>
         <NicknameInput
-          onChange={handleChange("intro")}
-          defaultValue={user_info?.intro}
-        />
-        <Typography
-          component="h6"
-          variant="p"
-          sx={{
-            color: "black",
-            fontSize: "0.9em",
-            marginBottom: "0.5em",
-            marginTop: "1em",
+          onChange={(e) => {
+            setIntro(e.target.value);
           }}
-        >
-          SNS
-        </Typography>
-        <NicknameInput
-          onChange={handleChange("sns")}
-          defaultValue={user_info?.sns}
+          defaultValue={intro}
         />
-      </Box>
+        <NicknameText>SNS</NicknameText>
+        <NicknameInput
+          onChange={(e) => {
+            setSns(e.target.value);
+          }}
+          defaultValue={sns}
+        />
+      </Wrapbox>
       {ToastStatus && (
         <>
           <Toast msg={ToastMsg} />
@@ -287,10 +263,30 @@ const Edit = (props) => {
   );
 };
 
+const Wrapbox = styled.div`
+  padding: 1.25em;
+  padding-top: 4.7em;
+`;
+
+const ProfileBox = styled.div`
+  display: flex;
+  position: relative;
+  margin-bottom: 2.5em;
+`;
+
+const NicknameBox = styled.div`
+  width: 100%;
+`;
+
+const NicknameText = styled.p`
+  font-size: 0.9em;
+  padding-bottom: 0.2em;
+`;
+
 const NicknameInput = styled.input`
   width: 100%;
-  height: 2.2em;
-  border: 0.13em solid #dfdfdf;
+  height: 2.5em;
+  border: 1px solid ${color.line};
   border-radius: 3px;
   padding-left: 0.5em;
   font-size: 1em;
@@ -308,10 +304,15 @@ const NonFixBox = styled.div`
 `;
 
 const ImgBox = styled.img`
-  width: 3.8em;
-  height: 3.8em;
-  border-radius: 2.5em;
-  margin-right: 0.5em;
+  width: 4em;
+  height: 4em;
+  border-radius: 4em;
+  margin-right: 0.8em;
+`;
+
+const FlexBox = styled.div`
+  width: 100%;
+  display: flex;
 `;
 
 export default Edit;

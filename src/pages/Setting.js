@@ -1,26 +1,40 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import styled from "styled-components";
+
+//컬러시스템
+import { color } from "../shared/ColorSystem";
+
+//리덕스
+import { actionCreators as userActions } from "../redux/modules/user";
+
+//컴포넌트
 import SetGender from "../components/Settings/SetGender";
 import SetAge from "../components/Settings/SetAge";
 import SetLocation from "../components/Settings/SetLocation";
 import SetFood from "../components/Settings/SetFood";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import styled from "styled-components";
+
+//토스트 팝업
 import Toast from "../shared/Toast";
+
+//mui
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 
 const Setting = () => {
   const dispatch = useDispatch();
+
   // 토스트 메세지목록
   const msgList = {
     nickname: "닉네임은 최소 2글자 최대 10글자입니다",
     intro: "자기소개는 최소 5글자 최대 30글자입니다",
     sns: "올바른 주소형식이 아닙니다",
   };
+
   //페이지 전환
   const [page, setPage] = useState(false);
 
@@ -59,10 +73,12 @@ const Setting = () => {
     }
   }, [ToastStatus]);
 
+  //value 설정
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  // 세팅정보 서버로 전송하는 함수
   const sendSettings = () => {
     if (!checkNickname(values.nickname)) {
       handleToast("nickname");
@@ -108,9 +124,9 @@ const Setting = () => {
           food.length !== 0 &&
           values.nickname &&
           values.intro ? (
-            <Progress width={(5 / 5) * 100 + "%"} />
+            <Progress width={(5 / 5) * 100 + "%"} BgColor={color.primary} />
           ) : (
-            <Progress width={(count / 5) * 100 + "%"} />
+            <Progress width={(count / 5) * 100 + "%"} BgColor={color.primary} />
           )}
           {/* <Progress width={(count / 5) * 100 + "%"} /> */}
         </Contain>
@@ -206,6 +222,7 @@ const Setting = () => {
           )}
         </BodyBox>
       )}
+      {/* 토스트팝업 */}
       {ToastStatus && (
         <>
           <Toast msg={ToastMsg} />
@@ -217,7 +234,7 @@ const Setting = () => {
 
 const Contain = styled.div`
   margin: 0.5em auto;
-  background-color: #eee;
+  background-color: ${color.pale};
   width: 100%;
   height: 0.7em;
   display: flex;
@@ -225,7 +242,8 @@ const Contain = styled.div`
   border-radius: 20px;
 `;
 const Progress = styled.div`
-  background-color: red;
+  background: ${(props) => props.BgColor};
+  // background: red;
   width: ${(props) => props.width};
   height: 100%;
   transition: width 1s;
@@ -260,34 +278,21 @@ const NextBtn = styled.button`
   bottom: 3em;
   width: 92%;
   height: 3em;
-  background: #FFC3BA;
-  border: none;
-  color: white;
-  margin-top: 4em;
-  border-radius: 0.5em; 
-  width: "92%",
-  left: "4%",
-  right: "4%",
-`;
-
-const ActiveNextBtn = styled.button`
-  position: fixed;
-  left: 4%;
-  right: 4%;
-  bottom: 3em;
-  width: 92%;
-  height: 3em;
-  background: #ff6853;
+  background: ${color.subPrimary};
   border: none;
   color: white;
   border-radius: 0.5em;
+`;
+
+const ActiveNextBtn = styled(NextBtn)`
+  background: ${color.primary};
   cursor: pointer;
 `;
 
 const ValuesInput = styled.input`
   width: 100%;
   height: 3em;
-  border: 0.13em solid #dfdfdf;
+  border: 0.13em solid ${color.disabled};
   border-radius: 3px;
   padding-left: 0.5em;
   font-size: 1em;
@@ -298,7 +303,7 @@ const ValuesInput = styled.input`
 const IntroInput = styled.textarea`
   width: 100%;
   height: 15em;
-  border: 0.13em solid #dfdfdf;
+  border: 0.13em solid ${color.disabled};
   border-radius: 3px;
   padding-left: 0.5em;
   padding-top: 0.8em;

@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import { history } from "../redux/configStore";
-import { KAKAO_AUTH_URL } from "../shared/OAuth";
+import React from "react";
 import styled from "styled-components";
+import { color } from "../shared/ColorSystem";
+
+//카카오
+import { KAKAO_AUTH_URL } from "../shared/OAuth";
+
+//캐러셀
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+//이미지
 import OnBoarding1 from "../static/images/onboarding/img_onboarding1.png";
 import OnBoarding2 from "../static/images/onboarding/img_onboarding2.png";
 import OnBoarding3 from "../static/images/onboarding/img_onboarding3.png";
@@ -13,6 +18,7 @@ import OnBoarding4 from "../static/images/onboarding/img_onboarding4.png";
 import Kakao from "../static/images/kakao/kakao_login_large_wide.png";
 
 const Login = () => {
+  //캐러셀 설정
   const settings = {
     dots: true,
     infinite: true,
@@ -23,7 +29,7 @@ const Login = () => {
   };
 
   return (
-    <Wrapbox>
+    <Wrapbox BgColor={color.pale}>
       <StyledSlider {...settings}>
         <ImgBox>
           <LogoImg src={OnBoarding1} />
@@ -66,10 +72,9 @@ const Login = () => {
 const Wrapbox = styled.div`
   width: 100%;
   height: 100vh;
-  padding-top: 8em;
-  background: #fff5f4;
+  padding-top: 10em;
+  background: ${(props) => props.BgColor};
   background-size: cover;
-  /* position: fixed; */
   background-repeat: no-repeat;
 `;
 
@@ -85,7 +90,6 @@ const Wrapbox = styled.div`
 const StyledSlider = styled(Slider)`
   .slick-slide div {
     width: 80%;
-    // border: 1px solid;
     margin: 0 auto;
     z-index: 999;
     cursor: pointer;
@@ -113,10 +117,10 @@ const ImgBox = styled.div`
 
 const LoginBox = styled.div`
   position: absolute;
-  left: 5%;
-  right: 5%;
+  left: 12.5%;
+  right: 12.5%;
   bottom: 3em;
-  width: 90%;
+  width: 75%;
   height: 3em;
   cursor: pointer;
 `;
