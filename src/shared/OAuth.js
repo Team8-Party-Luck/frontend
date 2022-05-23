@@ -9,7 +9,7 @@ const CLIENT_ID = "69e09d88a64e1a73b8fe2357f551ef81";
 // const REDIRECT_URI = "https://www.eatsring.com/auth/kakao"; 
 // 로컬
 // const REDIRECT_URI = "http://13.125.216.238//auth/kakao"; 
-const REDIRECT_URI = "https://epocle.shop/auth/kakao"; 
+const REDIRECT_URI = "https://eatsring.com/auth/kakao"; 
 
 
 
