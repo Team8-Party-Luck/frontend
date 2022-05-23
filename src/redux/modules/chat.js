@@ -32,6 +32,7 @@ const getChatListDB = () => {
       .chatList()
       .then((res) => {
         console.log(res.data);
+        console.log("성공");
         dispatch(getChatList(res.data));
       })
       .catch((error) => {
