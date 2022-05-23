@@ -52,7 +52,7 @@ const PartyRevise = () => {
     const token = sessionStorage.getItem("token");
     (async () => {
       const posts = await axios.get(
-        `http://3.38.180.96:8080/api/party/details/${partyId}`,
+        `https://epocle.shop/api/party/details/${partyId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
