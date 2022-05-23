@@ -8,7 +8,7 @@ import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
-
+import EditProflie from "../components/Edit/EditProflie";
 import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
 import Toast from "../shared/Toast";
@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { userApi } from "../shared/api";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
+//컬러시스템
+import { color } from "../shared/ColorSystem";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -136,31 +138,33 @@ const Edit = (props) => {
   return (
     <React.Fragment>
       <Header name={"프로필 수정"} type={"완료"} event={updateProfile} />
-      <Box sx={{ padding: 2.5, paddingTop: "4.7em" }}>
-        <Box sx={{ marginBottom: 5, display: "flex", position: "relative" }}>
+      <Wrapbox>
+        <EditProflie
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
+          imageSrc={imageSrc}
+          setImageSrc={setImageSrc}
+          nickname={nickname}
+          setNickname={setNickname}
+          encodeFileToBase64={encodeFileToBase64}
+        />
+        {/* <ProfileBox>
           <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
-          <Box sx={{ width: "100%", paddingTop: 1 }}>
-            <Typography
-              component="p"
-              variant="p"
-              sx={{ color: "gray", fontSize: "0.8em" }}
-            >
-              닉네임
-            </Typography>
-
+          <NicknameBox>
+            <NicknameText>닉네임</NicknameText>
             <NicknameInput
               onChange={(e) => {
                 setNickname(e.target.value);
               }}
               defaultValue={nickname}
             />
-          </Box>
+          </NicknameBox>
           <Box
             sx={{
-              background: "gray",
-              width: 22,
-              height: 22,
-              borderRadius: 22,
+              background: "#ff6853",
+              width: 25,
+              height: 25,
+              borderRadius: 25,
               position: "absolute",
               top: "2.4em",
               left: "2.5em",
@@ -181,9 +185,9 @@ const Edit = (props) => {
               component="span"
               sx={{
                 position: "absolute",
-                top: "1.4em",
-                left: "1.5em",
-                color: "black",
+                top: "1.5em",
+                left: "1.59em",
+                color: "white",
               }}
             >
               <EditIcon
@@ -194,15 +198,9 @@ const Edit = (props) => {
               />
             </IconButton>
           </label>
-        </Box>
+        </ProfileBox> */}
         <Box sx={{ width: "100%", display: "flex" }}>
-          <Typography
-            component="h6"
-            variant="p"
-            sx={{ color: "black", fontSize: "0.9em", marginRight: "1em" }}
-          >
-            성별
-          </Typography>
+          <NicknameText>성별</NicknameText>
           <Typography
             component="p"
             variant="p"
@@ -213,14 +211,8 @@ const Edit = (props) => {
         </Box>
         <NonFixBox>{gender}</NonFixBox>
 
-        <Box sx={{ width: "100%", display: "flex" }}>
-          <Typography
-            component="h6"
-            variant="p"
-            sx={{ color: "black", fontSize: "0.9em", marginRight: "1em" }}
-          >
-            나이
-          </Typography>
+        <FlexBox>
+          <NicknameText>나이</NicknameText>
           <Typography
             component="p"
             variant="p"
@@ -228,15 +220,9 @@ const Edit = (props) => {
           >
             수정 불가한 정보입니다
           </Typography>
-        </Box>
+        </FlexBox>
         <NonFixBox>{age}</NonFixBox>
-        <Typography
-          component="h6"
-          variant="p"
-          sx={{ color: "black", fontSize: "0.9em", marginBottom: "0.5em" }}
-        >
-          지역
-        </Typography>
+        <NicknameText>동네</NicknameText>
         <ThemeProvider theme={theme}>
           <SetLocation
             city={city}
@@ -253,43 +239,21 @@ const Edit = (props) => {
           count={count}
           setCount={setCount}
         />
-        <Typography
-          component="h6"
-          variant="p"
-          sx={{
-            color: "black",
-            fontSize: "0.9em",
-            marginBottom: "0.7em",
-            marginTop: "1em",
-          }}
-        >
-          자기소개
-        </Typography>
+        <NicknameText>자기소개</NicknameText>
         <NicknameInput
           onChange={(e) => {
             setIntro(e.target.value);
           }}
           defaultValue={intro}
         />
-        <Typography
-          component="h6"
-          variant="p"
-          sx={{
-            color: "black",
-            fontSize: "0.9em",
-            marginBottom: "0.5em",
-            marginTop: "1em",
-          }}
-        >
-          SNS
-        </Typography>
+        <NicknameText>SNS</NicknameText>
         <NicknameInput
           onChange={(e) => {
             setSns(e.target.value);
           }}
           defaultValue={sns}
         />
-      </Box>
+      </Wrapbox>
       {ToastStatus && (
         <>
           <Toast msg={ToastMsg} />
@@ -299,10 +263,30 @@ const Edit = (props) => {
   );
 };
 
+const Wrapbox = styled.div`
+  padding: 1.25em;
+  padding-top: 4.7em;
+`;
+
+const ProfileBox = styled.div`
+  display: flex;
+  position: relative;
+  margin-bottom: 2.5em;
+`;
+
+const NicknameBox = styled.div`
+  width: 100%;
+`;
+
+const NicknameText = styled.p`
+  font-size: 0.9em;
+  padding-bottom: 0.2em;
+`;
+
 const NicknameInput = styled.input`
   width: 100%;
-  height: 2.2em;
-  border: 0.13em solid #dfdfdf;
+  height: 2.5em;
+  border: 1px solid ${color.line};
   border-radius: 3px;
   padding-left: 0.5em;
   font-size: 1em;
@@ -320,10 +304,15 @@ const NonFixBox = styled.div`
 `;
 
 const ImgBox = styled.img`
-  width: 3.8em;
-  height: 3.8em;
-  border-radius: 2.5em;
-  margin-right: 0.5em;
+  width: 4em;
+  height: 4em;
+  border-radius: 4em;
+  margin-right: 0.8em;
+`;
+
+const FlexBox = styled.div`
+  width: 100%;
+  display: flex;
 `;
 
 export default Edit;

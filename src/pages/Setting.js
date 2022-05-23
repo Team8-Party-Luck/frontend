@@ -124,9 +124,9 @@ const Setting = () => {
           food.length !== 0 &&
           values.nickname &&
           values.intro ? (
-            <Progress width={(5 / 5) * 100 + "%"} BgColor={color.deep} />
+            <Progress width={(5 / 5) * 100 + "%"} BgColor={color.primary} />
           ) : (
-            <Progress width={(count / 5) * 100 + "%"} BgColor={color.deep} />
+            <Progress width={(count / 5) * 100 + "%"} BgColor={color.primary} />
           )}
           {/* <Progress width={(count / 5) * 100 + "%"} /> */}
         </Contain>
