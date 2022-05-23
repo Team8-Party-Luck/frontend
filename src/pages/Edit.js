@@ -1,20 +1,19 @@
 import { Box, IconButton, Button, Avatar, Typography } from "@mui/material";
-import axios from "axios";
+
 import EditIcon from "@mui/icons-material/Edit";
-import CheckIcon from "@mui/icons-material/Check";
-import { red } from "@mui/material/colors";
+
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import SetLocation from "../components/Settings/SetLocation";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
-import Foodlist from "../Edit/Foodlist";
+
 import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
 import Toast from "../shared/Toast";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { crewApi } from "../shared/api";
+import { userApi } from "../shared/api";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 
@@ -22,10 +21,23 @@ const Edit = (props) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(userActions.getUserInfoDB());
+    userApi.userInfo().then((res) => {
+      console.log(res.data);
+      setImageUrl(null);
+      setImageSrc(res.data.image);
+      setNickname(res.data.nickname);
+      setAge(res.data.age);
+      setGender(res.data.gender);
+      setFood(res.data.food);
+      setCity(res.data.city);
+      setRegion(res.data.region);
+      setIntro(res.data.intro);
+      setSns(res.data.sns);
+    });
   }, []);
 
-  const user_info = useSelector((state) => state?.user?.user);
+  // const user_info = useSelector((state) => state?.user?.user);
+  // console.log(user_info);
 
   // 토스트 메세지목록
   const msgList = {
@@ -40,23 +52,16 @@ const Edit = (props) => {
 
   const [count, setCount] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
-  const [imageSrc, setImageSrc] = useState(user_info?.image);
-  const [age, setAge] = useState(user_info?.age);
-  const [gender, setGender] = useState(user_info?.gender);
-  const [food, setFood] = useState(user_info?.food);
-  const [city, setCity] = useState(user_info?.city);
-  const [region, setRegion] = useState(user_info?.region);
-  const [values, setValues] = useState({
-    nickname: user_info?.nickname,
-    sns: user_info?.sns,
-    intro: user_info?.intro,
-  });
+  const [imageSrc, setImageSrc] = useState("");
+  const [nickname, setNickname] = useState("");
 
-  console.log(imageSrc, imageUrl, age, gender, food, city, region, values);
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [food, setFood] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [intro, setIntro] = useState("");
+  const [sns, setSns] = useState("");
 
   const Input = styled("input")({
     display: "none",
@@ -105,11 +110,11 @@ const Edit = (props) => {
   });
 
   const updateProfile = () => {
-    if (!checkNickname(values.nickname)) {
+    if (!checkNickname(nickname)) {
       handleToast("nickname");
       return;
     }
-    if (!checkIntro(values.intro)) {
+    if (!checkIntro(intro)) {
       handleToast("intro");
       return;
     }
@@ -121,11 +126,11 @@ const Edit = (props) => {
     Update_info.append("city", city);
     Update_info.append("region", region);
     Update_info.append("food", food);
-    Update_info.append("nickname", values.nickname);
-    Update_info.append("sns", values.sns);
-    Update_info.append("intro", values.intro);
+    Update_info.append("nickname", nickname);
+    Update_info.append("sns", sns);
+    Update_info.append("intro", intro);
 
-    // dispatch(userActions.updateSettingsData(Update_info));
+    dispatch(userActions.updateSettingsData(Update_info));
   };
 
   return (
@@ -142,9 +147,12 @@ const Edit = (props) => {
             >
               닉네임
             </Typography>
+
             <NicknameInput
-              onChange={handleChange("nickname")}
-              defaultValue={user_info?.nickname}
+              onChange={(e) => {
+                setNickname(e.target.value);
+              }}
+              defaultValue={nickname}
             />
           </Box>
           <Box
@@ -203,7 +211,7 @@ const Edit = (props) => {
             수정 불가한 정보입니다
           </Typography>
         </Box>
-        <NonFixBox>{user_info?.gender}</NonFixBox>
+        <NonFixBox>{gender}</NonFixBox>
 
         <Box sx={{ width: "100%", display: "flex" }}>
           <Typography
@@ -221,7 +229,7 @@ const Edit = (props) => {
             수정 불가한 정보입니다
           </Typography>
         </Box>
-        <NonFixBox>{user_info?.age}</NonFixBox>
+        <NonFixBox>{age}</NonFixBox>
         <Typography
           component="h6"
           variant="p"
@@ -258,8 +266,10 @@ const Edit = (props) => {
           자기소개
         </Typography>
         <NicknameInput
-          onChange={handleChange("intro")}
-          defaultValue={user_info?.intro}
+          onChange={(e) => {
+            setIntro(e.target.value);
+          }}
+          defaultValue={intro}
         />
         <Typography
           component="h6"
@@ -274,8 +284,10 @@ const Edit = (props) => {
           SNS
         </Typography>
         <NicknameInput
-          onChange={handleChange("sns")}
-          defaultValue={user_info?.sns}
+          onChange={(e) => {
+            setSns(e.target.value);
+          }}
+          defaultValue={sns}
         />
       </Box>
       {ToastStatus && (

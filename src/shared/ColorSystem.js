@@ -1,5 +1,6 @@
 export const color = {
   primary: "#ff6853",
+  subPrimary: "#FFC3BA",
   pale: "#FFF5F4",
   deep: "#DB4C39",
   devider: "#F1F1F1",
