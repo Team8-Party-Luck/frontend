@@ -53,7 +53,7 @@ const PartyRevise = () => {
     (async () => {
       const posts = await axios.get(
 
-        `http://54.180.88.119/api/party/details/${partyId}`,
+        `https://epocle.shop/api/party/details/${partyId}`,
         // `http://54.180.88.119/api/party/details/${partyId}`,
 
         {
