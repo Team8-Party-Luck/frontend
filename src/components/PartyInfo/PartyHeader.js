@@ -13,6 +13,7 @@ const PartyHeader = (props) => {
   const dispatch = useDispatch();
 
   const sendScrap = () => {
+    console.log(partyData?.partyid);
     dispatch(crewActions.sendScrapData(partyData?.partyid));
   };
   return (

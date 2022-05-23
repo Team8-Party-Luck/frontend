@@ -62,10 +62,6 @@ const Edit = (props) => {
   const [intro, setIntro] = useState("");
   const [sns, setSns] = useState("");
 
-  const Input = styled("input")({
-    display: "none",
-  });
-
   //토스트 핸들러
   //버튼을 1000ms 이내에 클릭할 때 문구만 실시간으로 바뀌도록 변경
   const handleToast = (type) => {
