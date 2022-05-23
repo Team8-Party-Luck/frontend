@@ -19,7 +19,7 @@ const getAlarm = createAction(GET_ALARM, (alarm) => ({ alarm }));
 // 초기값
 const initialState = { alarm: [] };
 
-let sock = new SockJS("https://epocle.shop/ws-stomp");
+let sock = new SockJS("http://54.180.88.119//ws-stomp");
 let ws = Stomp.over(sock);
 
 //실시간 알람 데이터 받아오기

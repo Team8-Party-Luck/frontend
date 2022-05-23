@@ -27,11 +27,7 @@ const BottomNav = () => {
       <Link to="/home" className="nav-link" onClick={() => numconfig(1)}>
         <div>
           <img
-            src={
-              para === "home"
-                ? home_active
-                : home_inactive
-            }
+            src={para === "home" ? home_active : home_inactive}
             alt="home"
             style={{ width: "2rem" }}
           />
@@ -42,11 +38,7 @@ const BottomNav = () => {
       <Link to="/chat" className="nav-link" onClick={() => numconfig(2)}>
         <div>
           <img
-            src={
-              para === "chat"
-                ? chat_active
-                : chat_inactive
-            }
+            src={para === "chat" ? chat_active : chat_inactive}
             alt="chat"
             style={{ width: "2rem" }}
           />
@@ -57,26 +49,17 @@ const BottomNav = () => {
       <Link to="/regi" className="nav-link" onClick={() => numconfig(3)}>
         <div>
           <img
-            src={
-              para === "regi"
-                ? write_active
-                : write_inactive
-            }
+            src={para === "regi" ? write_active : write_inactive}
             alt="regi"
             style={{ width: "2rem" }}
           />
         </div>
         {/* 파티작성 */}
       </Link>
-
       <Link to="/profile" className="nav-link" onClick={() => numconfig(4)}>
         <div>
           <img
-            src={
-              para === "profile"
-                ? my_active
-                : my_inactive
-            }
+            src={para === "profile" ? my_active : my_inactive}
             alt="profile"
             style={{ width: "2rem" }}
           />
