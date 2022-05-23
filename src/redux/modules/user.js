@@ -28,7 +28,7 @@ const kakaoLogin = (code) => {
         console.log(res.data); // 토큰이 넘어올 것임
         const KAKAO_TOKEN = res.data;
 
-        // sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
+        sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
 
         // axios
         //   .get("http://3.38.180.96:8080/api/user", {
@@ -39,18 +39,18 @@ const kakaoLogin = (code) => {
         //     },
         //   })
 
-        // userApi
-        //   .userCheck()
-        //   .then((res) => {
-        //     console.log(res.data, "여기까지는 성공");
-        //     sessionStorage.setItem("userid", res.data.result.userid);
-        //     res.data.ok
-        //       ? history.replace("/home")
-        //       : history.replace("/setting");
-        //   })
-        //   .catch((err) => {
-        //     console.log("두번 호출 실패", err.response);
-        //   });
+        userApi
+          .userCheck()
+          .then((res) => {
+            console.log(res.data, "여기까지는 성공");
+            sessionStorage.setItem("userid", res.data.result.userid);
+            res.data.ok
+              ? history.replace("/home")
+              : history.replace("/setting");
+          })
+          .catch((err) => {
+            console.log("두번 호출 실패", err.response);
+          });
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
