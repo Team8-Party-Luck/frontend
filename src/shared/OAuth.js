@@ -1,4 +1,4 @@
-const CLIENT_ID = "36be9be27590932cdc9a43f577d49204";
+const CLIENT_ID = "69e09d88a64e1a73b8fe2357f551ef81";
 
 // const REDIRECT_URI = "http://localhost:3000/auth/kakao";
 // const REDIRECT_URI =
