@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Banner from "../../static/images/banner/배너.png";
+import Banner from "../../static/images/banner/BannerFix.png";
 
 const HomeBanner = () => {
   return (
@@ -12,7 +12,7 @@ const HomeBanner = () => {
 
 const BannerBox = styled.div`
   width: 100%;
-  height: 6em;
+  height: 6.5em;
   background-image: url(${Banner});
   background-size: cover;
   cursor: pointer;
