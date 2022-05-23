@@ -171,12 +171,12 @@ const Setting = () => {
           ) : null}
           {city && region ? (
             <>
-              <InnerText>선호하는 음식을 모두 선택해주세요</InnerText>
               <SetFood
                 food={food}
                 setFood={setFood}
                 count={count}
                 setCount={setCount}
+                name={"선호하는 음식을 모두 선책해주세요"}
               />
             </>
           ) : null}

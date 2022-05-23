@@ -25,14 +25,14 @@ const EditProflie = (props) => {
   });
   return (
     <ProfileBox>
-      <ImgBox src={props.imageSrc === null ? DefaultImg : props.imageSrc} />
+      <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
       <NicknameBox>
         <NicknameText>닉네임</NicknameText>
         <NicknameInput
           onChange={(e) => {
             setNickname(e.target.value);
           }}
-          defaultValue={props.nickname}
+          defaultValue={nickname}
         />
       </NicknameBox>
       <Box
@@ -81,7 +81,7 @@ const EditProflie = (props) => {
 const ProfileBox = styled.div`
   display: flex;
   position: relative;
-  margin-bottom: 2.5em;
+  margin-bottom: 2em;
 `;
 
 const NicknameBox = styled.div`
@@ -89,7 +89,7 @@ const NicknameBox = styled.div`
 `;
 
 const NicknameText = styled.p`
-  font-size: 0.9em;
+  font-size: 1em;
   padding-bottom: 0.2em;
 `;
 
