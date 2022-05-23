@@ -7,6 +7,7 @@ import {
   Box,
   Typography,
 } from "@mui/material";
+import styled from "styled-components";
 import { useState } from "react";
 import { cityArea } from "../../shared/CityData";
 import { regionArea } from "../../shared/CityData";
@@ -23,7 +24,7 @@ const MenuProps = {
 };
 
 const SetLocation = (props) => {
-  const { city, setCity, region, setRegion, user_info, count, setCount } =
+  const { city, setCity, region, setRegion, user_info, count, setCount, name } =
     props;
 
   const [value, setValue] = useState(false);
@@ -45,6 +46,7 @@ const SetLocation = (props) => {
 
   return (
     <React.Fragment>
+      {name ? <InnerText>{name}</InnerText> : null}
       <Box
         sx={{
           display: "flex",
@@ -190,12 +192,12 @@ const SetLocation = (props) => {
                     {cur}
                   </MenuItem>
                 ))
-                : city === "제주특별자치도"
-                ? regionArea[16].map((cur, idx) => (
-                    <MenuItem value={cur} key={idx}>
-                      {cur}
-                    </MenuItem>
-                  ))
+              : city === "제주특별자치도"
+              ? regionArea[16].map((cur, idx) => (
+                  <MenuItem value={cur} key={idx}>
+                    {cur}
+                  </MenuItem>
+                ))
               : null}
           </Select>
         </FormControl>
@@ -203,5 +205,9 @@ const SetLocation = (props) => {
     </React.Fragment>
   );
 };
+
+const InnerText = styled.p`
+  font-size: 1em;
+`;
 
 export default SetLocation;

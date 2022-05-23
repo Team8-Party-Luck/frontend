@@ -38,7 +38,7 @@ const NonFixBox = styled.div`
 `;
 
 const NicknameText = styled.p`
-  font-size: 0.9em;
+  font-size: 1em;
   padding-bottom: 0.2em;
 `;
 

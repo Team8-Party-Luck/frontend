@@ -1,25 +1,21 @@
-import { Box, IconButton, Button, Avatar, Typography } from "@mui/material";
-
-import EditIcon from "@mui/icons-material/Edit";
-
+import React, { useState } from "react";
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
-import SetLocation from "../components/Settings/SetLocation";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+//리덕스
 import { actionCreators as userActions } from "../redux/modules/user";
+import { userApi } from "../shared/api";
+//컴포넌트
 import Header from "../shared/Header";
 import EditProflie from "../components/Edit/EditProflie";
 import EditDisabled from "../components/Edit/EditDisabled";
+import SetLocation from "../components/Settings/SetLocation";
 import SetFood from "../components/Settings/SetFood";
-import DefaultImg from "../static/images/profile/default.png";
+import EditDetail from "../components/Edit/EditDetail";
 import Toast from "../shared/Toast";
+//mui
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { userApi } from "../shared/api";
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
-//컬러시스템
-import { color } from "../shared/ColorSystem";
-import EditDetail from "../components/Edit/EditDetail";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -150,7 +146,6 @@ const Edit = (props) => {
           encodeFileToBase64={encodeFileToBase64}
         />
         <EditDisabled age={age} gender={gender} />
-        <NicknameText>동네</NicknameText>
         <ThemeProvider theme={theme}>
           <SetLocation
             city={city}
@@ -159,6 +154,7 @@ const Edit = (props) => {
             setRegion={setRegion}
             count={count}
             setCount={setCount}
+            name={"동네"}
           />
         </ThemeProvider>
         <SetFood
@@ -166,6 +162,7 @@ const Edit = (props) => {
           setFood={setFood}
           count={count}
           setCount={setCount}
+          name={"선호하는 음식"}
         />
         <EditDetail
           sns={sns}
@@ -173,20 +170,6 @@ const Edit = (props) => {
           intro={intro}
           setIntro={setIntro}
         />
-        {/* <NicknameText>자기소개</NicknameText>
-        <NicknameInput
-          onChange={(e) => {
-            setIntro(e.target.value);
-          }}
-          defaultValue={intro}
-        />
-        <NicknameText>SNS</NicknameText>
-        <NicknameInput
-          onChange={(e) => {
-            setSns(e.target.value);
-          }}
-          defaultValue={sns}
-        /> */}
       </Wrapbox>
       {ToastStatus && (
         <>
@@ -205,15 +188,6 @@ const Wrapbox = styled.div`
 const NicknameText = styled.p`
   font-size: 0.9em;
   padding-bottom: 0.2em;
-`;
-
-const NicknameInput = styled.input`
-  width: 100%;
-  height: 2.5em;
-  border: 1px solid ${color.line};
-  border-radius: 3px;
-  padding-left: 0.5em;
-  font-size: 1em;
 `;
 
 export default Edit;

@@ -6,7 +6,7 @@ import { color } from "../../shared/ColorSystem";
 const EditDetail = (props) => {
   const { intro, setIntro, sns, setSns } = props;
   return (
-    <React.Fragment>
+    <WrapBox>
       <NicknameText>자기소개</NicknameText>
       <NicknameInput
         onChange={(e) => {
@@ -21,12 +21,17 @@ const EditDetail = (props) => {
         }}
         defaultValue={sns}
       />
-    </React.Fragment>
+    </WrapBox>
   );
 };
 
+const WrapBox = styled.div`
+  width: 100%;
+  margin-top: 1.5em;
+`;
+
 const NicknameText = styled.p`
-  font-size: 0.9em;
+  font-size: 1em;
   margin: 0.2em 0;
   margin-top: 1em;
 `;
