@@ -17,6 +17,8 @@ import OnBoarding3 from "../static/images/onboarding/img_onboarding3.png";
 import OnBoarding4 from "../static/images/onboarding/img_onboarding4.png";
 import Kakao from "../static/images/kakao/kakao_login_large_wide.png";
 
+import { history } from "../redux/configStore";
+
 const Login = () => {
   //캐러셀 설정
   const settings = {
@@ -56,6 +58,13 @@ const Login = () => {
           </ImgText>
         </ImgBox>
       </StyledSlider>
+      <button
+        onClick={() => {
+          history.push(`/home`);
+        }}
+      >
+        asdasdasdasdas
+      </button>
       <LoginBox>
         <KakaoImg
           src={Kakao}
