@@ -19,7 +19,7 @@ import SelectedSaladImg from "../../static/images/category_selected/salad.png";
 import SelectedEtcImg from "../../static/images/category_selected/etc.png";
 
 const SetFood = (props) => {
-  const { food, setFood, count, setCount } = props;
+  const { food, setFood, count, setCount, name } = props;
 
   console.log(food);
 
@@ -34,6 +34,7 @@ const SetFood = (props) => {
 
   return (
     <React.Fragment>
+      <InnerText>{name}</InnerText>
       <FoodBox>
         <Wrap>
           {food?.includes("한식") ? (
@@ -284,6 +285,10 @@ const FoodText = styled.p`
 const FoodImg = styled.img`
   width: 4.5em;
   height: 4.5em;
+`;
+
+const InnerText = styled.p`
+  font-size: 1em;
 `;
 
 export default SetFood;

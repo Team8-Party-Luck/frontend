@@ -53,6 +53,7 @@ const PartyRevise = () => {
     (async () => {
       const posts = await axios.get(
         `https://epocle.shop/api/party/details/${partyId}`,
+        // `http://54.180.88.119/api/party/details/${partyId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

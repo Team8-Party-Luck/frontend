@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Header from "../shared/Header";
 import EditProflie from "../components/Edit/EditProflie";
+import EditDisabled from "../components/Edit/EditDisabled";
 import SetFood from "../components/Settings/SetFood";
 import DefaultImg from "../static/images/profile/default.png";
 import Toast from "../shared/Toast";
@@ -18,6 +19,7 @@ import { userApi } from "../shared/api";
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 //컬러시스템
 import { color } from "../shared/ColorSystem";
+import EditDetail from "../components/Edit/EditDetail";
 
 const Edit = (props) => {
   const dispatch = useDispatch();
@@ -56,7 +58,6 @@ const Edit = (props) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [imageSrc, setImageSrc] = useState("");
   const [nickname, setNickname] = useState("");
-
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [food, setFood] = useState("");
@@ -148,80 +149,7 @@ const Edit = (props) => {
           setNickname={setNickname}
           encodeFileToBase64={encodeFileToBase64}
         />
-        {/* <ProfileBox>
-          <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
-          <NicknameBox>
-            <NicknameText>닉네임</NicknameText>
-            <NicknameInput
-              onChange={(e) => {
-                setNickname(e.target.value);
-              }}
-              defaultValue={nickname}
-            />
-          </NicknameBox>
-          <Box
-            sx={{
-              background: "#ff6853",
-              width: 25,
-              height: 25,
-              borderRadius: 25,
-              position: "absolute",
-              top: "2.4em",
-              left: "2.5em",
-            }}
-          ></Box>
-          <label htmlFor="icon-button-file">
-            <Input
-              accept="image/*"
-              id="icon-button-file"
-              type="file"
-              onChange={(e) => {
-                setImageUrl(e.target.files[0]);
-                encodeFileToBase64(e.target.files[0]);
-              }}
-            />
-            <IconButton
-              aria-label="upload picture"
-              component="span"
-              sx={{
-                position: "absolute",
-                top: "1.5em",
-                left: "1.59em",
-                color: "white",
-              }}
-            >
-              <EditIcon
-                sx={{
-                  width: 15,
-                  height: 15,
-                }}
-              />
-            </IconButton>
-          </label>
-        </ProfileBox> */}
-        <Box sx={{ width: "100%", display: "flex" }}>
-          <NicknameText>성별</NicknameText>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ color: "gray", fontSize: "0.9em" }}
-          >
-            수정 불가한 정보입니다
-          </Typography>
-        </Box>
-        <NonFixBox>{gender}</NonFixBox>
-
-        <FlexBox>
-          <NicknameText>나이</NicknameText>
-          <Typography
-            component="p"
-            variant="p"
-            sx={{ color: "gray", fontSize: "0.9em" }}
-          >
-            수정 불가한 정보입니다
-          </Typography>
-        </FlexBox>
-        <NonFixBox>{age}</NonFixBox>
+        <EditDisabled age={age} gender={gender} />
         <NicknameText>동네</NicknameText>
         <ThemeProvider theme={theme}>
           <SetLocation
@@ -239,7 +167,13 @@ const Edit = (props) => {
           count={count}
           setCount={setCount}
         />
-        <NicknameText>자기소개</NicknameText>
+        <EditDetail
+          sns={sns}
+          setSns={setSns}
+          intro={intro}
+          setIntro={setIntro}
+        />
+        {/* <NicknameText>자기소개</NicknameText>
         <NicknameInput
           onChange={(e) => {
             setIntro(e.target.value);
@@ -252,7 +186,7 @@ const Edit = (props) => {
             setSns(e.target.value);
           }}
           defaultValue={sns}
-        />
+        /> */}
       </Wrapbox>
       {ToastStatus && (
         <>
@@ -268,16 +202,6 @@ const Wrapbox = styled.div`
   padding-top: 4.7em;
 `;
 
-const ProfileBox = styled.div`
-  display: flex;
-  position: relative;
-  margin-bottom: 2.5em;
-`;
-
-const NicknameBox = styled.div`
-  width: 100%;
-`;
-
 const NicknameText = styled.p`
   font-size: 0.9em;
   padding-bottom: 0.2em;
@@ -290,29 +214,6 @@ const NicknameInput = styled.input`
   border-radius: 3px;
   padding-left: 0.5em;
   font-size: 1em;
-`;
-
-const NonFixBox = styled.div`
-  width: 100%;
-  height: 2.3em;
-  background: #dfdfdf;
-  border-radius: 3px;
-  margin-bottom: 1em;
-  margin-top: 0.3em;
-  padding-left: 0.7em;
-  padding-top: 0.6em;
-`;
-
-const ImgBox = styled.img`
-  width: 4em;
-  height: 4em;
-  border-radius: 4em;
-  margin-right: 0.8em;
-`;
-
-const FlexBox = styled.div`
-  width: 100%;
-  display: flex;
 `;
 
 export default Edit;

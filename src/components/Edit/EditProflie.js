@@ -81,7 +81,7 @@ const EditProflie = (props) => {
 const ProfileBox = styled.div`
   display: flex;
   position: relative;
-  margin-bottom: 2.5em;
+  margin-bottom: 2em;
 `;
 
 const NicknameBox = styled.div`
