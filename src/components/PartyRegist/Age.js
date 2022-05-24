@@ -23,7 +23,7 @@ export default function Age({capacity, setCapacity}) {
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '22ch' },
+        '& .MuiTextField-root': { m: 1, width: '21ch' },
       }}
       noValidate
       autoComplete="off"
