@@ -15,6 +15,7 @@ const userCheck = createAction(USER_CHECK, (check) => ({ check }));
 // 초기값
 const initialState = {};
 
+  
 //미들웨어
 //카카오로그인
 const kakaoLogin = (code) => {

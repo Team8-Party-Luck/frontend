@@ -270,3 +270,8 @@ const RegiWrite = () => {
 };
 
 export default RegiWrite;
+
+
+//textfield 모듈화 작업
+//toast 모듈화 작업
+//validation partyRegist와 함께 모듈화 작업
