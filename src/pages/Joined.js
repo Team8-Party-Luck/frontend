@@ -24,9 +24,9 @@ const Joined = () => {
     return (
       <React.Fragment>
         <Header name={"참여 히스토리"} />
-        <ListBox>
+        <NullBox>
           <NullData title={"앗! 참여한 파티 내역이 없습니다"} />
-        </ListBox>
+        </NullBox>
         <BottomNav />
       </React.Fragment>
     );
@@ -34,25 +34,31 @@ const Joined = () => {
     return (
       <React.Fragment>
         <Header name={"참여 히스토리"} />
-        <WrapBox>
+        <ListBox>
           {joinedData?.length > 0 &&
             joinedData?.map((cur, idx) => (
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
-        </WrapBox>
+        </ListBox>
         <BottomNav />
       </React.Fragment>
     );
   }
 };
 
-const ListBox = styled.div`
+const NullBox = styled.div`
   width: 100%;
   padding: 1.5em;
   padding-top: 20em;
   padding-bottom: 5em;
+`;
+
+const ListBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  padding-top: 3.5em;
+  padding-bottom: 3em;
   overflow-y: auto;
-  cursor: pointer;
 `;
 
 const WrapBox = styled.div`

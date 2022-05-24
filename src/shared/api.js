@@ -4,7 +4,6 @@ const api = axios.create({
   baseURL: "https://epocle.shop", //우창님
   // baseURL: "http://13.125.216.238", //형빈님
   // baseURL: "http://54.180.88.119", //로컬
-
 });
 
 
@@ -14,6 +13,14 @@ const api = axios.create({
 export const userApi = {
   //kakao 로그인
   kakaoLogin: (code) => api.get(`/auth/kakao?code=${code}`),
+
+  //회원 탈퇴
+  userSecession: () =>
+    api.delete(`/api/user`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
 
   //초기 세팅정보 보내기
   settingsData: (Settings_info) =>

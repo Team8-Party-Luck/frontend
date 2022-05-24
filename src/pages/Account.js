@@ -16,36 +16,62 @@ import { history } from "../redux/configStore";
 import styled from "styled-components";
 import goArrow from "../static/images/icon/arw_gray.png";
 import Popup from "../shared/Popup";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Account = () => {
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const dispatch = useDispatch();
+
+  const [openLogout, setOpenLogout] = useState(false);
+  const [openSecession, setOpenSecession] = useState(false);
 
   const Logout = () => {
     sessionStorage.clear();
     history.push("/");
   };
 
+  const Secession = () => {
+    dispatch(userActions.userSecessionDB());
+  };
+
   return (
     <React.Fragment>
       <Header name={"계정"} />
       <WrapBox>
-        <ListBox onClick={() => setIsOpenPopup(true)}>
+        <ListBox onClick={() => setOpenLogout(true)}>
           <div>로그아웃</div>
           <img src={goArrow} style={{ width: 9, height: 15 }} />
         </ListBox>
-        <ListBox onClick={() => {}}>
-          <div>탈퇴하기</div>
-          <img src={goArrow} style={{ width: 9, height: 15 }} />
-        </ListBox>
         <React.Fragment>
-          {isOpenPopup && (
+          {openLogout && (
             <Popup
               title={"로그아웃 하시겠습니까?"}
-              close={() => setIsOpenPopup(false)}
+              close={() => setOpenLogout(false)}
               event={() => {
                 Logout();
               }}
               confirm={"로그아웃"}
+              back={"뒤로가기"}
+            />
+          )}
+        </React.Fragment>
+        <ListBox
+          onClick={() => {
+            setOpenSecession(true);
+          }}
+        >
+          <div>탈퇴하기</div>
+          <img src={goArrow} style={{ width: 9, height: 15 }} />
+        </ListBox>
+        <React.Fragment>
+          {openSecession && (
+            <Popup
+              title={"정말 탈퇴하시겠습니까?"}
+              close={() => setOpenSecession(false)}
+              event={() => {
+                Secession();
+              }}
+              confirm={"회원탈퇴"}
               back={"뒤로가기"}
             />
           )}
