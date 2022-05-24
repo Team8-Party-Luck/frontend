@@ -27,7 +27,6 @@ const kakaoLogin = (code) => {
         console.log("성공");
         console.log(res.data); // 토큰이 넘어올 것임
         const KAKAO_TOKEN = res.data;
-
         sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
 
         // axios
@@ -164,6 +163,21 @@ const userCheckDB = () => {
 //   };
 // };
 
+//회원탈퇴
+const userSecessionDB = () => {
+  return function (dispatch, getState, { history }) {
+    userApi
+      .userSecession()
+      .then((res) => {
+        console.log(res.data);
+        history.push(`/`);
+      })
+      .catch((err) => {
+        console.log(err.res);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_USER_INFO]: (state, action) =>
@@ -189,6 +203,7 @@ const actionCreators = {
   updateSettingsData,
   userCheck,
   userCheckDB,
+  userSecessionDB,
 };
 
 export { actionCreators };

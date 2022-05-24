@@ -63,7 +63,7 @@ const Login = () => {
           history.push(`/home`);
         }}
       >
-        asdasdasdasdas
+        이건 로그인없이 홈으로 냅다 박아버리는 버튼 (테스트 끝나면 지울 예정)
       </button>
       <LoginBox>
         <KakaoImg
