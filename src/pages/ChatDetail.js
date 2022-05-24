@@ -64,7 +64,7 @@ const ChatDetail = () => {
   let sock = new SockJs("https://epocle.shop/ws-stomp"); //차혁님
   // let sock = new SockJs("http://54.180.88.119/ws-stomp"); //형빈님
   let ws = Stomp.over(sock);
-  console.log(ws);
+  
 
   // 연결 및 구독
   function wsConnect() {
