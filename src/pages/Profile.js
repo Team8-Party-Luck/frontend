@@ -23,10 +23,10 @@ const Profile = () => {
   }, []);
 
   const joinedData = useSelector((state) => state?.crew?.joined?.results);
-  console.log(joinedData);
+  // console.log(joinedData);
 
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
-  console.log(scrapData);
+  // console.log(scrapData);
 
   return (
     <React.Fragment>

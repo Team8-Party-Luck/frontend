@@ -99,7 +99,7 @@ const Setting = () => {
       sns: values.sns,
       intro: values.intro,
     };
-    console.log(Settings_info);
+    // console.log(Settings_info);
 
     dispatch(userActions.sendSettingsData(Settings_info));
   };

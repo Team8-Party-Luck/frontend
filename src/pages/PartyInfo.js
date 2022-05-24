@@ -25,9 +25,9 @@ const PartyInfo = () => {
   const partyData = useSelector((state) => state?.crew?.info);
   const userSettingData = useSelector((state) => state?.user?.user);
 
-  console.log(userId);
-  console.log(partyData);
-  console.log(userSettingData);
+  // console.log(userId);
+  // console.log(partyData);
+  // console.log(userSettingData);
 
   return (
     <React.Fragment>

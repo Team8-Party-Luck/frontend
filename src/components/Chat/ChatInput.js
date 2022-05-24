@@ -12,7 +12,7 @@ const ChatInput = (props) => {
 
   const token = sessionStorage.getItem("token");
 
-  console.log(msg);
+  // console.log(msg);
 
   // let sock = new SockJS("http://121.139.34.35:8080/stomp/chat");
   // let ws = Stomp.over(sock);
@@ -61,7 +61,7 @@ const ChatInput = (props) => {
   //엔터로 전송
   const onKeyDownHandler = (e) => {
     if (e.key === "Enter") {
-      console.log("엔터 눌렀당");
+      // console.log("엔터 눌렀당");
       onSend();
     }
   };
@@ -85,7 +85,7 @@ const ChatInput = (props) => {
       }}
     >
       <MsgInput
-      id="msgInput"
+        id="msgInput"
         type="text"
         onChange={(e) => {
           setMsg(e.target.value);

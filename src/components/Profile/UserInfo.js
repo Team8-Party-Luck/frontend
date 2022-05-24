@@ -19,7 +19,7 @@ const UserInfo = () => {
   }, []);
 
   const user_info = useSelector((state) => state.user.user);
-  console.log(user_info);
+  // console.log(user_info);
 
   return (
     <ProfileBox>

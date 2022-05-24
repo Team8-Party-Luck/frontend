@@ -22,7 +22,7 @@ const Edit = (props) => {
 
   React.useEffect(() => {
     userApi.userInfo().then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setImageUrl(null);
       setImageSrc(res.data.image);
       setNickname(res.data.nickname);
@@ -179,11 +179,6 @@ const Edit = (props) => {
 const Wrapbox = styled.div`
   padding: 1.25em;
   padding-top: 4.7em;
-`;
-
-const NicknameText = styled.p`
-  font-size: 0.9em;
-  padding-bottom: 0.2em;
 `;
 
 export default Edit;

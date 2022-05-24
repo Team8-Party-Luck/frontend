@@ -2,7 +2,6 @@ import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { chatApi } from "../../shared/api";
-console.log(chatApi);
 
 //액션
 const GET_CHAT_LIST = "GET_CHAT_LIST";
@@ -31,8 +30,8 @@ const getChatListDB = () => {
     chatApi
       .chatList()
       .then((res) => {
-        console.log(res.data);
-        console.log("성공");
+        // console.log(res.data);
+        // console.log("성공");
         dispatch(getChatList(res.data));
       })
       .catch((error) => {
@@ -68,7 +67,7 @@ const getMsgListDB = (chatRoomId) => {
     chatApi
       .msgList(chatRoomId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(getMsgList(res.data));
       })
       .catch((error) => {
@@ -104,7 +103,7 @@ const getRoomIdDB = (roomId) => {
     chatApi
       .roomIdDB(roomId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push(`/chatdetail/${res.data.chatRoomId}`);
       })
       .catch((error) => {
@@ -191,7 +190,7 @@ export default handleActions(
       }),
     [SUB_MSG]: (state, action) =>
       produce(state, (draft) => {
-        console.log(state.msg);
+        // console.log(state.msg);
         draft.msg.push({ ...action.payload.sub });
       }),
     [GET_CHAT_USER]: (state, action) =>

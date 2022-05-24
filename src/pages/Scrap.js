@@ -34,7 +34,7 @@ const Scrap = () => {
 
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   const userInfo = useSelector((state) => state?.user?.check?.result);
-  console.log(scrapData);
+  // console.log(scrapData);
 
   if (scrapData?.length === 0) {
     return (

@@ -21,7 +21,7 @@ import SelectedEtcImg from "../../static/images/category_selected/etc.png";
 const SetFood = (props) => {
   const { food, setFood, count, setCount, name } = props;
 
-  console.log(food);
+  // console.log(food);
 
   //프로그레스바
   function add_count() {

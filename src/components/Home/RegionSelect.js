@@ -19,7 +19,6 @@ const MenuProps = {
   },
 };
 
-
 const RegionSelect = ({ city, setCity, region, setRegion }) => {
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
     const regionInfo = {
       answer: answer,
     };
-    console.log(regionInfo);
+    // console.log(regionInfo);
     dispatch(crewActions.getRegionData(regionInfo));
   };
 
@@ -44,7 +43,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           {/* <InputLabel display="placeholder">시/도</InputLabel> */}
           <Select
-          displayEmpty
+            displayEmpty
             MenuProps={MenuProps}
             value={city || ""}
             onChange={handleChangeCity}
@@ -63,7 +62,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
           {/* <InputLabel  displayEmpty id="demo-select-small">구/군</InputLabel>/ */}
           <Select
-          displayEmpty
+            displayEmpty
             MenuProps={MenuProps}
             labelId="demo-select-small"
             id="demo-select-small"
@@ -71,7 +70,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
             onChange={handleChangeRegion}
             style={{ width: "90%", margin: "0 auto", background: "white" }}
           >
-              <MenuItem value="">
+            <MenuItem value="">
               <em>구/군</em>
             </MenuItem>
             {city === "서울"

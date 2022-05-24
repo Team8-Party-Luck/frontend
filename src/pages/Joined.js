@@ -18,7 +18,7 @@ const Joined = () => {
 
   const joinedData = useSelector((state) => state?.crew?.joined?.results);
   const userInfo = useSelector((state) => state?.user?.check?.result);
-  console.log(joinedData);
+  // console.log(joinedData);
 
   if (joinedData?.length === 0) {
     return (

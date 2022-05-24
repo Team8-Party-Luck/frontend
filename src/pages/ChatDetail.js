@@ -27,7 +27,7 @@ const ChatDetail = () => {
   const scrollRef = useRef();
 
   const { roomId } = useParams();
-  console.log(roomId);
+  // console.log(roomId);
 
   // 소켓 연결
   React.useEffect(() => {
@@ -44,10 +44,10 @@ const ChatDetail = () => {
   }, []);
 
   const messages = useSelector((state) => state?.chat?.msg);
-  console.log(messages);
+  // console.log(messages);
 
   const chatInfo = useSelector((state) => state?.chat?.user);
-  console.log(chatInfo);
+  // console.log(chatInfo);
 
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
@@ -70,21 +70,21 @@ const ChatDetail = () => {
   function wsConnect() {
     try {
       ws.connect({ token: token, type: "ENTER" }, () => {
-        console.log(roomId);
+        // console.log(roomId);
         ws.subscribe(
           `/queue/${roomId}`,
           (res) => {
             const newMessage = JSON.parse(res.body);
-            console.log(res);
-            console.log(newMessage);
+            // console.log(res);
+            // console.log(newMessage);
             dispatch(chatActions.subMsg(newMessage));
           }
           // {},
         );
-        console.log(ws.ws.readyState);
+        // console.log(ws.ws.readyState);
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -101,7 +101,7 @@ const ChatDetail = () => {
 
   const ClearFields = () => {
     document.getElementById("msgInput").value = "";
-  }
+  };
 
   //메세지 전송
   const onSend = async () => {
@@ -112,19 +112,19 @@ const ChatDetail = () => {
         message: msg,
         type: "TALK",
       };
-      console.log(msg);
+      // console.log(msg);
       //값이 없으면 아무것도 실행 x
       if (msg === "") {
         return;
       }
       ws.send("/app/send", { token: token }, JSON.stringify(message));
-      console.log(JSON.stringify(message));
-      console.log(ws.ws.readyState);
+      // console.log(JSON.stringify(message));
+      // console.log(ws.ws.readyState);
       setMsg("");
-      ClearFields()
+      ClearFields();
     } catch (error) {
-      console.log(error);
-      console.log(ws.ws.readyState);
+      // console.log(error);
+      // console.log(ws.ws.readyState);
     }
   };
   if (messages === null) {

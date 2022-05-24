@@ -17,8 +17,6 @@ import OnBoarding3 from "../static/images/onboarding/img_onboarding3.png";
 import OnBoarding4 from "../static/images/onboarding/img_onboarding4.png";
 import Kakao from "../static/images/kakao/kakao_login_large_wide.png";
 
-import { history } from "../redux/configStore";
-
 const Login = () => {
   //캐러셀 설정
   const settings = {
@@ -58,13 +56,6 @@ const Login = () => {
           </ImgText>
         </ImgBox>
       </StyledSlider>
-      <button
-        onClick={() => {
-          history.push(`/home`);
-        }}
-      >
-        이건 로그인없이 홈으로 냅다 박아버리는 버튼 (테스트 끝나면 지울 예정)
-      </button>
       <LoginBox>
         <KakaoImg
           src={Kakao}
@@ -86,15 +77,6 @@ const Wrapbox = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 `;
-
-// const JustSee = styled.button`
-//   width: 300px;
-//   height: 43px;
-//   border-radius: 5px;
-//   border: none;
-//   margin-top: 1em;
-//   background: #dfdfdf;
-// `;
 
 const StyledSlider = styled(Slider)`
   .slick-slide div {
