@@ -39,19 +39,6 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-
 const PartyList = (props) => {
   const dispatch = useDispatch();
   const ref = useRef();
@@ -62,6 +49,13 @@ const PartyList = (props) => {
   const [hasNext, setHasNext] = useState(null);
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
 
   React.useEffect(() => {
     crewApi.getAllList(page).then((res) => {
@@ -98,7 +92,8 @@ const PartyList = (props) => {
       e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
       10
     ) {
-      axios.get(`https://epocle.shop/api/parties/raw/${page}`).then((res) => {
+      crewApi.getAllList(page).then((res) => {
+        console.log(res.data);
         setPartyList([...partyList, ...res.data.results]);
         setIsLoading(false);
         if (res.data.results.length < 10) {
@@ -154,9 +149,11 @@ const PartyList = (props) => {
             setRegion={setRegion}
           />
         </ThemeProvider>
-        {regionData?.map((cur, idx) => (
-          <AllData {...cur} userInfo={userInfo} key={idx} />
-        ))}
+        <ListBox>
+          {regionData?.map((cur, idx) => (
+            <AllData {...cur} userInfo={userInfo} key={idx} />
+          ))}
+        </ListBox>
       </TabPanel>
       <TabPanel value={value} index={2}>
         {willData?.length === 0 ? (
@@ -164,11 +161,11 @@ const PartyList = (props) => {
             <NullData title={"앗! 참여 예정인 파티가 없습니다"} />
           </Box>
         ) : (
-          <>
+          <ListBox>
             {willData?.map((cur, idx) => (
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
-          </>
+          </ListBox>
         )}
       </TabPanel>
       <TabPanel value={value} index={3}>
@@ -177,11 +174,11 @@ const PartyList = (props) => {
             <NullData title={"앗! 찜한 파티가 없습니다"} />
           </Box>
         ) : (
-          <>
+          <ListBox>
             {scrapData?.map((cur, idx) => (
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
-          </>
+          </ListBox>
         )}
       </TabPanel>
     </React.Fragment>
@@ -190,8 +187,8 @@ const PartyList = (props) => {
 
 const ListBox = styled.div`
   width: 100%;
-  height: 35em;
-  padding-bottom: 2.5em;
+  height: 100vh;
+  padding-bottom: 3em;
   overflow-y: auto;
 `;
 

@@ -40,9 +40,9 @@ const Scrap = () => {
     return (
       <React.Fragment>
         <Header name={"찜한 파티"} />
-        <ListBox>
+        <NullBox>
           <NullData title={"앗! 찜한 파티가 없습니다"} />
-        </ListBox>
+        </NullBox>
         <BottomNav />
       </React.Fragment>
     );
@@ -50,29 +50,31 @@ const Scrap = () => {
     return (
       <ConBox>
         <Header name={"찜한 파티"} />
-        <WrapBox>
+        <ListBox>
           {scrapData?.length > 0 &&
             scrapData?.map((cur, idx) => (
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
-        </WrapBox>
+        </ListBox>
         <BottomNav />
       </ConBox>
     );
   }
 };
 
-const ListBox = styled.div`
+const NullBox = styled.div`
   width: 100%;
   padding: 1.5em;
   padding-top: 20em;
   padding-bottom: 5em;
 `;
 
-const WrapBox = styled.div`
+const ListBox = styled.div`
   width: 100%;
+  height: 100vh;
   padding-top: 3.5em;
-  padding-bottom: 5em;
+  padding-bottom: 3em;
+  overflow-y: auto;
 `;
 
 const ConBox = styled.div`

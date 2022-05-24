@@ -64,6 +64,7 @@ const WrapBox = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 1em;
+  z-index: 100;
 `;
 
 const LogoBox = styled.div`
