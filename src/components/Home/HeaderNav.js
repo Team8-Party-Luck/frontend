@@ -5,7 +5,6 @@ import { useHistory } from "react-router";
 
 import styled from "styled-components";
 import Add from "../../shared/Add";
-
 const HeaderNav = () => {
   const history = useHistory();
 
