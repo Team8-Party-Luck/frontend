@@ -92,8 +92,10 @@ const PartyList = (props) => {
       e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
       10
     ) {
+
       crewApi.getAllList(page).then((res) => {
         console.log(res.data);
+
         setPartyList([...partyList, ...res.data.results]);
         setIsLoading(false);
         if (res.data.results.length < 10) {

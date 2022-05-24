@@ -42,15 +42,17 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
     <React.Fragment>
       <RegionBox>
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
-          <InputLabel id="demo-simple-select-label">시/도</InputLabel>
+          {/* <InputLabel display="placeholder">시/도</InputLabel> */}
           <Select
-          MenuProps={MenuProps}
-            labelId="demo-select-small"
-            id="demo-select-small"
+          displayEmpty
+            MenuProps={MenuProps}
             value={city || ""}
             onChange={handleChangeCity}
             style={{ width: "90%", margin: "0 auto", background: "white" }}
           >
+            <MenuItem value="">
+              <em>시/도</em>
+            </MenuItem>
             {cityArea.map((cur, idx) => (
               <MenuItem value={cur} key={idx}>
                 {cur}
@@ -59,15 +61,19 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
           </Select>
         </FormControl>
         <FormControl fullWidth sx={{ minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small">구/군</InputLabel>
+          {/* <InputLabel  displayEmpty id="demo-select-small">구/군</InputLabel>/ */}
           <Select
-          MenuProps={MenuProps}
+          displayEmpty
+            MenuProps={MenuProps}
             labelId="demo-select-small"
             id="demo-select-small"
             value={region || ""}
             onChange={handleChangeRegion}
             style={{ width: "90%", margin: "0 auto", background: "white" }}
           >
+              <MenuItem value="">
+              <em>구/군</em>
+            </MenuItem>
             {city === "서울"
               ? regionArea[0].map((cur, idx) => (
                   <MenuItem value={cur} key={idx}>

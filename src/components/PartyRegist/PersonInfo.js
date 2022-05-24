@@ -43,19 +43,19 @@ const PersonInfo = ({
       }}
       role="presentation"
     >
-      <h2 style={{ display: "flex", justifyContent: "center", margin: "2rem" }}>
+      <h2 style={{ display: "flex", justifyContent: "left", margin: "2rem" }}>
         모집인원 정보
       </h2>
 
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          margin: "0.5rem",
+          justifyContent: "left",
+          margin: "0.8rem",
           lineHeight: "4rem",
         }}
       >
-        <h4 style={{marginRight:'2rem',  }}>인원수</h4>
+        <h4 style={{ marginRight: "2rem" }}>인원수</h4>
         <Age capacity={capacity} setCapacity={setCapacity} />
       </div>
       <Divider />
@@ -63,12 +63,12 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          margin: "1rem",
+          justifyContent: "left",
+          margin: "0.8rem",
           lineHeight: "2rem",
         }}
       >
-        <h4 style={{marginRight:'2.6rem'}} >연령대</h4>
+        <h4 style={{ marginRight: "2.2rem" }}>연령대</h4>
         <AgeGroup ageGroup={ageGroup} setAgeGroup={setAgeGroup} />
       </div>
       <Divider />
@@ -76,16 +76,16 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          margin: "0.5rem",
+          justifyContent: "left",
+          margin: "0.8rem",
           lineHeight: "4rem",
         }}
       >
-        <h4 style={{marginRight:'3.8rem'}}>성별</h4>
+        <h4 style={{ marginRight: "3rem" }}>성별</h4>
         <RowRadioButtonsGroup gender={gender} setGender={setGender} />
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "left" }}>
         <ResistButton
           onClick={toggleDrawer(anchor, false)}
           style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
@@ -116,7 +116,7 @@ const PersonInfo = ({
             onClick={toggleDrawer(anchor, true)}
             InputProps={{
               readOnly: true,
-              endAdornment: <img src={ic_location} alt="locationIcon"/>,
+              endAdornment: <img src={ic_location} alt="locationIcon" />,
             }}
           ></TextField>
           <Drawer

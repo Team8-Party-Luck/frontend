@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { crewApi } from "../../shared/api";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
+
+//design
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { actionCreators as crewActions } from "../../redux/modules/crew";
-import { useSelector, useDispatch } from "react-redux";
-import { history } from "../../redux/configStore";
-import { useLocation } from "react-router-dom";
-
-// import Images from "./Images";
+//import file
+//import Images from "./Images";
 import TimeSelect from "./TimeSelect";
 import RealDay from "./RealDay";
 import MapView from "./kakao/MapView";
@@ -35,6 +36,7 @@ const PartyRevise = () => {
   const partyId = location.state;
   const dispatch = useDispatch();
 
+  //변수 설정
   const [title, setTitle] = useState("");
   const [store, setStore] = useState("");
   const [address, setAddress] = useState("");
@@ -47,59 +49,28 @@ const PartyRevise = () => {
   const [time, setTime] = useState("");
   const [meeting, setMeeting] = useState("");
   const [desc, setDesc] = useState("");
-  //
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    (async () => {
-      const posts = await axios.get(
-        `https://epocle.shop/api/party/details/${partyId}`,
-        // `http://54.180.88.119/api/party/details/${partyId}`,
 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json;charset=UTF-8",
-            accept: "application/json,",
-          },
-        }
-      );
-      console.log(posts);
-      setTitle(posts.data.title);
-      setStore(posts.data.store);
-      setAddress(posts.data.address);
-      setPlace_url(posts.data.place_url);
-      setXy(posts.data.xy);
-      setCapacity(posts.data.capacity);
-      setAgeGroup(posts.data.age);
-      setGender(posts.data.gender);
-      setDate(posts.data.date);
-      setTime(posts.data.time);
-      setMeeting(posts.data.meeting);
-      setDesc(posts.data.desc);
-    })();
+
+  //파티 상세정보 불러오기
+  useEffect(() => {
+    crewApi.partyDetailInfo(partyId).then((res) => {
+      setTitle(res.data.title);
+      setStore(res.data.store);
+      setAddress(res.data.address);
+      setPlace_url(res.data.place_url);
+      setXy(res.data.xy);
+      setCapacity(res.data.capacity);
+      setAgeGroup(res.data.age);
+      setGender(res.data.gender);
+      setDate(res.data.date);
+      setTime(res.data.time);
+      setMeeting(res.data.meeting);
+      setDesc(res.data.desc);
+    });
   }, []);
+  console.log(title);
 
-  //토스트 팝업 세팅
-  const [ToastStatus, setToastStatus] = useState(false);
-  const [ToastMsg, setToastMsg] = useState("");
-  const handleToast = (type) => {
-    if (!ToastStatus) {
-      setToastStatus(true);
-      setToastMsg(msgList[type]);
-    }
-  };
-  useEffect(() => {
-    if (ToastStatus) {
-      setTimeout(() => {
-        setToastStatus(false);
-        setToastMsg("");
-      }, 2000);
-    }
-  }, [ToastStatus]);
-  // const partyUser = useSelector((state) => state.crew.info);
-
-  // const [image, setImage] = useState(partyUser?.image || "");
-
+  //파티 수정 정보 보내기
   const sendReviseData = () => {
     if (title === "") {
       handleToast("title");
@@ -123,20 +94,23 @@ const PartyRevise = () => {
       handleToast("desc");
     }
 
-    const Write_info = {
-      title: title,
-      store: store,
-      address: address,
-      place_url: place_url,
-      xy: xy,
-      capacity: capacity,
-      age: ageGroup,
-      gender: gender,
-      date: date,
-      time: time,
-      meeting: meeting,
-      desc: desc,
-    };
+    const file = new FormData();
+    file.append("title", title);
+    file.append("store", store);
+    file.append("address", address);
+    file.append("place_url", place_url);
+    file.append("xy", xy);
+    file.append("capacity", capacity);
+    file.append("age", ageGroup);
+    file.append("gender", gender);
+    file.append("date", date);
+    file.append("time", time);
+    file.append("meeting", meeting);
+    file.append("desc", desc);
+
+    // Array.from(Write_info.image).forEach((a) => {
+    //   file.append("image", a);
+    // });
 
     if (
       title !== "" &&
@@ -147,11 +121,29 @@ const PartyRevise = () => {
       meeting !== "" &&
       desc !== ""
     ) {
-      dispatch(crewActions.reviseSend(Write_info, partyId));
+      dispatch(crewActions.reviseSend(file, partyId));
     }
   };
 
-  //색깔 입히기
+  //토스트 팝업 세팅
+  const [ToastStatus, setToastStatus] = useState(false);
+  const [ToastMsg, setToastMsg] = useState("");
+  const handleToast = (type) => {
+    if (!ToastStatus) {
+      setToastStatus(true);
+      setToastMsg(msgList[type]);
+    }
+  };
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => {
+        setToastStatus(false);
+        setToastMsg("");
+      }, 2000);
+    }
+  }, [ToastStatus]);
+
+  //mui 색깔 입히기
   const theme = createTheme({
     palette: {
       primary: {

@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
-import ClearIcon from "@mui/icons-material/Clear";
 
 import radioButton from '../../static/images/icon/라디오버튼.png';
 import radioButtonSelc from '../../static/images/icon/라디오버튼-1.png';
@@ -53,25 +52,6 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
       className="addPicture"
       style={{ width: "100%", marginBottom: "1.5rem" }}
     >
-      {/* <label>
-        <ImageRadio
-          type="radio"
-          value="basic"
-          checked={form === "basic"}
-          onChange={handleRadio}
-        />
-        기본 이미지
-      </label>
-      <label>
-        <ImageRadio
-          type="radio"
-          value="directly"
-          checked={form === "directly"}
-          onChange={handleRadio}
-        />
-        직접 업로드
-      </label> */}
-      {/* 라디오 버튼 */}
       <div style={{ marginBottom: "1rem" }}>
         <span style={{ display: "flex", alignItems: "center" }}>
           {form === "basic" ? (
@@ -95,14 +75,14 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
               }}
             />
           )}
-          <span style={{ marginRight: "1rem" }}>기본 이미지</span>
+          <span style={{ marginLeft:'0.5rem', marginRight: "1rem" }}>기본 이미지</span>
           {/* </span> */}
           {/* <span style={{ display:'flex', alignItems:'center'}}> */}
           {form === "directly" ? (
             <img
               alt="라디오버튼"
               src={radioButtonSelc}
-              style={{ width: "1.2rem", height: "1.2rem", marginRight: "3px" }}
+              style={{ width: "1.2rem", height: "1.2rem",  }}
               value="directly"
               onClick={(e) => {
                 setForm("directly");
@@ -112,14 +92,14 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
             <img
               alt="라디오버튼"
               src={radioButton}
-              style={{ width: "1.2rem", height: "1.2rem", marginRight: "3px" }}
+              style={{ width: "1.2rem", height: "1.2rem", }}
               value="directly"
               onClick={(e) => {
                 setForm("directly");
               }}
             />
           )}
-          <span>직접 업로드</span>
+          <span style={{marginLeft:'0.5rem',}}>직접 업로드</span>
         </span>
       </div>
 
@@ -151,7 +131,8 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                 <input
                   type="file"
                   id="input-file"
-                  accept="image/*"
+                  // accept="image/*"
+                  accept="image/png,"
                   multiple
                   className="addButton"
                   style={{ display: "none" }}

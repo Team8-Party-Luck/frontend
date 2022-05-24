@@ -5,6 +5,7 @@ import PartyList from "../components/Home/PartyList";
 import HomeBanner from "../components/Home/HomeBanner";
 import { history } from "../redux/configStore";
 
+
 const Home = () => {
   return (
     <React.Fragment>

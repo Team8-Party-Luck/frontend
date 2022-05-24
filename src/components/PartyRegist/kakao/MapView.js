@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import KakaoMap from "./KakaoMap";
-import { history } from "../../../redux/configStore";
+
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 
 //이모티콘
 import ic_location from "../../../static/images/icon/arw_s@2x.png";
@@ -43,7 +49,7 @@ export default function MapView({
         sx={{ mb: 3 }}
         InputProps={{
           readOnly: true,
-          endAdornment: <img src={ic_location} alt="locationIcon"/>,
+          endAdornment: <img src={ic_location} alt="locationIcon" />,
         }}
       ></TextField>
       <Modal

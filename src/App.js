@@ -36,6 +36,14 @@ function App() {
   //   dispatch(alarmActions.ConnectSub());
   // }, []);
 
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  React.useEffect(() => {
+    setScreenSize();
+  });
+
   return (
     <Fullscreen>
       <Wrap>
