@@ -97,7 +97,7 @@ const regiWriteSend = (Write_info) => {
     crewApi
       .partyRegi(file)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push("/home");
       })
       .catch((err) => {
@@ -151,7 +151,6 @@ const regiWriteSend = (Write_info) => {
 //파티수정
 const reviseSend = (file, partyId) => {
   return function (dispatch, getState, { history }) {
-
     crewApi
       .partyRevise(partyId, file)
       .then((res) => {
@@ -191,7 +190,7 @@ const deleteSend = (partyId) => {
     crewApi
       .partyDelete(partyId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push("/home");
       })
       .catch((err) => {
@@ -220,7 +219,7 @@ const getDataDB = (pageNum) => {
     crewApi
       .getAllList(pageNum)
       .then((res) => {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         dispatch(getCrew(res.data.results));
       })
       .catch((err) => {
@@ -260,7 +259,7 @@ const getRegionData = (regionInfo) => {
     crewApi
       .partyRegionData(file)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getRegion(res.data.results));
       })
       .catch((err) => {
@@ -296,7 +295,7 @@ const getDetailInfo = (partyId) => {
     crewApi
       .partyDetailInfo(partyId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(getDetail(res.data));
       })
       .catch((err) => {
@@ -331,7 +330,7 @@ const getUserList = (partyId) => {
     crewApi
       .partySubUser(partyId)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getDetailUser(res.data));
       })
       .catch((err) => {
@@ -368,7 +367,7 @@ const getJoinedData = () => {
     crewApi
       .partyMeTake()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getJoined(res.data));
       })
       .catch((err) => {
@@ -401,7 +400,7 @@ const getScrapData = () => {
     crewApi
       .partyMeLike()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getScrap(res.data));
       })
       .catch((err) => {
@@ -437,7 +436,7 @@ const sendScrapData = (partyId) => {
     crewApi
       .partyLike(partyId)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getDetail(res.data));
       })
       .catch((err) => {
@@ -479,7 +478,7 @@ const sendJoinData = (partyId) => {
     crewApi
       .partySub(partyId)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data === "") {
           history.push(`/confirm/${partyId}`);
           dispatch(getDetail(res.data));
@@ -521,7 +520,7 @@ const sendCancelData = (partyId) => {
     crewApi
       .partySubCancel(partyId)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getDetail(res.data));
       })
       .catch((err) => {
@@ -554,7 +553,7 @@ const getWillData = () => {
     crewApi
       .partySubMe()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(getWill(res.data.results));
       })
       .catch((err) => {

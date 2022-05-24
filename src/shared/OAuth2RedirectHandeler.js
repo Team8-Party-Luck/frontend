@@ -9,10 +9,10 @@ const OAuth2RedirectHandeler = () => {
 
   // 인가코드
   const code = new URL(window.location.href).searchParams.get("code");
-  console.log(code);
+  // console.log(code);
 
-  React.useEffect( () => {
-     dispatch(userActions.kakaoLogin(code));
+  React.useEffect(() => {
+    dispatch(userActions.kakaoLogin(code));
   }, []);
 
   return <Spinner />;

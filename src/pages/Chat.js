@@ -16,7 +16,7 @@ const Chat = () => {
   }, []);
 
   const msgList = useSelector((state) => state?.chat?.list);
-  console.log(msgList);
+  // console.log(msgList);
 
   if (msgList?.length === 0) {
     return (

@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Foodlist = (props) => {
   const { food, setFood } = props;
 
-  console.log(food);
+  // console.log(food);
 
   return (
     <React.Fragment>

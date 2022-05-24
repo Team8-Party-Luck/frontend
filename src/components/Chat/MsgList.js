@@ -1,16 +1,16 @@
 import { history } from "../../redux/configStore";
-import Typography from "@mui/material/Typography";
+
 import styled from "styled-components";
-import { Box } from "@mui/material";
+
 import React from "react";
 import DefaultImage from "../../static/images/profile/default.png";
 
 const MsgList = (props) => {
   const { msgList } = props;
 
-  console.log(msgList);
+  // console.log(msgList);
 
-  console.log(msgList.image);
+  // console.log(msgList.image);
 
   return (
     <WrapBox>

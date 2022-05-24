@@ -9,7 +9,6 @@ var ps;
 var infowindow;
 var map;
 
-
 const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   const [keyword, setKeyword] = useState("");
 
@@ -27,9 +26,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
     ps = new kakao.maps.services.Places();
     // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
     infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-
-
-
   }, []);
 
   const searchPlaces = () => {
@@ -112,7 +108,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
         places[i].x,
         places[i].y
       );
-      console.log(marker);
+      // console.log(marker);
       fragment.appendChild(itemEl);
     }
 
@@ -125,8 +121,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   }
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
-
-
     var el = document.createElement("li"),
       itemStr =
         '<span class="markerbg marker_' +
@@ -153,23 +147,23 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       '<span class="tel">' +
       places.phone +
       "</span>" +
-      `<a href=${places.place_url} style="color:blue" target="_blank">상세정보보기</a>`+
-      `___<button style="color:#FF6853" id=${places.id}>여기 모여<button/>`+
+      `<a href=${places.place_url} style="color:blue" target="_blank">상세정보보기</a>` +
+      `___<button style="color:#FF6853" id=${places.id}>여기 모여<button/>` +
       "</div>";
 
     el.innerHTML = itemStr;
     el.className = "item";
 
-    document.addEventListener('click',function(e){
-      if(e.target && e.target.id==places.id){
-        console.log(places.id);
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id == places.id) {
+        // console.log(places.id);
         setStore(places.place_name);
         setAddress(places.address_name);
         setPlace_url(places.place_url);
         setXy(`${places.x},${places.y}`);
-        setOpen(false)
-       }
-   });
+        setOpen(false);
+      }
+    });
 
     return el;
   }

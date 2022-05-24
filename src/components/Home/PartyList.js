@@ -59,7 +59,7 @@ const PartyList = (props) => {
 
   React.useEffect(() => {
     crewApi.getAllList(page).then((res) => {
-      console.log(res.data.results);
+      // console.log(res.data.results);
       setPartyList([...partyList, ...res.data.results]);
       setIsLoading(false);
       if (res.data.results.length < 10) {
@@ -80,7 +80,7 @@ const PartyList = (props) => {
   const willData = useSelector((state) => state?.crew?.will);
   const scrapData = useSelector((state) => state?.crew?.scrap?.results);
   const userInfo = useSelector((state) => state?.user?.check?.result);
-  console.log(userInfo);
+  // console.log(userInfo);
 
   //지역필터
   const regionData = useSelector((state) => state?.crew?.region);
@@ -92,9 +92,8 @@ const PartyList = (props) => {
       e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
       10
     ) {
-
       crewApi.getAllList(page).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         setPartyList([...partyList, ...res.data.results]);
         setIsLoading(false);

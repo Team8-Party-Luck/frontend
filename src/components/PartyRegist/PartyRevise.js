@@ -50,7 +50,6 @@ const PartyRevise = () => {
   const [meeting, setMeeting] = useState("");
   const [desc, setDesc] = useState("");
 
-
   //파티 상세정보 불러오기
   useEffect(() => {
     crewApi.partyDetailInfo(partyId).then((res) => {
@@ -68,7 +67,7 @@ const PartyRevise = () => {
       setDesc(res.data.desc);
     });
   }, []);
-  console.log(title);
+  // console.log(title);
 
   //파티 수정 정보 보내기
   const sendReviseData = () => {

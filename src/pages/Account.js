@@ -1,17 +1,7 @@
-import { Box } from "@mui/material";
 import React, { useState } from "react";
 import Header from "../shared/Header";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 import BottomNav from "../shared/BottomNav";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Button, TextField } from "@mui/material";
+
 import { history } from "../redux/configStore";
 import styled from "styled-components";
 import goArrow from "../static/images/icon/arw_gray.png";

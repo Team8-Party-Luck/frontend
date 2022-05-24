@@ -26,10 +26,10 @@ const UserList = () => {
   }, []);
 
   const userList = useSelector((state) => state?.crew?.detailUser);
-  console.log(userList);
+  // console.log(userList);
 
   const userId = useSelector((state) => state?.user?.check?.result?.userid);
-  console.log(userId);
+  // console.log(userId);
 
   return (
     <React.Fragment>

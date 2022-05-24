@@ -9,11 +9,11 @@ import styled from "styled-components";
 
 const PartyHeader = (props) => {
   const { partyData } = props;
-  console.log(partyData);
+  // console.log(partyData);
   const dispatch = useDispatch();
 
   const sendScrap = () => {
-    console.log(partyData?.partyid);
+    // console.log(partyData?.partyid);
     dispatch(crewActions.sendScrapData(partyData?.partyid));
   };
   return (

@@ -36,14 +36,6 @@ function App() {
   //   dispatch(alarmActions.ConnectSub());
   // }, []);
 
-  function setScreenSize() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }
-  React.useEffect(() => {
-    setScreenSize();
-  });
-
   return (
     <Fullscreen>
       <Wrap>
@@ -92,7 +84,6 @@ const Wrap = styled.div`
 const Fullscreen = styled.div`
   background-image: url(${background});
   background-size: cover;
-  /* position: fixed; */
   background-repeat: no-repeat;
   margin: 0;
   display: flex;

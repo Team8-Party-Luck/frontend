@@ -15,7 +15,6 @@ const userCheck = createAction(USER_CHECK, (check) => ({ check }));
 // 초기값
 const initialState = {};
 
-  
 //미들웨어
 //카카오로그인
 const kakaoLogin = (code) => {
@@ -25,8 +24,8 @@ const kakaoLogin = (code) => {
     userApi
       .kakaoLogin(code)
       .then((res) => {
-        console.log("성공");
-        console.log(res.data); // 토큰이 넘어올 것임
+        // console.log("성공");
+        // console.log(res.data); // 토큰이 넘어올 것임
         const KAKAO_TOKEN = res.data;
         sessionStorage.setItem("token", KAKAO_TOKEN); //세션에 저장
 
@@ -42,19 +41,19 @@ const kakaoLogin = (code) => {
         userApi
           .userCheck()
           .then((res) => {
-            console.log(res.data, "여기까지는 성공");
+            // console.log(res.data, "여기까지는 성공");
             sessionStorage.setItem("userid", res.data.result.userid);
             res.data.ok
               ? history.replace("/home")
               : history.replace("/setting");
           })
           .catch((err) => {
-            console.log("두번 호출 실패", err.response);
+            // console.log("두번 호출 실패", err.response);
           });
       })
       .catch((err) => {
-        console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
+        // console.log("소셜로그인 에러", err);
+        // window.alert("로그인에 실패하였습니다.");
         history.replace("/"); // 로그인 실패하면 로그인화면으로 돌려보냄
       });
   };
@@ -66,11 +65,11 @@ const sendSettingsData = (Settings_info) => {
     userApi
       .settingsData(Settings_info)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push("/home");
       })
       .catch((err) => {
-        console.log("에러", err.response);
+        // console.log("에러", err.response);
       });
   };
 };
@@ -84,7 +83,7 @@ const getUserInfoDB = () => {
         dispatch(getUserInfo(res.data));
       })
       .catch((err) => {
-        console.log("에러", err.response);
+        // console.log("에러", err.response);
       });
   };
 };
@@ -95,11 +94,11 @@ const updateSettingsData = (Update_info) => {
     userApi
       .updateSettings(Update_info)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push("/profile");
       })
       .catch((err) => {
-        console.log("에러", err.response);
+        // console.log("에러", err.response);
       });
   };
 };
@@ -134,11 +133,11 @@ const userCheckDB = () => {
     userApi
       .userCheck()
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(userCheck(res.data));
       })
       .catch((err) => {
-        console.log(err.res);
+        // console.log(err.res);
       });
   };
 };
@@ -170,7 +169,7 @@ const userSecessionDB = () => {
     userApi
       .userSecession()
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push(`/`);
       })
       .catch((err) => {
