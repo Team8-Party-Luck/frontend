@@ -1,10 +1,6 @@
 let deferredInstallPrompt = null;
 let installButton = null;
 
-
-
-// window.addEventListener("beforeinstallprompt", saveBeforeInstallPromptEvent);
-
 window.addEventListener("beforeinstallprompt", (event) => {
   deferredInstallPrompt = event;
   installButton.removeAttribute("hidden");
