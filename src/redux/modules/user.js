@@ -48,11 +48,11 @@ const kakaoLogin = (code) => {
               : history.replace("/setting");
           })
           .catch((err) => {
-            console.log("두번 호출 실패", err.response);
+            // console.log("두번 호출 실패", err.response);
           });
       })
       .catch((err) => {
-        console.log("소셜로그인 에러", err);
+        // console.log("소셜로그인 에러", err);
         // window.alert("로그인에 실패하였습니다.");
         history.replace("/"); // 로그인 실패하면 로그인화면으로 돌려보냄
       });
@@ -65,11 +65,11 @@ const sendSettingsData = (Settings_info) => {
     userApi
       .settingsData(Settings_info)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         history.push("/home");
       })
       .catch((err) => {
-        console.log("에러", err.response);
+        // console.log("에러", err.response);
       });
   };
 };
@@ -83,7 +83,7 @@ const getUserInfoDB = () => {
         dispatch(getUserInfo(res.data));
       })
       .catch((err) => {
-        console.log("에러", err.response);
+        // console.log("에러", err.response);
       });
   };
 };
@@ -98,7 +98,7 @@ const updateSettingsData = (Update_info) => {
         history.push("/profile");
       })
       .catch((err) => {
-        console.log("에러", err.response);
+        // console.log("에러", err.response);
       });
   };
 };
@@ -137,7 +137,7 @@ const userCheckDB = () => {
         dispatch(userCheck(res.data));
       })
       .catch((err) => {
-        console.log(err.res);
+        // console.log(err.res);
       });
   };
 };
