@@ -85,6 +85,7 @@ const ChatInput = (props) => {
       }}
     >
       <MsgInput
+      id="msgInput"
         type="text"
         onChange={(e) => {
           setMsg(e.target.value);

@@ -99,6 +99,10 @@ const ChatDetail = () => {
     }
   }
 
+  const ClearFields = () => {
+    document.getElementById("msgInput").value = "";
+  }
+
   //메세지 전송
   const onSend = async () => {
     try {
@@ -117,6 +121,7 @@ const ChatDetail = () => {
       console.log(JSON.stringify(message));
       console.log(ws.ws.readyState);
       setMsg("");
+      ClearFields()
     } catch (error) {
       console.log(error);
       console.log(ws.ws.readyState);

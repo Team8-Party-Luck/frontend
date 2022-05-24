@@ -1,4 +1,3 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
 import { history } from "../redux/configStore";
 import BackIcon from "../static/images/icon/back.png";
@@ -11,6 +10,8 @@ const Header = (props) => {
         onClick={() => {
           if (props.name === "파티등록") {
             props.modal();
+          } else if (props.name === "메시지") {
+            history.push('/home');
           } else {
             history.goBack();
           }
