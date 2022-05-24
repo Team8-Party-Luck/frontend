@@ -50,7 +50,7 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "left",
+          justifyContent : "spaceBetween",
           margin: "0.8rem",
           lineHeight: "4rem",
         }}
@@ -63,7 +63,7 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "left",
+          justifyContent: "spaceBetween",
           margin: "0.8rem",
           lineHeight: "2rem",
         }}
@@ -76,7 +76,7 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "left",
+          justifyContent: "spaceBetween",
           margin: "0.8rem",
           lineHeight: "4rem",
         }}
@@ -85,7 +85,7 @@ const PersonInfo = ({
         <RowRadioButtonsGroup gender={gender} setGender={setGender} />
       </div>
 
-      <div style={{ display: "flex", justifyContent: "left" }}>
+      <div>
         <ResistButton
           onClick={toggleDrawer(anchor, false)}
           style={{ backgroundColor: "#FF6853", color: "#FFFFFF" }}
