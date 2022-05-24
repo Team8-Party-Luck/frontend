@@ -1,10 +1,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 
 import styled from "styled-components";
 import Age from "./Age";
@@ -50,12 +48,12 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent : "spaceBetween",
-          margin: "0.8rem",
+          justifyContent: "space-around",
+          margin: "0.5rem",
           lineHeight: "4rem",
         }}
       >
-        <h4 style={{ marginRight: "2rem" }}>인원수</h4>
+        <h4>인원수</h4>
         <Age capacity={capacity} setCapacity={setCapacity} />
       </div>
       <Divider />
@@ -63,12 +61,12 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "spaceBetween",
-          margin: "0.8rem",
+          justifyContent: "space-around",
+          margin: "0.5rem",
           lineHeight: "2rem",
         }}
       >
-        <h4 style={{ marginRight: "2.2rem" }}>연령대</h4>
+        <h4 style={{}}>연령대</h4>
         <AgeGroup ageGroup={ageGroup} setAgeGroup={setAgeGroup} />
       </div>
       <Divider />
@@ -76,12 +74,12 @@ const PersonInfo = ({
       <div
         style={{
           display: "flex",
-          justifyContent: "spaceBetween",
-          margin: "0.8rem",
-          lineHeight: "4rem",
+          justifyContent: "space-around",
+          margin: "0.5rem",
+          lineHeight: "2.5rem",
         }}
       >
-        <h4 style={{ marginRight: "3rem" }}>성별</h4>
+        <h4>성별</h4>
         <RowRadioButtonsGroup gender={gender} setGender={setGender} />
       </div>
 
@@ -142,7 +140,7 @@ export default PersonInfo;
 const ResistButton = styled.button`
   border: 1px solid #cccccc;
   border-radius: 8px;
-  width: 21rem;
+  width: 100%;
   height: 48px;
   margin: 1.3rem;
 `;
