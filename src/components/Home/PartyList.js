@@ -98,9 +98,9 @@ const PartyList = (props) => {
       e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <
       10
     ) {
-      axios.get(`http://54.180.88.119/api/parties/raw/${page}`).then((res) => {
+      // axios.get(`http://54.180.88.119/api/parties/raw/${page}`).then((res) => {
 
-      // axios.get(`https://epocle.shop/api/parties/raw/${page}`).then((res) => {
+      axios.get(`https://epocle.shop/api/parties/raw/${page}`).then((res) => {
         setPartyList([...partyList, ...res.data.results]);
         setIsLoading(false);
         if (res.data.results.length < 10) {
