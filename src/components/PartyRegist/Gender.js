@@ -34,7 +34,7 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
             }}
           />
         )}
-         <span style={{ marginRight: "1rem" }}>모두</span>
+         <span style={{ marginLeft:'0.3rem', marginRight: "1rem" }}>모두</span>
         {gender === "남성" ? (
           <img
             alt="라디오버튼"
@@ -56,7 +56,7 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
             }}
           />
         )}
-<span style={{ marginRight: "1rem" }}>남성</span>
+<span style={{ marginLeft:'0.3rem', marginRight: "1rem" }}>남성</span>
         {gender === "여성" ? (
           <img
             alt="라디오버튼"
@@ -71,14 +71,14 @@ const RowRadioButtonsGroup = ({ gender, setGender }) => {
           <img
             alt="라디오버튼"
             src={radioButton}
-            style={{ width: "1.2rem", height: "1.2rem" }}
+            style={{ width: "1.2rem", height: "1.2rem",  }}
             value="여성"
             onClick={() => {
               setGender("여성");
             }}
           />
         )}
-        <span style={{ marginRight: "1rem" }}>여성</span>
+        <span style={{marginLeft:'0.3rem', marginRight: "1rem" }}>여성</span>
       </span>
       {/* <label>
         <ImageRadio
