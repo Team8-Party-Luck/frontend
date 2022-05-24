@@ -49,6 +49,7 @@ const MsgBox = styled.div`
 const ImgBox = styled.img`
   width: 2.7em;
   height: 2.7em;
+  border-radius: 2.7em;
   margin-right: 0.7em;
 `;
 
