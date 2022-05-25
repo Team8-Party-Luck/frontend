@@ -265,7 +265,6 @@ const RegiWrite = () => {
             onChange={(e) => {
               setDesc(e.target.value);
             }}
-            wrap="hard"
           />
         </Grid>
       </ThemeProvider>
