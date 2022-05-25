@@ -264,4 +264,4 @@ export const regionArea = {
   16: ["서귀포시", "제주시"],
 };
 
-console.log(regionArea[15].sort());
+// console.log(regionArea[15].sort());

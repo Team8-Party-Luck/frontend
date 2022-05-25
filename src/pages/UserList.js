@@ -14,6 +14,7 @@ import styled from "styled-components";
 import DefaultImg from "../static/images/profile/default.png";
 import HostImg from "../static/images/icon/tag_host-1.png";
 import chatImg from "../static/images/icon/btn_chat.png";
+import InfoImg from "../static/images/icon/ic_alarm_complete.png";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -36,12 +37,12 @@ const UserList = () => {
   }, []);
 
   const userList = useSelector((state) => state?.crew?.detailUser);
-  console.log(userList);
+  // console.log(userList);
 
   const userId = useSelector((state) => state?.user?.check?.result?.userid);
   // console.log(userId);
 
-  console.log(food);
+  // console.log(food);
 
   return (
     <React.Fragment>
@@ -50,20 +51,7 @@ const UserList = () => {
         {userList?.result?.map((cur, idx) => {
           return (
             <List key={idx}>
-              <InfoBox
-                onClick={() => {
-                  setOpenProfile(true);
-                  setNickname(cur?.nickname);
-                  setImage(cur?.imageUrl);
-                  setSns(cur?.sns);
-                  setGender(cur?.gender);
-                  setAge(cur?.age);
-                  setLocation(cur?.location);
-                  setIntro(cur?.intro);
-                  setFood(cur?.foods);
-                  setId(cur?.userId);
-                }}
-              >
+              <InfoBox>
                 <ImgBox src={cur?.imageUrl ? cur?.imageUrl : DefaultImg} />
                 <div style={{ width: "100%" }}>
                   <NameText>{cur?.nickname}</NameText>
@@ -71,6 +59,21 @@ const UserList = () => {
                     {cur?.gender} · {cur?.age} · {cur?.location}
                   </DetailText>
                 </div>
+                <DetailInfoImg
+                  src={InfoImg}
+                  onClick={() => {
+                    setOpenProfile(true);
+                    setNickname(cur?.nickname);
+                    setImage(cur?.imageUrl);
+                    setSns(cur?.sns);
+                    setGender(cur?.gender);
+                    setAge(cur?.age);
+                    setLocation(cur?.location);
+                    setIntro(cur?.intro);
+                    setFood(cur?.foods);
+                    setId(cur?.userId);
+                  }}
+                />
                 {userId === cur?.userId ? null : (
                   <ChatBox
                     src={chatImg}
@@ -110,7 +113,6 @@ const UserList = () => {
 const ListBox = styled.div`
   width: 100%;
   padding-top: 3.55em;
-  cursor: pointer;
 `;
 
 const List = styled.div`
@@ -146,11 +148,19 @@ const ImgBox = styled.img`
   position: relative;
 `;
 
-const ChatBox = styled.img`
-  width: 3em;
-  height: 3em;
+const DetailInfoImg = styled.img`
+  width: 2.5em;
+  height: 2.5em;
   border-radius: 2.5em;
   cursor: pointer;
+`;
+
+const ChatBox = styled.img`
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 2.5em;
+  cursor: pointer;
+  margin-left: 0.5em;
 `;
 
 const HostBox = styled.img`
