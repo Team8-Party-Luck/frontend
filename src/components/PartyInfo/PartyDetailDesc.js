@@ -14,7 +14,7 @@ const WrapBox = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 1.2em;
-  padding-bottom: 6em;
+  padding-bottom: 3em;
 `;
 
 const DescBox = styled.div`

@@ -4,6 +4,7 @@ import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
 import Home from "./pages/Home";
@@ -35,6 +36,14 @@ function App() {
   // React.useEffect(() => {
   //   dispatch(alarmActions.ConnectSub());
   // }, []);
+
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
 
   return (
     <Fullscreen>

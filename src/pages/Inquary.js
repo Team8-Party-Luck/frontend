@@ -12,7 +12,6 @@ const Inquary = () => {
       <ListBox>
         <NullData title={"앗! 준비중인 서비스입니다"} />
       </ListBox>
-      <BottomNav />
     </div>
   );
 };

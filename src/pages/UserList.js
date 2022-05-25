@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import UserCard from "../components/UserList/UserCard";
 import HeaderNav from "../shared/HeaderNav";
 import Header from "../shared/Header";
@@ -19,6 +19,16 @@ const UserList = () => {
   const dispatch = useDispatch();
 
   const { partyid } = useParams();
+  const [openProfile, setOpenProfile] = useState(false);
+  const [nickname, setNickname] = useState("");
+  const [image, setImage] = useState("");
+  const [sns, setSns] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [location, setLocation] = useState("");
+  const [intro, setIntro] = useState("");
+  const [food, setFood] = useState("");
+  const [id, setId] = useState("");
 
   React.useEffect(() => {
     dispatch(crewActions.getUserList(partyid));
@@ -26,10 +36,12 @@ const UserList = () => {
   }, []);
 
   const userList = useSelector((state) => state?.crew?.detailUser);
-  // console.log(userList);
+  console.log(userList);
 
   const userId = useSelector((state) => state?.user?.check?.result?.userid);
   // console.log(userId);
+
+  console.log(food);
 
   return (
     <React.Fragment>
@@ -38,7 +50,20 @@ const UserList = () => {
         {userList?.result?.map((cur, idx) => {
           return (
             <List key={idx}>
-              <InfoBox>
+              <InfoBox
+                onClick={() => {
+                  setOpenProfile(true);
+                  setNickname(cur?.nickname);
+                  setImage(cur?.imageUrl);
+                  setSns(cur?.sns);
+                  setGender(cur?.gender);
+                  setAge(cur?.age);
+                  setLocation(cur?.location);
+                  setIntro(cur?.intro);
+                  setFood(cur?.foods);
+                  setId(cur?.userId);
+                }}
+              >
                 <ImgBox src={cur?.imageUrl ? cur?.imageUrl : DefaultImg} />
                 <div style={{ width: "100%" }}>
                   <NameText>{cur?.nickname}</NameText>
@@ -50,7 +75,7 @@ const UserList = () => {
                   <ChatBox
                     src={chatImg}
                     onClick={() => {
-                      history.push(`/chat/${cur?.userId}`);
+                      // history.push(`/chat/${cur?.userId}`);
                       dispatch(chatActions.getRoomIdDB(cur?.userId));
                     }}
                   />
@@ -59,6 +84,21 @@ const UserList = () => {
                   <HostBox src={HostImg} />
                 ) : null}
               </InfoBox>
+              {openProfile && (
+                <UserCard
+                  image={image}
+                  nickname={nickname}
+                  sns={sns}
+                  gender={gender}
+                  age={age}
+                  location={location}
+                  intro={intro}
+                  food={food}
+                  id={id}
+                  userId={userId}
+                  close={() => setOpenProfile(false)}
+                />
+              )}
             </List>
           );
         })}
@@ -70,6 +110,7 @@ const UserList = () => {
 const ListBox = styled.div`
   width: 100%;
   padding-top: 3.55em;
+  cursor: pointer;
 `;
 
 const List = styled.div`

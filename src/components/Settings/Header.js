@@ -33,7 +33,7 @@ const Header = (props) => {
         이제 프로필 정보 입력 후
       </Typography>
       <Typography component="p" variant="p" sx={{ color: "black" }}>
-        바로 잇츠링을 사용할 수 있습니다!🙌🏻
+        바로 잇츨링을 사용할 수 있습니다!🙌🏻
       </Typography>
     </Box>
   );
@@ -55,16 +55,5 @@ const Progress = styled.div`
   transition: width 1s;
   border-radius: 20px;
 `;
-
-//프로그레스 바에 원 달아서 프로그레스 바가 차오를 때 같이 차오름
-// const Dot = styled.div`
-//   width: 70px;
-//   height: 70px;
-//   box-sizing: border-box;
-//   border: 10px solid blue;
-//   border-radius: 35px;
-//   background: yellow;
-//   margin-left: -35px;
-// `;
 
 export default Header;

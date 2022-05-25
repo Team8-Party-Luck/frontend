@@ -43,7 +43,6 @@ const Scrap = () => {
         <NullBox>
           <NullData title={"앗! 찜한 파티가 없습니다"} />
         </NullBox>
-        <BottomNav />
       </React.Fragment>
     );
   } else {
@@ -56,7 +55,6 @@ const Scrap = () => {
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
         </ListBox>
-        <BottomNav />
       </ConBox>
     );
   }
@@ -71,7 +69,7 @@ const NullBox = styled.div`
 
 const ListBox = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   padding-top: 3.5em;
   padding-bottom: 3em;
   overflow-y: auto;

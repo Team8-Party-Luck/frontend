@@ -131,7 +131,7 @@ const Setting = () => {
           {/* <Progress width={(count / 5) * 100 + "%"} /> */}
         </Contain>
         <HeaderText>
-          이제 프로필 정보 입력 후 <br /> 바로 잇츠링을 사용할 수 있습니다!🙌🏻
+          이제 프로필 정보 입력 후 <br /> 바로 잇츨링을 사용할 수 있습니다!🙌🏻
         </HeaderText>
       </HeaderBox>
       {page === false ? (
@@ -176,7 +176,7 @@ const Setting = () => {
                 setFood={setFood}
                 count={count}
                 setCount={setCount}
-                name={"선호하는 음식을 모두 선책해주세요"}
+                name={"선호하는 음식을 모두 선택해주세요"}
               />
             </>
           ) : null}
@@ -199,9 +199,9 @@ const Setting = () => {
             placeholder="닉네임을 입력해주세요"
             onChange={handleChange("nickname")}
           />
-          <InnerText>SNS(선택)</InnerText>
+          <InnerText>인스타그램 아이디(선택)</InnerText>
           <ValuesInput
-            placeholder="URL을 입력해주세요"
+            placeholder="인스타그램 아이디를 입력해주세요!"
             onChange={handleChange("sns")}
           />
           <InnerText>자기소개</InnerText>
