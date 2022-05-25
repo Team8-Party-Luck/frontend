@@ -1,47 +1,198 @@
-import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import React from "react";
+import styled from "styled-components";
+import Modal from "react-modal";
+import { color } from "../../shared/ColorSystem";
+import DefaultImg from "../../static/images/profile/default.png";
+import InstaIcon from "../../static/images/icon/인스타그램아이콘.png";
+import BackIcon from "../../static/images/icon/파티등록_이미지삭제버튼.png";
+import FoodList from "../Profile/FoodList";
+import { actionCreators as chatActions } from "../../redux/modules/chat";
+import { useDispatch } from "react-redux";
+const UserCard = (props) => {
+  const {
+    event,
+    close,
+    confirm,
+    back,
+    nickname,
+    image,
+    sns,
+    age,
+    gender,
+    location,
+    intro,
+    food,
+    id,
+    userId,
+  } = props;
+  const dispatch = useDispatch();
+  console.log(props);
+  const confirmHandler = (e) => {
+    e.stopPropagation();
+    event();
+  };
 
-import { history } from "../../redux/configStore";
-
-const UserCard = ({ v }) => {
-  const age = v.age;
-  const gender = v.gender;
-  const imageUrl = v.imageUrl;
-  const location = v.location;
-  const nickname = v.nickname;
+  const BackHandler = (e) => {
+    e.stopPropagation();
+    close();
+  };
 
   return (
-    <div>
-      <AccordionSummary>
-        <Box sx={{ display: "flex" }}>
-          <Avatar
-            alt="Remy Sharp"
-            src={imageUrl}
-            sx={{ my: "auto", mr: "1rem", width: "3.5rem", height: "3.5rem" }}
-          />
-          <div>
-            <Typography variant="h6" sx={{ mb: 0.5 }}>
-              {nickname}
-            </Typography>
-            <Typography sx={{ fontSize: "1rem" }}>
-              {gender} {age} {location}
-            </Typography>
-          </div>
-        </Box>
-      </AccordionSummary>
-      <div>
-        <Button sx={{ml:'5rem'}}>메시지</Button>
-      </div>
-    </div>
+    <Modal
+      isOpen={true}
+      onRequestClose={close}
+      shouldCloseOnOverlayClick={true}
+      ariaHideApp={false}
+      style={{
+        overlay: {
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(0, 0, 0, 0.5)",
+          zIndex: 10000,
+        },
+        content: {
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          transform: "translate(-50%, -50%)",
+          width: "20em",
+          boxSizing: "border-box",
+          border: "none",
+          background: "white",
+          borderRadius: "0.5em",
+          outline: "none",
+          padding: "1em 1em",
+          zIndex: 30,
+        },
+      }}
+    >
+      <WrapBox>
+        <BackImg src={BackIcon} onClick={BackHandler} />
+        {image === null ? (
+          <ProfileBox>
+            <ProfileImg src={DefaultImg} />
+          </ProfileBox>
+        ) : (
+          <ProfileBox>
+            <ProfileImg src={image} />
+          </ProfileBox>
+        )}
+        <NicknameText>{nickname}</NicknameText>
+        <SnsBox
+          onClick={() => {
+            window.location.href = `https://www.instagram.com/${sns}`;
+          }}
+        >
+          {sns === "" ? null : (
+            <>
+              <SnsImg src={InstaIcon} />
+              <SnsText>{sns}</SnsText>
+            </>
+          )}
+        </SnsBox>
+
+        <DetailText>
+          {gender} · {age} · {location}
+        </DetailText>
+        <IntroBox>{intro}</IntroBox>
+        <FoodBox>
+          <FoodList position={"center"} food={food} />
+        </FoodBox>
+        {userId === id ? null : (
+          <MsgBtn
+            onClick={() => {
+              dispatch(chatActions.getRoomIdDB(id));
+            }}
+          >
+            메시지 보내기
+          </MsgBtn>
+        )}
+      </WrapBox>
+    </Modal>
   );
 };
+
+const WrapBox = styled.div`
+  width: 100%;
+`;
+
+const BackImg = styled.img`
+  width: 2em;
+  height: 2em;
+  pointer: cursor;
+`;
+
+const ProfileBox = styled.div`
+  width: fit-content;
+  margin: 0 auto;
+`;
+
+const ProfileImg = styled.img`
+  width: 5em;
+  height: 5em;
+  border-radius: 5em;
+`;
+
+const SnsBox = styled.div`
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  margin: 0.3em auto;
+  margin-bottom: 0.5em;
+  pointer: cursor;
+`;
+
+const NicknameText = styled.p`
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-top: 0.5em;
+`;
+
+const DetailText = styled.p`
+  font-size: 0.9em;
+  color: ${color.sub1};
+  text-align: center;
+`;
+
+const IntroBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em 0;
+  border-bottom: 1px solid ${color.sub1};
+`;
+
+const SnsImg = styled.img`
+  width: 1.1em;
+  height: 1.1em;
+`;
+
+const SnsText = styled.p`
+  font-size: 1em;
+  color: ${color.sub1};
+  margin-left: 0.2em;
+`;
+
+const FoodBox = styled.div`
+  width: 100%;
+  margin: 1.5em auto;
+`;
+
+const MsgBtn = styled.button`
+  width: 100%;
+  height: 3em;
+  border: none;
+  border-radius: 7px;
+  background: ${color.primary};
+  color: white;
+  font-size: 0.9em;
+`;
 
 export default UserCard;

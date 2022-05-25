@@ -6,9 +6,6 @@ const api = axios.create({
   // baseURL: "http://54.180.88.119", //로컬
 });
 
-
-
-  
 // 유저 관련 API
 export const userApi = {
   //kakao 로그인

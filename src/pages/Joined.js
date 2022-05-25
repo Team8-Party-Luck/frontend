@@ -27,7 +27,6 @@ const Joined = () => {
         <NullBox>
           <NullData title={"앗! 참여한 파티 내역이 없습니다"} />
         </NullBox>
-        <BottomNav />
       </React.Fragment>
     );
   } else {
@@ -40,7 +39,6 @@ const Joined = () => {
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
         </ListBox>
-        <BottomNav />
       </React.Fragment>
     );
   }
@@ -55,7 +53,7 @@ const NullBox = styled.div`
 
 const ListBox = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   padding-top: 3.5em;
   padding-bottom: 3em;
   overflow-y: auto;

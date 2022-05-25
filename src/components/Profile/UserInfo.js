@@ -34,7 +34,7 @@ const UserInfo = () => {
         </DetailBox>
       </InfoBox>
       <NonFixBox>{user_info?.intro}</NonFixBox>
-      <FoodList user_info={user_info} />
+      <FoodList name={"선호하는 음식 종류"} food={user_info?.food} />
     </ProfileBox>
   );
 };
