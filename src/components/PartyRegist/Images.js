@@ -132,8 +132,7 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                 <input
                   type="file"
                   id="input-file"
-                  // accept="image/*"
-                  accept="image/png,"
+                  accept="image/*,"
                   multiple
                   className="addButton"
                   style={{ display: "none" }}

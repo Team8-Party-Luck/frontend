@@ -4,10 +4,11 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
 import { ko } from "date-fns/locale";
-export default function TimeSelect({ time, setTime }) {
+export default function TimeSelect({ time, setTime, date }) {
   const [value, setValue] = useState(new Date());
 
   const str = new Date(`2022-01-01 ${time}`);
+
 
   return (
     <LocalizationProvider locale={ko} dateAdapter={AdapterDateFns}>
@@ -29,7 +30,7 @@ export default function TimeSelect({ time, setTime }) {
           let realTime = `${hours}:${minutes}`;
           setTime(realTime);
         }}
-        renderInput={(params) => <TextField variant="standard" {...params} />}
+        renderInput={(params) => <TextField variant="standard"{...params} />}
       />
     </LocalizationProvider>
   );

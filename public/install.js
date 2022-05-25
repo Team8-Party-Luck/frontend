@@ -1,21 +1,19 @@
 let deferredInstallPrompt = null;
 let installButton = null;
 
-window.addEventListener("beforeinstallprompt", (event) => {
-  deferredInstallPrompt = event;
-  installButton.removeAttribute("hidden");
-});
-
 window.addEventListener("load", () => {
   installButton = document.getElementById("install-button");
   installButton.addEventListener("click", installPWA);
 });
 
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installButton.removeAttribute("hidden");
+});
 
 function installPWA() {
   deferredInstallPrompt.prompt();
-
-
   installButton.remove();
 
   deferredInstallPrompt.userChoice.then((choice) => {

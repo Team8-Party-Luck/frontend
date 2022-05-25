@@ -5,7 +5,7 @@ const PartyDetailDesc = (props) => {
   const { partyData } = props;
   return (
     <WrapBox>
-      <DescBox>{partyData?.desc}</DescBox>
+      <DescBox><pre>{partyData?.desc}</pre></DescBox>
     </WrapBox>
   );
 };

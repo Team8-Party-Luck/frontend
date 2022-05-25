@@ -27,6 +27,7 @@ const msgList = {
   capacity: "인원수 값이 입력되지 않았습니다.",
   ageGroup: "연령대 값이 입력되지 않았습니다.",
   gender: "성별 값이 입력되지 않았습니다.",
+  time: "현재 시간 이후로만 설정할수 있습니다",
   meeting: "만날 장소 값이 입력되지 않았습니다.",
   desc: "파티 설명 값이 입력되지 않았습니다.",
 };
@@ -67,10 +68,23 @@ const PartyRevise = () => {
       setDesc(res.data.desc);
     });
   }, []);
-  // console.log(title);
 
   //파티 수정 정보 보내기
   const sendReviseData = () => {
+    //시간 설정
+    const configDate = new Date();
+    let month = configDate.getMonth() + 1;
+    month = month >= 10 ? month : "0" + month;
+    let day = configDate.getDate();
+    day = day >= 10 ? day : "0" + day;
+    let hours = configDate.getHours();
+    hours = hours < 10 ? `0${hours}` : hours;
+    let minutes = configDate.getMinutes();
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let nowTime = new Date(`2022-01-01 ${hours}:${minutes}`);
+    let userTime = new Date(`2022-01-01 ${time}`);
+    let realDate = `${month}-${day}`;
+
     if (title === "") {
       handleToast("title");
     }
@@ -86,6 +100,10 @@ const PartyRevise = () => {
     if (gender === "") {
       handleToast("gender");
     }
+    if (realDate === date && nowTime.valueOf() > userTime.valueOf()) {
+      handleToast("time");
+    }
+
     if (meeting === "") {
       handleToast("meeting");
     }
@@ -112,13 +130,16 @@ const PartyRevise = () => {
     // });
 
     if (
-      title !== "" &&
-      store !== "" &&
-      capacity !== "" &&
-      ageGroup !== "" &&
-      gender !== "" &&
-      meeting !== "" &&
-      desc !== ""
+      realDate === date
+        ? nowTime.valueOf() < userTime.valueOf()
+        : true &&
+          title !== "" &&
+          store !== "" &&
+          capacity !== "" &&
+          ageGroup !== "" &&
+          gender !== "" &&
+          meeting !== "" &&
+          desc !== ""
     ) {
       dispatch(crewActions.reviseSend(file, partyId));
     }
@@ -217,6 +238,7 @@ const PartyRevise = () => {
             onChange={(e) => {
               setDesc(e.target.value);
             }}
+            wrap="hard"
           />
         </Grid>
       </ThemeProvider>

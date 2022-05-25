@@ -297,6 +297,7 @@ const getDetailInfo = (partyId) => {
       .then((res) => {
         // console.log(res.data);
         dispatch(getDetail(res.data));
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
