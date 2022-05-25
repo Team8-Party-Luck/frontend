@@ -26,7 +26,7 @@ const UserCard = (props) => {
     userId,
   } = props;
   const dispatch = useDispatch();
-  console.log(props);
+  // console.log(props);
   const confirmHandler = (e) => {
     e.stopPropagation();
     event();

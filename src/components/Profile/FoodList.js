@@ -6,7 +6,7 @@ import { color } from "../../shared/ColorSystem";
 
 const FoodList = (props) => {
   // console.log(user_info);
-  console.log(props);
+  // console.log(props);
 
   return (
     <React.Fragment>

@@ -14,7 +14,7 @@ import styled from "styled-components";
 import DefaultImg from "../static/images/profile/default.png";
 import HostImg from "../static/images/icon/tag_host-1.png";
 import chatImg from "../static/images/icon/btn_chat.png";
-import InfoImg from "../static/images/icon/ic_alarm_complete.png";
+import InfoImg from "../static/images/9.  arw/arw@2x.png";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -51,29 +51,30 @@ const UserList = () => {
         {userList?.result?.map((cur, idx) => {
           return (
             <List key={idx}>
-              <InfoBox>
+              <InfoBox
+                onClick={() => {
+                  setOpenProfile(true);
+                  setNickname(cur?.nickname);
+                  setImage(cur?.imageUrl);
+                  setSns(cur?.sns);
+                  setGender(cur?.gender);
+                  setAge(cur?.age);
+                  setLocation(cur?.location);
+                  setIntro(cur?.intro);
+                  setFood(cur?.foods);
+                  setId(cur?.userId);
+                }}
+              >
                 <ImgBox src={cur?.imageUrl ? cur?.imageUrl : DefaultImg} />
                 <div style={{ width: "100%" }}>
-                  <NameText>{cur?.nickname}</NameText>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <NameText>{cur?.nickname}</NameText>
+                    <DetailInfoImg src={InfoImg} />
+                  </div>
                   <DetailText>
                     {cur?.gender} · {cur?.age} · {cur?.location}
                   </DetailText>
                 </div>
-                <DetailInfoImg
-                  src={InfoImg}
-                  onClick={() => {
-                    setOpenProfile(true);
-                    setNickname(cur?.nickname);
-                    setImage(cur?.imageUrl);
-                    setSns(cur?.sns);
-                    setGender(cur?.gender);
-                    setAge(cur?.age);
-                    setLocation(cur?.location);
-                    setIntro(cur?.intro);
-                    setFood(cur?.foods);
-                    setId(cur?.userId);
-                  }}
-                />
                 {userId === cur?.userId ? null : (
                   <ChatBox
                     src={chatImg}
@@ -130,7 +131,7 @@ const InfoBox = styled.div`
 `;
 
 const NameText = styled.p`
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 600;
 `;
 
@@ -149,9 +150,8 @@ const ImgBox = styled.img`
 `;
 
 const DetailInfoImg = styled.img`
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 2.5em;
+  width: 0.7em;
+  margin-left: 0.5em;
   cursor: pointer;
 `;
 
