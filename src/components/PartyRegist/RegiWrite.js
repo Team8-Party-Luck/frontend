@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { actionCreators as crewActions } from "../../redux/modules/crew";
@@ -27,6 +25,7 @@ const msgList = {
   capacity: "인원수 값이 입력되지 않았습니다.",
   ageGroup: "연령대 값이 입력되지 않았습니다.",
   gender: "성별 값이 입력되지 않았습니다.",
+  time: "현재 시간 이후로만 설정할수 있습니다",
   meeting: "만날 장소 값이 입력되지 않았습니다.",
   desc: "파티 설명 값이 입력되지 않았습니다.",
 };
@@ -91,6 +90,9 @@ const RegiWrite = () => {
 
   //파티생성 정보 보내기
   const sendWriteData = () => {
+    let nowTime = new Date(`2022-01-01 ${hours}:${minutes}`);
+    let userTime = new Date(`2022-01-01 ${time}`);
+
     if ((image.length || defaultImage.length) === 0) {
       handleToast("image");
     }
@@ -108,6 +110,9 @@ const RegiWrite = () => {
     }
     if (gender === "") {
       handleToast("gender");
+    }
+    if (realDate === date && nowTime.valueOf() > userTime.valueOf()) {
+      handleToast("time");
     }
     if (meeting === "") {
       handleToast("meeting");
@@ -144,16 +149,19 @@ const RegiWrite = () => {
     };
 
     if (
-      (image.length || defaultImage.length) !== 0 &&
-      title !== "" &&
-      store !== "" &&
-      capacity !== "" &&
-      ageGroup !== "" &&
-      gender !== "" &&
-      meeting !== "" &&
-      desc !== ""
+      (image.length || defaultImage.length) !== 0 && realDate === date
+        ? nowTime.valueOf() < userTime.valueOf()
+        : true &&
+          title !== "" &&
+          store !== "" &&
+          capacity !== "" &&
+          ageGroup !== "" &&
+          gender !== "" &&
+          meeting !== "" &&
+          desc !== ""
     ) {
       dispatch(crewActions.regiWriteSend(Write_info));
+      console.log("hi");
     }
   };
 
@@ -230,11 +238,11 @@ const RegiWrite = () => {
               mb: 3,
             }}
           >
-            <Box style={{maxWidth:'45%'}} component="div">
-              <RealDay  date={date} setDate={setDate} />
+            <Box style={{ maxWidth: "45%" }} component="div">
+              <RealDay date={date} setDate={setDate} />
             </Box>
-            <Box style={{maxWidth:'45%'}} component="div">
-            <TimeSelect   time={time} setTime={setTime} />
+            <Box style={{ maxWidth: "45%" }} component="div">
+              <TimeSelect time={time} setTime={setTime} date={date} />
             </Box>
           </Box>
 
@@ -257,6 +265,7 @@ const RegiWrite = () => {
             onChange={(e) => {
               setDesc(e.target.value);
             }}
+            wrap="hard"
           />
         </Grid>
       </ThemeProvider>
@@ -270,7 +279,6 @@ const RegiWrite = () => {
 };
 
 export default RegiWrite;
-
 
 //textfield 모듈화 작업
 //toast 모듈화 작업
