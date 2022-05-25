@@ -6,7 +6,7 @@ import Stomp from "stompjs";
 import { useRef } from "react";
 
 const ChatInput = (props) => {
-  const { msg, setMsg, onSend } = props;
+  const { onSend, msg } = props;
 
   const ws = useRef();
 
@@ -85,13 +85,14 @@ const ChatInput = (props) => {
       }}
     >
       <MsgInput
+        ref={msg}
         id="msgInput"
         type="text"
-        onChange={(e) => {
-          setMsg(e.target.value);
-        }}
+        // onChange={(e) => {
+        //   setMsg(e.target.value);
+        // }}
+        // value={msg}
         onKeyDown={onKeyDownHandler}
-        value={msg}
         maxLength={100}
       />
       <MsgButton onClick={onClick}>보내기</MsgButton>

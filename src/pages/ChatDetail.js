@@ -23,7 +23,10 @@ const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
-  const [msg, setMsg] = useState("");
+  //채팅 메시지
+  const msg = React.useRef('');
+
+  // const [msg, setMsg] = useState("");
   const scrollRef = useRef();
 
   const { roomId } = useParams();
@@ -32,6 +35,7 @@ const ChatDetail = () => {
   // 소켓 연결
   React.useEffect(() => {
     wsConnect();
+    
 
     return () => {
       wsDisConnect();
@@ -41,6 +45,7 @@ const ChatDetail = () => {
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
     dispatch(chatActions.getChatUserDB(roomId));
+   
   }, []);
 
   const messages = useSelector((state) => state?.chat?.msg);
@@ -52,6 +57,8 @@ const ChatDetail = () => {
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+      console.log(msg.current.focus)
+      msg.current.focus()
   }, []);
 
   // 메시지 state 변경 시 스크롤 아래로 이동
@@ -110,19 +117,21 @@ const ChatDetail = () => {
       // send할 데이터
       const message = {
         chatRoomId: roomId,
-        message: msg,
+        message: msg.current.value,
         type: "TALK",
       };
-      // console.log(msg);
+      // console.log(msg.current.value);
       //값이 없으면 아무것도 실행 x
-      if (msg === "") {
+      if (msg.current.value === "") {
         return;
       }
       ws.send("/app/send", { token: token }, JSON.stringify(message));
       // console.log(JSON.stringify(message));
       // console.log(ws.ws.readyState);
-      setMsg("");
-      ClearFields();
+      // setMsg("");
+      // document.getElementById("msgInput").value = "";
+      msg.current.value = '';
+      
     } catch (error) {
       // console.log(error);
       // console.log(ws.ws.readyState);
@@ -164,7 +173,7 @@ const ChatDetail = () => {
           })}
         <div style={{ marginTop: "5em" }} ref={scrollRef} />
       </MsgWrapBox>
-      <ChatInput msg={msg} setMsg={setMsg} onSend={onSend} />
+      <ChatInput  onSend={onSend} msg={msg}/>
     </Box>
   );
 };
