@@ -182,6 +182,7 @@ const PartyList = (props) => {
           </ListBox>
         )}
       </TabPanel>
+
     </React.Fragment>
   );
 };

@@ -69,6 +69,7 @@ function App() {
             <Route path="/inquary" exact component={Inquary} />
             <Route path="/confirm/:partyId" exact component={ConfirmPage} />
             <Route path="asd" exact component={Asd} />
+
             <Route
               path="/auth/kakao"
               component={OAuth2RedirectHandeler}

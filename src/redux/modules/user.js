@@ -53,7 +53,7 @@ const kakaoLogin = (code) => {
       })
       .catch((err) => {
         // console.log("소셜로그인 에러", err);
-        // window.alert("로그인에 실패하였습니다.");
+        window.alert("현재 서비스 점검중입니다");
         history.replace("/"); // 로그인 실패하면 로그인화면으로 돌려보냄
       });
   };

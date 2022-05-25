@@ -1,14 +1,10 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import HomeLogo from "../../static/images/logo/로고(4배수).png";
 import AlarmImg from "../../static/images/icon/ic_alarm.png";
 import { useHistory } from "react-router";
 
 import styled from "styled-components";
-
+import Add from "../../shared/Add";
 const HeaderNav = () => {
   const history = useHistory();
 
@@ -42,7 +38,7 @@ const HeaderNav = () => {
       <LogoBox>
         <img src={HomeLogo} style={{ width: "60%" }} alt="홈로고" />{" "}
       </LogoBox>
-
+      <Add/>
       <img
         src={AlarmImg}
         style={{ width: "8%", cursor: "pointer" }}
