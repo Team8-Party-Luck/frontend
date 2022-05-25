@@ -57,9 +57,9 @@ const ChatDetail = () => {
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-      console.log(msg.current.focus)
-      msg.current.focus()
+      
   }, []);
+
 
   // 메시지 state 변경 시 스크롤 아래로 이동
   useEffect(() => {

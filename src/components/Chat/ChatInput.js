@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
@@ -11,6 +11,10 @@ const ChatInput = (props) => {
   const ws = useRef();
 
   const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    msg.current.focus();
+  }, [msg])
 
   // console.log(msg);
 
