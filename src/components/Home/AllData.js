@@ -50,8 +50,8 @@ const AllData = (props) => {
     >
       <TitleText>{title}</TitleText>
       <FlexBox>
-        <ImgBox>
-          <img src={image[0]} alt="이미지" />
+        <ImgBox image={image[0]}>
+          {/* <ThumbImg src={image[0]} alt="이미지" /> */}
         </ImgBox>
         <Box sx={{ marginLeft: "0.5em" }}>
           <StoreText>{store}</StoreText>
@@ -122,13 +122,13 @@ const CenterBox = styled.div`
 `;
 
 const ImgBox = styled.div`
-  img {
-    width: 4em;
-    height: 4em;
-    border-radius: 0.5em;
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
+  width: 4em;
+  height: 4em;
+  border-radius: 5px;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 const IconBox = styled.img`

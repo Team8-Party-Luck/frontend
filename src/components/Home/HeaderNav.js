@@ -38,7 +38,7 @@ const HeaderNav = () => {
       <LogoBox>
         <img src={HomeLogo} style={{ width: "60%" }} alt="홈로고" />{" "}
       </LogoBox>
-      <Add/>
+      {/* <Add/> */}
       <img
         src={AlarmImg}
         style={{ width: "8%", cursor: "pointer" }}

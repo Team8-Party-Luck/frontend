@@ -80,21 +80,21 @@ const Edit = (props) => {
     }
   }, [ToastStatus]);
 
-  // 미리보기
-  const encodeFileToBase64 = (fileBlob) => {
-    const reader = new FileReader();
+  // // 미리보기
+  // const encodeFileToBase64 = (fileBlob) => {
+  //   const reader = new FileReader();
 
-    reader.readAsDataURL(fileBlob);
+  //   reader.readAsDataURL(fileBlob);
 
-    console.log(reader);
+  //   console.log(reader);
 
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
-  };
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setImageSrc(reader.result);
+  //       resolve();
+  //     };
+  //   });
+  // };
 
   const theme = createTheme({
     palette: {
@@ -139,7 +139,7 @@ const Edit = (props) => {
           setImageSrc={setImageSrc}
           nickname={nickname}
           setNickname={setNickname}
-          encodeFileToBase64={encodeFileToBase64}
+          // encodeFileToBase64={encodeFileToBase64}
         />
         <EditDisabled age={age} gender={gender} />
         <ThemeProvider theme={theme}>
