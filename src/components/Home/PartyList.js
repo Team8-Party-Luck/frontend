@@ -143,18 +143,20 @@ const PartyList = (props) => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ThemeProvider theme={theme}>
-          <RegionSelect
-            city={city}
-            setCity={setCity}
-            region={region}
-            setRegion={setRegion}
-          />
+          <Local>
+            <RegionSelect
+              city={city}
+              setCity={setCity}
+              region={region}
+              setRegion={setRegion}
+            />
+          </Local>
         </ThemeProvider>
-        <ListBox>
+        <ExploreBox>
           {regionData?.map((cur, idx) => (
             <AllData {...cur} userInfo={userInfo} key={idx} />
           ))}
-        </ListBox>
+        </ExploreBox>
       </TabPanel>
       <TabPanel value={value} index={2}>
         {willData?.length === 0 ? (
@@ -196,6 +198,15 @@ const ListBox = styled.div`
   overflow-y: auto;
 `;
 
+//파티 탐색만 고정
+const ExploreBox = styled.div`
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  padding-top: 12em;
+  padding-bottom: 3em;
+  overflow-y: auto;
+`;
+
 const TabBar = styled.div`
   position: fixed;
   top: 10.5em;
@@ -206,5 +217,11 @@ const TabBar = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  z-index: 100;
+`;
+
+const Local = styled.div`
+  position: fixed;
+  top: 13.5em;
   z-index: 100;
 `;

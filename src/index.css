@@ -21,11 +21,9 @@ input,
 button {
   outline: none;
 }
+
 body,
 html {
-  height: 100%;
-  /* 모바일 밑으로 당겨서 스크롤 금지 */
-  overscroll-behavior-y: none;
+  height: 100vh;
 }
-
 
