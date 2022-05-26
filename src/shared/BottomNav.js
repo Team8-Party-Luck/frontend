@@ -78,6 +78,7 @@ const Nav = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55px;
+  height: 3.3em;
+  width:100%;
   background-color: #ffffff;
 `;

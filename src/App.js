@@ -3,7 +3,6 @@ import Setting from "./pages/Setting";
 import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
@@ -29,14 +28,8 @@ import background from "./static/images/website/웹페이지.png";
 import MobileFrame from "./components/common/MobileFrame";
 import Asd from "./pages/Asd";
 
-// import { actionCreators as alarmActions } from "./redux/modules/alarm";
-
 function App() {
-  // const dispatch = useDispatch();
-  // React.useEffect(() => {
-  //   dispatch(alarmActions.ConnectSub());
-  // }, []);
-
+  //모바일 화면 맞춤
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);

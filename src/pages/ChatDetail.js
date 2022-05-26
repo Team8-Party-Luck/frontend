@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import SockJs from "sockjs-client";
 import Stomp from "stompjs";
 import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
@@ -10,12 +10,8 @@ import { useEffect } from "react";
 import { history } from "../redux/configStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { Box, Typography, Avatar } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { red } from "@mui/material/colors";
+import { Box, } from "@mui/material";
 import styled from "styled-components";
-import { style } from "@mui/system";
-import { useState, useRef } from "react";
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
 

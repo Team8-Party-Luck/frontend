@@ -124,14 +124,14 @@ const PartyList = (props) => {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <TabBar>
           <Tabs value={value} onChange={handleChange} centered>
             <Tab label="전체 파티" {...a11yProps(0)} />
             <Tab label="파티 탐색" {...a11yProps(1)} />
             <Tab label="참여할 파티" {...a11yProps(2)} />
             <Tab label="찜한 파티" {...a11yProps(3)} />
           </Tabs>
-        </Box>
+        </TabBar>
       </ThemeProvider>
 
       <TabPanel value={value} index={0}>
@@ -182,16 +182,29 @@ const PartyList = (props) => {
           </ListBox>
         )}
       </TabPanel>
-
     </React.Fragment>
   );
 };
 
+export default PartyList;
+
 const ListBox = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
+  padding-top: 9.5em;
   padding-bottom: 3em;
   overflow-y: auto;
 `;
 
-export default PartyList;
+const TabBar = styled.div`
+  position: fixed;
+  top: 10.5em;
+  border-bottom: 1;
+  border-color: gray;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 100;
+`;

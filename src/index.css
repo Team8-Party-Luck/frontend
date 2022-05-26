@@ -24,6 +24,8 @@ button {
 body,
 html {
   height: 100%;
+  /* 모바일 밑으로 당겨서 스크롤 금지 */
+  overscroll-behavior-y: none;
 }
 
 

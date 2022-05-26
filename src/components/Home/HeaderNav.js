@@ -1,61 +1,97 @@
-import * as React from "react";
-import HomeLogo from "../../static/images/logo/로고(4배수).png";
-import AlarmImg from "../../static/images/icon/ic_alarm.png";
+import React from "react";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import SockJS from "sockjs-client";
+import * as Stomp from "stompjs";
 
 import styled from "styled-components";
+
+import { actionCreators as alarmActions } from "../../redux/modules/alarm";
+import HomeLogo from "../../static/images/logo/로고(4배수).png";
+import AlarmImg from "../../static/images/icon/ic_alarm.png";
 import Add from "../../shared/Add";
+
+let sock = new SockJS("http://54.180.88.119/ws-stomp");
+let ws = Stomp.over(sock);
+
 const HeaderNav = () => {
   const history = useHistory();
 
-  return (
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar sx={{ bgcolor: "white", position: "relative", height: "5em" }}>
-    //     <Toolbar sx={{ marginTop: "0.8em" }}>
-    //       <img src={HomeLogo} alt="홈로고" />
-    //       <Box sx={{ flexGrow: 1 }} />
+  //알람 연결
+  // const alarmSub = () => {
+  // try {
+  //     ws.connect(
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "content-type": "application/json;charset=UTF-8",
+  //           accept: "application/json,",
+  //         },
+  //       },
+  //       () => {
+  //         console.log("STOMP Connection");
 
-    //       <Box sx={{ display: { md: "flex" } }}>
-    //         <IconButton
-    //           size="large"
-    //           aria-label="show 17 new notifications"
-    //           sx={{ color: "black" }}
-    //           onClick={() => {
-    //             history.push("/alarm");
-    //           }}
-    //         >
-    //           <img
-    //             src={AlarmImg}
-    //             alt="알람"
-    //             style={{ width: 25, height: 25 }}
-    //           />
-    //         </IconButton>
-    //       </Box>
-    //     </Toolbar>
-    //   </AppBar>
-    // </Box>
+  //         ws.subscribe(`/alarm/${userid}`, (res) => {
+  //           console.log("받은 메세지", res);
+  //           const newMessage = JSON.parse(res.body);
+
+  //           dispatch(getAlarm(newMessage));
+  //           // let messageAl = newMessage.messageAl;
+  //           // let partyId = newMessage.messageAl;
+  //           // let title = newMessage.messageAl;
+  //           // let store = newMessage.messageAl;
+  //           // let image = newMessage.messageAl;
+
+  //           // let str = `<AlarmCard></AlarmCard>`;
+  //           // $("alarm").append(str);
+  //         });
+  //       }
+  //     );
+  //   } catch (error) {
+  //     console.log(error.response);
+  //     console.log(error);
+  //   }
+  // };
+  // }
+
+  React.useEffect(() => {
+    // alarmSub();
+
+    return () => {
+      // wsDisConnect();
+    };
+  }, []);
+
+  // const dispatch = useDispatch();
+  // React.useEffect(() => {
+  //   dispatch(alarmActions.ConnectSub());
+  // }, []);
+
+  return (
     <WrapBox>
       <LogoBox>
         <img src={HomeLogo} style={{ width: "60%" }} alt="홈로고" />{" "}
       </LogoBox>
-      <Add style={{width:'3%'}}/>
+      <Add style={{ width: "3%" }} />
       <img
         src={AlarmImg}
         style={{ width: "8%", cursor: "pointer" }}
         alt="알람로고"
-        // onClick={() => {
-        //   history.push("/alarm");
-        // }}
+        onClick={() => {
+          // history.push("/alarm");
+        }}
       />
     </WrapBox>
   );
 };
 
 const WrapBox = styled.div`
-  width: 100%;
-  height: 5em;
-  background: white;
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4em;
+  background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;

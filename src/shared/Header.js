@@ -3,6 +3,8 @@ import { history } from "../redux/configStore";
 import BackIcon from "../static/images/icon/back.png";
 import styled from "styled-components";
 
+
+
 const Header = (props) => {
   return (
     <WrapBox>
