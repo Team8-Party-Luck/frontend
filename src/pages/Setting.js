@@ -35,7 +35,7 @@ const Setting = () => {
     sns: "올바른 주소형식이 아닙니다",
   };
 
-  //페이지 전환
+  //선택 요소 전환
   const [page, setPage] = useState(false);
 
   //세팅 항목들
@@ -80,6 +80,7 @@ const Setting = () => {
 
   // 세팅정보 서버로 전송하는 함수
   const sendSettings = () => {
+    //유효성 체크
     if (!checkNickname(values.nickname)) {
       handleToast("nickname");
       return;
@@ -89,6 +90,7 @@ const Setting = () => {
       return;
     }
 
+    //유저가 저장한 정보
     const Settings_info = {
       gender: gender,
       age: age,
@@ -104,7 +106,7 @@ const Setting = () => {
     dispatch(userActions.sendSettingsData(Settings_info));
   };
 
-  //색깔 입히기
+  //색생 입히기
   const theme = createTheme({
     palette: {
       primary: {
@@ -223,11 +225,7 @@ const Setting = () => {
         </BodyBox>
       )}
       {/* 토스트팝업 */}
-      {ToastStatus && (
-        <>
-          <Toast msg={ToastMsg} />
-        </>
-      )}
+      {ToastStatus && <Toast msg={ToastMsg} />}
     </React.Fragment>
   );
 };
@@ -265,6 +263,7 @@ const BodyBox = styled.div`
   padding: 0 1em;
   display: flex;
   flex-direction: column;
+  padding-bottom: 7em;
 `;
 
 const InnerText = styled.p`
@@ -272,16 +271,18 @@ const InnerText = styled.p`
 `;
 
 const NextBtn = styled.button`
-  position: fixed;
+  position: absolute;
   left: 4%;
   right: 4%;
-  bottom: 3em;
+  bottom: 2em;
   width: 92%;
   height: 3em;
   background: ${color.subPrimary};
   border: none;
   color: white;
   border-radius: 0.5em;
+  font-size: 1em;
+  z-index: 100;
 `;
 
 const ActiveNextBtn = styled(NextBtn)`
