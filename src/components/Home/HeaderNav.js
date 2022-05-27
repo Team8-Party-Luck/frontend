@@ -1,18 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import SockJS from "sockjs-client";
-import * as Stomp from "stompjs";
+// import { useDispatch } from "react-redux";
+// import SockJS from "sockjs-client";
+// import * as Stomp from "stompjs";
 
 import styled from "styled-components";
 
-import { actionCreators as alarmActions } from "../../redux/modules/alarm";
+// import { actionCreators as alarmActions } from "../../redux/modules/alarm";
 import HomeLogo from "../../static/images/logo/로고(4배수).png";
 import AlarmImg from "../../static/images/icon/ic_alarm.png";
 import Add from "../../shared/Add";
 
-let sock = new SockJS("http://54.180.88.119/ws-stomp");
-let ws = Stomp.over(sock);
+// let sock = new SockJS("http://54.180.88.119/ws-stomp");
+// let ws = Stomp.over(sock);
 
 const HeaderNav = () => {
   const history = useHistory();
