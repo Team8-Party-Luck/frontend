@@ -10,8 +10,8 @@ export const checkNickname = (nickname) => {
   return regName.test(nickname);
 };
 
-// 사용자 자기소개 체크 5자-30자이하
+// 사용자 자기소개 체크 5자-100자이하
 export const checkIntro = (intro) => {
-  let regIntro = /^.{5,30}$/;
+  let regIntro = /^.{5,100}$/;
   return regIntro.test(intro);
 };

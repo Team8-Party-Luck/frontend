@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import imageCompression from "browser-image-compression";
+import { useState } from "react";
+import { useRef } from "react";
+import Resizer from "react-image-file-resizer";
 //컬러시스템
 import { color } from "../../shared/ColorSystem";
 //이미지
@@ -17,12 +21,51 @@ const EditProflie = (props) => {
     setImageUrl,
     nickname,
     setNickname,
-    encodeFileToBase64,
   } = props;
+
+  //이미지 리사이징
+  const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        95,
+        0,
+        (uri) => {
+          resolve(uri);
+          // console.log(uri);
+        },
+        "file"
+      );
+    });
+
+  // 선택한 파일 정보
+  const fileInput = useRef();
+  const selectFile = async () => {
+    const reader = new FileReader();
+    const file = fileInput.current.files[0];
+
+    // 이미지 파일 리사이즈 이후 비동기적으로 처리
+    // resizeFile 함수 실행후 반환 받은 파일 객체로 이후 과정 처리
+    const img = await resizeFile(file);
+    // console.log(file);
+    // console.log(img);
+
+    setImageUrl(img);
+    reader.readAsDataURL(img);
+
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+      // console.log(reader.result);
+    };
+  };
 
   const Input = styled("input")({
     display: "none",
   });
+
   return (
     <ProfileBox>
       <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
@@ -51,9 +94,9 @@ const EditProflie = (props) => {
           accept="image/*"
           id="icon-button-file"
           type="file"
-          onChange={(e) => {
-            setImageUrl(e.target.files[0]);
-            encodeFileToBase64(e.target.files[0]);
+          ref={fileInput}
+          onChange={() => {
+            selectFile();
           }}
         />
         <IconButton

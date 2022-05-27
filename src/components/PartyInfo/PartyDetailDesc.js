@@ -6,7 +6,11 @@ const PartyDetailDesc = (props) => {
   return (
     <WrapBox>
       <DescBox>
+
         <pre style={{ whiteSpace: "pre-wrap" }}>{partyData?.desc}</pre>
+
+
+
       </DescBox>
     </WrapBox>
   );
@@ -16,7 +20,7 @@ const WrapBox = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 1.2em;
-  padding-bottom: 3em;
+  padding-bottom: 6.5em;
 `;
 
 const DescBox = styled.div`

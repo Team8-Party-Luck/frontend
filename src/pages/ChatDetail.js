@@ -99,7 +99,7 @@ const ChatDetail = () => {
         ws.unsubscribe("sub-0");
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -183,7 +183,6 @@ const WrapBox = styled.div`
   background: white;
   align-items: center;
   padding: 0 1em;
-  zindex: 1000;
 `;
 
 const BackBox = styled.div`

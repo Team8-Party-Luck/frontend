@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import "../style/BottomNav.css";
 import styled from "styled-components";
 
-import home_active from "../static/images/icon/home_active.png";
-import home_inactive from "../static/images/icon/home_inactive.png";
-import chat_active from "../static/images/icon/chat_active.png";
-import chat_inactive from "../static/images/icon/chat_inactive.png";
-import write_active from "../static/images/icon/write_active.png";
-import write_inactive from "../static/images/icon/write_inactive.png";
-import my_active from "../static/images/icon/my_active.png";
-import my_inactive from "../static/images/icon/my_inactive.png";
+import home_active from "../static/images/bottom/home_active@3x.png";
+import home_inactive from "../static/images/bottom/home_inactive@3x.png";
+import chat_active from "../static/images/bottom/chat_active@3x.png";
+import chat_inactive from "../static/images/bottom/chat_inactive@3x.png";
+import write_active from "../static/images/bottom/write_inactive@3x-1.png";
+import write_inactive from "../static/images/bottom/write_inactive@3x.png";
+import my_active from "../static/images/bottom/my_inactive@3x-1.png";
+import my_inactive from "../static/images/bottom/my_inactive@3x.png";
 
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useState(1);
@@ -29,7 +29,7 @@ const BottomNav = () => {
           <img
             src={para === "home" ? home_active : home_inactive}
             alt="home"
-            style={{ width: "2rem" }}
+            style={{ width: "3em" }}
           />
           {/* 홈 */}
         </div>
@@ -40,7 +40,7 @@ const BottomNav = () => {
           <img
             src={para === "chat" ? chat_active : chat_inactive}
             alt="chat"
-            style={{ width: "2rem" }}
+            style={{ width: "3em" }}
           />
         </div>
         {/* 채팅 */}
@@ -51,7 +51,7 @@ const BottomNav = () => {
           <img
             src={para === "regi" ? write_active : write_inactive}
             alt="regi"
-            style={{ width: "2rem" }}
+            style={{ width: "3em" }}
           />
         </div>
         {/* 파티작성 */}
@@ -61,7 +61,7 @@ const BottomNav = () => {
           <img
             src={para === "profile" ? my_active : my_inactive}
             alt="profile"
-            style={{ width: "2rem" }}
+            style={{ width: "3em" }}
           />
         </div>
         {/* 메인 */}
@@ -78,7 +78,7 @@ const Nav = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3.3em;
-  width:100%;
-  background-color: #ffffff;
+  height: 4.5em;
+  box-shadow: 0 -3px 6px 0 #eee;
+  background-color: white;
 `;

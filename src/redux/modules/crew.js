@@ -101,7 +101,7 @@ const regiWriteSend = (Write_info) => {
         history.push("/home");
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -157,7 +157,7 @@ const reviseSend = (file, partyId) => {
         history.replace(`/partyInfo/${partyId}`);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -194,7 +194,7 @@ const deleteSend = (partyId) => {
         history.push("/home");
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -223,7 +223,7 @@ const getDataDB = (pageNum) => {
         dispatch(getCrew(res.data.results));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -263,7 +263,7 @@ const getRegionData = (regionInfo) => {
         dispatch(getRegion(res.data.results));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -297,10 +297,10 @@ const getDetailInfo = (partyId) => {
       .then((res) => {
         // console.log(res.data);
         dispatch(getDetail(res.data));
-        console.log(res.data)
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -335,7 +335,7 @@ const getUserList = (partyId) => {
         dispatch(getDetailUser(res.data));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -372,7 +372,7 @@ const getJoinedData = () => {
         dispatch(getJoined(res.data));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -405,7 +405,7 @@ const getScrapData = () => {
         dispatch(getScrap(res.data));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -441,7 +441,7 @@ const sendScrapData = (partyId) => {
         dispatch(getDetail(res.data));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -489,7 +489,7 @@ const sendJoinData = (partyId) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -525,7 +525,7 @@ const sendCancelData = (partyId) => {
         dispatch(getDetail(res.data));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -558,7 +558,7 @@ const getWillData = () => {
         dispatch(getWill(res.data.results));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };

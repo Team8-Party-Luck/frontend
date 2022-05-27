@@ -17,19 +17,27 @@ const PartyInfoSlide = (props) => {
     arrows: false,
   };
 
-  return (
-    <Container>
-      <StyledSlider {...settings}>
-        {partyData?.image?.map((cur, idx) => {
-          return (
-            <div key={idx}>
-              <Image src={cur} />
-            </div>
-          );
-        })}
-      </StyledSlider>
-    </Container>
-  );
+  if (partyData?.default === true) {
+    return (
+      <DefaultBox>
+        <DefaultImg src={partyData?.image[0]} />
+      </DefaultBox>
+    );
+  } else {
+    return (
+      <Container>
+        <StyledSlider {...settings}>
+          {partyData?.image?.map((cur, idx) => {
+            return (
+              <div key={idx}>
+                <Image src={cur} />
+              </div>
+            );
+          })}
+        </StyledSlider>
+      </Container>
+    );
+  }
 };
 
 const Container = styled.div`
@@ -48,6 +56,15 @@ const Image = styled.img`
   width: 100%;
   height: 22rem;
   object-fit: cover;
+`;
+
+const DefaultBox = styled.div`
+  width: 100%;
+  padding-top: 3.7em;
+`;
+
+const DefaultImg = styled.img`
+  width: 100%;
 `;
 
 export default PartyInfoSlide;

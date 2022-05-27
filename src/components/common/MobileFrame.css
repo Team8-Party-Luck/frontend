@@ -66,16 +66,16 @@
 @media screen and (min-width: 1700px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(30%, -50%);
+    transform: translate(10%, -50%);
   }
 }
 
-@media screen and (min-width: 2000px) {
+/* @media screen and (min-width: 2000px) {
   .WebFullFrame {
     top: 50%;
     transform: translate(50%, -50%);
   }
-}
+} */
 
 .Container {
   width: 100%;
