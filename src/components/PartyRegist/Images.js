@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { muiStyled } from "@mui/material/styles";
 
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Box from "@mui/material/Box";
 
+import ic_camera from "../../static/images/icon/ic_camera.png";
 import radioButton from "../../static/images/icon/라디오버튼.png";
 import radioButtonSelc from "../../static/images/icon/라디오버튼-1.png";
 import deleteIcon from "../../static/images/icon/파티등록_이미지삭제버튼.png";
@@ -27,8 +28,8 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
       imageUrlLists.push(currentImageUrl);
     }
 
-    if (imageUrlLists.length > 10) {
-      imageUrlLists = imageUrlLists.slice(0, 10);
+    if (imageUrlLists.length > 7) {
+      imageUrlLists = imageUrlLists.slice(0, 7);
     }
     // if(defaultImage === !null){
     //   setDefaultImage(null);
@@ -114,7 +115,6 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
         />
       ) : (
         <React.Fragment>
-          <Box style={{ marginLeft: "2rem" }}>{showImages.length}/10 </Box>
           <div
             style={{
               width: "21rem",
@@ -122,9 +122,14 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
           >
             <Box
               component="div"
-              sx={{ whiteSpace: "nowrap", overflowX: "auto" }}
+              sx={{
+                whiteSpace: "nowrap",
+                overflowX: "auto", 
+                display: "flex",
+                alignItems: "center",
+              }}
             >
-              <label
+              <CamerBox
                 htmlFor="input-file"
                 className="addButton"
                 onChange={handleAddImages}
@@ -137,13 +142,15 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                   className="addButton"
                   style={{ display: "none" }}
                 />
-                <Box component="div" sx={{ display: "inline-block" }}>
-                  <AddPhotoAlternateIcon
-                    sx={{ fontSize: "4.5rem", p: 2.5, m: 1 }}
-                    style={{ border: "1px solid black", borderRadius: "9px" }}
-                  />
+                <Box
+                  component="div"
+                  // sx={{ display: "inline-block" }}
+                  style={{ border: "1px solid black", width:'4.5rem', height:'4.5rem', borderRadius:'0.7rem', paddingTop:'1rem' }}
+                >
+                  <img src={ic_camera} alt="camera_icon" />
+                  <Box>{showImages.length}/7 </Box>
                 </Box>
-              </label>
+              </CamerBox>
 
               <Box component="div" sx={{ display: "inline-block" }}>
                 {showImages.map((image, id) => (
@@ -184,12 +191,17 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   );
 };
 
+export default Images;
+
 const Img = styled.img`
   border: 1px solid gray;
-  width: 4em;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   margin: 10px;
   border-radius: 5px;
 `;
 
-export default Images;
+const CamerBox = styled.label`
+  text-align: center;
+  display: inline-block;
+`;

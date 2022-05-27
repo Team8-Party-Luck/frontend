@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import "./KakaoMap.css";
-import ic_search from '../../../static/images/icon/ic_search.png';
 
 const { kakao } = window;
 
@@ -130,28 +129,29 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
         (index + 1) +
         '"></span>' +
         '<div class="info">' +
-        "   <h5>" +
+        "   <h5 style='color:#FF6853; font-size:15px;'>" +
         places.place_name +
         "</h5>";
 
     if (places.road_address_name) {
       itemStr +=
-        "    <span>" +
+        "    <span style='font-size:11px;'>" +
         places.road_address_name +
         "</span>" +
         '   <span class="jibun gray">' +
         places.address_name +
         "</span>";
     } else {
-      itemStr += "    <span>" + places.address_name + "</span>";
+      itemStr +=
+        "    <span style='font-size:11px;'>" + places.address_name + "</span>";
     }
 
     itemStr +=
       '<span class="tel">' +
       places.phone +
       "</span>" +
-      `<a href=${places.place_url} style="color:blue" target="_blank">상세정보보기</a>` +
-      `___<button style="color:#FF6853" id=${places.id}>여기 모여<button/>` +
+      `<a class="seeInfo "href=${places.place_url} target="_blank">상세정보 보기</a>&nbsp;&nbsp;` +
+      `<button class="pickEatery" id=${places.id}>식당 선택<button/>`+
       "</div>";
 
     el.innerHTML = itemStr;
@@ -264,7 +264,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       <div
         id="menu_wrap"
         className="bg_white"
-        style={{ width: "290px", height: "220px", backgroundColor: "white" }}
+        style={{ width: "290px", height: "240px", backgroundColor: "white" }}
       >
         <div className="option">
           <div style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}>
@@ -283,7 +283,6 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
                 }
               }}
             />
-            {/* <input type="button" name="name" value="JOIN"/> */}
             <button
               style={{
                 borderColor: "black",
@@ -340,6 +339,7 @@ const ListUl = styled.ul`
   padding: 0.5rem;
   p:nth-child(1) {
     font-weight: bold;
+    margin-top: 1rem;
     margin-bottom: 1rem;
   }
   p:nth-child(2) {

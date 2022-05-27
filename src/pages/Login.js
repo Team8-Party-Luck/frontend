@@ -28,8 +28,6 @@ const Login = () => {
     arrows: false,
   };
 
-
-
   return (
     <Wrapbox BgColor={color.pale}>
       <StyledSlider {...settings}>
@@ -72,15 +70,13 @@ const Login = () => {
 };
 
 const Wrapbox = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   padding-top: 10em;
   background: ${(props) => props.BgColor};
   background-size: cover;
   background-repeat: no-repeat;
 `;
-
-
 
 const StyledSlider = styled(Slider)`
   .slick-slide div {
@@ -92,7 +88,6 @@ const StyledSlider = styled(Slider)`
   .slick-dots {
     bottom: -5em;
   }
-
   .slick-dots li button:before {
     color: gray;
   }
