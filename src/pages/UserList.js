@@ -95,41 +95,41 @@ const UserList = () => {
                   <HostBox src={HostImg} />
                 ) : null}
               </InfoBox>
-              {openProfile && (
-                <UserCard
-                  image={image}
-                  nickname={nickname}
-                  sns={sns}
-                  gender={gender}
-                  age={age}
-                  location={location}
-                  intro={intro}
-                  food={food}
-                  id={id}
-                  userId={userId}
-                  setOpenReport={setOpenReport}
-                  close={() => setOpenProfile(false)}
-                />
-              )}
-              {openReport && (
-                <ReportCard
-                  nickname={nickname}
-                  id={id}
-                  userId={userId}
-                  setOpenComplete={setOpenComplete}
-                  close={() => setOpenReport(false)}
-                />
-              )}
-              {openComplete && (
-                <Popup
-                  type="신고확인"
-                  title="신고가 접수되었습니다"
-                  close={() => setOpenComplete(false)}
-                />
-              )}
             </List>
           );
         })}
+        {openProfile && (
+          <UserCard
+            image={image}
+            nickname={nickname}
+            sns={sns}
+            gender={gender}
+            age={age}
+            location={location}
+            intro={intro}
+            food={food}
+            id={id}
+            userId={userId}
+            setOpenReport={setOpenReport}
+            close={() => setOpenProfile(false)}
+          />
+        )}
+        {openReport && (
+          <ReportCard
+            nickname={nickname}
+            id={id}
+            userId={userId}
+            setOpenComplete={setOpenComplete}
+            close={() => setOpenReport(false)}
+          />
+        )}
+        {openComplete && (
+          <Popup
+            type="신고확인"
+            title="신고가 접수되었습니다"
+            close={() => setOpenComplete(false)}
+          />
+        )}
       </ListBox>
     </React.Fragment>
   );
