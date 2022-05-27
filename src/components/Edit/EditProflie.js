@@ -35,7 +35,7 @@ const EditProflie = (props) => {
         0,
         (uri) => {
           resolve(uri);
-          console.log(uri);
+          // console.log(uri);
         },
         "file"
       );
@@ -50,15 +50,15 @@ const EditProflie = (props) => {
     // 이미지 파일 리사이즈 이후 비동기적으로 처리
     // resizeFile 함수 실행후 반환 받은 파일 객체로 이후 과정 처리
     const img = await resizeFile(file);
-    console.log(file);
-    console.log(img);
+    // console.log(file);
+    // console.log(img);
 
     setImageUrl(img);
     reader.readAsDataURL(img);
 
     reader.onloadend = () => {
       setImageSrc(reader.result);
-      console.log(reader.result);
+      // console.log(reader.result);
     };
   };
 

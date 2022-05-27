@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://epocle.shop", //우창님
+  // baseURL: "https://epocle.shop", //우창님
   // baseURL: "http://13.125.216.238", //형빈님
-  // baseURL: "http://54.180.88.119", //로컬s
+  baseURL: "http://54.180.88.119", //로컬
 });
 
 // 유저 관련 API
@@ -47,6 +47,13 @@ export const userApi = {
   //유저 정보 체크
   userCheck: () =>
     api.get(`/api/user`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+  //유저 신고 기능
+  userReport: (Report_info) =>
+    api.post(`/api/user/report`, Report_info, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },

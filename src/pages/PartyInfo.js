@@ -26,7 +26,7 @@ const PartyInfo = () => {
   const userSettingData = useSelector((state) => state?.user?.user);
 
   // console.log(userId);
-  console.log(partyData);
+  // console.log(partyData);
   // console.log(userSettingData);
 
   return (

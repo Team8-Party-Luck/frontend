@@ -31,7 +31,7 @@ const Setting = () => {
   // 토스트 메세지목록
   const msgList = {
     nickname: "닉네임은 최소 2글자 최대 10글자입니다",
-    intro: "자기소개는 최소 5글자 최대 30글자입니다",
+    intro: "자기소개는 최소 5글자 최대 100글자입니다",
     sns: "올바른 주소형식이 아닙니다",
   };
 
@@ -196,7 +196,7 @@ const Setting = () => {
         <BodyBox>
           <InnerText>닉네임</InnerText>
           <ValuesInput
-            placeholder="닉네임을 입력해주세요"
+            placeholder="닉네임을 입력해주세요(최소 2글자 ~ 최대 10글자)"
             onChange={handleChange("nickname")}
           />
           <InnerText>인스타그램 아이디(선택)</InnerText>
@@ -206,7 +206,7 @@ const Setting = () => {
           />
           <InnerText>자기소개</InnerText>
           <IntroInput
-            placeholder="여러분을 소개할 수 있는 소개글을 작성해주세요!"
+            placeholder="여러분을 소개할 수 있는 소개글을 작성해주세요!   (최소 5글자 ~ 최대 100글자)"
             onChange={handleChange("intro")}
           />
           {values.nickname && values.intro ? (

@@ -20,6 +20,9 @@ import RegionSelect from "./RegionSelect";
 import NullData from "../../shared/NullData";
 import { crewApi } from "../../shared/api";
 
+//img
+import locationImg from "../../static/images/logo/img_search.png";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -84,7 +87,7 @@ const PartyList = (props) => {
 
   //지역필터
   const regionData = useSelector((state) => state?.crew?.region);
-
+  // console.log(regionData);
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
   const InfinityScroll = _.debounce((e) => {
@@ -150,11 +153,20 @@ const PartyList = (props) => {
             setRegion={setRegion}
           />
         </ThemeProvider>
-        <ListBox>
-          {regionData?.map((cur, idx) => (
-            <AllData {...cur} userInfo={userInfo} key={idx} />
-          ))}
-        </ListBox>
+        {regionData === undefined ? (
+          <LocBox>
+            <LocImg src={locationImg} />
+            <LocText>
+              지역을 선택하여 <br /> 가까운 위치의 파티를 검색해 보세요!
+            </LocText>
+          </LocBox>
+        ) : (
+          <ListBox>
+            {regionData?.map((cur, idx) => (
+              <AllData {...cur} userInfo={userInfo} key={idx} />
+            ))}
+          </ListBox>
+        )}
       </TabPanel>
       <TabPanel value={value} index={2}>
         {willData?.length === 0 ? (
@@ -182,7 +194,6 @@ const PartyList = (props) => {
           </ListBox>
         )}
       </TabPanel>
-
     </React.Fragment>
   );
 };
@@ -190,8 +201,32 @@ const PartyList = (props) => {
 const ListBox = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
-  padding-bottom: 3em;
+  padding-bottom: 5.5em;
   overflow-y: auto;
+`;
+
+const LocBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-bottom: 5.5em;
+  overflow-y: auto;
+`;
+
+const LocImg = styled.img`
+  width: 70%;
+  margin: 1em auto;
+  margin-top: 3em;
+`;
+
+const LocText = styled.p`
+  font-size: 1em;
+  margin: 0 auto;
+  text-align: center;
+  color: #5b5b5b;
 `;
 
 export default PartyList;

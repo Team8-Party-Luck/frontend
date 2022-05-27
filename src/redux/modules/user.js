@@ -173,7 +173,21 @@ const userSecessionDB = () => {
         history.push(`/`);
       })
       .catch((err) => {
-        console.log(err.res);
+        // console.log(err.res);
+      });
+  };
+};
+
+//유저 신고 기능
+const userReportDB = (Report_info) => {
+  return function (dispatch, getState, { history }) {
+    userApi
+      .userReport(Report_info)
+      .then((res) => {
+        // console.log(res);
+      })
+      .catch((err) => {
+        // console.log(err.res);
       });
   };
 };
@@ -204,6 +218,7 @@ const actionCreators = {
   userCheck,
   userCheckDB,
   userSecessionDB,
+  userReportDB,
 };
 
 export { actionCreators };

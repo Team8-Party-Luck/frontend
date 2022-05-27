@@ -61,8 +61,8 @@ const ChatDetail = () => {
 
   // stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
   // let sock = new SockJs("http://54.180.88.119:8080/ws-stomp"); //형빈님
-  let sock = new SockJs("https://epocle.shop/ws-stomp"); //차혁님
-  // let sock = new SockJs("http://54.180.88.119/ws-stomp"); //형빈님
+  // let sock = new SockJs("https://epocle.shop/ws-stomp"); //차혁님
+  let sock = new SockJs("http://54.180.88.119/ws-stomp"); //형빈님
   let ws = Stomp.over(sock);
 
   // console.log(ws);
@@ -96,7 +96,7 @@ const ChatDetail = () => {
         ws.unsubscribe("sub-0");
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -178,7 +178,6 @@ const WrapBox = styled.div`
   background: white;
   align-items: center;
   padding: 0 1em;
-  zindex: 1000;
 `;
 
 const BackBox = styled.div`
