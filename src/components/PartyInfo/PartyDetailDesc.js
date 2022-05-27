@@ -6,7 +6,11 @@ const PartyDetailDesc = (props) => {
   return (
     <WrapBox>
       <DescBox>
-        <pre>{partyData?.desc}</pre>
+
+        <pre style={{ whiteSpace: "pre-wrap" }}>{partyData?.desc}</pre>
+
+
+
       </DescBox>
     </WrapBox>
   );

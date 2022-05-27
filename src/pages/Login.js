@@ -88,7 +88,6 @@ const StyledSlider = styled(Slider)`
   .slick-dots {
     bottom: -5em;
   }
-
   .slick-dots li button:before {
     color: gray;
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import SockJs from "sockjs-client";
 import Stomp from "stompjs";
 import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
@@ -10,12 +10,8 @@ import { useEffect } from "react";
 import { history } from "../redux/configStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { Box, Typography, Avatar } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { red } from "@mui/material/colors";
+import { Box, } from "@mui/material";
 import styled from "styled-components";
-import { style } from "@mui/system";
-import { useState, useRef } from "react";
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
 
@@ -23,7 +19,10 @@ const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
-  const [msg, setMsg] = useState("");
+  //채팅 메시지
+  const msg = React.useRef('');
+
+  // const [msg, setMsg] = useState("");
   const scrollRef = useRef();
 
   const { roomId } = useParams();
@@ -32,6 +31,7 @@ const ChatDetail = () => {
   // 소켓 연결
   React.useEffect(() => {
     wsConnect();
+    
 
     return () => {
       wsDisConnect();
@@ -41,6 +41,7 @@ const ChatDetail = () => {
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
     dispatch(chatActions.getChatUserDB(roomId));
+   
   }, []);
 
   const messages = useSelector((state) => state?.chat?.msg);
@@ -52,7 +53,9 @@ const ChatDetail = () => {
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+      
   }, []);
+
 
   // 메시지 state 변경 시 스크롤 아래로 이동
   useEffect(() => {
@@ -61,8 +64,8 @@ const ChatDetail = () => {
 
   // stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
   // let sock = new SockJs("http://54.180.88.119:8080/ws-stomp"); //형빈님
-  let sock = new SockJs("https://epocle.shop/ws-stomp"); //차혁님
-  // let sock = new SockJs("http://54.180.88.119/ws-stomp"); //형빈님
+  // let sock = new SockJs("https://epocle.shop/ws-stomp"); //차혁님
+  let sock = new SockJs("http://54.180.88.119/ws-stomp"); //형빈님
   let ws = Stomp.over(sock);
 
   // console.log(ws);
@@ -110,19 +113,21 @@ const ChatDetail = () => {
       // send할 데이터
       const message = {
         chatRoomId: roomId,
-        message: msg,
+        message: msg.current.value,
         type: "TALK",
       };
-      // console.log(msg);
+      // console.log(msg.current.value);
       //값이 없으면 아무것도 실행 x
-      if (msg === "") {
+      if (msg.current.value === "") {
         return;
       }
       ws.send("/app/send", { token: token }, JSON.stringify(message));
       // console.log(JSON.stringify(message));
       // console.log(ws.ws.readyState);
-      setMsg("");
-      ClearFields();
+      // setMsg("");
+      // document.getElementById("msgInput").value = "";
+      msg.current.value = '';
+      
     } catch (error) {
       // console.log(error);
       // console.log(ws.ws.readyState);
@@ -164,7 +169,7 @@ const ChatDetail = () => {
           })}
         <div style={{ marginTop: "5em" }} ref={scrollRef} />
       </MsgWrapBox>
-      <ChatInput msg={msg} setMsg={setMsg} onSend={onSend} />
+      <ChatInput  onSend={onSend} msg={msg}/>
     </Box>
   );
 };

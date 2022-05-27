@@ -1,5 +1,7 @@
 /* eslint-disable no-loop-func */
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
 import "./KakaoMap.css";
 
 const { kakao } = window;
@@ -127,28 +129,29 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
         (index + 1) +
         '"></span>' +
         '<div class="info">' +
-        "   <h5>" +
+        "   <h5 style='color:#FF6853; font-size:15px;'>" +
         places.place_name +
         "</h5>";
 
     if (places.road_address_name) {
       itemStr +=
-        "    <span>" +
+        "    <span style='font-size:11px;'>" +
         places.road_address_name +
         "</span>" +
         '   <span class="jibun gray">' +
         places.address_name +
         "</span>";
     } else {
-      itemStr += "    <span>" + places.address_name + "</span>";
+      itemStr +=
+        "    <span style='font-size:11px;'>" + places.address_name + "</span>";
     }
 
     itemStr +=
       '<span class="tel">' +
       places.phone +
       "</span>" +
-      `<a href=${places.place_url} style="color:blue" target="_blank">상세정보보기</a>` +
-      `___<button style="color:#FF6853" id=${places.id}>여기 모여<button/>` +
+      `<a class="seeInfo "href=${places.place_url} target="_blank">상세정보 보기</a>&nbsp;&nbsp;` +
+      `<button class="pickEatery" id=${places.id}>식당 선택<button/>`+
       "</div>";
 
     el.innerHTML = itemStr;
@@ -250,30 +253,64 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       <div
         id="map"
         style={{
-          width: "75vw",
-          height: "75vh",
+          width: "85vw",
+          height: "90vh",
           position: "relative",
           overflow: "hidden",
+          borderRadius: "15px",
         }}
       ></div>
 
-      <div id="menu_wrap" className="bg_white">
+      <div
+        id="menu_wrap"
+        className="bg_white"
+        style={{ width: "290px", height: "240px", backgroundColor: "white" }}
+      >
         <div className="option">
-          <div>
-            키워드 :{" "}
-            <input
+          <div style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}>
+            {/* 키워드 :{" "} */}
+            <Search
               type="text"
               id="keyword"
-              size="15"
+              size="27"
+              placeholder="식당을 검색해주세요"
               onChange={(e) => {
                 setKeyword(e.target.value);
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  searchPlaces();
+                }
+              }}
             />
-            <button onClick={searchPlaces}>검색하기</button>
+            <button
+              style={{
+                borderColor: "black",
+                backgroundColor: "white",
+                height: "2.5rem",
+                borderRadius: " 0 5px 5px 0",
+                display: "inline",
+                borderLeft: "0",
+                marginLeft: "0",
+                paddingRight: "0.5rem",
+              }}
+              onClick={searchPlaces}
+            >
+              검색하기
+            </button>
           </div>
         </div>
-        <hr />
-        <ul id="placesList"></ul>
+        <hr style={{ border: "0.2px solid #E3E3E3" }} />
+        <ListUl id="placesList">
+          <p>
+            아래와 같이 지역 또는 지점명과 함께 입력하시면 더욱 빠르고 정확한
+            검색이 가능합니다.
+          </p>
+          <p>지역명 + 식당이름 </p>
+          <p>예)합정 맥도날드,합정동 맥도날드</p>
+          <p>식당이름 + 지점명</p>
+          <p>예)맥도날드 합정점</p>
+        </ListUl>
         <div id="pagination"></div>
       </div>
     </div>
@@ -281,3 +318,41 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
 };
 
 export default KakaoMap;
+
+//지도 검색
+const Search = styled.input`
+  background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png);
+  background-position: 0 center;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  display: inline;
+  padding-left: 30px;
+  border-color: black;
+  border-radius: 5px 0 0 5px;
+  height: 2.5rem;
+  border-right: none;
+`;
+
+//지도 검색 화면
+const ListUl = styled.ul`
+  padding: 0.5rem;
+  p:nth-child(1) {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  p:nth-child(2) {
+  }
+  p:nth-child(3) {
+    color: #ff6853;
+    font-size: 10px;
+    margin-bottom: 15px;
+  }
+  p:nth-child(4) {
+  }
+  p:nth-child(5) {
+    color: #ff6853;
+    font-size: 10px;
+  }
+`;

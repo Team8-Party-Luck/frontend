@@ -20,21 +20,21 @@ const Chat = () => {
 
   if (msgList?.length === 0) {
     return (
-      <React.Fragment>
+      <ChatDiv>
         <Header name={"메시지"} />
         <ListBox>
           <NullData title={"앗! 메시지 내역이 없습니다"} />
         </ListBox>
         <BottomNav />
-      </React.Fragment>
+      </ChatDiv>
     );
   } else {
     return (
-      <React.Fragment>
+      <ChatDiv>
         <Header name="메시지" />
         <MsgList msgList={msgList} />
         <BottomNav />
-      </React.Fragment>
+      </ChatDiv>
     );
   }
 };
@@ -44,6 +44,10 @@ const ListBox = styled.div`
   padding-top: 20em;
   padding-bottom: 5em;
   overflow-y: auto;
+`;
+
+const ChatDiv = styled.div`
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 export default Chat;

@@ -7,14 +7,34 @@
 #menu_wrap .option{text-align: center;}
 #menu_wrap .option p {margin:10px 0;}  
 #menu_wrap .option button {margin-left:5px;}
+#placesList{
+  padding-top:0;
+}
 #placesList li {list-style: none;}
 #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
 #placesList .item span {display: block;margin-top:4px;}
 #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#placesList .item .info{padding:10px 0 10px 55px;}
+#placesList .item .info{padding:10px 0 10px 45px;}
 #placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
+#placesList .info .jibun {font-size:11px}
+#placesList .info .tel {color:#00C495; font-size:11px; margin-bottom:10px;}
+#placesList .info .seeInfo {
+  border: 1px solid #FF6853;
+  color: #FF6853;
+  border-radius: 5px;
+  padding: 6px 10px 6px 10px;
+}
+#placesList .info .pickEatery {
+  border: 1px solid #FF6853;
+  background-color: #FF6853;
+  color: white;
+  border-radius: 5px;
+  padding: 6px 15px 6px 15px;
+}
+/* 작은버튼 */
+#placesList > li:nth-child(1) > div > button:nth-child(7){
+  display:none;
+}
 #placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
 #placesList .item .marker_1 {background-position: 0 -10px;}
 #placesList .item .marker_2 {background-position: 0 -56px;}

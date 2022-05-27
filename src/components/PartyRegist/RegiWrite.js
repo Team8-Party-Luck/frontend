@@ -257,15 +257,15 @@ const RegiWrite = () => {
           />
           <TextField
             multiline
-            placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
-            rows={6}
+            placeholder='파티 설명
+          식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)'
+            rows={4}
             variant="standard"
             style={{ width: "100%" }}
-            sx={{ pb: 1, mt: 2 }}
+            sx={{ pb: 1, mt:0.5 }}
             onChange={(e) => {
               setDesc(e.target.value);
             }}
-            wrap="hard"
           />
         </Grid>
       </ThemeProvider>

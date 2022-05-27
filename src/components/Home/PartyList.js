@@ -216,6 +216,8 @@ const LocBox = styled.div`
   overflow-y: auto;
 `;
 
+
+
 const LocImg = styled.img`
   width: 70%;
   margin: 1em auto;
@@ -230,3 +232,4 @@ const LocText = styled.p`
 `;
 
 export default PartyList;
+

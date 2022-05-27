@@ -9,9 +9,6 @@ const Alarm = () => {
     <HeaderNav name="알림"/>
     <AlarmCard/>
     <AlarmCard/>
-    <AlarmCard/>
-    <AlarmCard/>
-    <AlarmCard/>
   </React.Fragment>)
 }
 

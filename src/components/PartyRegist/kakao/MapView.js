@@ -5,25 +5,13 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import KakaoMap from "./KakaoMap";
 
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
-
 //이모티콘
 import ic_location from "../../../static/images/icon/arw_s@2x.png";
 const style = {
-  position: "absolute",
-  top: "50%",
+  position: "fixed",
+  top: "18%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 2,
-  height: "40rem",
 };
 
 export default function MapView({
@@ -55,8 +43,6 @@ export default function MapView({
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <KakaoMap

@@ -1,16 +1,20 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { useRef } from "react";
 
 const ChatInput = (props) => {
-  const { msg, setMsg, onSend } = props;
+  const { onSend, msg } = props;
 
   const ws = useRef();
 
   const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    msg.current.focus();
+  }, [msg])
 
   // console.log(msg);
 
@@ -85,13 +89,14 @@ const ChatInput = (props) => {
       }}
     >
       <MsgInput
+        ref={msg}
         id="msgInput"
         type="text"
-        onChange={(e) => {
-          setMsg(e.target.value);
-        }}
+        // onChange={(e) => {
+        //   setMsg(e.target.value);
+        // }}
+        // value={msg}
         onKeyDown={onKeyDownHandler}
-        value={msg}
         maxLength={100}
       />
       <MsgButton onClick={onClick}>보내기</MsgButton>

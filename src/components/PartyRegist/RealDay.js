@@ -22,7 +22,7 @@ const RealDay = ({ date, setDate }) => {
         openTo="day"
         inputFormat={"yyyy.MM.dd"}
         // 워닝 방지
-        mask={"____-__-__"}
+        mask={"____.__.__"}
         value={isNaN(str) !== true ? str : value}
         onChange={(newValue) => {
           setValue(newValue);
