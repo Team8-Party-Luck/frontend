@@ -124,14 +124,14 @@ const PartyList = (props) => {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <TabBar>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange} centered>
             <Tab label="전체 파티" {...a11yProps(0)} />
             <Tab label="파티 탐색" {...a11yProps(1)} />
             <Tab label="참여할 파티" {...a11yProps(2)} />
             <Tab label="찜한 파티" {...a11yProps(3)} />
           </Tabs>
-        </TabBar>
+        </Box>
       </ThemeProvider>
 
       <TabPanel value={value} index={0}>
@@ -143,20 +143,18 @@ const PartyList = (props) => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ThemeProvider theme={theme}>
-          <Local>
-            <RegionSelect
-              city={city}
-              setCity={setCity}
-              region={region}
-              setRegion={setRegion}
-            />
-          </Local>
+          <RegionSelect
+            city={city}
+            setCity={setCity}
+            region={region}
+            setRegion={setRegion}
+          />
         </ThemeProvider>
-        <ExploreBox>
+        <ListBox>
           {regionData?.map((cur, idx) => (
             <AllData {...cur} userInfo={userInfo} key={idx} />
           ))}
-        </ExploreBox>
+        </ListBox>
       </TabPanel>
       <TabPanel value={value} index={2}>
         {willData?.length === 0 ? (
@@ -184,44 +182,16 @@ const PartyList = (props) => {
           </ListBox>
         )}
       </TabPanel>
+
     </React.Fragment>
   );
 };
 
-export default PartyList;
-
 const ListBox = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
-  padding-top: 9.5em;
   padding-bottom: 3em;
   overflow-y: auto;
 `;
 
-//파티 탐색만 고정
-const ExploreBox = styled.div`
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
-  padding-top: 12em;
-  padding-bottom: 3em;
-  overflow-y: auto;
-`;
-
-const TabBar = styled.div`
-  position: fixed;
-  top: 10.5em;
-  border-bottom: 1;
-  border-color: gray;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  z-index: 100;
-`;
-
-const Local = styled.div`
-  position: fixed;
-  top: 13.5em;
-  z-index: 100;
-`;
+export default PartyList;
