@@ -35,7 +35,7 @@ const getChatListDB = () => {
         dispatch(getChatList(res.data));
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 };
@@ -71,7 +71,7 @@ const getMsgListDB = (chatRoomId) => {
         dispatch(getMsgList(res.data));
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 };
@@ -107,7 +107,7 @@ const getRoomIdDB = (roomId) => {
         history.push(`/chatdetail/${res.data.chatRoomId}`);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 };
@@ -148,7 +148,7 @@ const getChatUserDB = (roomId) => {
         dispatch(getChatUser(res.data));
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 };

@@ -138,8 +138,8 @@ const PartyDetailBottomNav = (props) => {
 const FlexBox = styled.div`
   display: flex;
   width: 100%;
-  // position: fixed;
-  // bottom: 0;
+  position: fixed;
+  bottom: 0;
   background: white;
   justify-content: space-between;
   padding: 1em;

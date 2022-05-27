@@ -264,6 +264,7 @@ const FoodBox = styled.div`
   grid-row-gap: 1em;
   margin: 0 auto;
   margin-top: 1em;
+  padding-bottom: em;
 `;
 
 const ListBox = styled.div`

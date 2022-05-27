@@ -5,15 +5,13 @@ import { color } from "../../shared/ColorSystem";
 import DefaultImg from "../../static/images/profile/default.png";
 import InstaIcon from "../../static/images/icon/인스타그램아이콘.png";
 import BackIcon from "../../static/images/icon/파티등록_이미지삭제버튼.png";
+import ReportIcon from "../../static/images/icon/신고.png";
 import FoodList from "../Profile/FoodList";
 import { actionCreators as chatActions } from "../../redux/modules/chat";
 import { useDispatch } from "react-redux";
 const UserCard = (props) => {
   const {
-    event,
     close,
-    confirm,
-    back,
     nickname,
     image,
     sns,
@@ -24,18 +22,10 @@ const UserCard = (props) => {
     food,
     id,
     userId,
+    setOpenReport,
   } = props;
   const dispatch = useDispatch();
   // console.log(props);
-  const confirmHandler = (e) => {
-    e.stopPropagation();
-    event();
-  };
-
-  const BackHandler = (e) => {
-    e.stopPropagation();
-    close();
-  };
 
   return (
     <Modal
@@ -72,7 +62,18 @@ const UserCard = (props) => {
       }}
     >
       <WrapBox>
-        <BackImg src={BackIcon} onClick={BackHandler} />
+        <FlexBox>
+          <BackImg src={BackIcon} onClick={close} />
+          {id === userId ? null : (
+            <ReportImg
+              src={ReportIcon}
+              onClick={() => {
+                close();
+                setOpenReport(true);
+              }}
+            />
+          )}
+        </FlexBox>
         {image === null ? (
           <ProfileBox>
             <ProfileImg src={DefaultImg} />
@@ -121,10 +122,23 @@ const WrapBox = styled.div`
   width: 100%;
 `;
 
+const FlexBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const BackImg = styled.img`
   width: 2em;
   height: 2em;
-  pointer: cursor;
+  cursor: pointer;
+`;
+
+const ReportImg = styled.img`
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
 `;
 
 const ProfileBox = styled.div`
@@ -144,7 +158,7 @@ const SnsBox = styled.div`
   align-items: center;
   margin: 0.3em auto;
   margin-bottom: 0.5em;
-  pointer: cursor;
+  cursor: pointer;
 `;
 
 const NicknameText = styled.p`

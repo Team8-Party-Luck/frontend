@@ -161,7 +161,7 @@ const RegiWrite = () => {
           desc !== ""
     ) {
       dispatch(crewActions.regiWriteSend(Write_info));
-      console.log("hi");
+      // console.log("hi");
     }
   };
 

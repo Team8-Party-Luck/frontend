@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserCard from "../components/UserList/UserCard";
 import HeaderNav from "../shared/HeaderNav";
 import Header from "../shared/Header";
+import Popup from "../shared/Popup";
 
 import { history } from "../redux/configStore";
 import { useParams } from "react-router-dom";
@@ -15,12 +16,17 @@ import DefaultImg from "../static/images/profile/default.png";
 import HostImg from "../static/images/icon/tag_host-1.png";
 import chatImg from "../static/images/icon/btn_chat.png";
 import InfoImg from "../static/images/9.  arw/arw@2x.png";
+import ReportCard from "../components/UserList/ReportCard";
 
 const UserList = () => {
   const dispatch = useDispatch();
 
   const { partyid } = useParams();
+
   const [openProfile, setOpenProfile] = useState(false);
+  const [openReport, setOpenReport] = useState(false);
+  const [openComplete, setOpenComplete] = useState(false);
+
   const [nickname, setNickname] = useState("");
   const [image, setImage] = useState("");
   const [sns, setSns] = useState("");
@@ -51,22 +57,23 @@ const UserList = () => {
         {userList?.result?.map((cur, idx) => {
           return (
             <List key={idx}>
-              <InfoBox
-                onClick={() => {
-                  setOpenProfile(true);
-                  setNickname(cur?.nickname);
-                  setImage(cur?.imageUrl);
-                  setSns(cur?.sns);
-                  setGender(cur?.gender);
-                  setAge(cur?.age);
-                  setLocation(cur?.location);
-                  setIntro(cur?.intro);
-                  setFood(cur?.foods);
-                  setId(cur?.userId);
-                }}
-              >
+              <InfoBox>
                 <ImgBox src={cur?.imageUrl ? cur?.imageUrl : DefaultImg} />
-                <div style={{ width: "100%" }}>
+                <div
+                  style={{ width: "100%" }}
+                  onClick={() => {
+                    setOpenProfile(true);
+                    setNickname(cur?.nickname);
+                    setImage(cur?.imageUrl);
+                    setSns(cur?.sns);
+                    setGender(cur?.gender);
+                    setAge(cur?.age);
+                    setLocation(cur?.location);
+                    setIntro(cur?.intro);
+                    setFood(cur?.foods);
+                    setId(cur?.userId);
+                  }}
+                >
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <NameText>{cur?.nickname}</NameText>
                     <DetailInfoImg src={InfoImg} />
@@ -88,24 +95,41 @@ const UserList = () => {
                   <HostBox src={HostImg} />
                 ) : null}
               </InfoBox>
-              {openProfile && (
-                <UserCard
-                  image={image}
-                  nickname={nickname}
-                  sns={sns}
-                  gender={gender}
-                  age={age}
-                  location={location}
-                  intro={intro}
-                  food={food}
-                  id={id}
-                  userId={userId}
-                  close={() => setOpenProfile(false)}
-                />
-              )}
             </List>
           );
         })}
+        {openProfile && (
+          <UserCard
+            image={image}
+            nickname={nickname}
+            sns={sns}
+            gender={gender}
+            age={age}
+            location={location}
+            intro={intro}
+            food={food}
+            id={id}
+            userId={userId}
+            setOpenReport={setOpenReport}
+            close={() => setOpenProfile(false)}
+          />
+        )}
+        {openReport && (
+          <ReportCard
+            nickname={nickname}
+            id={id}
+            userId={userId}
+            setOpenComplete={setOpenComplete}
+            close={() => setOpenReport(false)}
+          />
+        )}
+        {openComplete && (
+          <Popup
+            type="신고확인"
+            title="신고가 접수되었습니다"
+            close={() => setOpenComplete(false)}
+          />
+        )}
       </ListBox>
     </React.Fragment>
   );
