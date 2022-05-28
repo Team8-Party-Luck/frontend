@@ -40,7 +40,6 @@ function Popup(props) {
           bottom: "auto",
           transform: "translate(-50%, -50%)",
           width: "20em",
-          height: "10em",
           boxSizing: "border-box",
           border: "none",
           background: "white",
@@ -57,6 +56,11 @@ function Popup(props) {
             신고가 접수되었습니다 <br /> 내용 확인 후 적절한 조취를 취하겠습니다
           </ReportText>
           <ReportBox onClick={BackHandler}>확인 후 닫기</ReportBox>
+        </>
+      ) : type === "세팅완료" ? (
+        <>
+          <ReportText>{title}</ReportText>
+          <ReportBox onClick={BackHandler}>확인 후 돌아가기</ReportBox>
         </>
       ) : (
         <>

@@ -45,7 +45,7 @@ const Account = () => {
             />
           )}
         </React.Fragment>
-        {/* <ListBox
+        <ListBox
           onClick={() => {
             setOpenSecession(true);
           }}
@@ -65,7 +65,7 @@ const Account = () => {
               back={"뒤로가기"}
             />
           )}
-        </React.Fragment> */}
+        </React.Fragment>
       </WrapBox>
     </React.Fragment>
   );

@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import SockJs from "sockjs-client";
 import Stomp from "stompjs";
 import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { history } from "../redux/configStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { Box, } from "@mui/material";
+import { Box } from "@mui/material";
 import styled from "styled-components";
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
@@ -20,7 +20,7 @@ const ChatDetail = () => {
   const dispatch = useDispatch();
 
   //채팅 메시지
-  const msg = React.useRef('');
+  const msg = React.useRef("");
 
   // const [msg, setMsg] = useState("");
   const scrollRef = useRef();
@@ -31,7 +31,6 @@ const ChatDetail = () => {
   // 소켓 연결
   React.useEffect(() => {
     wsConnect();
-    
 
     return () => {
       wsDisConnect();
@@ -41,7 +40,6 @@ const ChatDetail = () => {
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
     dispatch(chatActions.getChatUserDB(roomId));
-   
   }, []);
 
   const messages = useSelector((state) => state?.chat?.msg);
@@ -53,9 +51,7 @@ const ChatDetail = () => {
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-      
   }, []);
-
 
   // 메시지 state 변경 시 스크롤 아래로 이동
   useEffect(() => {
@@ -128,8 +124,7 @@ const ChatDetail = () => {
       // console.log(ws.ws.readyState);
       // setMsg("");
       // document.getElementById("msgInput").value = "";
-      msg.current.value = '';
-      
+      msg.current.value = "";
     } catch (error) {
       // console.log(error);
       // console.log(ws.ws.readyState);
@@ -149,9 +144,12 @@ const ChatDetail = () => {
         >
           <img src={BackIcon} alt="뒤로가기" style={{ width: 12 }} />
         </BackBox>
-        <SmallProfile
-          src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
-        />
+        <ProfileImgBox>
+          <ProfileImg
+            src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
+          />
+        </ProfileImgBox>
+
         <NicknameText>{chatInfo?.otherNickname}</NicknameText>
         {/* <ExitButton>나가기</ExitButton> */}
       </WrapBox>
@@ -171,7 +169,7 @@ const ChatDetail = () => {
           })}
         <div style={{ marginTop: "5em" }} ref={scrollRef} />
       </MsgWrapBox>
-      <ChatInput  onSend={onSend} msg={msg}/>
+      <ChatInput onSend={onSend} msg={msg} />
     </Box>
   );
 };
@@ -192,11 +190,17 @@ const BackBox = styled.div`
   margin-right: 1em;
 `;
 
-const SmallProfile = styled.img`
+const ProfileImg = styled.img`
   width: 2em;
   height: 2em;
-  margin-right: 0.5em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
+  width: 2em;
+  height: 2em;
   border-radius: 2em;
+  margin-right: 0.5em;
 `;
 
 const NicknameText = styled.p`

@@ -24,7 +24,10 @@ const UserInfo = () => {
   return (
     <ProfileBox>
       <InfoBox>
-        <ImgBox src={user_info?.image ? user_info?.image : DefaultImg} />
+        <ProfileImgBox>
+          <ProfileImg src={user_info?.image ? user_info?.image : DefaultImg} />
+        </ProfileImgBox>
+
         <DetailBox>
           <NameText>{user_info?.nickname}</NameText>
           <DetailText>
@@ -72,16 +75,22 @@ const NonFixBox = styled.div`
   word-break: break-word;
 `;
 
-const ImgBox = styled.img`
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 2.5em;
-  margin-right: 0.5em;
-`;
-
 const DetailBox = styled.div`
   width: 100%;
   padding-top: 0.2em;
+`;
+
+const ProfileImg = styled.img`
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 4em;
+  margin-right: 0.5em;
 `;
 
 export default UserInfo;

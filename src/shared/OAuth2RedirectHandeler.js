@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Spinner from "../components/Spinner";
-import { Box, Typography } from "@mui/material";
 
 const OAuth2RedirectHandeler = () => {
   const dispatch = useDispatch();

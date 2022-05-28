@@ -22,7 +22,9 @@ const MsgList = (props) => {
             }}
             key={idx}
           >
-            <ImgBox src={cur?.image ? cur?.image : DefaultImage} />
+            <ProfileImgBox>
+              <ProfileImg src={cur?.image ? cur?.image : DefaultImage} />
+            </ProfileImgBox>
             <DetailBox>
               <NameText>{cur?.senderNickname}</NameText>
               <MsgText>{cur?.lastMessage}</MsgText>
@@ -37,6 +39,7 @@ const MsgList = (props) => {
 const WrapBox = styled.div`
   width: 100%;
   padding-top: 3.7em;
+  padding-bottom: 4em;
 `;
 
 const MsgBox = styled.div`
@@ -46,7 +49,13 @@ const MsgBox = styled.div`
   cursor: pointer;
 `;
 
-const ImgBox = styled.img`
+const ProfileImg = styled.img`
+  width: 2.7em;
+  height: 2.7em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
   width: 2.7em;
   height: 2.7em;
   border-radius: 2.7em;
