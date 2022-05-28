@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import SockJs from "sockjs-client";
 import Stomp from "stompjs";
 import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
@@ -15,10 +15,13 @@ import styled from "styled-components";
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
 import { color } from "../shared/ColorSystem";
+import Popup from "../shared/Popup";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
+
+  const [openEsc, setOpenEsc] = useState(false);
 
   //채팅 메시지
   const msg = React.useRef("");
@@ -157,12 +160,27 @@ const ChatDetail = () => {
         <FlexBox>
           <ExitButton
             onClick={() => {
-              dispatch(chatActions.exitChatDB(roomId));
+              setOpenEsc(true);
             }}
           >
             나가기
           </ExitButton>
         </FlexBox>
+        <React.Fragment>
+          {openEsc && (
+            <Popup
+              title={"채팅방을 나가시겠습니까?"}
+              subTitle={"채팅방을 나가시면 채팅 목록에서 사라집니다"}
+              type={"채팅나가기"}
+              close={() => setOpenEsc(false)}
+              event={() => {
+                dispatch(chatActions.exitChatDB(roomId));
+              }}
+              confirm={"나가기"}
+              back={"뒤로가기"}
+            />
+          )}
+        </React.Fragment>
       </WrapBox>
       <MsgWrapBox>
         {messages?.length > 0 &&

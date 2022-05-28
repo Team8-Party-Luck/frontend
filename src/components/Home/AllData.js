@@ -23,7 +23,7 @@ const AllData = (props) => {
     hostId,
     userInfo,
   } = props;
-
+  console.log(props);
   const splitDate = date.split("-");
   const newDate = splitDate.join(".");
   const forDay = splitDate.join("");
@@ -50,9 +50,7 @@ const AllData = (props) => {
     >
       <TitleText>{title}</TitleText>
       <FlexBox>
-        <ImgBox image={image[0]}>
-          {/* <ThumbImg src={image[0]} alt="이미지" /> */}
-        </ImgBox>
+        <ImgBox image={image[0]} />
         <Box sx={{ marginLeft: "0.5em" }}>
           <StoreText>{store}</StoreText>
           <CenterBox>

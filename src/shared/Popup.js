@@ -4,7 +4,17 @@ import styled from "styled-components";
 import { color } from "./ColorSystem";
 
 function Popup(props) {
-  const { title, event, close, confirm, back, type, state, setState } = props;
+  const {
+    title,
+    subTitle,
+    event,
+    close,
+    confirm,
+    back,
+    type,
+    state,
+    setState,
+  } = props;
 
   const confirmHandler = (e) => {
     e.stopPropagation();
@@ -61,6 +71,15 @@ function Popup(props) {
         <>
           <ReportText>{title}</ReportText>
           <ReportBox onClick={BackHandler}>확인 후 돌아가기</ReportBox>
+        </>
+      ) : type === "채팅나가기" ? (
+        <>
+          <TitleBox>{title}</TitleBox>
+          <SubTitleBox>{subTitle}</SubTitleBox>
+          <ButtonArea>
+            <Confirm onClick={BackHandler}>{back}</Confirm>
+            <Back onClick={confirmHandler}>{confirm}</Back>
+          </ButtonArea>
         </>
       ) : type === "회원탈퇴" ? (
         <>
@@ -138,6 +157,14 @@ const TitleBox = styled.p`
   padding-top: 0.7em;
   font-weight: 600;
   text-align: center;
+`;
+
+const SubTitleBox = styled.p`
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 1em;
+  color: ${color.etc};
 `;
 
 const ReportText = styled(TitleBox)`
