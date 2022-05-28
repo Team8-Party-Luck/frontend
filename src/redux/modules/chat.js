@@ -35,7 +35,7 @@ const getChatListDB = () => {
         dispatch(getChatList(res.data));
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
   };
 };
@@ -173,6 +173,20 @@ const getChatUserDB = (roomId) => {
 //   };
 // };
 
+//채팅방 나가기
+const exitChatDB = (roomId) => {
+  return function (dispatch, getState, { history }) {
+    chatApi
+      .exitChat(roomId)
+      .then((res) => {
+        history.push(`/chat`);
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [GET_CHAT_LIST]: (state, action) =>
@@ -211,6 +225,7 @@ const actionCreators = {
   subMsg,
   getChatUserDB,
   getChatUser,
+  exitChatDB,
 };
 
 export { actionCreators };

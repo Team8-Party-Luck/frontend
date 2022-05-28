@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { color } from "./ColorSystem";
 
 function Popup(props) {
-  const { title, event, close, confirm, back, type } = props;
+  const { title, event, close, confirm, back, type, state, setState } = props;
 
   const confirmHandler = (e) => {
     e.stopPropagation();
@@ -61,6 +61,22 @@ function Popup(props) {
         <>
           <ReportText>{title}</ReportText>
           <ReportBox onClick={BackHandler}>확인 후 돌아가기</ReportBox>
+        </>
+      ) : type === "회원탈퇴" ? (
+        <>
+          <TitleBox>{title}</TitleBox>
+          <InputBox
+            autoFocus
+            maxLength={2}
+            placeholder="탈퇴"
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
+          />
+          <ButtonArea>
+            <Confirm onClick={BackHandler}>{back}</Confirm>
+            <Back onClick={confirmHandler}>{confirm}</Back>
+          </ButtonArea>
         </>
       ) : (
         <>
@@ -126,6 +142,19 @@ const TitleBox = styled.p`
 
 const ReportText = styled(TitleBox)`
   font-weight: 500;
+`;
+
+const InputBox = styled.input`
+  ::-webkit-input-placeholder {
+    text-align: center;
+  }
+  width: 100%;
+  height: 2.5em;
+  font-size: 1.2em;
+  border: 1px solid ${color.line};
+  border-radius: 5px;
+  margin-top: 1em;
+  text-align: center;
 `;
 
 export default Popup;

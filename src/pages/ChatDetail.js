@@ -14,6 +14,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
+import { color } from "../shared/ColorSystem";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
@@ -137,21 +138,31 @@ const ChatDetail = () => {
   return (
     <Box position={"relative"}>
       <WrapBox>
-        <BackBox
-          onClick={() => {
-            history.push("/chat");
-          }}
-        >
-          <img src={BackIcon} alt="뒤로가기" style={{ width: 12 }} />
-        </BackBox>
-        <ProfileImgBox>
-          <ProfileImg
-            src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
-          />
-        </ProfileImgBox>
+        <FlexBox>
+          <BackBox
+            onClick={() => {
+              history.push("/chat");
+            }}
+          >
+            <img src={BackIcon} alt="뒤로가기" style={{ width: 12 }} />
+          </BackBox>
+          <ProfileImgBox>
+            <ProfileImg
+              src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
+            />
+          </ProfileImgBox>
 
-        <NicknameText>{chatInfo?.otherNickname}</NicknameText>
-        {/* <ExitButton>나가기</ExitButton> */}
+          <NicknameText>{chatInfo?.otherNickname}</NicknameText>
+        </FlexBox>
+        <FlexBox>
+          <ExitButton
+            onClick={() => {
+              dispatch(chatActions.exitChatDB(roomId));
+            }}
+          >
+            나가기
+          </ExitButton>
+        </FlexBox>
       </WrapBox>
       <MsgWrapBox>
         {messages?.length > 0 &&
@@ -179,6 +190,7 @@ const WrapBox = styled.div`
   height: 3.5em;
   display: flex;
   border-bottom: 1px solid #dfdfdf;
+  justify-content: space-between;
   position: fixed;
   background: white;
   align-items: center;
@@ -213,6 +225,20 @@ const MsgWrapBox = styled.div`
   width: 100%;
   padding: 0.5em;
   padding-top: 3.5em;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ExitButton = styled.button`
+  border: none;
+  font-size: 1em;
+  color: ${color.primary};
+  background-color: white;
+  cursor: pointer;
 `;
 
 export default ChatDetail;

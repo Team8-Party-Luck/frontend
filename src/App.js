@@ -27,7 +27,6 @@ import ConfirmPage from "./pages/ConfirmPage";
 import styled from "styled-components";
 import background from "./static/images/website/웹페이지.png";
 import MobileFrame from "./components/common/MobileFrame";
-import Asd from "./pages/Asd";
 
 // import { actionCreators as alarmActions } from "./redux/modules/alarm";
 
@@ -68,7 +67,6 @@ function App() {
             <Route path="/Account" exact component={Account} />
             <Route path="/inquary" exact component={Inquary} />
             <Route path="/confirm/:partyId" exact component={ConfirmPage} />
-            <Route path="asd" exact component={Asd} />
 
             <Route
               path="/auth/kakao"
