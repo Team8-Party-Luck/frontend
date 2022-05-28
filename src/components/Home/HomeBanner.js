@@ -5,7 +5,7 @@ import { history } from "../../redux/configStore";
 
 const HomeBanner = () => {
   return (
-    <div style={{ paddingTop: "4em" }}>
+    <div style={{ paddingTop: "5em" }}>
       <BannerBox
         onClick={() => {
           window.open(

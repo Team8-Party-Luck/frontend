@@ -24,6 +24,7 @@ import Scrap from "./pages/Scrap";
 import ChatDetail from "./pages/ChatDetail";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
 import ConfirmPage from "./pages/ConfirmPage";
+import Guide from "./pages/Guide";
 import styled from "styled-components";
 import background from "./static/images/website/웹페이지.png";
 import MobileFrame from "./components/common/MobileFrame";
@@ -67,7 +68,7 @@ function App() {
             <Route path="/Account" exact component={Account} />
             <Route path="/inquary" exact component={Inquary} />
             <Route path="/confirm/:partyId" exact component={ConfirmPage} />
-
+            <Route path="/guide" exact component={Guide} />
             <Route
               path="/auth/kakao"
               component={OAuth2RedirectHandeler}

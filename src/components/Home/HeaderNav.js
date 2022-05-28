@@ -9,6 +9,7 @@ import styled from "styled-components";
 // import { actionCreators as alarmActions } from "../../redux/modules/alarm";
 import HomeLogo from "../../static/images/logo/로고(4배수).png";
 import AlarmImg from "../../static/images/icon/ic_alarm.png";
+import GuideIcon from "../../static/images/icon/ic_guide2@4x.png";
 import Add from "../../shared/Add";
 
 // let sock = new SockJS("http://54.180.88.119/ws-stomp");
@@ -72,15 +73,22 @@ const HeaderNav = () => {
       <LogoBox>
         <img src={HomeLogo} style={{ width: "60%" }} alt="홈로고" />{" "}
       </LogoBox>
-      <Add style={{ width: "3%" }} />
-      <img
-        src={AlarmImg}
-        style={{ width: "8%", cursor: "pointer" }}
-        alt="알람로고"
-        onClick={() => {
-          // history.push("/alarm");
-        }}
-      />
+      <FlexBox>
+        <ImgBox
+          src={GuideIcon}
+          alt="가이드북 아이콘"
+          onClick={() => {
+            history.push(`/guide`);
+          }}
+        />
+        <ImgBox
+          src={AlarmImg}
+          alt="알람로고"
+          onClick={() => {
+            // history.push("/alarm");
+          }}
+        />
+      </FlexBox>
     </WrapBox>
   );
 };
@@ -90,13 +98,25 @@ const WrapBox = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 4em;
+  height: 5em;
   background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1em;
   z-index: 100;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ImgBox = styled.img`
+  width: 1.5em;
+  margin-left: 1em;
+  cursor: pointer;
 `;
 
 const LogoBox = styled.div`
