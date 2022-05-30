@@ -101,6 +101,16 @@ export const crewApi = {
       },
     }),
 
+  //도시필터
+  partyCityData: (file) =>
+    api.post(`home/parties/local`, file, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Content-Type":
+          "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
+      },
+    }),
+
   //지역필터
   partyRegionData: (file) =>
     api.post(`home/parties/local`, file, {
