@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import GuideImg from "../static/images/guide/통이미지/con.png";
+import GuideImg from "../static/images/guide/fullImg/con.png";
 import Header from "../shared/Header";
 const Guide = () => {
   return (
