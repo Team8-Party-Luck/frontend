@@ -73,6 +73,7 @@ const HeaderNav = () => {
       <LogoBox>
         <img src={HomeLogo} style={{ width: "60%" }} alt="홈로고" />{" "}
       </LogoBox>
+      asd
       <FlexBox>
         <ImgBox
           src={GuideIcon}
