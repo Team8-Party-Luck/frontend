@@ -68,7 +68,9 @@ const EditProflie = (props) => {
 
   return (
     <ProfileBox>
-      <ImgBox src={imageSrc === null ? DefaultImg : imageSrc} />
+      <ProfileImgBox>
+        <ProfileImg src={imageSrc === null ? DefaultImg : imageSrc} />
+      </ProfileImgBox>
       <NicknameBox>
         <NicknameText>닉네임</NicknameText>
         <NicknameInput
@@ -145,7 +147,13 @@ const NicknameInput = styled.input`
   font-size: 1em;
 `;
 
-const ImgBox = styled.img`
+const ProfileImg = styled.img`
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
   width: 4em;
   height: 4em;
   border-radius: 4em;

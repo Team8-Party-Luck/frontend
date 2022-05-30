@@ -58,7 +58,12 @@ const UserList = () => {
           return (
             <List key={idx}>
               <InfoBox>
-                <ImgBox src={cur?.imageUrl ? cur?.imageUrl : DefaultImg} />
+                <ProfileImgBox>
+                  <ProfileImg
+                    src={cur?.imageUrl ? cur?.imageUrl : DefaultImg}
+                  />
+                </ProfileImgBox>
+
                 <div
                   style={{ width: "100%" }}
                   onClick={() => {
@@ -165,10 +170,16 @@ const DetailText = styled.p`
   margin-top: 0.5em;
 `;
 
-const ImgBox = styled.img`
+const ProfileImg = styled.img`
   width: 4em;
   height: 4em;
-  border-radius: 2.5em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
+  width: 4em;
+  height: 4em;
+  border-radius: 4em;
   margin-right: 0.5em;
   position: relative;
 `;

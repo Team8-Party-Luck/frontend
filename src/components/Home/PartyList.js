@@ -162,6 +162,7 @@ const PartyList = (props) => {
               지역을 선택하여 <br /> 가까운 위치의 파티를 검색해 보세요!
             </LocText>
           </LocBox>
+
         ) : cityData?.length === 0 ? (
           <Box sx={{ marginTop: "8em" }}>
             <NullData title={"앗! 파티검색 결과가 없습니다"} />
@@ -182,6 +183,7 @@ const PartyList = (props) => {
               <AllData {...cur} userInfo={userInfo} key={idx} />
             ))}
           </ListBox>
+
         ) : (
           <ListBox>
             {regionData?.map((cur, idx) => (
@@ -234,7 +236,6 @@ const LocBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   padding-bottom: 5.5em;
   overflow-y: auto;
 `;
@@ -242,7 +243,7 @@ const LocBox = styled.div`
 const LocImg = styled.img`
   width: 70%;
   margin: 1em auto;
-  margin-top: 3em;
+  margin-top: 5em;
 `;
 
 const LocText = styled.p`

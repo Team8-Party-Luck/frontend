@@ -1,3 +1,4 @@
+//초기 유저 정보 세팅 페이지
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -9,12 +10,17 @@ import { color } from "../shared/ColorSystem";
 
 //리덕스
 import { actionCreators as userActions } from "../redux/modules/user";
+import { userApi } from "../shared/api";
+import { history } from "../redux/configStore";
 
 //컴포넌트
 import SetGender from "../components/Settings/SetGender";
 import SetAge from "../components/Settings/SetAge";
 import SetLocation from "../components/Settings/SetLocation";
 import SetFood from "../components/Settings/SetFood";
+
+//모달
+import Popup from "../shared/Popup";
 
 //토스트 팝업
 import Toast from "../shared/Toast";
@@ -37,6 +43,9 @@ const Setting = () => {
 
   //선택 요소 전환
   const [page, setPage] = useState(false);
+
+  //홈으로 돌아가는 모달
+  const [goHome, setGoHome] = useState(false);
 
   //세팅 항목들
   const [gender, setGender] = useState("");
@@ -64,6 +73,22 @@ const Setting = () => {
     }
   };
 
+  //이미 초기 프로필 정보를 입력한 유저라면 홈으로 돌아가게 만드는 함수
+  // 안드로이드의 물리백 버튼, 정보 입력후 메인화면에서 뒤로 돌아가기는 것을 방지
+  useEffect(() => {
+    userApi
+      .userCheck()
+      .then((res) => {
+        if (res.data.ok === true) {
+          setGoHome(true);
+        }
+      })
+      .catch((err) => {
+        // console.log(err.res);
+      });
+  }, []);
+
+  //연속적으로 토스트 팝업을 뜨는 것을 방지하기 위한 설정
   useEffect(() => {
     if (ToastStatus) {
       setTimeout(() => {
@@ -106,7 +131,7 @@ const Setting = () => {
     dispatch(userActions.sendSettingsData(Settings_info));
   };
 
-  //색생 입히기
+  //색상 입히기
   const theme = createTheme({
     palette: {
       primary: {
@@ -226,6 +251,14 @@ const Setting = () => {
       )}
       {/* 토스트팝업 */}
       {ToastStatus && <Toast msg={ToastMsg} />}
+      {/* 홈으로 돌아가는 모달 */}
+      {goHome && (
+        <Popup
+          title={"이미 프로필 정보를 입력하셨습니다!"}
+          type="세팅완료"
+          close={() => history.push("/home")}
+        />
+      )}
     </React.Fragment>
   );
 };

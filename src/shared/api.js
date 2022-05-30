@@ -5,6 +5,7 @@ const api = axios.create({
   // baseURL: "http://13.125.216.238", //형빈님
   baseURL: "http://54.180.88.119", //로컬
 
+
 });
 
 // 유저 관련 API
@@ -221,6 +222,13 @@ export const chatApi = {
   //채팅방에 속해있는 유저정보 불러오기
   chatUser: (roomId) =>
     api.get(`/chatroom/user/${roomId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }),
+  //채팅방 나가기
+  exitChat: (roomId) =>
+    api.get(`/chatroom/out/${roomId}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },

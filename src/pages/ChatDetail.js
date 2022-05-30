@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef, useState } from "react";
 import SockJs from "sockjs-client";
 import Stomp from "stompjs";
 import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
@@ -10,17 +10,21 @@ import { useEffect } from "react";
 import { history } from "../redux/configStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { Box, } from "@mui/material";
+import { Box } from "@mui/material";
 import styled from "styled-components";
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
+import { color } from "../shared/ColorSystem";
+import Popup from "../shared/Popup";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
+  const [openEsc, setOpenEsc] = useState(false);
+
   //채팅 메시지
-  const msg = React.useRef('');
+  const msg = React.useRef("");
 
   // const [msg, setMsg] = useState("");
   const scrollRef = useRef();
@@ -31,7 +35,6 @@ const ChatDetail = () => {
   // 소켓 연결
   React.useEffect(() => {
     wsConnect();
-    
 
     return () => {
       wsDisConnect();
@@ -41,7 +44,6 @@ const ChatDetail = () => {
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
     dispatch(chatActions.getChatUserDB(roomId));
-   
   }, []);
 
   const messages = useSelector((state) => state?.chat?.msg);
@@ -53,9 +55,7 @@ const ChatDetail = () => {
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-      
   }, []);
-
 
   // 메시지 state 변경 시 스크롤 아래로 이동
   useEffect(() => {
@@ -127,8 +127,7 @@ const ChatDetail = () => {
       // console.log(ws.ws.readyState);
       // setMsg("");
       // document.getElementById("msgInput").value = "";
-      msg.current.value = '';
-      
+      msg.current.value = "";
     } catch (error) {
       // console.log(error);
       // console.log(ws.ws.readyState);
@@ -141,18 +140,46 @@ const ChatDetail = () => {
   return (
     <Box position={"relative"}>
       <WrapBox>
-        <BackBox
-          onClick={() => {
-            history.push("/chat");
-          }}
-        >
-          <img src={BackIcon} alt="뒤로가기" style={{ width: 12 }} />
-        </BackBox>
-        <SmallProfile
-          src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
-        />
-        <NicknameText>{chatInfo?.otherNickname}</NicknameText>
-        {/* <ExitButton>나가기</ExitButton> */}
+        <FlexBox>
+          <BackBox
+            onClick={() => {
+              history.push("/chat");
+            }}
+          >
+            <img src={BackIcon} alt="뒤로가기" style={{ width: 12 }} />
+          </BackBox>
+          <ProfileImgBox>
+            <ProfileImg
+              src={chatInfo?.otherProfile ? chatInfo?.otherProfile : DefaultImg}
+            />
+          </ProfileImgBox>
+
+          <NicknameText>{chatInfo?.otherNickname}</NicknameText>
+        </FlexBox>
+        <FlexBox>
+          <ExitButton
+            onClick={() => {
+              setOpenEsc(true);
+            }}
+          >
+            나가기
+          </ExitButton>
+        </FlexBox>
+        <React.Fragment>
+          {openEsc && (
+            <Popup
+              title={"채팅방을 나가시겠습니까?"}
+              subTitle={"채팅방을 나가시면 채팅 목록에서 사라집니다"}
+              type={"채팅나가기"}
+              close={() => setOpenEsc(false)}
+              event={() => {
+                dispatch(chatActions.exitChatDB(roomId));
+              }}
+              confirm={"나가기"}
+              back={"뒤로가기"}
+            />
+          )}
+        </React.Fragment>
       </WrapBox>
       <MsgWrapBox>
         {messages?.length > 0 &&
@@ -170,7 +197,7 @@ const ChatDetail = () => {
           })}
         <div style={{ marginTop: "5em" }} ref={scrollRef} />
       </MsgWrapBox>
-      <ChatInput  onSend={onSend} msg={msg}/>
+      <ChatInput onSend={onSend} msg={msg} />
     </Box>
   );
 };
@@ -180,6 +207,7 @@ const WrapBox = styled.div`
   height: 3.5em;
   display: flex;
   border-bottom: 1px solid #dfdfdf;
+  justify-content: space-between;
   position: fixed;
   background: white;
   align-items: center;
@@ -191,11 +219,17 @@ const BackBox = styled.div`
   margin-right: 1em;
 `;
 
-const SmallProfile = styled.img`
+const ProfileImg = styled.img`
   width: 2em;
   height: 2em;
-  margin-right: 0.5em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
+  width: 2em;
+  height: 2em;
   border-radius: 2em;
+  margin-right: 0.5em;
 `;
 
 const NicknameText = styled.p`
@@ -208,6 +242,20 @@ const MsgWrapBox = styled.div`
   width: 100%;
   padding: 0.5em;
   padding-top: 3.5em;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ExitButton = styled.button`
+  border: none;
+  font-size: 1em;
+  color: ${color.primary};
+  background-color: white;
+  cursor: pointer;
 `;
 
 export default ChatDetail;

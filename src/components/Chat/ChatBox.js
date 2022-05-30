@@ -15,9 +15,9 @@ const ChatBox = (props) => {
 
   return (
     <WrapBox user={user}>
-      <ImgBox>
+      <ProfileImgBox>
         {user ? null : <ProfileImg src={image ? image : DefaultImg} />}
-      </ImgBox>
+      </ProfileImgBox>
       <MsgBox user={user}>
         <Msg user={user}>{message}</Msg>
         <SendTime>{createdAt}</SendTime>
@@ -60,18 +60,21 @@ const SendTime = styled.div`
   padding-bottom: 0.7em;
 `;
 
-const ImgBox = styled.div`
+const ProfileImg = styled.img`
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 100%;
+`;
+
+const ProfileImgBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 0.2em;
-`;
-
-const ProfileImg = styled.img`
   width: 2.5em;
   height: 2.5em;
-  margin-right: 0.5em;
   border-radius: 2.5em;
+  margin-right: 0.5em;
 `;
 
 export default ChatBox;

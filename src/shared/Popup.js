@@ -4,7 +4,17 @@ import styled from "styled-components";
 import { color } from "./ColorSystem";
 
 function Popup(props) {
-  const { title, event, close, confirm, back, type } = props;
+  const {
+    title,
+    subTitle,
+    event,
+    close,
+    confirm,
+    back,
+    type,
+    state,
+    setState,
+  } = props;
 
   const confirmHandler = (e) => {
     e.stopPropagation();
@@ -40,7 +50,6 @@ function Popup(props) {
           bottom: "auto",
           transform: "translate(-50%, -50%)",
           width: "20em",
-          height: "10em",
           boxSizing: "border-box",
           border: "none",
           background: "white",
@@ -57,6 +66,36 @@ function Popup(props) {
             신고가 접수되었습니다 <br /> 내용 확인 후 적절한 조취를 취하겠습니다
           </ReportText>
           <ReportBox onClick={BackHandler}>확인 후 닫기</ReportBox>
+        </>
+      ) : type === "세팅완료" ? (
+        <>
+          <ReportText>{title}</ReportText>
+          <ReportBox onClick={BackHandler}>확인 후 돌아가기</ReportBox>
+        </>
+      ) : type === "채팅나가기" ? (
+        <>
+          <TitleBox>{title}</TitleBox>
+          <SubTitleBox>{subTitle}</SubTitleBox>
+          <ButtonArea>
+            <Confirm onClick={BackHandler}>{back}</Confirm>
+            <Back onClick={confirmHandler}>{confirm}</Back>
+          </ButtonArea>
+        </>
+      ) : type === "회원탈퇴" ? (
+        <>
+          <TitleBox>{title}</TitleBox>
+          <InputBox
+            autoFocus
+            maxLength={2}
+            placeholder="탈퇴"
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
+          />
+          <ButtonArea>
+            <Confirm onClick={BackHandler}>{back}</Confirm>
+            <Back onClick={confirmHandler}>{confirm}</Back>
+          </ButtonArea>
         </>
       ) : (
         <>
@@ -120,8 +159,29 @@ const TitleBox = styled.p`
   text-align: center;
 `;
 
+const SubTitleBox = styled.p`
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 1em;
+  color: ${color.etc};
+`;
+
 const ReportText = styled(TitleBox)`
   font-weight: 500;
+`;
+
+const InputBox = styled.input`
+  ::-webkit-input-placeholder {
+    text-align: center;
+  }
+  width: 100%;
+  height: 2.5em;
+  font-size: 1.2em;
+  border: 1px solid ${color.line};
+  border-radius: 5px;
+  margin-top: 1em;
+  text-align: center;
 `;
 
 export default Popup;

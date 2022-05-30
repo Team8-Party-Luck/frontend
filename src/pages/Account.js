@@ -14,6 +14,9 @@ const Account = () => {
 
   const [openLogout, setOpenLogout] = useState(false);
   const [openSecession, setOpenSecession] = useState(false);
+  const [openConfirmSecession, setOpenConfirmSecession] = useState(false);
+
+  const [state, setState] = useState("");
 
   const Logout = () => {
     sessionStorage.clear();
@@ -21,7 +24,9 @@ const Account = () => {
   };
 
   const Secession = () => {
-    dispatch(userActions.userSecessionDB());
+    if (state === "탈퇴") {
+      dispatch(userActions.userSecessionDB());
+    }
   };
 
   return (
@@ -59,10 +64,27 @@ const Account = () => {
               title={"정말 탈퇴하시겠습니까?"}
               close={() => setOpenSecession(false)}
               event={() => {
+                setOpenSecession(false);
+                setOpenConfirmSecession(true);
+              }}
+              confirm={"회원탈퇴"}
+              back={"뒤로가기"}
+            />
+          )}
+        </React.Fragment>
+        <React.Fragment>
+          {openConfirmSecession && (
+            <Popup
+              type="회원탈퇴"
+              title={"'탈퇴' 글자를 정확히 입력해주세요"}
+              close={() => setOpenConfirmSecession(false)}
+              event={() => {
                 Secession();
               }}
               confirm={"회원탈퇴"}
               back={"뒤로가기"}
+              state={state}
+              setState={setState}
             />
           )}
         </React.Fragment>
