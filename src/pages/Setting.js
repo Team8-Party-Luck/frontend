@@ -84,7 +84,7 @@ const Setting = () => {
         }
       })
       .catch((err) => {
-        console.log(err.res);
+        // console.log(err.res);
       });
   }, []);
 

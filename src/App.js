@@ -2,7 +2,7 @@ import Login from "./pages/Login";
 import Setting from "./pages/Setting";
 import "./App.css";
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
@@ -25,6 +25,7 @@ import ChatDetail from "./pages/ChatDetail";
 import PartyRevise from "./components/PartyRegist/PartyRevise";
 import ConfirmPage from "./pages/ConfirmPage";
 import Guide from "./pages/Guide";
+import NotFound from "./shared/NotFound";
 import styled from "styled-components";
 import background from "./static/images/website/웹페이지.png";
 import MobileFrame from "./components/common/MobileFrame";
@@ -50,29 +51,29 @@ function App() {
       <Wrap>
         <MobileFrame className="MobileFramePage">
           <ConnectedRouter history={history}>
-            <Route path="/" exact component={Login} />
-            <Route path="/home" exact component={Home} />
-            <Route path="/alarm" exact component={Alarm} />
-            <Route path="/chat" exact component={Chat} />
-            <Route path="/chatdetail/:roomId" exact component={ChatDetail} />
-            <Route path="/regi" exact component={PartyRegist} />
-            <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
-            <Route path="/revise" exact component={PartyRevise} />
-            <Route path="/userList/:partyid" exact component={UserList} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/edit" exact component={Edit} />
-            <Route path="/spin" exact component={Spinner} />
-            <Route path="/setting" exact component={Setting} />
-            <Route path="/joined" exact component={Joined} />
-            <Route path="/scrap" exact component={Scrap} />
-            <Route path="/Account" exact component={Account} />
-            <Route path="/inquary" exact component={Inquary} />
-            <Route path="/confirm/:partyId" exact component={ConfirmPage} />
-            <Route path="/guide" exact component={Guide} />
-            <Route
-              path="/auth/kakao"
-              component={OAuth2RedirectHandeler}
-            ></Route>
+            <Switch>
+              <Route path="/" exact component={Login} />
+              <Route path="/home" exact component={Home} />
+              <Route path="/alarm" exact component={Alarm} />
+              <Route path="/chat" exact component={Chat} />
+              <Route path="/chatdetail/:roomId" exact component={ChatDetail} />
+              <Route path="/regi" exact component={PartyRegist} />
+              <Route path="/partyInfo/:partyId" exact component={PartyInfo} />
+              <Route path="/revise" exact component={PartyRevise} />
+              <Route path="/userList/:partyid" exact component={UserList} />
+              <Route path="/profile" exact component={Profile} />
+              <Route path="/edit" exact component={Edit} />
+              <Route path="/spin" exact component={Spinner} />
+              <Route path="/setting" exact component={Setting} />
+              <Route path="/joined" exact component={Joined} />
+              <Route path="/scrap" exact component={Scrap} />
+              <Route path="/Account" exact component={Account} />
+              <Route path="/inquary" exact component={Inquary} />
+              <Route path="/confirm/:partyId" exact component={ConfirmPage} />
+              <Route path="/guide" exact component={Guide} />
+              <Route path="/auth/kakao" component={OAuth2RedirectHandeler} />
+              <Route path="/*" exact component={NotFound} />
+            </Switch>
           </ConnectedRouter>
         </MobileFrame>
       </Wrap>

@@ -35,7 +35,7 @@ const getChatListDB = () => {
         dispatch(getChatList(res.data));
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 };

@@ -7,6 +7,7 @@ import CalenderImg from "../../static/images/icon/ic_calendar.png";
 import DateImg from "../../static/images/icon/ic_time.png";
 import PersonImg from "../../static/images/icon/ic_people.png";
 import HostImage from "../../static/images/icon/tag_host.png";
+import { color } from "../../shared/ColorSystem";
 
 const AllData = (props) => {
   const {
@@ -22,6 +23,7 @@ const AllData = (props) => {
     gender,
     hostId,
     userInfo,
+    memberCnt,
   } = props;
   console.log(props);
   const splitDate = date.split("-");
@@ -73,7 +75,8 @@ const AllData = (props) => {
           >
             <IconBox src={PersonImg} alt="시간" />
             <DetailText>
-              &nbsp;{capacity}명 <GrayBar>ㅣ</GrayBar> {age} {gender}
+              &nbsp;<MemberCntText>{memberCnt}</MemberCntText>/{capacity}명{" "}
+              <GrayBar>ㅣ</GrayBar> {age} {gender}
               모임
             </DetailText>
           </FlexBox>
@@ -145,6 +148,10 @@ const HostImg = styled.img`
 const GrayBar = styled.span`
   color: #ccc;
   font-size: 0.8em;
+`;
+
+const MemberCntText = styled.span`
+  color: ${color.primary};
 `;
 
 export default AllData;
