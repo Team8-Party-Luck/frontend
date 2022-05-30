@@ -5,7 +5,6 @@ import {
   FormControl,
   InputLabel,
   Box,
-  Typography,
 } from "@mui/material";
 import styled from "styled-components";
 import { useState } from "react";

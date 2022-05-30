@@ -1,13 +1,6 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
-import Grid from "@mui/material/Grid";
 import styled from "styled-components";
+import Modal from "react-modal";
 
 const PartyDetailInfo = (props) => {
   const { partyData } = props;
@@ -40,11 +33,52 @@ const PartyDetailInfo = (props) => {
         </FlexBox>
         <DetailInfoBtn
           onClick={() => {
-            window.location.href = partyData?.place_url;
+            // window.location.href = partyData?.place_url;
+            window.open(partyData?.place_url);
           }}
         >
           식당 상세 정보 확인하기
         </DetailInfoBtn>
+        <Modal
+          // isOpen={true}
+          // onRequestClose={close}
+          shouldCloseOnOverlayClick={true}
+          ariaHideApp={false}
+          style={{
+            overlay: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.5)",
+              zIndex: 10000,
+            },
+            content: {
+              position: "absolute",
+              top: "45%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              transform: "translate(-50%, -50%)",
+              width: "21.2em",
+              boxSizing: "border-box",
+              border: "none",
+              background: "white",
+              borderRadius: "0.5em",
+              outline: "none",
+              padding: "0",
+              zIndex: 30,
+            },
+          }}
+        >
+          <embed
+            type="text/html"
+            src="https://place.map.kakao.com/8130712"
+            width="100%"
+            height="600"
+          ></embed>
+        </Modal>
       </WrapBox>
       <WrapBox>
         <FlexBox>

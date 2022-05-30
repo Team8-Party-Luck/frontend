@@ -176,7 +176,7 @@ const PartyRevise = () => {
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <Header name={"파티수정"} type={"완료"} event={sendReviseData} />
-        <Grid container style={{ padding: "20px", paddingTop: "4em" }}>
+        <Grid container style={{ padding: "20px", paddingTop: "3em" }}>
           {/* <Images image=  {image} setImage={setImage} /> */}
           <TextField
             value={title}
@@ -203,20 +203,23 @@ const PartyRevise = () => {
             gender={gender}
             setGender={setGender}
           />
-          <Box
-            component="div"
+            <Box
             sx={{
-              display: "inline",
-              width: "9rem",
-              mb: 4,
-              marginRight: "1.5rem",
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              mb: 3,
             }}
           >
-            <RealDay date={date} setDate={setDate} />
+            <Box style={{ maxWidth: "45%" }} component="div">
+              <RealDay date={date} setDate={setDate} />
+            </Box>
+            <Box style={{ maxWidth: "45%" }} component="div">
+              <TimeSelect time={time} setTime={setTime} date={date} />
+            </Box>
           </Box>
-          <Box component="div" sx={{ display: "inline", width: "9rem", mb: 4 }}>
-            <TimeSelect time={time} setTime={setTime} />
-          </Box>
+
+
           <TextField
             value={meeting}
             placeholder="만날 장소"
@@ -231,14 +234,13 @@ const PartyRevise = () => {
             value={desc}
             multiline
             placeholder="식당 정보, 메뉴 정보 혹은 모임에 대한 설명을 작성 해주시면 문의를 줄이고 더 쉽게 파티원을 구할 수 있습니다.(20자 이상)"
-            rows={6}
+            rows={4}
             variant="standard"
             style={{ width: "100%" }}
-            sx={{ pb: 1, mt: 2 }}
+            sx={{ pb: 1, mt: 0.5 }}
             onChange={(e) => {
               setDesc(e.target.value);
             }}
-            wrap="hard"
           />
         </Grid>
       </ThemeProvider>

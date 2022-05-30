@@ -52,7 +52,7 @@ function App() {
           <ConnectedRouter history={history}>
             <Route path="/" exact component={Login} />
             <Route path="/home" exact component={Home} />
-            <Route path="/alarm" exact component={Alarm} />
+            {/* <Route path="/alarm" exact component={Alarm} /> */}
             <Route path="/chat" exact component={Chat} />
             <Route path="/chatdetail/:roomId" exact component={ChatDetail} />
             <Route path="/regi" exact component={PartyRegist} />

@@ -87,6 +87,8 @@ const PartyList = (props) => {
 
   //지역필터
   const regionData = useSelector((state) => state?.crew?.region);
+  const cityData = useSelector((state) => state?.crew?.city);
+
   // console.log(regionData);
   // 무한스크롤을 함수
   // Grid onScroll 이벤트에 넣어두어, Grid 스크롤 발생 시 실행됨
@@ -153,13 +155,33 @@ const PartyList = (props) => {
             setRegion={setRegion}
           />
         </ThemeProvider>
-        {regionData === undefined ? (
+        {cityData === undefined ? (
           <LocBox>
             <LocImg src={locationImg} />
             <LocText>
               지역을 선택하여 <br /> 가까운 위치의 파티를 검색해 보세요!
             </LocText>
           </LocBox>
+        ) : cityData?.length === 0 ? (
+          <Box sx={{ marginTop: "8em" }}>
+            <NullData title={"앗! 파티검색 결과가 없습니다"} />
+          </Box>
+        ) : regionData?.length === 0 && cityData?.length === 0 ? (
+          <Box sx={{ marginTop: "8em" }}>
+            <NullData title={"앗! 파티검색 결과가 없습니다"} />
+          </Box>
+        ) : regionData?.length >= 1 && cityData?.length >= 1 ? (
+          <ListBox>
+            {regionData?.map((cur, idx) => (
+              <AllData {...cur} userInfo={userInfo} key={idx} />
+            ))}
+          </ListBox>
+        ) : region?.length === 0 && cityData?.length >= 1 ? (
+          <ListBox>
+            {cityData?.map((cur, idx) => (
+              <AllData {...cur} userInfo={userInfo} key={idx} />
+            ))}
+          </ListBox>
         ) : (
           <ListBox>
             {regionData?.map((cur, idx) => (
@@ -168,6 +190,7 @@ const PartyList = (props) => {
           </ListBox>
         )}
       </TabPanel>
+
       <TabPanel value={value} index={2}>
         {willData?.length === 0 ? (
           <Box sx={{ marginTop: "10em" }}>
@@ -216,8 +239,6 @@ const LocBox = styled.div`
   overflow-y: auto;
 `;
 
-
-
 const LocImg = styled.img`
   width: 70%;
   margin: 1em auto;
@@ -232,4 +253,3 @@ const LocText = styled.p`
 `;
 
 export default PartyList;
-
