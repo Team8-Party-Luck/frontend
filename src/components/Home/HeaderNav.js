@@ -82,13 +82,13 @@ const HeaderNav = () => {
             history.push(`/guide`);
           }}
         />
-        <ImgBox
+        {/* <ImgBox
           src={AlarmImg}
           alt="알람로고"
           onClick={() => {
             // history.push("/alarm");
           }}
-        />
+        /> */}
       </FlexBox>
     </WrapBox>
   );
