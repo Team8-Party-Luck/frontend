@@ -12,6 +12,7 @@ const GET_SCRAP = "GET_SCRAP";
 const GET_DETAILUSER = "GET_DETAILUSER";
 const GET_WILL = "GET_WILL";
 const GET_REGION = "GET_REGION";
+const GET_CITY = "GET_CITY";
 
 //액션크레이터
 const getCrew = createAction(GET_CREW, (crew) => ({ crew }));
@@ -23,6 +24,7 @@ const getDetailUser = createAction(GET_DETAILUSER, (detailUser) => ({
 }));
 const getWill = createAction(GET_WILL, (will) => ({ will }));
 const getRegion = createAction(GET_REGION, (region) => ({ region }));
+const getCity = createAction(GET_CITY, (city) => ({ city }));
 
 // 초기값
 const initialState = { crew: [] };
@@ -251,6 +253,23 @@ const getDataDB = (pageNum) => {
 //     }
 //   };
 // };
+
+const getCityData = (regionInfo) => {
+  return function (dispatch, getState, { history }) {
+    const file = new FormData();
+    file.append("answer", regionInfo.answer);
+
+    crewApi
+      .partyCityData(file)
+      .then((res) => {
+        dispatch(getCity(res.data.results));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 const getRegionData = (regionInfo) => {
   return function (dispatch, getState, { history }) {
     const file = new FormData();
@@ -267,6 +286,10 @@ const getRegionData = (regionInfo) => {
       });
   };
 };
+
+
+
+
 
 // 상세정보 받아오기
 // const getDetailInfo = (partyId) => {
@@ -593,6 +616,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.region = action.payload.region;
       }),
+      [GET_CITY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.city = action.payload.city;
+      }),
   },
   initialState
 );
@@ -618,6 +645,8 @@ const actionCreators = {
   getWill,
   getRegionData,
   getRegion,
+  getCityData,
+  getCity,
 };
 
 export { actionCreators };

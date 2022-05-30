@@ -51,6 +51,7 @@ function App() {
       <Wrap>
         <MobileFrame className="MobileFramePage">
           <ConnectedRouter history={history}>
+
             <Switch>
               <Route path="/" exact component={Login} />
               <Route path="/home" exact component={Home} />
@@ -74,6 +75,7 @@ function App() {
               <Route path="/auth/kakao" component={OAuth2RedirectHandeler} />
               <Route path="/*" exact component={NotFound} />
             </Switch>
+
           </ConnectedRouter>
         </MobileFrame>
       </Wrap>

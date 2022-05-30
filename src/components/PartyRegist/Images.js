@@ -145,7 +145,7 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                 <Box
                   component="div"
                   // sx={{ display: "inline-block" }}
-                  style={{ border: "1px solid black", width:'4.5rem', height:'4.5rem', borderRadius:'0.7rem', paddingTop:'1rem' }}
+                  style={{ border: "1px solid gray", width:'4.5rem', height:'4.5rem', borderRadius:'0.7rem', paddingTop:'1rem' }}
                 >
                   <img src={ic_camera} alt="camera_icon" />
                   <Box>{showImages.length}/7 </Box>

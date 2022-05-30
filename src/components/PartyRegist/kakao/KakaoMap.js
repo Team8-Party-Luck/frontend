@@ -11,25 +11,105 @@ var ps;
 var infowindow;
 var map;
 
+//현재 위치 가져오기
+var gps_use = null; //gps의 사용가능 여부
+var gps_lat = null; // 위도
+var gps_lng = null; // 경도
+var gps_position; // gps 위치 객체
+
 const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   const [keyword, setKeyword] = useState("");
 
-  useEffect(() => {
+  //현재 위치 가져오기
+  const gps_check = () => {
+    if (navigator.geolocation) {
+      var options = { timeout: 60000 };
+      navigator.geolocation.getCurrentPosition(
+        showLocation,
+        errorHandler,
+        options
+      );
+    } else {
+      alert("GPS_추적이 불가합니다.");
+      gps_use = false;
+    }
+  };
+
+  //gps 이용 가능 시 위도와 경도 반환
+  const showLocation = (position) => {
+    gps_use = true;
+    gps_lat = position.coords.latitude;
+    gps_lng = position.coords.longitude;
+
+
+
     var mapContainer = document.getElementById("map"), // 지도를 표시할 div
       mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        // center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(gps_lat, gps_lng), // 지도의 중심좌표
         level: 3, // 지도의 확대 레벨
       };
 
     // 지도를 생성합니다
     map = new kakao.maps.Map(mapContainer, mapOption);
-
     // 장소 검색 객체를 생성합니다
     ps = new kakao.maps.services.Places();
     // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
     infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
+    gpsTracking();
+  };
+
+  //현재 위치 가져오기 에러
+  const errorHandler = (err) => {
+    if (err.code === 1) {
+      alert("위치가 허용되지 않았습니다.");
+    } else if (err.code === 2) {
+      alert("위치를 반환할 수 없습니다.");
+    }
+    gps_use = false;
+  };
+  // 현재 위치로 마커 이동
+  const gpsTracking = () => {
+    if (gps_use) {
+      map.panTo(new kakao.maps.LatLng(gps_lat, gps_lng));
+      var gps_content =
+        '<div><img style="width:17px; height:17px;" class="pulse" draggable="false" unselectable="on" src="https://ssl.pstatic.net/static/maps/m/pin_rd.png" alt="location"></div>';
+      var currentOverlay = new kakao.maps.CustomOverlay({
+        position: new kakao.maps.LatLng(gps_lat, gps_lng),
+        content: gps_content,
+        map: map,
+      });
+      currentOverlay.setMap(map);
+    } else {
+      alert("접근차단하신 경우 새로고침, 아닌 경우 잠시만 기다려주세요.");
+      gps_check();
+    }
+  };
+
+
+  useEffect(() => {
+    gps_check();
+
+    if (gps_use === null) {
+      var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+          level: 3, // 지도의 확대 레벨
+        };
+
+      // 지도를 생성합니다
+      map = new kakao.maps.Map(mapContainer, mapOption);
+      // 장소 검색 객체를 생성합니다
+      ps = new kakao.maps.services.Places();
+      // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+      infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    }
   }, []);
 
+
+
+  //장소검색
   const searchPlaces = () => {
     var keyword = document.getElementById("keyword").value;
 
@@ -38,12 +118,13 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       return false;
     }
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch(keyword, placesSearchCB);
+    ps.keywordSearch(keyword, placesSearchCB, {location: new kakao.maps.LatLng(gps_lat, gps_lng)});
   };
 
   // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
   function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
+
       // 정상적으로 검색이 완료됐으면
       // 검색 목록과 마커를 표출합니다
       displayPlaces(data);
@@ -151,7 +232,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
       places.phone +
       "</span>" +
       `<a class="seeInfo "href=${places.place_url} target="_blank">상세정보 보기</a>&nbsp;&nbsp;` +
-      `<button class="pickEatery" id=${places.id}>식당 선택<button/>`+
+      `<button class="pickEatery" id=${places.id}>식당 선택<button/>` +
       "</div>";
 
     el.innerHTML = itemStr;
@@ -174,7 +255,8 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
   // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
   function addMarker(position, idx, title) {
     var imageSrc =
-        "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        "https://i.imgur.com/ahB7Wxt.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
+          // "../../../static/images/kakao/marker/mark20.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
       imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
       imgOptions = {
         spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
@@ -300,7 +382,7 @@ const KakaoMap = ({ setStore, setAddress, setPlace_url, setXy, setOpen }) => {
             </button>
           </div>
         </div>
-        <hr style={{ border: "0.2px solid #E3E3E3" }} />
+        <hr style={{ border: "0.1px solid #E3E3E3" }} />
         <ListUl id="placesList">
           <p>
             아래와 같이 지역 또는 지점명과 함께 입력하시면 더욱 빠르고 정확한
