@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-// import GuideImg from "../static/images/guide/con.png";
+import GuideImg from "../static/images/guide/allcon.png";
 import Header from "../shared/Header";
 const Guide = () => {
   return (
     <WrapBox>
       <Header name="잇츨링 가이드" />
-      <GuideImgBox>{/* <GuideImage src={GuideImg} /> */}</GuideImgBox>
+      <GuideImgBox>
+        <GuideImage src={GuideImg} />
+      </GuideImgBox>
     </WrapBox>
   );
 };
