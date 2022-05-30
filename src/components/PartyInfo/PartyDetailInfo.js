@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Modal from "react-modal";
 
 const PartyDetailInfo = (props) => {
-  const { partyData } = props;
+  const { partyData, close } = props;
 
   const splitDate = partyData?.date?.split("-");
   const newDate = splitDate?.join(".");
@@ -39,9 +39,9 @@ const PartyDetailInfo = (props) => {
         >
           식당 상세 정보 확인하기
         </DetailInfoBtn>
-        <Modal
-          // isOpen={true}
-          // onRequestClose={close}
+        {/* <Modal
+          isOpen={true}
+          onRequestClose={close}
           shouldCloseOnOverlayClick={true}
           ariaHideApp={false}
           style={{
@@ -71,14 +71,19 @@ const PartyDetailInfo = (props) => {
               zIndex: 30,
             },
           }}
-        >
-          <embed
+        > */}
+          {/* <embed
             type="text/html"
             src="https://place.map.kakao.com/8130712"
             width="100%"
             height="600"
-          ></embed>
-        </Modal>
+            frameBorder="0"
+            allowFullScreen
+          ></embed> */}
+          {/* <object  data="https://place.map.kakao.com/8130712" width="100%" height="600">
+            <></>
+          </object>
+        </Modal> */}
       </WrapBox>
       <WrapBox>
         <FlexBox>
