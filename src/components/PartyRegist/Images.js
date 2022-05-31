@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { muiStyled } from "@mui/material/styles";
+import Resizer from "react-image-file-resizer";
 
 import Box from "@mui/material/Box";
 
@@ -8,19 +8,39 @@ import ic_camera from "../../static/images/icon/ic_camera.png";
 import radioButton from "../../static/images/icon/라디오버튼.png";
 import radioButtonSelc from "../../static/images/icon/라디오버튼-1.png";
 import deleteIcon from "../../static/images/icon/파티등록_이미지삭제버튼.png";
-
 import Taste from "./Taste";
+
+
 const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
+  
+    //이미지 리사이징
+    const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        95,
+        0,
+        (uri) => {
+          resolve(uri);
+          // console.log(uri);
+        },
+        "file"
+      );
+    });
 
   // 이미지 상대경로 저장
-  const handleAddImages = (event) => {
+  const handleAddImages = async (event) => {
     if (defaultImage.length !== 0) {
       setDefaultImage([]);
     }
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
+    const img = [];
 
     // console.log(imageLists);
     for (let i = 0; i < imageLists.length; i++) {
@@ -31,13 +51,17 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
     if (imageUrlLists.length > 7) {
       imageUrlLists = imageUrlLists.slice(0, 7);
     }
-    // if(defaultImage === !null){
-    //   setDefaultImage(null);
-    // }
-    setImage(imageLists);
+
+    for(let i=0; i<imageLists.length; i++){
+      img.push(await resizeFile(imageLists[i]))
+    }
+
+    // setImage(imageLists);
+    setImage(img);
+    console.log(imageLists)
+    console.log(img)
 
     // blob형식으로 보내기
-    // setPhotos(imageUrlLists)
     setShowImages(imageUrlLists);
   };
 

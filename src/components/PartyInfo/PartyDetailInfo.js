@@ -1,9 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 
 const PartyDetailInfo = (props) => {
   const { partyData, close } = props;
+
+  const [open, setOpen] = React.useState(false);
 
   const splitDate = partyData?.date?.split("-");
   const newDate = splitDate?.join(".");
@@ -22,7 +24,6 @@ const PartyDetailInfo = (props) => {
   }
   const day = getDateStr(`2022${forDay}`);
 
-
   return (
     <React.Fragment>
       <WrapBox>
@@ -34,23 +35,27 @@ const PartyDetailInfo = (props) => {
         </FlexBox>
         <DetailInfoBtn
           onClick={() => {
-            // window.location.href = partyData?.place_url;
             window.open(partyData?.place_url);
+            // setOpen(!open);
           }}
         >
+          {/* {open ? <>닫기</> : <>식당 상세 정보 확인하기</>} */}
           식당 상세 정보 확인하기
         </DetailInfoBtn>
-        <div>
-          <SiteObject
-            data="https://place.map.kakao.com/1203718040"
-            width="100%"
-            height="600"
-            frameBorder="0"
-            allowFullScreen
-            sandbox="allow-scripts allow-same-origin"
-          >
-          </SiteObject>
+
+        {/* {open ? (
+          <div>
+            <SiteObject
+              data="https://place.map.kakao.com/1203718040"
+              width="100%"
+              height="450"
+              allowFullScreen
+              sandbox="allow-scripts allow-same-origin"
+            ></SiteObject>
           </div>
+        ) : (
+          <></>
+        )} */}
       </WrapBox>
       <WrapBox>
         <FlexBox>
@@ -129,18 +134,9 @@ const GrayBar = styled.span`
   color: #ccc;
 `;
 
-const ObjectDiv = styled.div`
-overflow: auto; 
- -webkit-overflow-scrolling: touch;
-`
-
-
-
-
 const SiteObject = styled.object`
-overflow: auto; 
--webkit-overflow-scrolling: touch; 
-border: none;
-
-`
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border: none;
+`;
 export default PartyDetailInfo;

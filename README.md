@@ -1,89 +1,61 @@
-# Getting Started with Create React App
+# 잇츨링(eatsring)
+Eatsring(잇츨링) 서비스는 맛집탐방을 위한 파티원 모집 서비스입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![title](https://user-images.githubusercontent.com/35111721/170951097-56be66d4-e3a1-4836-8de9-86df30afa96e.png)   
 
-## Available Scripts
 
-In the project directory, you can run:
+#### [잇츨링 사이트](https://www.eatsring.com)
 
-### `yarn start`
+#### [시연 영상](https://www.youtube.com)   
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 주요기능
+#### 1. 파티 조회 
+- 지역별 파티 조회
+ - 신청한 파티 조회
+ - 찜한 파티 조회
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### 2. 파티 등록 및 신청
+  - 모집 인원의 연령, 성별 설정
+  - 모집 인원 정보에 해당하지 않으면 신청 불가
 
-### `yarn test`
+#### 3. WebSocket을 이용한 실시간 채팅
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 4. 프로필 조회 및 수정
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 👩‍👧‍👦 멤버 구성
+Front-end : 이진혁, 이상민
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Back-end : 김형빈, 임차혁, 정우창
 
-### `yarn eject`
+Designer : 김지언, 최지원
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+🗓 개발기간
+2022년 04월 22일 ~ 2022년 06월 3일
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📱 아키텍쳐
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![title](https://user-images.githubusercontent.com/100110567/171096435-5cb4aef0-72d8-40a0-aa07-5e9e7dcbbb4f.png)   
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 🛠 기술 스택
+React
+상태관리 : redux, redux-actions, redux-thunk, redux-logger, immer
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+통신 : axios, socket.io
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+배포 : netlify
 
-### Code Splitting
+API : kakao map API, 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+라이브러리 : react-slick, react-intersection-observer, react-icons, material-ui, react-datepicker, react-loading
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 📝 개발 일지
+[**Team Notion**](https://www.notion.so/8-S-A-Eatsring-73091c01460b4b4b857179473a01b66c)   
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[**Front-end github**](https://github.com/Team8-Party-Luck/frontend)   
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-수정사항!
-yarn add react-slick을 설치함!
-npm install slick-carousel --save을 설치함
-
-yarn add material-ui-upload을 설치함
-
-yarn add react-daum-postcode
-$ yarn add react-device-detect을 설치함
-jquery 설치
-yarn add pretendard설치함(2022-05-10 / 13:24)
-date-fns 설치함(2022-05-19 / 06:16)
-react-datepicker 설치함 (2022-05-19/ 06:50)
-yarn add react-toasts 설치함 (2022-05-19/ 21:13)
-
-고쳐야 될것!
-1.nav바 icon클릭하면 바로 icon event적용되게할것
-2.nav바 화면 겹침!!! 3.유저 입력 나이 설정과 파이 입력 나이 설정이 맞지 않는다.
-asddf
+[**Back-end github**](https://github.com/Team8-Party-Luck/backend)   
