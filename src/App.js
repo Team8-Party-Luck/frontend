@@ -46,6 +46,8 @@ function App() {
     setScreenSize();
   });
 
+
+
   return (
     <Fullscreen>
       <Wrap>

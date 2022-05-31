@@ -22,6 +22,7 @@ const PartyDetailInfo = (props) => {
   }
   const day = getDateStr(`2022${forDay}`);
 
+
   return (
     <React.Fragment>
       <WrapBox>
@@ -39,51 +40,17 @@ const PartyDetailInfo = (props) => {
         >
           식당 상세 정보 확인하기
         </DetailInfoBtn>
-        {/* <Modal
-          isOpen={true}
-          onRequestClose={close}
-          shouldCloseOnOverlayClick={true}
-          ariaHideApp={false}
-          style={{
-            overlay: {
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 10000,
-            },
-            content: {
-              position: "absolute",
-              top: "45%",
-              left: "50%",
-              right: "auto",
-              bottom: "auto",
-              transform: "translate(-50%, -50%)",
-              width: "21.2em",
-              boxSizing: "border-box",
-              border: "none",
-              background: "white",
-              borderRadius: "0.5em",
-              outline: "none",
-              padding: "0",
-              zIndex: 30,
-            },
-          }}
-        > */}
-          {/* <embed
-            type="text/html"
-            src="https://place.map.kakao.com/8130712"
+        <div>
+          <SiteObject
+            data="https://place.map.kakao.com/1203718040"
             width="100%"
             height="600"
             frameBorder="0"
             allowFullScreen
-          ></embed> */}
-          {/* <object  data="https://place.map.kakao.com/8130712" width="100%" height="600">
-            <></>
-          </object>
-        </Modal> */}
+            sandbox="allow-scripts allow-same-origin"
+          >
+          </SiteObject>
+          </div>
       </WrapBox>
       <WrapBox>
         <FlexBox>
@@ -162,4 +129,18 @@ const GrayBar = styled.span`
   color: #ccc;
 `;
 
+const ObjectDiv = styled.div`
+overflow: auto; 
+ -webkit-overflow-scrolling: touch;
+`
+
+
+
+
+const SiteObject = styled.object`
+overflow: auto; 
+-webkit-overflow-scrolling: touch; 
+border: none;
+
+`
 export default PartyDetailInfo;
