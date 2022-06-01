@@ -40,7 +40,7 @@
 - 개발 언어 : Javascript
 - 개발 라이브러리 : React
 - 배포 환경 : netlify
-- 협업 툴 : Git / Notion / Figma
+- 협업 툴 : Git / Notion / Figma
 
 </br>
 
@@ -73,7 +73,7 @@
 ### 채팅 끊김 현상
 
 <details>
-  <summary>useRef를 이용한 채팅 Input 값 관리</summary>
+  <summary>useRef를 이용한 채팅 Input 값 관리</summary>
   
   * 문제 상황
     - 간헐적으로 웹소켓 끊김 현상.
