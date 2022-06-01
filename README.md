@@ -106,8 +106,9 @@
 - 문제 해결
   - 라이브러리(react-image-file-resizer)를 사용하여 이미지 압축
   - 리사이징 전 대비 파일 크기가 현저히 낮아지고 로딩 및 업로드시 속도 개선.  
-  - 사진 크기를 줄여서 백엔드에 들어가는 용량도 아낄수 있게 됨.
-![title](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Feb20930f-52f0-4afc-bf3a-bc3a04fb7d9b%2F3.png?table=block&id=2801cfb7-9431-4790-b7f7-0246bd52be7c&spaceId=4c8bf5b0-fea6-4597-84e0-9300a59b94e9&width=2000&userId=08d69371-ee6c-45fa-bb1d-d245f2322e09&cache=v2)    
+  - 사진 크기를 줄여서 백엔드에 들어가는 용량도 아낄수 있게 됨.  
+  
+![](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Feb20930f-52f0-4afc-bf3a-bc3a04fb7d9b%2F3.png?table=block&id=2801cfb7-9431-4790-b7f7-0246bd52be7c&spaceId=4c8bf5b0-fea6-4597-84e0-9300a59b94e9&width=2000&userId=08d69371-ee6c-45fa-bb1d-d245f2322e09&cache=v2)    
   </details>
   
 ### Netlify 404 Not Found 오류
