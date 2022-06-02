@@ -22,15 +22,14 @@ const MenuProps = {
 const RegionSelect = ({ city, setCity, region, setRegion }) => {
   const dispatch = useDispatch();
 
-
   const handleChangeCity = (e) => {
     setCity(e.target.value);
-    setRegion('');
+    setRegion("");
     let answer = `${e.target.value}`;
     const regionInfo = {
       answer: answer,
     };
-    console.log(answer);
+    // console.log(answer);
     dispatch(crewActions.getCityData(regionInfo));
   };
 
@@ -182,7 +181,7 @@ const RegionSelect = ({ city, setCity, region, setRegion }) => {
                     {cur}
                   </MenuItem>
                 ))
-              : ''}
+              : ""}
           </Select>
         </FormControl>
       </RegionBox>
@@ -199,5 +198,3 @@ const RegionBox = styled.div`
   background: #eee;
   padding: 1em 2em;
 `;
-
-

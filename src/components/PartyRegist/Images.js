@@ -10,13 +10,12 @@ import radioButtonSelc from "../../static/images/icon/라디오버튼-1.png";
 import deleteIcon from "../../static/images/icon/파티등록_이미지삭제버튼.png";
 import Taste from "./Taste";
 
-
 const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
   const [form, setForm] = useState("directly");
   const [showImages, setShowImages] = useState([]);
-  
-    //이미지 리사이징
-    const resizeFile = (file) =>
+
+  //이미지 리사이징
+  const resizeFile = (file) =>
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file,
@@ -52,14 +51,14 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
       imageUrlLists = imageUrlLists.slice(0, 7);
     }
 
-    for(let i=0; i<imageLists.length; i++){
-      img.push(await resizeFile(imageLists[i]))
+    for (let i = 0; i < imageLists.length; i++) {
+      img.push(await resizeFile(imageLists[i]));
     }
 
     // setImage(imageLists);
     setImage(img);
-    console.log(imageLists)
-    console.log(img)
+    // console.log(imageLists)
+    // console.log(img)
 
     // blob형식으로 보내기
     setShowImages(imageUrlLists);
@@ -148,7 +147,7 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
               component="div"
               sx={{
                 whiteSpace: "nowrap",
-                overflowX: "auto", 
+                overflowX: "auto",
                 display: "flex",
                 alignItems: "center",
               }}
@@ -169,7 +168,13 @@ const Images = ({ image, setImage, defaultImage, setDefaultImage }) => {
                 <Box
                   component="div"
                   // sx={{ display: "inline-block" }}
-                  style={{ border: "1px solid gray", width:'4.5rem', height:'4.5rem', borderRadius:'0.7rem', paddingTop:'1rem' }}
+                  style={{
+                    border: "1px solid gray",
+                    width: "4.5rem",
+                    height: "4.5rem",
+                    borderRadius: "0.7rem",
+                    paddingTop: "1rem",
+                  }}
                 >
                   <img src={ic_camera} alt="camera_icon" />
                   <Box>{showImages.length}/7 </Box>

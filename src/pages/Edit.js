@@ -22,7 +22,6 @@ const Edit = (props) => {
 
   React.useEffect(() => {
     userApi.userInfo().then((res) => {
-      // console.log(res.data);
       setImageUrl(null);
       setImageSrc(res.data.image);
       setNickname(res.data.nickname);

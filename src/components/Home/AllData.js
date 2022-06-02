@@ -25,7 +25,7 @@ const AllData = (props) => {
     userInfo,
     memberCnt,
   } = props;
-  console.log(props);
+  // console.log(props);
   const splitDate = date.split("-");
   const newDate = splitDate.join(".");
   const forDay = splitDate.join("");
