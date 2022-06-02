@@ -1,32 +1,34 @@
-import Login from "./pages/Login";
-import Setting from "./pages/Setting";
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
-import Home from "./pages/Home";
-import PartyRegist from "./pages/PartyRegist";
-import Alarm from "./pages/Alarm";
-import Chat from "./pages/Chat";
-import Profile from "./pages/Profile";
-import OAuth2RedirectHandeler from "./shared/OAuth2RedirectHandeler";
-import UserList from "./pages/UserList";
-import PartyInfo from "./pages/PartyInfo";
-import Edit from "./pages/Edit";
-import Spinner from "./components/Spinner";
-import Inquary from "./pages/Inquary";
-import Account from "./pages/Account";
-import Joined from "./pages/Joined";
-import Scrap from "./pages/Scrap";
-import ChatDetail from "./pages/ChatDetail";
-import PartyRevise from "./components/PartyRegist/PartyRevise";
-import ConfirmPage from "./pages/ConfirmPage";
-import Guide from "./pages/Guide";
-import NotFound from "./shared/NotFound";
 import styled from "styled-components";
+import {
+  Login,
+  Setting,
+  Home,
+  PartyRegist,
+  Alarm,
+  Chat,
+  Profile,
+  OAuth2RedirectHandeler,
+  UserList,
+  PartyInfo,
+  Edit,
+  Inquary,
+  Account,
+  Joined,
+  Scrap,
+  ChatDetail,
+  PartyRevise,
+  Guide,
+  ConfirmPage,
+  NotFound,
+} from "./pages/index.js";
+
 import background from "./static/images/website/웹페이지.png";
 import MobileFrame from "./components/common/MobileFrame";
 
@@ -44,16 +46,13 @@ function App() {
   }
   useEffect(() => {
     setScreenSize();
-  });
-
-
+  }, []);
 
   return (
     <Fullscreen>
       <Wrap>
         <MobileFrame className="MobileFramePage">
           <ConnectedRouter history={history}>
-
             <Switch>
               <Route path="/" exact component={Login} />
               <Route path="/home" exact component={Home} />
@@ -66,7 +65,6 @@ function App() {
               <Route path="/userList/:partyid" exact component={UserList} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/edit" exact component={Edit} />
-              <Route path="/spin" exact component={Spinner} />
               <Route path="/setting" exact component={Setting} />
               <Route path="/joined" exact component={Joined} />
               <Route path="/scrap" exact component={Scrap} />
@@ -77,7 +75,6 @@ function App() {
               <Route path="/auth/kakao" component={OAuth2RedirectHandeler} />
               <Route path="/*" exact component={NotFound} />
             </Switch>
-
           </ConnectedRouter>
         </MobileFrame>
       </Wrap>
