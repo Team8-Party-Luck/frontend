@@ -6,9 +6,22 @@
 
 #### [시연 영상](https://youtu.be/cnQRXcruKXo)
 
-### FRONTEND MEMBERS 
-[이진혁](https://github.com/zinukk)     
-[이상민](https://github.com/LeeSangMin12)  
+### MEMBERS 
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/zinukk"><img src="https://ca.slack-edge.com/T01L2TNGW3T-U035ZRWEMMF-f83f20e8ada3-512" width="100" /></a></td>
+    <td align="center"><a href="https://github.com/LeeSangMin12"><img src="https://ca.slack-edge.com/T01L2TNGW3T-U034F3UPS9L-4795aa600f25-512"  width="100"/></a></td>   
+  </tr>
+  <tr>
+    <td align="center"><b>이진혁</b></td>
+    <td align="center"><b>이상민</b></td>
+  </tr>
+  <tr>
+    <td align="center"><b> Frontend  </b></td>
+    <td align="center"><b> Frontend  </b></td>
+  </tr>
+</table>
+
 
 
 ## 1️⃣ 프로젝트 설명 🍽
@@ -29,8 +42,6 @@
 [**잇츨링 팀 노션**](https://www.notion.so/8-S-A-Eatsring-73091c01460b4b4b857179473a01b66c)
 
 [**잇츨링 인스타그램**](https://www.instagram.com/eatsring_official/)
-
-[**잇츨링 backend github**](https://github.com/Team8-Party-Luck/backend)   
 
 </br></br>
 
@@ -59,12 +70,28 @@
 - 최소한의 페이지 구성으로 인한 유저의 편의성 증대
 
 ### ② 유저 초기 설정 페이지
+- 성별, 연령대, 지역, 등 자신의 정보를 선택 해 원하는 파티를 쉽게 찾을수 있음
+- 인스타그램 아이디 입력을 통해 초기 설정 페이지에서 받는 정보에서 부족한 점을 보완 가능
 
-### ③ 메인 페이지
+### ③ 파티 등록, 수정 페이지
+- 식당 음식 이미지가 없어도 기본 이미지 선택을 통해 쉽게 사진 선택 가능
+- 식당을 고를 때 현재 위치 근처 식당이 먼저 나와 쉽게 근처 맛집을 찾을 수 있음
+- 인원수,연령대, 성별을 선택 가능해 내가 실제로 만나는 사람에 대한 불안감을 줄일수 있음
+- 파티 수정을 통해 잘못된 정보 기입이나 수정하고 싶은 정보를 언제든 수정 가능
 
-### ④ 채팅 페이지
+### ④ 메인 페이지
+- 이용 가이드가 홈 화면 위에 떠있어 이 서비스를 어떻게 이용할 지 모르겠을 때 언제든 열람 가능.
+- 참여할 파티, 찜한 파티 등을 통해 내가 신청하거나, 관심있는 파티 쉽게 확인 가능
+ - 파티 탐색을 통해 시, 구 데이터만 입력해도 그 지역의 파티가 전부 떠서 위치 기반 파티 용이
+ 
+### ⑤ 채팅 페이지
+- 채팅 방 나가기 기능을 통해 받기 싫은 유저의 메세지 거절 가능
+- 메세지를 보낸 시간이 떠서 언제 유저와 채팅을 했는지 시간 확인 가능
 
-### ⑤ 마이페이지
+### ⑥ 마이페이지
+- 참여 히스토리를 통해 내가 참여했었던 파티 확인 가능
+- 로그아웃, 회원탈퇴를 통해 유저의 개인정보를 안전하게 수정 가능.
+- 프로필 수정을 통해 자신의 개인 취향, 인스타 아이디 변경등 개인 정보가 바꼈을 때 언제든 수정 가능
 
 </br>
 
@@ -239,4 +266,3 @@
 | sockjs-client| 소켓 통신 |실시간 채팅  |
 | date-fns| 한국 날짜로 설정 |  |
 | react-device-detect| 모바일 최적화 |  |
-
