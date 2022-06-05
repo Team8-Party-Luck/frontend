@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+//컬러시스템
 import { color } from "../shared/ColorSystem";
 
 //카카오
@@ -89,10 +91,10 @@ const StyledSlider = styled(Slider)`
     bottom: -5em;
   }
   .slick-dots li button:before {
-    color: gray;
+    color: ${color.sub2};
   }
   .slick-dots li.slick-active button:before {
-    color: red;
+    color: ${color.primary};
   }
 `;
 const Image = styled.img`
