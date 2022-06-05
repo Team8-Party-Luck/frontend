@@ -14,6 +14,7 @@ import { userApi } from "../shared/api";
 import { history } from "../redux/configStore";
 
 //컴포넌트
+import SetHeader from "../components/Settings/SetHeader";
 import SetGender from "../components/Settings/SetGender";
 import SetAge from "../components/Settings/SetAge";
 import SetLocation from "../components/Settings/SetLocation";
@@ -44,7 +45,7 @@ const Setting = () => {
   //선택 요소 전환
   const [page, setPage] = useState(false);
 
-  //홈으로 돌아가는 모달
+  //만약 유저가 이미 프로필 정보를 입력한 유저라면 홈으로 돌아가는 모달
   const [goHome, setGoHome] = useState(false);
 
   //세팅 항목들
@@ -142,25 +143,16 @@ const Setting = () => {
 
   return (
     <React.Fragment>
-      <HeaderBox>
-        <Contain>
-          {gender &&
-          age &&
-          city &&
-          region &&
-          food.length !== 0 &&
-          values.nickname &&
-          values.intro ? (
-            <Progress width={(5 / 5) * 100 + "%"} BgColor={color.primary} />
-          ) : (
-            <Progress width={(count / 5) * 100 + "%"} BgColor={color.primary} />
-          )}
-          {/* <Progress width={(count / 5) * 100 + "%"} /> */}
-        </Contain>
-        <HeaderText>
-          이제 프로필 정보 입력 후 <br /> 바로 잇츨링을 사용할 수 있습니다!🙌🏻
-        </HeaderText>
-      </HeaderBox>
+      <SetHeader
+        gender={gender}
+        age={age}
+        city={city}
+        region={region}
+        food={food}
+        nickname={values.nickname}
+        intro={values.intro}
+        count={count}
+      />
       {page === false ? (
         <BodyBox>
           <InnerText>성별을 선택해주세요</InnerText>
@@ -262,35 +254,6 @@ const Setting = () => {
     </React.Fragment>
   );
 };
-
-const Contain = styled.div`
-  margin: 0.5em auto;
-  background-color: ${color.pale};
-  width: 100%;
-  height: 0.7em;
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
-`;
-const Progress = styled.div`
-  background: ${(props) => props.BgColor};
-  // background: red;
-  width: ${(props) => props.width};
-  height: 100%;
-  transition: width 1s;
-  border-radius: 20px;
-`;
-
-const HeaderBox = styled.div`
-  width: 100%;
-  padding: 1em;
-  margin-bottom: 1em;
-`;
-
-const HeaderText = styled.p`
-  margin-top: 1em;
-  font-size: 1.1em;
-`;
 
 const BodyBox = styled.div`
   padding: 0 1em;
