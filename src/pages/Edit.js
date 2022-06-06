@@ -1,9 +1,12 @@
+//프로필 수정 페이지
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+
 //리덕스
 import { actionCreators as userActions } from "../redux/modules/user";
 import { userApi } from "../shared/api";
+
 //컴포넌트
 import Header from "../shared/Header";
 import EditProflie from "../components/Edit/EditProflie";
@@ -11,9 +14,13 @@ import EditDisabled from "../components/Edit/EditDisabled";
 import SetLocation from "../components/Settings/SetLocation";
 import SetFood from "../components/Settings/SetFood";
 import EditDetail from "../components/Edit/EditDetail";
+
+//토스트 팝업
 import Toast from "../shared/Toast";
+
 //mui
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 //유효성 체크
 import { checkNickname, checkIntro } from "../shared/Validatiion";
 
@@ -49,6 +56,7 @@ const Edit = (props) => {
   const [ToastStatus, setToastStatus] = useState(false);
   const [ToastMsg, setToastMsg] = useState(""); // 토스트에 표시할 메세지
 
+  //수정 항목들
   const [count, setCount] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
   const [imageSrc, setImageSrc] = useState("");
@@ -79,22 +87,7 @@ const Edit = (props) => {
     }
   }, [ToastStatus]);
 
-  // // 미리보기
-  // const encodeFileToBase64 = (fileBlob) => {
-  //   const reader = new FileReader();
-
-  //   reader.readAsDataURL(fileBlob);
-
-  //   console.log(reader);
-
-  //   return new Promise((resolve) => {
-  //     reader.onload = () => {
-  //       setImageSrc(reader.result);
-  //       resolve();
-  //     };
-  //   });
-  // };
-
+  //mui 색상
   const theme = createTheme({
     palette: {
       primary: {
@@ -103,6 +96,7 @@ const Edit = (props) => {
     },
   });
 
+  //만약 유저가 프로필 이미지를 수정하지 않고 저장할 시 이미지는 빼고 보내는 방식으로 구현
   const updateProfile = () => {
     if (!checkNickname(nickname)) {
       handleToast("nickname");
@@ -113,6 +107,7 @@ const Edit = (props) => {
       return;
     }
 
+    //폼데이터 방식으로 서버로 전송
     const Update_info = new FormData();
     if (imageUrl !== null) {
       Update_info.append("image", imageUrl);
