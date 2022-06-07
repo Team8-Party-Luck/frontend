@@ -1,16 +1,20 @@
+//메세지 리스트 컴포넌트
+import React from "react";
+
+//리덕스
 import { history } from "../../redux/configStore";
 
+//스타일링
 import styled from "styled-components";
 
-import React from "react";
+//이미지
 import DefaultImage from "../../static/images/profile/default.png";
+
+//컬러시스템
+import { color } from "../../shared/ColorSystem";
 
 const MsgList = (props) => {
   const { msgList } = props;
-
-  // console.log(msgList);
-
-  // console.log(msgList.image);
 
   return (
     <WrapBox>
@@ -44,7 +48,7 @@ const WrapBox = styled.div`
 
 const MsgBox = styled.div`
   display: flex;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid ${color.line};
   padding: 0.75em;
   cursor: pointer;
 `;

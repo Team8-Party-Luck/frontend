@@ -1,12 +1,16 @@
+//채팅 목록 페이지
 import React from "react";
-import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
+import styled from "styled-components";
+
+//리덕스
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as chatActions } from "../redux/modules/chat";
+
+//컴포넌트
 import MsgList from "../components/Chat/MsgList";
 import BottomNav from "../shared/BottomNav";
 import Header from "../shared/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as chatActions } from "../redux/modules/chat";
 import NullData from "../shared/NullData";
-import styled from "styled-components";
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -15,6 +19,7 @@ const Chat = () => {
     dispatch(chatActions.getChatListDB());
   }, []);
 
+  //주고 받았던 채팅 메세지 목록들
   const msgList = useSelector((state) => state?.chat?.list);
   // console.log(msgList);
 
