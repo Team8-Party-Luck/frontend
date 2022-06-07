@@ -1,56 +1,67 @@
+//유저와 채팅을 나눌수 있는 페이지
 import React, { useRef, useState } from "react";
-import SockJs from "sockjs-client";
-import Stomp from "stompjs";
-import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
-import ChatBox from "../components/Chat/ChatBox";
-import ChatInput from "../components/Chat/ChatInput";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { history } from "../redux/configStore";
-import { actionCreators as chatActions } from "../redux/modules/chat";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { Box } from "@mui/material";
 import styled from "styled-components";
+
+//리덕스
+import { actionCreators as chatActions } from "../redux/modules/chat";
+import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/configStore";
+
+//StompJs
+import SockJs from "sockjs-client";
+import Stomp from "stompjs";
+
+//컴포넌트
+import ChatBox from "../components/Chat/ChatBox";
+import ChatInput from "../components/Chat/ChatInput";
+import Popup from "../shared/Popup";
+
+//이미지
 import BackIcon from "../static/images/icon/back.png";
 import DefaultImg from "../static/images/profile/default.png";
+
+//컬러시스템
 import { color } from "../shared/ColorSystem";
-import Popup from "../shared/Popup";
 
 const ChatDetail = () => {
   const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
-  const [openEsc, setOpenEsc] = useState(false);
+  //메세지 인풋 관리하는 ref
+  const msg = useRef("");
 
-  //채팅 메시지
-  const msg = React.useRef("");
-
-  // const [msg, setMsg] = useState("");
+  //스크롤 이벤트 관리하는 ref
   const scrollRef = useRef();
 
+  //params값으로 방아이디를 받아와 소켓에 사용
   const { roomId } = useParams();
-  // console.log(roomId);
+
+  //나가기 버튼 모달
+  const [openEsc, setOpenEsc] = useState(false);
 
   // 소켓 연결
   React.useEffect(() => {
     wsConnect();
 
+    //페이지를 나가면 소켓 연결 끊어주기
     return () => {
       wsDisConnect();
     };
   }, []);
 
+  //채팅페이지에 들어오면 룸아이디를 서버로 보내 이전 메세지들과 유저 정보를 호출
   React.useEffect(() => {
     dispatch(chatActions.getMsgListDB(roomId));
     dispatch(chatActions.getChatUserDB(roomId));
   }, []);
 
+  //상대 유저와 과거에 나누었던 메세지들
   const messages = useSelector((state) => state?.chat?.msg);
-  // console.log(messages);
 
+  //상대유저와 유저 본인의 대한 정보
   const chatInfo = useSelector((state) => state?.chat?.user);
-  // console.log(chatInfo);
 
   // 방 입장 시 스크롤 아래로 이동
   useEffect(() => {
@@ -63,29 +74,18 @@ const ChatDetail = () => {
   }, [messages]);
 
   // stomp 프로토콜 위에서 sockJS 가 작동되도록 클라이언트 생성
-  // let sock = new SockJs("http://54.180.88.119/ws-stomp"); //형빈님
-  let sock = new SockJs("https://epocle.shop/ws-stomp"); //차혁님
-
+  // let sock = new SockJs("http://54.180.88.119/ws-stomp");
+  let sock = new SockJs("https://epocle.shop/ws-stomp");
   let ws = Stomp.over(sock);
-
-  // console.log(ws);
 
   // 연결 및 구독
   function wsConnect() {
     try {
       ws.connect({ token: token, type: "ENTER" }, () => {
-        // console.log(roomId);
-        ws.subscribe(
-          `/queue/${roomId}`,
-          (res) => {
-            const newMessage = JSON.parse(res.body);
-            // console.log(res);
-            // console.log(newMessage);
-            dispatch(chatActions.subMsg(newMessage));
-          }
-          // {},
-        );
-        // console.log(ws.ws.readyState);
+        ws.subscribe(`/queue/${roomId}`, (res) => {
+          const newMessage = JSON.parse(res.body);
+          dispatch(chatActions.subMsg(newMessage));
+        });
       });
     } catch (error) {
       // console.log(error);
@@ -103,10 +103,6 @@ const ChatDetail = () => {
     }
   }
 
-  const ClearFields = () => {
-    document.getElementById("msgInput").value = "";
-  };
-
   //메세지 전송
   const onSend = async () => {
     try {
@@ -116,28 +112,25 @@ const ChatDetail = () => {
         message: msg.current.value,
         type: "TALK",
       };
-      // console.log(msg.current.value);
       //값이 없으면 아무것도 실행 x
       if (msg.current.value === "") {
         return;
       }
       ws.send("/app/send", { token: token }, JSON.stringify(message));
-      // console.log(JSON.stringify(message));
-      // console.log(ws.ws.readyState);
-      // setMsg("");
-      // document.getElementById("msgInput").value = "";
+
+      //메세지를 보내고 나면 ref로 관리하던 값을 초기화t
       msg.current.value = "";
     } catch (error) {
       // console.log(error);
-      // console.log(ws.ws.readyState);
     }
   };
+  //채팅 인풋에 아무것도 없다면 전송 x
   if (messages === null) {
     return;
   }
 
   return (
-    <Box position={"relative"}>
+    <RelativeBox>
       <WrapBox>
         <FlexBox>
           <BackBox
@@ -197,7 +190,7 @@ const ChatDetail = () => {
         <div style={{ marginTop: "5em" }} ref={scrollRef} />
       </MsgWrapBox>
       <ChatInput onSend={onSend} msg={msg} />
-    </Box>
+    </RelativeBox>
   );
 };
 
@@ -205,12 +198,16 @@ const WrapBox = styled.div`
   width: 100%;
   height: 3.5em;
   display: flex;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid ${color.line};
   justify-content: space-between;
   position: fixed;
   background: white;
   align-items: center;
   padding: 0 1em;
+`;
+
+const RelativeBox = styled.div`
+  position: relative;
 `;
 
 const BackBox = styled.div`

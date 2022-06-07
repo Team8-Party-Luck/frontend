@@ -1,71 +1,20 @@
-import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+//채팅 인풋
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import SockJS from "sockjs-client";
-import Stomp from "stompjs";
-import { useRef } from "react";
+
+//컬러시스템
+import { color } from "../../shared/ColorSystem";
 
 const ChatInput = (props) => {
   const { onSend, msg } = props;
 
-  const ws = useRef();
-
-  const token = sessionStorage.getItem("token");
-
   useEffect(() => {
     msg.current.focus();
-  }, [msg])
-
-  // console.log(msg);
-
-  // let sock = new SockJS("http://121.139.34.35:8080/stomp/chat");
-  // let ws = Stomp.over(sock);
-
-  // //  웹소켓이 연결될 때 까지 실행
-  //   function waitForConnection(ws, callback) {
-  //     setTimeout(
-  //         function () {
-  //             // 연결되었을 때 콜백함수 실행
-  //             if (ws.ws.readyState === 1) {
-  //                 callback();
-  //                 // 연결이 안 되었으면 재호출
-  //             } else {
-  //                 waitForConnection(ws, callback);
-  //             }
-  //         },
-  //         10, // 밀리초 간격으로 실행
-  //     );
-  // }
-
-  //메세지 보내는 함수
-  //   const onSend = async () => {
-  //     try {
-  //         // send할 데이터
-  //         const message = {
-  //             roomId: roomId,
-  //             message: msg,
-  //             type: "TALK",
-  //         };
-  //         //값이 없으면 아무것도 실행 x
-  //         if (msg === "") {
-  //             return;
-  //         }
-  //         // 로딩 중
-  //         waitForConnection(ws, function () {
-  //             ws.send("/app/send", { token: token }, JSON.stringify(message));
-  //             console.log(ws.ws.readyState);
-  //             // setText("");
-  //         });
-  //     } catch (error) {
-  //         console.log(error);
-  //         console.log(ws.ws.readyState);
-  //     }
-  // };
+  }, [msg]);
 
   //엔터로 전송
   const onKeyDownHandler = (e) => {
     if (e.key === "Enter") {
-      // console.log("엔터 눌렀당");
       onSend();
     }
   };
@@ -75,34 +24,30 @@ const ChatInput = (props) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        position: "fixed",
-        bottom: 0,
-        width: "100%",
-        height: "4.5em",
-        padding: 2,
-        paddingTop: "0.5em",
-        background: "white",
-        borderTop: "1px solid #dfdfdf",
-      }}
-    >
+    <WrapBox>
       <MsgInput
         ref={msg}
         id="msgInput"
         type="text"
-        // onChange={(e) => {
-        //   setMsg(e.target.value);
-        // }}
-        // value={msg}
         onKeyDown={onKeyDownHandler}
         maxLength={100}
       />
       <MsgButton onClick={onClick}>보내기</MsgButton>
-    </Box>
+    </WrapBox>
   );
 };
+
+const WrapBox = styled.div`
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 4.5em;
+  padding: 2;
+  padding-top: 0.5em;
+  background-color: white;
+  border-top: 1px solid ${color.line};
+`;
 
 const MsgInput = styled.input`
   width: 100%;

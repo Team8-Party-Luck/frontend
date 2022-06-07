@@ -1,15 +1,16 @@
-import { Box, Avatar, Typography } from "@mui/material";
-import { red } from "@mui/material/colors";
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
+
+//이미지
 import DefaultImg from "../../static/images/profile/default.png";
+
+//컬러시스템
+import { color } from "../../shared/ColorSystem";
 
 const ChatBox = (props) => {
   const { message, userId, createdAt, image, chatInfo } = props;
 
-  // console.log(userInfo);
-
+  //유저의 아이디를 비교해 메세지의 색상과 방향을 결정
   const user = userId === chatInfo?.userId ? true : false;
   // console.log(user);
 
@@ -44,7 +45,7 @@ const Msg = styled.div`
   max-width: 80%;
   padding: 0.8em;
   border-radius: 1.5em;
-  background-color: ${(props) => (props.user ? "#ff6853" : "white;")};
+  background-color: ${(props) => (props.user ? `${color.primary}` : "white;")};
   flex-direction: ${(props) => (props.user ? "row-reverse" : "row")};
   border: ${(props) => (props.user ? "none" : "1px solid #dfdfdf;")};
   word-break: break-all;
