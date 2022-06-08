@@ -1,10 +1,14 @@
+//찜한 파티 목록 페이지
 import React from "react";
-import Header from "../shared/Header";
-import BottomNav from "../shared/BottomNav";
+import styled from "styled-components";
+
+//리덕스
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/user";
-import styled from "styled-components";
+
+//컴포넌트
+import Header from "../shared/Header";
 import NullData from "../shared/NullData";
 import AllData from "../components/Home/AllData";
 
