@@ -1,8 +1,9 @@
+//문의하기 페이지
 import React from "react";
 import styled from "styled-components";
+
+//컴포넌트
 import Header from "../shared/Header";
-import { Box } from "@mui/material";
-import BottomNav from "../shared/BottomNav";
 import NullData from "../shared/NullData";
 
 const Inquary = () => {
