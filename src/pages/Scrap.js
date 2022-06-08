@@ -1,28 +1,16 @@
-import React, { useEffect } from "react";
-import Header from "../shared/Header";
-import Box from "@mui/material/Box";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import { history } from "../redux/configStore";
-import Avatar from "@mui/material/Avatar";
-import BottomNav from "../shared/BottomNav";
+//찜한 파티 목록 페이지
+import React from "react";
+import styled from "styled-components";
+
+//리덕스
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as crewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useState } from "react";
-import _ from "lodash";
-import { useRef } from "react";
-import axios from "axios";
-import styled from "styled-components";
+
+//컴포넌트
+import Header from "../shared/Header";
 import NullData from "../shared/NullData";
 import AllData from "../components/Home/AllData";
-
-//이모티콘
-import ic_location from "../static/images/icon/ic_location.png";
-import ic_calendar from "../static/images/icon/ic_calendar.png";
-import ic_time from "../static/images/icon/ic_time.png";
-import ic_people from "../static/images/icon/ic_people.png";
 
 const Scrap = () => {
   const dispatch = useDispatch();
