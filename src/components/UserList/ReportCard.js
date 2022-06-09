@@ -1,19 +1,37 @@
+//유저 신고 모달
 import React, { useState } from "react";
 import styled from "styled-components";
-import Modal from "react-modal";
-import { color } from "../../shared/ColorSystem";
+
+//리덕스
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
+
+//모달
+import Modal from "react-modal";
+
+//컴포넌트
 import Popup from "../../shared/Popup";
+
+//이미지
 import RadioBtn from "../../static/images/icon/라디오버튼.png";
 import RadioBtnAct from "../../static/images/icon/라디오버튼-1.png";
+
+//컬러시스템
+import { color } from "../../shared/ColorSystem";
 
 const ReportCard = (props) => {
   const { close, id, nickname, setOpenComplete } = props;
 
+  //신고 모달 열기
   const [report, setReport] = useState("");
-  const [etc, setEtc] = useState("");
+
+  //신고 확인 모달
   const [openConfirm, setOpenConfirm] = useState(false);
+
+  //신고 내용 관리
+  const [etc, setEtc] = useState("");
+
+  //신고 내용 목록
   const options = [
     "약속을 지키지 않았어요",
     "비속어 / 부적절한 언어를 사용했어요",
