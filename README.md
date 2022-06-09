@@ -1,5 +1,4 @@
 # 잇츨링 (eatsring)
-df
 
 ![title](https://i.imgur.com/Xe4C0TO.png)
 
