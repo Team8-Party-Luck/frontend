@@ -1,14 +1,26 @@
+//유저 프로필 띄우는 모달
 import React from "react";
 import styled from "styled-components";
+
+//리덕스
+import { actionCreators as chatActions } from "../../redux/modules/chat";
+import { useDispatch } from "react-redux";
+
+//모달
 import Modal from "react-modal";
+
+//컬러시스템
 import { color } from "../../shared/ColorSystem";
+
+//컴포넌트
+import FoodList from "../Profile/FoodList";
+
+//이미지
 import DefaultImg from "../../static/images/profile/default.png";
 import InstaIcon from "../../static/images/icon/인스타그램아이콘.png";
 import BackIcon from "../../static/images/icon/파티등록_이미지삭제버튼.png";
 import ReportIcon from "../../static/images/icon/신고.png";
-import FoodList from "../Profile/FoodList";
-import { actionCreators as chatActions } from "../../redux/modules/chat";
-import { useDispatch } from "react-redux";
+
 const UserCard = (props) => {
   const {
     close,
