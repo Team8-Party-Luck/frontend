@@ -1,7 +1,14 @@
+//잘못된 경로로 들어왔을 시 보여주는 페이지
 import React from "react";
 import styled from "styled-components";
-import NullData from "../shared/NullData";
+
+//리덕스
 import { history } from "../redux/configStore";
+
+//컴포넌트
+import NullData from "../shared/NullData";
+
+//컬러시스템
 import { color } from "./ColorSystem";
 
 const NotFound = () => {
