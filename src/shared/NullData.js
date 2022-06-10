@@ -1,5 +1,8 @@
+//조회된 값이 없을 경우 보여주는 컴포넌트
 import React from "react";
 import styled from "styled-components";
+
+//이미지
 import NullLogo from "../static/images/logo/Frame 220@2x.png";
 
 const NullData = (props) => {
