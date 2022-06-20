@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import UserCard from "../components/UserList/UserCard";
-import HeaderNav from "../shared/HeaderNav";
 import Header from "../shared/Header";
 import Popup from "../shared/Popup";
 

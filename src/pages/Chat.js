@@ -1,5 +1,4 @@
 import React from "react";
-import ChatHeaderNav from "../components/Chat/ChatHeaderNav";
 import MsgList from "../components/Chat/MsgList";
 import BottomNav from "../shared/BottomNav";
 import Header from "../shared/Header";

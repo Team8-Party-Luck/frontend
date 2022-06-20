@@ -1,72 +1,72 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-// import { useDispatch } from "react-redux";
-// import SockJS from "sockjs-client";
-// import * as Stomp from "stompjs";
+import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
 
-// import { actionCreators as alarmActions } from "../../redux/modules/alarm";
+import { actionCreators as alarmActions } from "../../redux/modules/alarm";
 import HomeLogo from "../../static/images/logo/로고(4배수).png";
 import AlarmImg from "../../static/images/icon/ic_alarm.png";
 import GuideIcon from "../../static/images/icon/ic_guide2@4x.png";
-import Add from "../../shared/Add";
+//pwa추가버튼 후에 추가 에정
+// import Add from "../../shared/Add";
 
+// import SockJS from "sockjs-client";
+// import * as Stomp from "stompjs";
 // let sock = new SockJS("http://54.180.88.119/ws-stomp");
 // let ws = Stomp.over(sock);
+// const token = sessionStorage.getItem("token");
+// const userid = sessionStorage.getItem("userid");
 
 const HeaderNav = () => {
   const history = useHistory();
+  // const dispatch = useDispatch();
 
-  //알람 연결
-  // const alarmSub = () => {
-  // try {
-  //     ws.connect(
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "content-type": "application/json;charset=UTF-8",
-  //           accept: "application/json,",
-  //         },
-  //       },
-  //       () => {
-  //         console.log("STOMP Connection");
+  // 알람 서버 연결
+  // function ConnectSub() {
+  //   try {
+  //     ws.connect({ token: token }, () => {
+  //       console.log("STOMP Connection");
 
-  //         ws.subscribe(`/alarm/${userid}`, (res) => {
-  //           console.log("받은 메세지", res);
-  //           const newMessage = JSON.parse(res.body);
+  //       ws.subscribe(`/alarm/${userid}`, (res) => {
+  //         console.log("받은 메세지", res);
+  //         const newMessage = JSON.parse(res.body);
 
-  //           dispatch(getAlarm(newMessage));
-  //           // let messageAl = newMessage.messageAl;
-  //           // let partyId = newMessage.messageAl;
-  //           // let title = newMessage.messageAl;
-  //           // let store = newMessage.messageAl;
-  //           // let image = newMessage.messageAl;
-
-  //           // let str = `<AlarmCard></AlarmCard>`;
-  //           // $("alarm").append(str);
-  //         });
-  //       }
-  //     );
+  //         // dispatch(getAlarm(newMessage));
+  //       });
+  //     });
   //   } catch (error) {
   //     console.log(error.response);
   //     console.log(error);
   //   }
-  // };
   // }
 
-  React.useEffect(() => {
-    // alarmSub();
+  // useEffect(() => {
+  //   ConnectSub();
 
-    return () => {
-      // wsDisConnect();
-    };
-  }, []);
+  //   return async () => {
+  //     try {
+  //       ws.disconnect(() => {
+  //         ws.unsubscribe("sub-0");
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  // }, []);
 
-  // const dispatch = useDispatch();
+  //전체조회
+  // /alarmList
   // React.useEffect(() => {
   //   dispatch(alarmActions.ConnectSub());
+
+  //   // return () => {
+  //   //   dispatch(alarmActions.DisConnectUnsub());
+  //   // };
   // }, []);
+
+  const alarmData = useSelector((state) => state?.alarm?.alarm);
+  console.log(alarmData);
 
   return (
     <WrapBox>
@@ -81,13 +81,13 @@ const HeaderNav = () => {
             history.push(`/guide`);
           }}
         />
-        {/* <ImgBox
+        <ImgBox
           src={AlarmImg}
           alt="알람로고"
           onClick={() => {
-            // history.push("/alarm");
+            history.push("/alarm");
           }}
-        /> */}
+        />
       </FlexBox>
     </WrapBox>
   );

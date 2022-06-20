@@ -3,8 +3,6 @@ import { history } from "../redux/configStore";
 import BackIcon from "../static/images/icon/back.png";
 import styled from "styled-components";
 
-
-
 const Header = (props) => {
   return (
     <WrapBox>
@@ -13,7 +11,7 @@ const Header = (props) => {
           if (props.name === "파티등록") {
             props.modal();
           } else if (props.name === "메시지") {
-            history.push('/home');
+            history.push("/home");
           } else {
             history.goBack();
           }

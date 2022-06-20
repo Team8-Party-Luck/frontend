@@ -3,7 +3,6 @@ import Setting from "./pages/Setting";
 import "./App.css";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
@@ -29,15 +28,11 @@ import NotFound from "./shared/NotFound";
 import styled from "styled-components";
 import background from "./static/images/website/웹페이지.png";
 import MobileFrame from "./components/common/MobileFrame";
-
-// import { actionCreators as alarmActions } from "./redux/modules/alarm";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as alarmActions } from "./redux/modules/alarm";
 
 function App() {
-  // const dispatch = useDispatch();
-  // React.useEffect(() => {
-  //   dispatch(alarmActions.ConnectSub());
-  // }, []);
-
+  const dispatch = useDispatch();
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -46,14 +41,19 @@ function App() {
     setScreenSize();
   });
 
+  const loginCheck = sessionStorage.getItem("token");
 
+  useEffect(() => {
+    if (loginCheck !== null) {
+      dispatch(alarmActions.ConnectSub());
+    }
+  }, []);
 
   return (
     <Fullscreen>
       <Wrap>
         <MobileFrame className="MobileFramePage">
           <ConnectedRouter history={history}>
-
             <Switch>
               <Route path="/" exact component={Login} />
               <Route path="/home" exact component={Home} />
@@ -77,7 +77,6 @@ function App() {
               <Route path="/auth/kakao" component={OAuth2RedirectHandeler} />
               <Route path="/*" exact component={NotFound} />
             </Switch>
-
           </ConnectedRouter>
         </MobileFrame>
       </Wrap>
