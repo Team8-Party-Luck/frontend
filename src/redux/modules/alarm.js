@@ -36,7 +36,9 @@ const ConnectSub = () => {
           console.log("받은 메세지", res);
           const newMessage = JSON.parse(res.body);
 
+
           dispatch(getAlarm(newMessage));
+          alert(newMessage.alarms)
         });
       });
     } catch (error) {

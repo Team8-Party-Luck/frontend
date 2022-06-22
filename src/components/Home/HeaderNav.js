@@ -65,8 +65,10 @@ const HeaderNav = () => {
   //   // };
   // }, []);
 
-  const alarmData = useSelector((state) => state?.alarm?.alarm);
-  console.log(alarmData);
+  // const alarmData = useSelector((state) => state?.alarm?.alarm);
+  // console.log(alarmData);
+
+  
 
   return (
     <WrapBox>

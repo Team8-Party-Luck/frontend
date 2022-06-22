@@ -1,7 +1,7 @@
 import Login from "./pages/Login";
 import Setting from "./pages/Setting";
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
@@ -48,6 +48,8 @@ function App() {
       dispatch(alarmActions.ConnectSub());
     }
   }, []);
+
+  // const alarmData = useSelector((state) => state?.alarm?.alarm);
 
   return (
     <Fullscreen>
